@@ -17,7 +17,7 @@
                     </div>
                     
                     <label class="mb-1 fw-bold d-block">Note:</label>
-                    <label class="mb-3 text-wrap">This will help the user to change their password in case of emaergency!</label>
+                    <label class="mb-3 text-wrap">This will help the user to change their password in case of emergency!</label>
                     <div class="mb-2 d-block text-end">
                         <button class="btn btn-outline-primary shadow-none btn-sm" type="button" data-bs-dismiss="modal">No</button>       
                         <a class="btn btn-outline-danger shadow-none btn-sm" href="../model/ureset_acc.php?uid=<?=$rows_users['uid']; ?>&email=<?=$rows_users['email_add']; ?>" name="btn_reset_acc" id="btn_reset_acc">Yes</a>       

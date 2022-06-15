@@ -29,6 +29,8 @@
         <title>Alapaap | Approved Request</title>
         <link rel="icon" type="image/svg+xml" sizes="30x24" href="assets/img/android-chrome-192x192.png">
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
         <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
         <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
@@ -71,38 +73,17 @@
                 <div id="content">
                     <?php include 'inc/navbar.php'; ?>
                     <div class="container-fluid">
-                        <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                        <div class="d-sm-flex justify-content-between align-items-between mb-4">
                             <h3 class="text-dark mb-0 mb-3 mb-sm-0">
                                 User Management
                             </h3>
+                            <button class="btn btn-primary btn-sm" type="button" data-bs-target="#new_user" data-bs-toggle="modal"><i class="fa-fw fa fa-plus " ></i>New User</button>
                         </div>
                         <div class="card shadow">
                             <div class="card-body">
                             <?php echo (!empty($user_alert)) ? $user_alert : ''; ?>
-                            
-                                <div class="row mb-3">
-                                    <div class="col-md-6 text-nowrap">
-                                        <!-- <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                                            <label class="form-label">Show&nbsp;</label>
-                                            <select class="d-inline-block form-select form-select-sm w-25">
-                                                <option value="10" selected="">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                            </select>
-                                        </div> -->
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="text-md-end dataTables_filter" id="dataTable_filter">
-                                            <label class="form-label">
-                                                <!-- <input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"> -->
-                                            </label>
-                                            <button class="btn btn-primary btn-sm" type="button" data-bs-target="#new_user" data-bs-toggle="modal"><i class="fa-fw fa fa-plus " ></i>New User</button>                                         
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table table-hover align-middle user-select-none text-nowrap">
+                                <div class="table-responsive pt-4">
+                                    <table class="table table-hover align-middle user-select-none text-nowrap" id="user_datatables">
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
@@ -111,6 +92,7 @@
                                                 <th>Date Added</th>
                                                 <th>Added By</th>
                                                 <th>Action</th>
+                                              
                                             </tr>
                                         </thead>
                                         
@@ -119,8 +101,7 @@
                                              
                                                 $num = 1;
                                                 $list_users = mysqli_query($conn,"SELECT * FROM tbl_user where role >=1 and role <=123456 ORDER BY date_created DESC");
-                                                $rows_count = mysqli_num_rows($list_users);
-                                                if ($rows_count > 0):   
+                                                 
                                                     while ($rows_users = mysqli_fetch_array($list_users)): 
                                                         $Requestor = (strpos($rows_users['role'],'1') !== false) ? 'Requestor ' : '';
                                                         $Approver = (strpos($rows_users['role'],'2') !== false) ? 'Approver ' : '';
@@ -129,8 +110,6 @@
                                                         $Confirmer = (strpos($rows_users['role'],'5') !== false) ? 'Confirmer ' : '';
                                                         $Verifier = (strpos($rows_users['role'],'6') !== false) ? 'Verifier' : '';
                                                        
-                                                    
-
                                                         if($rows_users['image'] != null){
                                                             $image = "../user/".$rows_users['image'];
                                                         }else{
@@ -149,10 +128,10 @@
                                                         }
 
                                                         if($rows_users['status'] == 1){
-                                                            $action = '<a class="btn btn-outline-secondary  btn-sm shadow-none" href="model/udisabled_model.php?uid='.$rows_users['uid'].'&email='.$rows_users['email_add'].'&stat=1" ><i class="fa-fw fas fa-eye me-1"></i>Disabled</a>';
+                                                            $action = '<a class="btn btn-outline-secondary btn-sm shadow-none" href="model/udisabled_model.php?uid='.$rows_users['uid'].'&email='.$rows_users['email_add'].'&stat=1" ><i class="fa-fw fas fa-eye"></i>Disabled</a>';
                                                         }
                                                         if($rows_users['status'] == 2){
-                                                            $action = '<a class="btn btn-outline-primary btn-sm shadow-none" href="model/udisabled_model.php?uid='.$rows_users['uid'].'&email='.$rows_users['email_add'].'&stat=2" ><i class="fa-fw fas fa-eye me-1"></i>Enabled</a>';
+                                                            $action = '<a class="btn btn-outline-primary btn-sm shadow-none" href="model/udisabled_model.php?uid='.$rows_users['uid'].'&email='.$rows_users['email_add'].'&stat=2" ><i class="fa-fw fas fa-eye"></i>Enabled</a>';
                                                             
                                                         }
                                                         if($rows_users['status'] == 0){
@@ -170,54 +149,17 @@
                                                             echo '<td>'.$rows_users['date_created'].'</td>';
                                                             echo '<td>'.ucfirst($rows_users['created_by']).'</td>';
                                                             echo '<td>';
-
                                                             echo $action;
-                                                            // echo '<a class="btn btn-outline-danger btn-sm shadow-none ms-2"  data-bs-target="#reset_user'.$rows_users['uid'].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-user-edit me-1"></i>Reset</a>';
-                                                            echo '</td>';
-                                                            echo '<td>';
+                                                            // echo '<a class="btn btn-outline-danger btn-sm shadow-none me-2"  data-bs-target="#reset_user'.$rows_users['uid'].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-user-edit me-1"></i>Reset</a>';
                                                                 require 'inc/ureset_acc.php';
                                                             echo '</td>';
                                                         echo '</tr>';                                                        
                                                     endwhile; 
-                                                else:
-                                                    echo '<tr>';                                                   
-                                                    echo '<td class="text-center" colspan="7">There is no data in TCI to be showed!🤗</td>';                                                               
-                                                    echo '</tr>';
-                                                endif;                                                           
+                                                                                                        
                                             ?>
                                         </tbody>
                                     </table>
                                 </div>
-                                <!-- <div class="row">
-                                    <div class="col-md-6 align-self-center">
-                                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                            <ul class="pagination">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link" href="#" aria-label="Previous">
-                                                    <span aria-hidden="true">«</span>
-                                                    </a>
-                                                </li>
-                                                <li class="page-item active">
-                                                    <a class="page-link" href="#">1</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">2</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">3</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#" aria-label="Next">
-                                                    <span aria-hidden="true">»</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -239,11 +181,24 @@
             require 'inc/new_user.php';
         ?>
         <script src="assets/js/jquery-3.6.0.js"></script>
+        
+        <!-- Datatables -->
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/theme.js"></script>
         <script>
             $(document).ready(function(){
-
+                $('#user_datatables').DataTable({
+                   
+                    pageLength: 5,
+                    lengthMenu: [5, 10, 20, 50, 100, 200, 500],
+                    "language": {
+                        "emptyTable": "There is no data to be showed!🤗",
+                        "zeroRecords": "No data found!🤗"
+                    }
+                });
                 $("button[data-bs-dismiss=modal]").click(function(){
                     $("form").trigger('reset');
                     $('input[rel="gp"]').each(function() {

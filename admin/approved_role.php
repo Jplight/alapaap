@@ -29,6 +29,8 @@ require 'model/update_role.php';
         <title>Alapaap | User's Privilage</title>
         <link rel="icon" type="image/svg+xml" sizes="30x24" href="assets/img/android-chrome-192x192.png">
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
         <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
         <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
@@ -81,28 +83,8 @@ require 'model/update_role.php';
                         </div>
                         <div class="card shadow">
                             <div class="card-body">
-                                <div class="row mb-3">
-                                    <div class="col-md-6 text-nowrap">
-                                        <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                                            <label class="form-label">Show&nbsp;</label>
-                                            <select class="d-inline-block form-select form-select-sm w-25">
-                                                <option value="10" selected="">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="text-md-end dataTables_filter" id="dataTable_filter">
-                                            <label class="form-label">
-                                                <input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search">
-                                            </label>                                         
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="table-responsive">
-                                    <table class="table table-hover user-select-none align-middle text-nowrap">
+                                    <table class="table table-hover user-select-none align-middle text-nowrap" id="urequest_role">
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
@@ -116,8 +98,7 @@ require 'model/update_role.php';
                                         <tbody>
                                             <?php
                                                 $sql_new_req = mysqli_query($conn,"SELECT * FROM tbl_req_role where status = '0' ORDER BY date_created DESC ");
-                                                $rows_count = mysqli_num_rows($sql_new_req);
-                                                if ($rows_count > 0):   
+                                               
                                                     while ($rows_users = mysqli_fetch_array($sql_new_req)):
                                                         $users_id = $rows_users['uid'];
                                                         $his_id = $rows_users['his_id'];
@@ -152,49 +133,18 @@ require 'model/update_role.php';
                                                         }
 
                                                         echo '<td><span class="badge rounded-pill bg-secondary">Pending</span></td>';
-                                                        echo '<td><a class="btn btn-primary btn-sm shadow-sm me-2" href="#view_req'.$users_id.'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a>';
-                                                            include 'inc/req_rol_modal.php';
+                                                        echo '<td>'.
+                                                                '<a class="btn btn-primary btn-sm shadow-sm me-2" href="#view_req'.$users_id.'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a>'.
+                                                                include 'inc/req_rol_modal.php';
+                                                            '</td>';
+                                                            
                                                         echo '</tr>';
-
+                                                        
                                                     endwhile;
-                                                else:
-                                                    echo '<tr>';                                                   
-                                                    echo '<td class="text-center" colspan="9">There is no request  to be showed!🤗</td>';                                                               
-                                                    echo '</tr>';
-                                                endif; 
+                                             
                                             ?>
                                         </tbody>
                                     </table>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 align-self-center">
-                                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                            <ul class="pagination">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link" href="#" aria-label="Previous">
-                                                        <span aria-hidden="true">«</span>
-                                                    </a>
-                                                </li>
-                                                <li class="page-item active">
-                                                    <a class="page-link" href="#">1</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">2</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">3</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#" aria-label="Next">
-                                                        <span aria-hidden="true">»</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -208,28 +158,8 @@ require 'model/update_role.php';
                         </div>
                         <div class="card shadow">
                             <div class="card-body">
-                                <div class="row mb-3">
-                                    <div class="col-md-6 text-nowrap">
-                                        <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                                            <label class="form-label">Show&nbsp;</label>
-                                            <select class="d-inline-block form-select form-select-sm w-25">
-                                                <option value="10" selected="">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="text-md-end dataTables_filter" id="dataTable_filter">
-                                            <label class="form-label">
-                                                <input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search">
-                                            </label>                                         
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="table-responsive">
-                                    <table class="table table-hover user-select-none align-middle text-nowrap">
+                                    <table class="table table-hover user-select-none align-middle text-nowrap" id="urecent_act">
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
@@ -243,8 +173,7 @@ require 'model/update_role.php';
                                         <tbody>
                                             <?php
                                                 $sql_new_req = mysqli_query($conn,"SELECT * FROM tbl_req_role where status = '1' ORDER BY date_created DESC");
-                                                $rows_count = mysqli_num_rows($sql_new_req);
-                                                if ($rows_count > 0):   
+                                                  
                                                     while ($rows_users = mysqli_fetch_array($sql_new_req)):  
                                                         $users_id =  $rows_users['uid'];
                                                         $mydate = strtotime($rows_users['date_created']);
@@ -291,44 +220,10 @@ require 'model/update_role.php';
                                                         echo '</td>';
                                                         echo '</tr>';
                                                     endwhile;
-                                                else:
-                                                    echo '<tr>';                                                   
-                                                    echo '<td class="text-center" colspan="9">There is no recent activity  to be showed!🤗</td>';                                                               
-                                                    echo '</tr>';
-                                                endif; 
+                                             
                                             ?>
                                         </tbody>
                                     </table>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 align-self-center">
-                                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                            <ul class="pagination">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link" href="#" aria-label="Previous">
-                                                        <span aria-hidden="true">«</span>
-                                                    </a>
-                                                </li>
-                                                <li class="page-item active">
-                                                    <a class="page-link" href="#">1</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">2</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">3</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#" aria-label="Next">
-                                                        <span aria-hidden="true">»</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -350,6 +245,22 @@ require 'model/update_role.php';
         </div>
         <script src="assets/js/jquery-3.6.0.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Datatables -->
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>        
+
         <script src="assets/js/theme.js"></script>
+        <script>
+            $('#urequest_role, #urecent_act').DataTable({
+                
+                pageLength: 5,
+                lengthMenu: [5, 10, 20, 50],
+                "language": {
+                    "emptyTable": "There is no data to be showed!🤗",
+                    "zeroRecords": "No data found!🤗"
+                }
+            });
+        </script>
     </body>
 </html>

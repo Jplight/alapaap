@@ -7,11 +7,11 @@
         <label class="form-label fw-bold">Password:</label>
         <input class="form-control form-control" type="password" name="pass" id="pass"  placeholder="Input your password">
     </div>
-    <div class="d-flex justify-content-evenly">
-        <div class="form-check form-switch form-check-inline small m-2">
+    <div class="d-flex justify-content-start">
+        <!-- <div class="form-check form-switch form-check-inline small m-2">
             <input class="form-check-input" type="checkbox" name="remember_me" id="chk_remember">
             <label class="form-check-label" for="chk_remember">Remember Me</label>
-        </div>
+        </div> -->
         <div class="form-check form-switch form-check-inline small m-2">
             <input class="form-check-input" type="checkbox" id="chk_showpass">
             <label class="form-check-label" for="chk_showpass">Show Password</label>

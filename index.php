@@ -239,8 +239,10 @@ if (isset($_SESSION['uid'])) {
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/bs-init.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-        <script>
+        <script>            
             $(document).ready(function(){
+
+
                 $("#frm_signin").submit(function(){
                     return false;
                 });

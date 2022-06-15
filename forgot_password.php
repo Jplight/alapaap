@@ -30,7 +30,9 @@ include 'model/forgot_model.php';
                 <div class="card shadow-sm p-3">
                     <div class="card-body">
                         <div class="mb-3">
-                            <img src="assets/img/ebiz-logo.png" width="200">
+                            <a href="http://<?=$_SERVER['SERVER_NAME'];?>">
+                                <img src="assets/img/ebiz-logo.png" width="200">
+                            </a>
                         </div>
                         <form id="frm_forgot" method="post">
                             <div class="mb-2"><label class="form-label fw-bold">Email Address *</label>
