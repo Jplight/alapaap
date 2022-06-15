@@ -1,0 +1,202 @@
+{
+   "term":"Philippines",
+   "moresuggestions":25,
+   "autoSuggestInstance":null,
+   "trackingID":"6044784dd22cf61e03d48f3804fdfb6a",
+   "misspellingfallback":false,
+   "suggestions":[
+      {
+         "group":"CITY_GROUP",
+         "entities":[
+            {
+               "geoId":"2375",
+               "destinationId":"1004070",
+               "landmarkCityDestinationId":null,
+               "type":"CITY",
+               "redirectPage":"DEFAULT_PAGE",
+               "latitude":14.595628,
+               "longitude":120.974836,
+               "caption":"Manila, National Capital Region, <span class='highlighted'>Philippines</span>",
+               "href": "https://a.travel-assets.com/dynamic_destination_images/exact/crop/178282.jpg?width=552&height=720&currentCrop=true&fallbackSource=TM&clientid=merch&placement=gmt&radius=20",
+               "name":"Manila"
+            },
+            {
+               "geoId":"55429",
+               "destinationId":"986398",
+               "landmarkCityDestinationId":null,
+               "type":"CITY",
+               "redirectPage":"DEFAULT_PAGE",
+               "latitude":14.10484,
+               "longitude":120.937943,
+               "caption":"Tagaytay, Calabarzon, <span class='highlighted'>Philippines</span>",
+               "href":"https://cf.bstatic.com/xdata/images/city/square250/685751.webp?k=f767a14c644c94f49ffe81011e2560b05478ebee72ad9ded8dfcfce285aa4ddc&o=",
+               "name":"Tagaytay"
+            },
+            {
+               "geoId":"9737",
+               "destinationId":"999341",
+               "landmarkCityDestinationId":null,
+               "type":"CITY",
+               "redirectPage":"DEFAULT_PAGE",
+               "latitude":14.533413702481994,
+               "longitude":121.0007313266143,
+               "caption":"Pasay, National Capital Region, <span class='highlighted'>Philippines</span>",
+               "href":"https://ierlythe.sirv.com/Images/ImageGen.jpg",
+               "name":"Pasay"
+            },
+            {
+               "geoId":"800",
+               "destinationId":"987200",
+               "landmarkCityDestinationId":null,
+               "type":"CITY",
+               "redirectPage":"DEFAULT_PAGE",
+               "latitude":10.309726,
+               "longitude":123.89309,
+               "caption":"Cebu, Cebu, Central Visayas, <span class='highlighted'>Philippines</span>",
+               "href":"https://cf.bstatic.com/xdata/images/city/square250/685685.webp?k=f79f48b55a70e2dc06234ef95e5f6ffc88916ceff681d6a7090a1129de7d9c0b&o=",
+               "name":"Cebu"
+            },
+            {
+               "geoId":"9733",
+               "destinationId":"982835",
+               "landmarkCityDestinationId":null,
+               "type":"CITY",
+               "redirectPage":"DEFAULT_PAGE",
+               "latitude":14.555021867817619,
+               "longitude":121.02902303217024,
+               "caption":"Makati, National Capital Region, <span class='highlighted'>Philippines</span>",
+               "href": "https://ierlythe.sirv.com/Images/480px-Makati_skyline.jpg",
+               "name":"Makati"
+            },
+            {
+               "geoId":"601371",
+               "destinationId":"1639027",
+               "landmarkCityDestinationId":null,
+               "type":"CITY",
+               "redirectPage":"DEFAULT_PAGE",
+               "latitude":11.959059,
+               "longitude":121.92627,
+               "caption":"Boracay Island, Western Visayas, <span class='highlighted'>Philippines</span>",
+               "href" : "https://cf.bstatic.com/xdata/images/region/square250/58865.webp?k=b7d4e0374846fed65d32cb167b44eb7bb39504c1159438b29fb564592d6f1993&o=",
+               "name":"Boracay Island"
+            },
+            {
+               "geoId":"489",
+               "destinationId":"998116",
+               "landmarkCityDestinationId":null,
+               "type":"CITY",
+               "redirectPage":"DEFAULT_PAGE",
+               "latitude":16.404805707244208,
+               "longitude":120.59425275659193,
+               "caption":"Baguio, Cordillera Administrative Region, <span class='highlighted'>Philippines</span>",
+               "href":"https://cf.bstatic.com/xdata/images/city/square250/685658.webp?k=8d0ac07410b364d808cb4ec1737197818c6312c5582f3e5f084d8e1fe961c52a&o=",
+               "name":"Baguio"
+            }
+         ]
+      },
+      {
+         "group":"HOTEL_GROUP",
+         "entities":[
+            {
+               "geoId":"6813",
+               "destinationId":"143368",
+               "landmarkCityDestinationId":null,
+               "type":"HOTEL",
+               "redirectPage":"DEFAULT_PAGE",
+               "latitude":14.572159,
+               "longitude":120.9823,
+               "caption":"Diamond Hotel <span class='highlighted'>Philippines</span>, Manila, National Capital Region, Philippines",
+               "name":"Diamond Hotel Philippines"
+            },
+            {
+               "geoId":"26752491",
+               "destinationId":"857079712",
+               "landmarkCityDestinationId":null,
+               "type":"HOTEL",
+               "redirectPage":"DEFAULT_PAGE",
+               "latitude":13.758497,
+               "longitude":121.073709,
+               "caption":"3 Bedroom Home at Batangas City <span class='highlighted'>Philippines</span> Pontefino, Batangas City, Calabarzon, Philippines",
+               "name":"3 Bedroom Home at Batangas City Philippines Pontefino"
+            }
+         ]
+      },
+      {
+         "group":"LANDMARK_GROUP",
+         "entities":[
+            {
+               "geoId":"6215145",
+               "destinationId":"1744014",
+               "landmarkCityDestinationId":"999341",
+               "type":"LANDMARK",
+               "redirectPage":"DEFAULT_PAGE",
+               "latitude":14.555262,
+               "longitude":120.981847,
+               "caption":"Philippine International Convention Center, Pasay, National Capital Region, <span class='highlighted'>Philippines</span>",
+               "name":"Philippine International Convention Center"
+            },
+            {
+               "geoId":"6161109",
+               "destinationId":"1716283",
+               "landmarkCityDestinationId":"1004070",
+               "type":"LANDMARK",
+               "redirectPage":"DEFAULT_PAGE",
+               "latitude":14.577795,
+               "longitude":120.985538,
+               "caption":"Philippine General Hospital, Manila, National Capital Region, <span class='highlighted'>Philippines</span>",
+               "name":"Philippine General Hospital"
+            },
+            {
+               "geoId":"6338442",
+               "destinationId":"1807332",
+               "landmarkCityDestinationId":null,
+               "type":"LANDMARK",
+               "redirectPage":"DEFAULT_PAGE",
+               "latitude":14.783806266478955,
+               "longitude":120.23271404199001,
+               "caption":"Subic Bay, Central Luzon, <span class='highlighted'>Philippines</span>",
+               "name":"Subic Bay"
+            }
+         ]
+      },
+      {
+         "group":"TRANSPORT_GROUP",
+         "entities":[
+            {
+               "geoId":"5000781",
+               "destinationId":"1665690",
+               "landmarkCityDestinationId":null,
+               "type":"AIRPORT",
+               "redirectPage":"DEFAULT_PAGE",
+               "latitude":14.506506,
+               "longitude":121.004298,
+               "caption":"Manila, <span class='highlighted'>Philippines</span> (MNL-Ninoy Aquino Intl.)",
+               "name":"Manila (MNL-Ninoy Aquino Intl.)"
+            },
+            {
+               "geoId":"4343107",
+               "destinationId":"1665664",
+               "landmarkCityDestinationId":null,
+               "type":"AIRPORT",
+               "redirectPage":"DEFAULT_PAGE",
+               "latitude":10.315088,
+               "longitude":123.979683,
+               "caption":"Cebu, <span class='highlighted'>Philippines</span> (CEB-Mactan - Cebu Intl.)",
+               "name":"Cebu (CEB-Mactan - Cebu Intl.)"
+            },
+            {
+               "geoId":"6123060",
+               "destinationId":"1716600",
+               "landmarkCityDestinationId":null,
+               "type":"AIRPORT",
+               "redirectPage":"DEFAULT_PAGE",
+               "latitude":9.8564,
+               "longitude":126.016012,
+               "caption":"Siargao, <span class='highlighted'>Philippines</span> (IAO-Sayak)",
+               "name":"Siargao (IAO-Sayak)"
+            }
+         ]
+      }
+   ],
+   "geocodeFallback":false
+}
