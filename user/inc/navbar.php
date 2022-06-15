@@ -27,112 +27,86 @@
                                         </form>
                                     </div>
                                 </li>
-                               <!--  <li class="nav-item dropdown no-arrow mx-1">
-                                    <div class="nav-item dropdown no-arrow">
+                                <li class="nav-item dropdown no-arrow mx-1">
+                                    <?php $notif = mysqli_query($conn,"select * from tbl_pending_request where uid = '$uid' order by date_requested LIMIT 5  "); ?>
+                                    <div class="nav-item dropdown no-arrow ">
                                         <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                                            <span class="badge bg-danger badge-counter">3+</span>
-                                            <i class="fas fa-bell fa-fw"></i>
+                                            <span class="badge bg-danger badge-counter"><?php echo mysqli_num_rows($notif); ?></span>
+                                            <i class="fas fa-bell fa-fw fa-lg"></i>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                                            <h6 class="dropdown-header">alerts center</h6>
-                                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                                <div class="me-3">
-                                                    <div class="bg-primary icon-circle">
-                                                        <i class="fas fa-file-alt text-white"></i>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <span class="small text-gray-500">December 12, 2019</span>
-                                                    <p>A new monthly report is ready to download!</p>
-                                                </div>
-                                            </a>
+                                        <div class="dropdown-menu dropdown-menu-end dropdown-list shadow-lg animated--grow-in">
+                                            <h6 class="dropdown-header border-success bg-success">Notification</h6>
+                                            <?php 
+                                                foreach($notif as $data):
+                                                    if ($data['form_type'] == '1'):
+                                                        $form_type = "HCI NEW";
+                                                    elseif($data['form_type'] == '1-1'):
+                                                        $form_type = "HCI UPDATE";
+                                                    elseif($data['form_type'] == '1-2'):
+                                                        $form_type = "HCI DELETE";
+                                                    elseif($data['form_type'] == '2'):
+                                                        $form_type = "Adhoc";
+                                                    elseif($data['form_type'] == '3'):
+                                                        $form_type = "CPS NEW";
+                                                    elseif($data['form_type'] == '3-1'):
+                                                        $form_type = "CPS UPDATE";
+                                                    elseif($data['form_type'] == '3-2'):
+                                                        $form_type = "CPS DELETE";
+                                                    elseif($data['form_type'] == '4'):
+                                                        $form_type = "BaaS CSRF";
+                                                    elseif($data['form_type'] == '4-1'):
+                                                        $form_type = "BaaS CRRF";
+                                                    endif;
+                                            ?>
                                             <a class="dropdown-item d-flex align-items-center" href="#">
                                                 <div class="me-3">
                                                     <div class="bg-success icon-circle">
-                                                        <i class="fas fa-donate text-white"></i>
+                                                        <i class="fas fa-file-alt text-white"></i>
                                                     </div>
                                                 </div>
-                                                <div>
-                                                    <span class="small text-gray-500">December 7, 2019</span>
-                                                    <p>$290.29 has been deposited into your account!</p>
+                                                <div class="small">
+                                                    <span class="d-block text-muted">
+                                                       <?php echo time_elapsed_string('2013-05-01 00:22:35', true); ?>
+                                                        <?=date('F d, Y - h:i:s A',strtotime($data['date_requested'])); ?>
+                                                    </span>                                                
+                                                    You have been request for <span class="fw-bold"><?=$form_type;?></span> with control Number: <span class="fw-bold"><?=$data['control_number']; ?></span>
                                                 </div>
                                             </a>
-                                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                                <div class="me-3">
-                                                    <div class="bg-warning icon-circle">
-                                                        <i class="fas fa-exclamation-triangle text-white"></i>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <span class="small text-gray-500">December 2, 2019</span>
-                                                    <p>Spending Alert: We've noticed unusually high spending for your account.</p>
-                                                </div>
-                                            </a>
-                                            <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                            <?php endforeach; ?>
+                                            <a class="dropdown-item text-center small text-gray-500" href="#">Show All</a>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown no-arrow mx-1">
+                                    <?php $UMessage = mysqli_query($conn,"select * from tbl_remarks where uid = '$uid' order by remarks_date LIMIT 5  "); ?>
                                     <div class="nav-item dropdown no-arrow">
                                         <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                                            <span class="badge bg-danger badge-counter">7</span>
-                                            <i class="fas fa-envelope fa-fw"></i>
+                                        <span class="badge bg-danger badge-counter"><?php echo mysqli_num_rows($UMessage); ?></span>
+                                            <i class="fas fa-envelope fa-fw fa-lg"></i>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                                            <h6 class="dropdown-header">alerts center</h6>
+                                        <div class="dropdown-menu dropdown-menu-end dropdown-list shadow-lg animated--grow-in">
+                                            <h6 class="dropdown-header border-success bg-success">Message</h6>
+                                            <?php
+                                                foreach($UMessage as $comment):
+                                            ?>
                                             <a class="dropdown-item d-flex align-items-center" href="#">
                                                 <div class="dropdown-list-image me-3">
-                                                    <img class="rounded-circle" src="assets/img/avatars/avatar4.jpeg">
+                                                    <img class="rounded-circle" src="assets/img/profile.jpg">
                                                     <div class="bg-success status-indicator"></div>
                                                 </div>
                                                 <div class="fw-bold">
                                                     <div class="text-truncate">
-                                                        <span>Hi there! I am wondering if you can help me with a problem I've been having.</span>
+                                                        <span><?php echo $comment['comments']; ?></span>
                                                     </div>
-                                                    <p class="small text-gray-500 mb-0">Emily Fowler - 58m</p>
+                                                    <p class="small text-gray-500 mb-0"><?=ucwords($comment['fullname']);?></p>
                                                 </div>
                                             </a>
-                                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                                <div class="dropdown-list-image me-3">
-                                                    <img class="rounded-circle" src="assets/img/avatars/avatar2.jpeg">
-                                                    <div class="status-indicator"></div>
-                                                </div>
-                                                <div class="fw-bold">
-                                                    <div class="text-truncate">
-                                                        <span>I have the photos that you ordered last month!</span>
-                                                    </div>
-                                                    <p class="small text-gray-500 mb-0">Jae Chun - 1d</p>
-                                                </div>
-                                            </a>
-                                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                                <div class="dropdown-list-image me-3">
-                                                    <img class="rounded-circle" src="assets/img/avatars/avatar3.jpeg">
-                                                    <div class="bg-warning status-indicator"></div>
-                                                </div>
-                                                <div class="fw-bold">
-                                                    <div class="text-truncate">
-                                                        <span>Last month's report looks great, I am very happy with the progress so far, keep up the good work!</span>
-                                                    </div>
-                                                    <p class="small text-gray-500 mb-0">Morgan Alvarez - 2d</p>
-                                                </div>
-                                            </a>
-                                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                                <div class="dropdown-list-image me-3">
-                                                    <img class="rounded-circle" src="assets/img/avatars/avatar5.jpeg">
-                                                    <div class="bg-success status-indicator"></div>
-                                                </div>
-                                                <div class="fw-bold">
-                                                    <div class="text-truncate">
-                                                        <span>Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</span>
-                                                    </div>
-                                                    <p class="small text-gray-500 mb-0">Chicken the Dog · 2w</p>
-                                                </div>
-                                            </a>
-                                            <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                            <?php endforeach; ?>
+                                            <a class="dropdown-item text-center small text-gray-500" href="#">Show All</a>
                                         </div>
                                     </div>
                                     <div class="shadow dropdown-list dropdown-menu dropdown-menu-end" aria-labelledby="alertsDropdown"></div>
-                                </li> -->
+                                </li>
                                 <li class="nav-item dropdown no-arrow">
                                     <div class="nav-item dropdown no-arrow">
                                         <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
