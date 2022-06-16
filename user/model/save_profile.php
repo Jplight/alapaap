@@ -84,7 +84,11 @@ if(isset($_POST['btn_u_acc'])){
     $verify = mysqli_query($conn,"SELECT * FROM tbl_user where uid = '$uid' and password = '$verify_pass' ");
     $count = mysqli_num_rows($verify);
     if($count > 0){
-        if($_POST['new_pass'] <> $_POST['retype_pass']){
+        if($_POST['new_pass'] == null){
+            $user_error = "<div class='alert alert-danger' id='alert'>New Password shoudn't leave blank!</div>";
+        }elseif($_POST['retype_pass'] == null){
+            $user_error = "<div class='alert alert-danger' id='alert'>Retype Password shoudn't leave blank!</div>";
+        }elseif($_POST['new_pass'] <> $_POST['retype_pass']){
             $user_error = "<div class='alert alert-danger' id='alert'>New password and Confirm Password does not match</div>";
         }else{
             $new_pass = hash_hmac('md5',$_POST['new_pass'],'@Bsp1234*');

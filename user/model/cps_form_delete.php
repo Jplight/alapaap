@@ -62,7 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if ($sql) {
 			header("location: index.php");
 			mysqli_close($conn);
-		}				
+		}
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'requested','$status') ");				
 	}	
 
 	if (isset($_POST['btn_save_cps_del'])) {

@@ -3,6 +3,8 @@ session_start();
 ob_start();
 date_default_timezone_set('Asia/Manila');
 include '../model/connection.php';
+require 'inc/GetTimeAgo.php';
+
 $uid = $_SESSION['uid'];
 $role = $_SESSION['role'];
 $url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];

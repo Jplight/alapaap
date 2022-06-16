@@ -28,14 +28,14 @@
                             </a>
                         </li>
                         <?php endif; ?>
-                        <?php if ($role == 1): ?>
+                      
                         <li class="nav-item">
                             <a class="nav-link nav-link_active" href="activity_logs.php">
                                 <i class="fa-fw fas fa-history"></i>
                                 <span class="h6">Activity Logs</span>
                             </a>
                         </li>
-                        <?php endif; ?>
+                        
                         <li class="nav-item">
                             <a class="nav-link nav-link_active" href="../model/logout.php">
                                 <i class="fa-fw fas fa-sign-out-alt"></i>

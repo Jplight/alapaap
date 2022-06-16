@@ -36,6 +36,7 @@ if (isset($_POST['btn_approver'])) {
 	if ($sql) {
 		header("location: pending_request.php");
 	}
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$my_fullname','$form_type','$txt_control_number', 'approved','$status') ");
 }
 
 if (isset($_POST['app_disapproved'])) {
@@ -68,6 +69,8 @@ if (isset($_POST['app_disapproved'])) {
 	if ($sql) {
 		header("location: pending_request.php");
 	}
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$approver_id', '$my_fullname','$form_type','$txt_control_number', 'disapproved','$status') ");
+
 }
 
 if (isset($_POST['approver_returned'])) {
@@ -100,6 +103,8 @@ if (isset($_POST['approver_returned'])) {
 	if ($sql) {
 		header("location: pending_request.php");
 	}
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$approver_id', '$my_fullname','$form_type','$txt_control_number', 'returned','$status') ");
+	
 }
  // ====== For Approver ======
 
@@ -140,6 +145,7 @@ if (isset($_POST['btn_reciever'])) {
 	if ($sql) {
 		header("location: pending_request.php");
 	}
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$reciever_id', '$my_fullname','$form_type','$txt_control_number', 'approved','$status') ");
 }
 
 if (isset($_POST['rec_disapproved'])) {
@@ -179,6 +185,7 @@ if (isset($_POST['rec_disapproved'])) {
 	if ($sql) {
 		header("location: pending_request.php");
 	}
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$reciever_id', '$my_fullname','$form_type','$txt_control_number', 'disapproved','$status') ");
 }
  // ====== For Reciever ======
 
@@ -217,6 +224,8 @@ if (isset($_POST['btn_performer'])) {
 	if ($sql) {
 		header("location: pending_request.php");
 	}
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$performer_id', '$my_fullname','$form_type','$txt_control_number', 'performed','$status') ");
+
 }
 if (isset($_POST['performer_disapproved'])) {
 	$performer_name = $_POST['performer_name'];
@@ -255,6 +264,8 @@ if (isset($_POST['performer_disapproved'])) {
 	if ($sql) {
 		header("location: pending_request.php");
 	}
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$performer_id', '$my_fullname','$form_type','$txt_control_number', 'disapproved','$status') ");
+
 }
  // ====== For Performer ======
 
@@ -294,6 +305,8 @@ if (isset($_POST['btn_confirmer'])) {
 	if ($sql) {
 		header("location: pending_request.php");
 	}
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$verifier_id', '$my_fullname','$form_type','$txt_control_number', 'confirmed','$status') ");
+
 }
 // ====== For Confirmer ======
 
@@ -356,7 +369,11 @@ if (isset($_POST['btn_verifier'])) {
 	if ($sql) {
 		header("location: pending_request.php");
 	}
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$verifier_2id', '$my_fullname','$form_type','$txt_control_number', 'verified','$status') ");
+
 }
+
+
 // ====== For Verifier ======
 
 ?>

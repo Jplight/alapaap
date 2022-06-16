@@ -1,6 +1,7 @@
 <?php  
 session_start();
 include '../model/connection.php';
+require 'inc/GetTimeAgo.php';
 $uid = $_SESSION['uid'];
 $role = $_SESSION['role'];
 if (!isset($uid)) {

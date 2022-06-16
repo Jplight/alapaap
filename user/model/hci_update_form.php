@@ -87,6 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			header("location: index.php");
 			mysqli_close($conn);
 		}
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'requested','$status') ");
 	}
 	if (isset($_POST['btn_savehci_up'])) {
 		$status = 1;

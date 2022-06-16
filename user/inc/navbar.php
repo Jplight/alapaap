@@ -28,16 +28,27 @@
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown no-arrow mx-1">
-                                    <?php $notif = mysqli_query($conn,"select * from tbl_pending_request where uid = '$uid' order by date_requested LIMIT 5  "); ?>
+                                    <?php
+                                        if ($my_role == '1'){
+
+                                            $notif = mysqli_query($conn,"select * from tbl_pending_request where uid = '$uid' and status between 3 and 7 order by date_requested  ");
+                                            $LoadNotif = mysqli_query($conn,"select * from tbl_activity_logs where status between 3 and 7 order by date_requested desc ");
+                                        }else{
+                                            $notif = mysqli_query($conn,"select * from tbl_pending_request where status = '$my_role'  ");
+                                            $LoadNotif = mysqli_query($conn,"select * from tbl_activity_logs where status = '$my_role'  LIMIT 5 ");
+                                        }
+                                    
+                                     ?>
                                     <div class="nav-item dropdown no-arrow ">
                                         <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
                                             <span class="badge bg-danger badge-counter"><?php echo mysqli_num_rows($notif); ?></span>
                                             <i class="fas fa-bell fa-fw fa-lg"></i>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-end dropdown-list shadow-lg animated--grow-in">
+                                        <div class="dropdown-menu dropdown-menu-end dropdown-list overflow-auto shadow-lg animated--grow-in" style="max-height: 20rem;" >
                                             <h6 class="dropdown-header border-success bg-success">Notification</h6>
                                             <?php 
-                                                foreach($notif as $data):
+                                                foreach($LoadNotif as $data):
+
                                                     if ($data['form_type'] == '1'):
                                                         $form_type = "HCI NEW";
                                                     elseif($data['form_type'] == '1-1'):
@@ -57,6 +68,32 @@
                                                     elseif($data['form_type'] == '4-1'):
                                                         $form_type = "BaaS CRRF";
                                                     endif;
+                                                    
+                                                    if ($data['status'] == '2'){
+                                                        $stat = 'Requested';
+                                                    }
+                                                    if ($data['status'] == '3' ){
+                                                        $stat = 'Approved';
+                                                    }
+                                                    if ($data['status'] == '4'){
+                                                        $stat = 'Received';
+                                                    }
+                                                    if ($data['status'] == '5'){
+                                                        $stat = 'Performed';
+                                                    }
+                                                    if ($data['status'] == '6'){
+                                                        $stat = 'Confirmed';
+                                                    }
+                                                    if ($data['status'] == '7'){
+                                                        $stat = 'Verified';
+                                                    }
+
+                                                    if ($my_role == 1){
+                                                        $NotifName = $data['fullname'];
+                                                    }else{
+                                                        $NotifName = $data['fullname'];
+                                                    }
+                                                    
                                             ?>
                                             <a class="dropdown-item d-flex align-items-center" href="#">
                                                 <div class="me-3">
@@ -65,48 +102,26 @@
                                                     </div>
                                                 </div>
                                                 <div class="small">
-                                                    <span class="d-block text-muted">
-                                                       <?php echo time_elapsed_string('2013-05-01 00:22:35', true); ?>
-                                                        <?=date('F d, Y - h:i:s A',strtotime($data['date_requested'])); ?>
-                                                    </span>                                                
-                                                    You have been request for <span class="fw-bold"><?=$form_type;?></span> with control Number: <span class="fw-bold"><?=$data['control_number']; ?></span>
+                                                    <span class="d-block text-muted"><?=date('F d, Y - h:i:s A',strtotime($data['date_requested'])); ?></span>
+                                                    <span class="fw-bold d-block text-muted" ><?= get_time_ago(strtotime($data['date_requested']));?></span>                                                
+                                                    <span class="fw-bold"><?=ucwords($NotifName); ?></span> has been <?=$stat; ?> <span class="fw-bold"><?=$form_type;?></span> with control Number: 
+                                                    <span class="fw-bold"><?=$data['control_number']; ?></span>
                                                 </div>
                                             </a>
+                                        
                                             <?php endforeach; ?>
-                                            <a class="dropdown-item text-center small text-gray-500" href="#">Show All</a>
+                                            <?php if(!mysqli_num_rows($notif)):?>
+                                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                                <div class="small">
+                                                    <span>There is no notification for you right now.</span>
+                                                </div>
+                                            </a>    
+                                            <?php endif; ?>
+                                            <!-- <a class="dropdown-item text-center small text-gray-500" href="#">Show All</a> -->
                                         </div>
                                     </div>
                                 </li>
-                                <li class="nav-item dropdown no-arrow mx-1">
-                                    <?php $UMessage = mysqli_query($conn,"select * from tbl_remarks where uid = '$uid' order by remarks_date LIMIT 5  "); ?>
-                                    <div class="nav-item dropdown no-arrow">
-                                        <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                                        <span class="badge bg-danger badge-counter"><?php echo mysqli_num_rows($UMessage); ?></span>
-                                            <i class="fas fa-envelope fa-fw fa-lg"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-end dropdown-list shadow-lg animated--grow-in">
-                                            <h6 class="dropdown-header border-success bg-success">Message</h6>
-                                            <?php
-                                                foreach($UMessage as $comment):
-                                            ?>
-                                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                                <div class="dropdown-list-image me-3">
-                                                    <img class="rounded-circle" src="assets/img/profile.jpg">
-                                                    <div class="bg-success status-indicator"></div>
-                                                </div>
-                                                <div class="fw-bold">
-                                                    <div class="text-truncate">
-                                                        <span><?php echo $comment['comments']; ?></span>
-                                                    </div>
-                                                    <p class="small text-gray-500 mb-0"><?=ucwords($comment['fullname']);?></p>
-                                                </div>
-                                            </a>
-                                            <?php endforeach; ?>
-                                            <a class="dropdown-item text-center small text-gray-500" href="#">Show All</a>
-                                        </div>
-                                    </div>
-                                    <div class="shadow dropdown-list dropdown-menu dropdown-menu-end" aria-labelledby="alertsDropdown"></div>
-                                </li>
+                               
                                 <li class="nav-item dropdown no-arrow">
                                     <div class="nav-item dropdown no-arrow">
                                         <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">

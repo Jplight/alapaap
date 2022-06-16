@@ -49,7 +49,8 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			$sql = mysqli_query($conn,"INSERT INTO `tbl_baas`(`uid`, `control_number`, `form_type`, `fullname`, `email_add`, `contact_no`, `department`, `txt_others`, `form_factor`, `hostname`, `ip_add`, `os` ,`os_version`,`action`,`backup_method`,`backup_method_desc`,`backup_sched`,`backup_time`,`backup_day`,`retention`,`server_contact`,`status`,`date_requested`) VALUES ('$uid','$control_number', '$form_type', '$fullname','$email_add','$contact_no','$crrf_department', '$crrf_txt_others','$crrf_form_factor','$hostname','$ip_add','$crrf_operating_system','$crrf_os_version','$crrf_action','$crrf_backup_method','$crrf_backup_method_desc','$specify_selection','$crrf_host_vm_lvl','$crrf_path_file_lvl','$crrf_retention','$server_contact','$status',NOW()) ");
 			$_SESSION['message'] = "Successfuly Created!";
 			$_SESSION['form_type'] = $form_type;
-			$_SESSION['control_number'] = $control_number;		
+			$_SESSION['control_number'] = $control_number;
+			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'requested','$status') ");		
 		}
 
 		if (isset($_POST['btn_baas_save_crrf'])) {

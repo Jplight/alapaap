@@ -7,7 +7,7 @@
     $role = $_SESSION['role'];
 
     include '../model/connection.php';
-
+    require 'inc/GetTimeAgo.php';
 
     if (!isset($uid)) { header("location: ../index.php"); }
     
