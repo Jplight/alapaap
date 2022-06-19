@@ -16,6 +16,8 @@ if (isset($_POST['btn_approver'])) {
 	$status = 3;
 	$app_status = 1;
 	$comment_id = rand(100000,999999);
+	$his_uid = $_POST['his_uid'];
+
 	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2') {
 		$sql = mysqli_query($conn,"UPDATE tbl_hci set status = '$status', approver_id = '$approver_id', approver = '$approver_name', app_status = '$app_status', appr_date = NOW() where control_number = '$txt_control_number' ");
 		if (!empty($comments)) {
@@ -37,6 +39,7 @@ if (isset($_POST['btn_approver'])) {
 		header("location: pending_request.php");
 	}
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$my_fullname','$form_type','$txt_control_number', 'approved','$status') ");
+	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$control_number', 'approved','$status','0') ");
 }
 
 if (isset($_POST['app_disapproved'])) {
@@ -120,6 +123,8 @@ if (isset($_POST['btn_reciever'])) {
 	$status = 4;
 	$rec_status = 1;
 	$comment_id = rand(100000,999999);
+	$his_uid = $_POST['his_uid'];
+
 	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2') { 
 		$sql = mysqli_query($conn,"UPDATE tbl_hci set status = '$status', reciever_id = '$reciever_id', reciever = '$reciever_name', rec_status = '$rec_status', rec_date = NOW() where control_number = '$txt_control_number' ");
 		if (!empty($comments)) {
@@ -146,6 +151,7 @@ if (isset($_POST['btn_reciever'])) {
 		header("location: pending_request.php");
 	}
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$reciever_id', '$my_fullname','$form_type','$txt_control_number', 'approved','$status') ");
+	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$control_number', 'received','$status','0') ");
 }
 
 if (isset($_POST['rec_disapproved'])) {
@@ -200,6 +206,8 @@ if (isset($_POST['btn_performer'])) {
 	$status = 5;
 	$perf_status = 1;
 	$comment_id = rand(100000,999999);
+	$his_uid = $_POST['his_uid'];
+
 	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2') {
 		$sql = mysqli_query($conn,"UPDATE tbl_hci set status = '$status', performer_id = '$performer_id', performer = '$performer_name', perf_status = '$perf_status', perform_date = NOW() where control_number = '$txt_control_number' ");
 		if (!empty($comments)) {
@@ -225,7 +233,7 @@ if (isset($_POST['btn_performer'])) {
 		header("location: pending_request.php");
 	}
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$performer_id', '$my_fullname','$form_type','$txt_control_number', 'performed','$status') ");
-
+	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$control_number', 'performed','$status','0') ");
 }
 if (isset($_POST['performer_disapproved'])) {
 	$performer_name = $_POST['performer_name'];
@@ -281,6 +289,8 @@ if (isset($_POST['btn_confirmer'])) {
 	$status = 6;
 	$ver_status = 1;
 	$comment_id = rand(100000,999999);
+	$his_uid = $_POST['his_uid'];
+
 	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2') {
 		$sql = mysqli_query($conn,"UPDATE tbl_hci set status = '$status', verifier_id = '$verifier_id', verifier = '$verifier_name', ver_status = '$ver_status', ver_date = NOW() where control_number = '$txt_control_number' ");
 		if (!empty($comments)) {
@@ -306,7 +316,7 @@ if (isset($_POST['btn_confirmer'])) {
 		header("location: pending_request.php");
 	}
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$verifier_id', '$my_fullname','$form_type','$txt_control_number', 'confirmed','$status') ");
-
+	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$control_number', 'confirmed','$status','0') ");
 }
 // ====== For Confirmer ======
 
@@ -324,6 +334,8 @@ if (isset($_POST['btn_verifier'])) {
 	$status = 7;
 	$ver2_status = 1;
 	$comment_id = rand(100000,999999);
+	$his_uid = $_POST['his_uid'];
+
 	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2') {
 		$sql = mysqli_query($conn,"UPDATE tbl_hci set status = '$status', verifier_2id = '$verifier_2id', verifier_2 = '$verifier_2_name', ver2_status = '$ver2_status', ver2_date = NOW() where control_number = '$txt_control_number' ");
 		if (!empty($comments)) {
@@ -370,7 +382,7 @@ if (isset($_POST['btn_verifier'])) {
 		header("location: pending_request.php");
 	}
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$verifier_2id', '$my_fullname','$form_type','$txt_control_number', 'verified','$status') ");
-
+	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$control_number', 'verified','$status','0') ");
 }
 
 

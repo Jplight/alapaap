@@ -113,6 +113,7 @@ include 'model/save_profile.php';
         <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
         <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
         <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
         <style>
         /* width */
         ::-webkit-scrollbar {
@@ -411,6 +412,7 @@ include 'model/save_profile.php';
         <script src="controller/cps_up_script.js"></script>
         <script src="controller/cps_del_script.js"></script>
         <script src="controller/tci_script.js"></script>
+
         <script>
             $(document).ready(function(){
 
@@ -534,7 +536,7 @@ include 'model/save_profile.php';
             $(document).ready(function () {
                 $.ajax({
                     type: "POST",
-                    url: "model/notification.php",
+                    url: "model/alerts.php",
                     dataType: "html",
                     success: function (data) {
                         $("#frm_notification").html(data);

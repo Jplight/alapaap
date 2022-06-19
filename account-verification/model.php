@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 date_default_timezone_set('Asia/Manila');
 require '../model/connection.php';
 
@@ -29,7 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$response['message'] = 'Current Password is incorrect!';	
         }else{
 			$sql2 = mysqli_query($conn,"UPDATE `tbl_user` SET `first_name`='$txt_fname',`last_name`='$txt_lname',`home_address`='$home_add', `password`='$new_pass',`contact_no`='$txt_contact_no',`status`='$status',`date_modified`= NOW() WHERE email_add = '$txt_email_add' ");	
-            $response['status'] = 'verified';
+            $rows = mysqli_fetch_array($sql);
+			$_SESSION['uid'] = $rows['uid'];
+			$_SESSION['role'] = $rows['role'];
+			$response['status'] = 'verified';
 			$response['message'] = 'Your Account has been verified! You may Login your account';
             $response['link'] = '../user/index.php';
         }

@@ -83,11 +83,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	        }
         }
 
+		$_SESSION['message'] = "Successfuly Created!";
+		$_SESSION['form_type'] = $form_type;
+		$_SESSION['control_number'] = $control_number;
+
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'requested','$status') ");
+		
 		if ($sql) {
 			header("location: index.php");
 			mysqli_close($conn);
 		}
-		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'requested','$status') ");
+	
 	}
 	if (isset($_POST['btn_savehci_up'])) {
 		$status = 1;
@@ -113,6 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	        }
         }
 
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'save as draft','$status') ");
 
 		if (!empty($comments)) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`, `uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$control_number','$comment_id','$uid','$fullname','$comments','$role',NOW()) ");
@@ -145,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	        	$insert_query = mysqli_query($conn,$query);
 	        }      
         }
-
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'resubmitted draft','$status') ");
 		if ($sql) {
 			// header("location: index.php");
 			mysqli_close($conn);
@@ -174,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	        	$insert_query = mysqli_query($conn,$query);
 	        }      
         }
-
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'updated','$status') ");
 		if ($sql) {
 			header("location: draft_form.php");
 			mysqli_close($conn);
@@ -207,7 +214,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	        	$insert_query = mysqli_query($conn,$query);
 	        }      
         }
-
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'returned','$status') ");
 		if ($sql) {
 			header("location: index.php");
 			mysqli_close($conn);
@@ -222,7 +229,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if ($sql) {
 			header("location: index.php");
 			mysqli_close($conn);
-		}		
+		}	
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'canceled','$status') ");	
 	}
 
 }
@@ -237,6 +245,7 @@ if (isset($_REQUEST['control_number']) && isset($_REQUEST['f_type'])) {
 		header("location: ../pending_request.php");
 		mysqli_close($conn);
 	}		
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'canceled','$status') ");
 }
 
 

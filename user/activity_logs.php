@@ -122,7 +122,7 @@
                                                             }
 
                                                             if($rows_reports['status'] == '2'){
-                                                                $act = 'Requested';
+                                                                $act = 'Created';
                                                             }
                                                             if($rows_reports['status'] == '3'){
                                                                 $act = 'Approved';
@@ -140,8 +140,6 @@
                                                                 $act = 'Verified';
                                                             }
                                                             
-
-
                                                             echo '<tr>';
                                                             echo '<td>'.$form_type.'</td>';
                                                             echo '<td>'.$rows_reports['control_number'].'</td>';

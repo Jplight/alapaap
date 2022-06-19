@@ -1,6 +1,6 @@
 <?php  
 
-// ob_start();
+ob_start();
 include 'model/forgot_model.php';
 
 ?>
@@ -63,6 +63,10 @@ include 'model/forgot_model.php';
                     $("#txt_error").prop('hidden',true);   
                 }
             });
+
+            $("#frm_forgot").submit(function(){
+                $("#btn_search").attr('disabled',true);
+            });
         });
     </script>
     <script>
@@ -115,6 +119,6 @@ include 'model/forgot_model.php';
 </html>
 <?php 
 
-// ob_end_flush(); 
+ob_end_flush(); 
 
 ?>

@@ -28,7 +28,98 @@
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown no-arrow mx-1">
-                                    <?php require 'model/notifications.php';?>
+                                    <?php
+                                        if ($my_role == '1'){
+
+                                            $notif = mysqli_query($conn,"select * from tbl_pending_request where uid = '$uid' order by date_requested  ");
+                                            $LoadNotif = mysqli_query($conn,"select * from tbl_activity_logs where status between 3 and 7 order by date_requested desc ");
+                                        }else{
+                                            $notif = mysqli_query($conn,"select * from tbl_pending_request where status = '$my_role'  ");
+                                            $LoadNotif = mysqli_query($conn,"select * from tbl_activity_logs where status = '$my_role'  LIMIT 5 ");
+                                        }
+                                    
+                                     ?>
+                                    <div class="nav-item dropdown no-arrow ">
+                                        <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
+                                            <span class="badge bg-danger badge-counter"><?php echo mysqli_num_rows($notif); ?></span>
+                                            <i class="fas fa-bell fa-fw fa-lg"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end dropdown-list overflow-auto shadow-lg animated--grow-in" style="max-height: 20rem;" >
+                                            <h6 class="dropdown-header border-success bg-success">Notification</h6>
+                                            <?php 
+                                                foreach($LoadNotif as $data):
+
+                                                    if ($data['form_type'] == '1'):
+                                                        $form_type = "HCI NEW";
+                                                    elseif($data['form_type'] == '1-1'):
+                                                        $form_type = "HCI UPDATE";
+                                                    elseif($data['form_type'] == '1-2'):
+                                                        $form_type = "HCI DELETE";
+                                                    elseif($data['form_type'] == '2'):
+                                                        $form_type = "Adhoc";
+                                                    elseif($data['form_type'] == '3'):
+                                                        $form_type = "CPS NEW";
+                                                    elseif($data['form_type'] == '3-1'):
+                                                        $form_type = "CPS UPDATE";
+                                                    elseif($data['form_type'] == '3-2'):
+                                                        $form_type = "CPS DELETE";
+                                                    elseif($data['form_type'] == '4'):
+                                                        $form_type = "BaaS CSRF";
+                                                    elseif($data['form_type'] == '4-1'):
+                                                        $form_type = "BaaS CRRF";
+                                                    endif;
+                                                    
+                                                    if ($data['status'] == '2'){
+                                                        $stat = 'Requested';
+                                                    }
+                                                    if ($data['status'] == '3' && $data['form_type'] == '2' ){
+                                                        $stat = 'Approved';
+                                                    }
+                                                    if ($data['status'] == '4'){
+                                                        $stat = 'Received';
+                                                    }
+                                                    if ($data['status'] == '5'){
+                                                        $stat = 'Performed';
+                                                    }
+                                                    if ($data['status'] == '6'){
+                                                        $stat = 'Confirmed';
+                                                    }
+                                                    if ($data['status'] == '7'){
+                                                        $stat = 'Verified';
+                                                    }
+
+                                                    if ($my_role == 1){
+                                                        $NotifName = $data['fullname'];
+                                                    }else{
+                                                        $NotifName = $data['fullname'];
+                                                    }
+                                                    
+                                            ?>
+                                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                                <div class="me-3">
+                                                    <div class="bg-success icon-circle">
+                                                        <i class="fas fa-file-alt text-white"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="small">
+                                                    <span class="d-block text-muted"><?=date('F d, Y - h:i:s A',strtotime($data['date_requested'])); ?></span>
+                                                    <span class="fw-bold d-block text-muted" ><?= get_time_ago(strtotime($data['date_requested']));?></span>                                                
+                                                    <span class="fw-bold"><?=ucwords($NotifName); ?></span> has been <?=$stat; ?> <span class="fw-bold"><?=$form_type;?></span> with control Number: 
+                                                    <span class="fw-bold"><?=$data['control_number']; ?></span>
+                                                </div>
+                                            </a>
+                                        
+                                            <?php endforeach; ?>
+                                            <?php if(!mysqli_num_rows($notif)):?>
+                                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                                <div class="small">
+                                                    <span>There is no notification for you right now.</span>
+                                                </div>
+                                            </a>    
+                                            <?php endif; ?>
+                                            <!-- <a class="dropdown-item text-center small text-gray-500" href="#">Show All</a> -->
+                                        </div>
+                                    </div>
                                 </li>
                                
                                 <li class="nav-item dropdown no-arrow">

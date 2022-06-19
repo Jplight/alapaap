@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_SESSION['message'] = "Successfuly Created!";
 		$_SESSION['form_type'] = $form_type;
 		$_SESSION['control_number'] = $control_number;
-		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'requested','$status') ");
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'created','$status') ");
 	}
 
 	if (isset($_POST['btn_savehci'])) {
@@ -234,7 +234,8 @@ if (isset($_REQUEST['control_number']) && isset($_REQUEST['f_type']) && isset($_
 	header("location: ../pending_request.php");
 }
 
-	
+
+
 
 
 ?>

@@ -100,7 +100,7 @@
                                             <?php
                                              
                                                 $num = 1;
-                                                $list_users = mysqli_query($conn,"SELECT * FROM tbl_user where role >=1 and role <=123456 ORDER BY date_created DESC");
+                                                $list_users = mysqli_query($conn,"SELECT * FROM tbl_user ORDER BY date_created DESC");
                                                  
                                                     while ($rows_users = mysqli_fetch_array($list_users)): 
                                                         $Requestor = (strpos($rows_users['role'],'1') !== false) ? 'Requestor ' : '';
@@ -128,14 +128,14 @@
                                                         }
 
                                                         if($rows_users['status'] == 1){
-                                                            $action = '<a class="btn btn-outline-secondary btn-sm shadow-none" href="model/udisabled_model.php?uid='.$rows_users['uid'].'&email='.$rows_users['email_add'].'&stat=1" ><i class="fa-fw fas fa-eye"></i>Disabled</a>';
+                                                            $action = '<a class="btn btn-outline-secondary btn-sm shadow-none" href="model/udisabled_model.php?uid='.$rows_users['uid'].'&email='.$rows_users['email_add'].'&stat=1" ><i class="fa-fw fas fa-user-slash me-1"></i>Disabled</a>';
                                                         }
                                                         if($rows_users['status'] == 2){
-                                                            $action = '<a class="btn btn-outline-primary btn-sm shadow-none" href="model/udisabled_model.php?uid='.$rows_users['uid'].'&email='.$rows_users['email_add'].'&stat=2" ><i class="fa-fw fas fa-eye"></i>Enabled</a>';
+                                                            $action = '<a class="btn btn-outline-success btn-sm shadow-none" href="model/udisabled_model.php?uid='.$rows_users['uid'].'&email='.$rows_users['email_add'].'&stat=2" ><i class="fa-fw fas fa-user-check me-1"></i>Enabled</a>';
                                                             
                                                         }
                                                         if($rows_users['status'] == 0){
-                                                            $action = '';
+                                                            $action = '<a class="btn btn-outline-primary btn-sm shadow-none" data-bs-target="#view_uacc'.$rows_users['uid'].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a>';
                                                         }
                                                         echo '<tr>';
                                                             echo '<td>'; 
@@ -151,6 +151,7 @@
                                                             echo '<td>';
                                                             echo $action;
                                                             // echo '<a class="btn btn-outline-danger btn-sm shadow-none me-2"  data-bs-target="#reset_user'.$rows_users['uid'].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-user-edit me-1"></i>Reset</a>';
+                                                                require 'inc/view_uaccount.php';
                                                                 require 'inc/ureset_acc.php';
                                                             echo '</td>';
                                                         echo '</tr>';                                                        
@@ -278,6 +279,7 @@
 
             });
         </script>
+
     </body>
 </html>
 <?php ob_end_flush(); ?>

@@ -3,7 +3,7 @@
 if (!empty($control_number)):
     $sql = mysqli_query($conn,"SELECT * FROM `tbl_baas` where control_number = '$control_number' ");
     while ($rows = mysqli_fetch_array($sql)) {
-
+            $get_uid                   = $rows['uid'];
             $control_number            = $rows['control_number'];
             $fullname                  = $rows['fullname'];
             $email_add                 = $rows['email_add'];
@@ -89,6 +89,7 @@ endif;
                                 <input type="hidden" name="form_type" value="<?php echo empty($form_type) ? '' : $form_type; ?>" readonly>
                                 <input type="hidden" name="num_revised" value="<?php echo empty($num_revised) ? '' : $num_revised; ?>" readonly placeholder="Total Revised">
                                 <input type="hidden" name="his_role" value="<?php echo empty($my_role) ? '' : $my_role; ?>" readonly>
+                                <input type="text" name="his_uid" value="<?php echo empty($get_uid) ? '' : $get_uid; ?>" readonly>
                             </div>
                         </div>                       
                         <h4 class="text-center fw-bold mt-3 mb-5">Client Server Registration Form</h4>

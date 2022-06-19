@@ -2,6 +2,7 @@
 if (!empty($control_number)):
     $tbl_tci = mysqli_query($conn,"SELECT * FROM `tbl_tci` where control_number = '$control_number' ");
     while ($rows = mysqli_fetch_array($tbl_tci)) {
+        $get_uid            = $rows['uid'];
         $control_number     = $rows['control_number'];
         $form_type          = $rows['form_type'];
         $fullname           = $rows['fullname'];
@@ -71,6 +72,7 @@ endif;
                             <input type="hidden" name="form_type" value="<?php echo empty($form_type) ? '' : $form_type; ?>" readonly>
                             <input type="hidden" name="num_revised" value="<?php echo empty($num_revised) ? '' : $num_revised; ?>" readonly placeholder="Total Revised">
                             <input type="hidden" name="his_role" value="<?php echo empty($my_role) ? '' : $my_role; ?>" readonly>
+                            <input type="hidden" name="his_uid" value="<?php echo empty($get_uid) ? '' : $get_uid; ?>" readonly>
                         </div>
                     </div>
                     <h4 class="text-capitalize text-center fw-bold mt-3">Site information</h4>

@@ -10,9 +10,24 @@ if (isset($_SESSION['control_number']) && isset($_SESSION['form_type']) ):
     if ($form_type == '1'){
         $form_type = "HCI NEW";
     }
+    if ($form_type == '1-1'){
+        $form_type = "HCI UPDATE";
+    }
+    if ($form_type == '1-2'){
+        $form_type = "HCI DELETE";
+    }
 
     if ($form_type == '2'){
         $form_type = "Adhoc";
+    }
+    if ($form_type == '3'){
+        $form_type = "CPS NEW";
+    }
+    if ($form_type == '3-1'){
+        $form_type = "CPS UPDATE";
+    }
+    if ($form_type == '3-2'){
+        $form_type = "CPS DELETE";
     }    
     if ($form_type == '4') {
         $form_type = "BaaS CSRF";

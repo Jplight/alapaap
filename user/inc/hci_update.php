@@ -2,8 +2,8 @@
 if (!empty($control_number)):
     $tbl_hci_update = mysqli_query($conn,"SELECT * FROM `tbl_hci` where control_number = '$control_number' ");
     while ($rows = mysqli_fetch_array($tbl_hci_update)) {
-
-        $hci_new_control_num   = $rows['hci_new_control_num'];
+        $get_uid                    = $rows['uid'];
+        $hci_new_control_num        = $rows['hci_new_control_num'];
         $control_number             = $rows['control_number'];
         $form_type                  = $rows['form_type'];
         $fullname                   = $rows['fullname'];
@@ -103,6 +103,7 @@ endif;
                             <input type="hidden" name="num_revised" value="<?php echo empty($num_revised) ? '' : $num_revised; ?>" readonly placeholder="Total Revised">
                             <input type="hidden" name="his_role" value="<?php echo empty($my_role) ? '' : $my_role; ?>" readonly>
                             <input type="hidden" name="hci_new_control_num" >
+                            <input type="hidden" name="his_uid" value="<?php echo empty($get_uid) ? '' : $get_uid; ?>" readonly>
                         </div>
                     </div>
 

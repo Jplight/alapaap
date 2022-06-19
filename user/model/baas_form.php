@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			$_SESSION['message'] = "Successfuly Created!";
 			$_SESSION['form_type'] = $form_type;
 			$_SESSION['control_number'] = $control_number;
-			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'requested','$status') ");
+			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'created','$status') ");
 		}
 
 
@@ -62,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			$status = 1; // Send from Approver
 
 			$sql = mysqli_query($conn,"INSERT INTO `tbl_baas`(`uid`, `control_number`, `form_type`, `fullname`, `email_add`, `contact_no`, `department`, `txt_others`, `form_factor`, `hostname`, `ip_add`, `os`, `os_version`, `db_type`, `db_version`, `action`, `node_name`, `backup_method`, `backup_method_desc`, `backup_sched`, `backup_time`, `backup_day`, `archive_sched`, `archive_time`, `archive_day`, `retention`, `retention_sched`, `server_contact`, `status`, `date_requested`) VALUES ('$uid','$control_number', '$form_type', '$fullname','$email_add','$contact_no','$csrf_department', '$txt_others','$csrf_form_factor','$hostname','$ip_add','$csrf_operating_system','$csrf_os_version','$csrf_db_type','$csrf_db_version','$csrf_action','$csrf_node_name','$csrf_backup_method','$csrf_backup_method_desc','$csrf_backup_sched','$csrf_backup_time','$csrf_backup_day','$csrf_archive_sched','$csrf_archive_time','$csrf_archive_day','$csrf_retention','$csrf_retention_sched','$server_contact','$status',NOW()) ");;
+			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'save as draft','$status') ");
 		}
 
 
@@ -76,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 				header("location: index.php");
 				mysqli_close($conn);
 			}
-		
+			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'resubmitted','$status') ");
 		}
 
 
@@ -89,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 				header("location: index.php");
 				mysqli_close($conn);
 			}
-		
+			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'updated','$status') ");
 		}
 
 		if (isset($_POST['btn_sub_draft_csrf'])) {
@@ -101,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 				header("location: index.php");
 				mysqli_close($conn);
 			}
-		
+			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'submmitted draft','$status') ");
 		}
 		
 		if (isset($_POST['btn_cancel'])) {
@@ -111,7 +112,8 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			$sql = mysqli_query($conn,"UPDATE `tbl_baas` SET `status`='$status', cancelled = '$cancelled', date_requested = NOW() WHERE control_number = '$txt_control_number' ");		
 			$_SESSION['message'] = "Successfuly Canceled!";
 			$_SESSION['form_type'] = $form_type;
-			$_SESSION['control_number'] = $control_number;		
+			$_SESSION['control_number'] = $control_number;
+			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'canceled','$status') ");		
 		}
 
 		if ($sql) {
@@ -130,7 +132,7 @@ if (isset($_REQUEST['control_number']) && isset($_REQUEST['f_type'])) {
 		header("location: ../pending_request.php");
 		mysqli_close($conn);
 	}		
-	
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'canceled','$status') ");
 }
 
 ?>
