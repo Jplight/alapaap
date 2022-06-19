@@ -194,7 +194,7 @@ $rows_disabled = mysqli_fetch_array($disabled_users);
                                         </div>
                                         <div class="d-flex justify-content-between align-items-end">
                                             <div class="text-dark fw-bold h5 mb-0">
-                                                <span><?=$rows_total['total_user']; ?></span>
+                                                <span><?=$rows_total['total']; ?></span>
                                             </div>
                                             <div class="">
                                                 <i class="fas fa-users fa-2x text-gray-300"></i>
