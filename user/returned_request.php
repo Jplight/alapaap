@@ -128,40 +128,10 @@ include 'model/authorize_personnel.php';
                     <div class="container-fluid">
                         <div class="d-sm-flex justify-content-between align-items-center mb-4">
                             <h3 class="text-dark mb-0 mb-3 mb-sm-0">Returned Form</h3>
-                            <?php if ($my_role == 1): ?>
-                            <!-- <div class="dropdown">
-                                <button class="btn btn-success dropdown-toggle shadow-none text-white" aria-expanded="false" data-bs-toggle="dropdown" type="button">Select Services</button>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item" href="#">HCI</a>
-                                    <a class="dropdown-item" href="#">TCI</a>
-                                    <a class="dropdown-item" href="#">CPS</a>
-                                    <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#view_baas">BaaS</a>
-                                </div>
-                            </div> -->
-                            <?php endif; ?>
                         </div>
                         <div class="card shadow">
                             <div class="card-body">
-                                <!-- <div class="row mb-3">
-                                    <div class="col-md-6 text-nowrap">
-                                        <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                                            <label class="form-label">Show&nbsp;</label>
-                                            <select class="d-inline-block form-select form-select-sm w-25">
-                                                <option value="10" selected="">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="text-md-end dataTables_filter" id="dataTable_filter">
-                                            <label class="form-label">
-                                                <input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search">
-                                            </label>                                         
-                                        </div>
-                                    </div>
-                                </div> -->
+
                                 <div>
                                     <ul class="nav nav-tabs" role="tablist">
                                         <li class="nav-item" role="presentation">
@@ -608,36 +578,7 @@ include 'model/authorize_personnel.php';
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="row">
-                                    <div class="col-md-6 align-self-center">
-                                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                            <ul class="pagination">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link" href="#" aria-label="Previous">
-                                                        <span aria-hidden="true">«</span>
-                                                    </a>
-                                                </li>
-                                                <li class="page-item active">
-                                                    <a class="page-link" href="#">1</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">2</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">3</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#" aria-label="Next">
-                                                        <span aria-hidden="true">»</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div> -->
+
                             </div>
                         </div>
                     </div>
