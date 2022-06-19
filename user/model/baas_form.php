@@ -72,12 +72,12 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			$revised = 0;
 
 			$sql = mysqli_query($conn,"UPDATE `tbl_baas` SET `department`='$csrf_department',`txt_others`='$txt_others',`form_factor`='$csrf_form_factor',`hostname`='$hostname',`ip_add`='$ip_add',`os`='$csrf_operating_system',`os_version`='$csrf_os_version',`db_type`='$csrf_db_type',`db_version`='$csrf_db_version',`action`='$csrf_action',`node_name`='$csrf_node_name',`backup_method`='$csrf_backup_method',`backup_method_desc`='$csrf_backup_method',`backup_sched`='$csrf_backup_sched',`backup_time`='$csrf_backup_time',`backup_day`='$csrf_backup_day',`archive_sched`='$csrf_archive_sched',`archive_time`='$csrf_archive_time',`archive_day`='$csrf_archive_day',`retention`='$csrf_retention',`retention_sched`='$csrf_retention_sched',`server_contact`='$server_contact',`status`='$status',`revised`='$revised', date_requested = NOW(), approver_id = NULL, approver = NULL, app_status = NULL, appr_date = NULL, reciever_id = NULL, reciever = NULL, rec_status = NULL, rec_date = NULL, performer_id = NULL, performer = NULL, perf_status = NULL, perform_date = NULL WHERE control_number = '$txt_control_number' ");
-			
+			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'resubmitted','$status') ");
 			if ($sql) {
 				header("location: index.php");
 				mysqli_close($conn);
-			}
-			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'resubmitted','$status') ");
+			}		
+		
 		}
 
 
@@ -86,23 +86,25 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 			$sql = mysqli_query($conn,"UPDATE `tbl_baas` SET `department`='$csrf_department',`txt_others`='$txt_others',`form_factor`='$csrf_form_factor',`hostname`='$hostname',`ip_add`='$ip_add',`os`='$csrf_operating_system',`os_version`='$csrf_os_version',`db_type`='$csrf_db_type',`db_version`='$csrf_db_version',`action`='$csrf_action',`node_name`='$csrf_node_name',`backup_method`='$csrf_backup_method',`backup_method_desc`='$csrf_backup_method',`backup_sched`='$csrf_backup_sched',`backup_time`='$csrf_backup_time',`backup_day`='$csrf_backup_day',`archive_sched`='$csrf_archive_sched',`archive_time`='$csrf_archive_time',`archive_day`='$csrf_archive_day',`retention`='$csrf_retention',`retention_sched`='$csrf_retention_sched',`server_contact`='$server_contact', date_requested = NOW() WHERE control_number = '$txt_control_number' ");
 			
+			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'updated','$status') ");
 			if ($sql) {
 				header("location: index.php");
 				mysqli_close($conn);
-			}
-			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'updated','$status') ");
+			}		
+		
 		}
 
 		if (isset($_POST['btn_sub_draft_csrf'])) {
 			$txt_control_number = $_POST['txt_control_number'];
 			$status = 2;
 			$sql = mysqli_query($conn,"UPDATE `tbl_baas` SET `department`='$csrf_department',`txt_others`='$txt_others',`form_factor`='$csrf_form_factor',`hostname`='$hostname',`ip_add`='$ip_add',`os`='$csrf_operating_system',`os_version`='$csrf_os_version',`db_type`='$csrf_db_type',`db_version`='$csrf_db_version',`action`='$csrf_action',`node_name`='$csrf_node_name',`backup_method`='$csrf_backup_method',`backup_method_desc`='$csrf_backup_method',`backup_sched`='$csrf_backup_sched',`backup_time`='$csrf_backup_time',`backup_day`='$csrf_backup_day',`archive_sched`='$csrf_archive_sched',`archive_time`='$csrf_archive_time',`archive_day`='$csrf_archive_day',`retention`='$csrf_retention',`retention_sched`='$csrf_retention_sched',`server_contact`='$server_contact', status = '$status' ,date_requested = NOW() WHERE control_number = '$txt_control_number' ");
-			
+		
+			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'submmitted draft','$status') ");
 			if ($sql) {
 				header("location: index.php");
 				mysqli_close($conn);
-			}
-			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'submmitted draft','$status') ");
+			}		
+		
 		}
 		
 		if (isset($_POST['btn_cancel'])) {
@@ -128,11 +130,12 @@ if (isset($_REQUEST['control_number']) && isset($_REQUEST['f_type'])) {
 	$status = 0;
 	$cancelled = 1;
 	$sql = mysqli_query($conn,"UPDATE `tbl_baas` SET `status`='$status', cancelled = '$cancelled', date_requested = NOW() WHERE control_number = '$txt_control_number' ");
+		
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'canceled','$status') ");
 	if ($sql) {
 		header("location: ../pending_request.php");
 		mysqli_close($conn);
-	}		
-	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'canceled','$status') ");
+	}
 }
 
 ?>

@@ -13,12 +13,12 @@
 ?>
 <div class="nav-item dropdown no-arrow ">
     <div class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-        <form method="POST" action="">
-            <button type="submit" class="btn shadow-none position-relative" id="btn_notif">
-                <?php if($count_notif > 0):?>
-                    <span class="badge bg-danger badge-counter position-absolute "><?= $count_notif; ?></span>
-                <?php endif; ?>
-                <i class="fas fa-bell fa-fw fa-lg "></i>
+        <form method="POST" id="frm_notif" action="">
+            <button type="submit" class="btn position-relative" id="btn_notif">
+                    <?php if($count_notif > 0):?>
+                        <span class="badge bg-danger badge-counter position-absolute swing animated infinite" id="notif_badge" ><?= $count_notif; ?></span>
+                    <?php endif; ?>
+                    <i class="fas fa-bell fa-fw fa-lg "></i>
             </button>
         </form>
     </div>

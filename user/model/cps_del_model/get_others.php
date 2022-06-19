@@ -49,12 +49,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 		// If hostname is not exist! it will display the blank textbox.
 		if ($count < 1) {
-			echo '<tr>';
-			echo '<td class="text-dark fw-bold">Disk (GB)</td>';
-			echo '<td><input class="form-control text-dark" type="text" value="" readonly></td>';
-			echo '<td><input class="form-control text-dark" type="text" readonly></td>';
-			echo '<td><input class="form-control text-dark" type="text" readonly></td>';
-			echo '</tr>';	
+			// echo '<tr>';
+			// echo '<td class="text-dark fw-bold">Disk (GB)</td>';
+			// echo '<td><input class="form-control text-dark" type="text" readonly></td>';
+			// echo '<td><input class="form-control text-dark" type="text" readonly></td>';
+			// echo '<td><input class="form-control text-dark" type="text" readonly></td>';
+			// echo '<td><input class="form-control text-dark" type="text" readonly ></td>';
+			// echo '</tr>';	
 		}
 	endif;		
 	} catch (Exception $e) {

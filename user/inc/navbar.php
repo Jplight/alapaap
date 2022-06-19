@@ -27,11 +27,11 @@
                                         </form>
                                     </div>
                                 </li>
-                                <li class="nav-item dropdown no-arrow mx-1">
+                                <li class="nav-item dropdown no-arrow mx-1" >
                                     <?php require 'model/notifications.php';?>
                                 </li>
                                
-                                <li class="nav-item dropdown no-arrow">
+                                <li class="nav-item dropdown no-arrow" >
                                     <div class="nav-item dropdown no-arrow">
                                         <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
                                             <?php if (!empty($sub_role) && strlen($sub_role) != 1): ?>   

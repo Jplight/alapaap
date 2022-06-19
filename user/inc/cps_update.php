@@ -2,7 +2,7 @@
 if (!empty($control_number)):
     $tbl_cps = mysqli_query($conn,"SELECT * FROM `tbl_cps` where control_number = '$control_number' ");
     while ($rows = mysqli_fetch_array($tbl_cps)) {
-
+        $get_uid                = $rows['uid'];
         $cps_new_control_num     = $rows['cps_new_control_num'];
         $control_number     = $rows['control_number'];
         $form_type          = $rows['form_type'];
@@ -99,6 +99,7 @@ endif;
                              <input type="hidden" name="num_revised" value="<?php echo empty($num_revised) ? '' : $num_revised; ?>" readonly placeholder="Total Revised">
                              <input type="hidden" name="his_role" value="<?php echo empty($my_role) ? '' : $my_role; ?>" readonly>
                             <input type="hidden" name="cps_new_control_num" value="<?php echo empty($cps_new_control_num) ? '' : $cps_new_control_num; ?>" readonly>
+                            <input type="hidden" name="his_uid" value="<?php echo empty($get_uid) ? '' : $get_uid; ?>" readonly>
                         </div>
                     </div>
                             

@@ -50,12 +50,13 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			$_SESSION['message'] = "Successfuly Created!";
 			$_SESSION['form_type'] = $form_type;
 			$_SESSION['control_number'] = $control_number;
-			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'requested','$status') ");		
+			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'created','$status') ");		
 		}
 
 		if (isset($_POST['btn_baas_save_crrf'])) {
 			$status = 1; // Send from Approver
 			$sql = mysqli_query($conn,"INSERT INTO `tbl_baas`(`uid`, `control_number`, `form_type`, `fullname`, `email_add`, `contact_no`, `department`, `txt_others`, `form_factor`, `hostname`, `ip_add`, `os` ,`os_version`,`action`,`backup_method`,`backup_method_desc`,`backup_sched`,`backup_time`,`backup_day`,`retention`,`server_contact`,`status`,`date_requested`) VALUES ('$uid','$control_number', '$form_type', '$fullname','$email_add','$contact_no','$crrf_department', '$crrf_txt_others','$crrf_form_factor','$hostname','$ip_add','$crrf_operating_system','$crrf_os_version','$crrf_action','$crrf_backup_method','$crrf_backup_method_desc','$specify_selection','$crrf_host_vm_lvl','$crrf_path_file_lvl','$crrf_retention','$server_contact','$status',NOW()) ");
+			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'save as draft','$status') ");
 		}
 
 		if (isset($_POST['btn_resub_baas_crrf'])) {
@@ -63,17 +64,20 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			$status = 2;
 			$revised = 0;
 			$sql = mysqli_query($conn,"UPDATE tbl_baas set department = '$crrf_department', txt_others = '$crrf_txt_others', form_factor = '$crrf_form_factor', hostname = '$hostname', ip_add = '$ip_add', os = '$crrf_operating_system', os_version = '$crrf_os_version', action = '$crrf_action', backup_method = '$crrf_backup_method', backup_method_desc = '$crrf_backup_method_desc', backup_sched = '$specify_selection', backup_time = '$crrf_host_vm_lvl', backup_day = '$crrf_path_file_lvl', retention = '$crrf_retention', server_contact = '$server_contact', status = '$status', date_requested = NOW(), approver_id = NULL, approver = NULL, app_status = NULL, appr_date = NULL, reciever_id = NULL, reciever = NULL, rec_status = NULL, rec_date = NULL, performer_id = NULL, performer = NULL, perf_status = NULL, perform_date = NULL WHERE control_number = '$txt_control_number' ");
+			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'returned','$status') ");
 		}
 
 		if (isset($_POST['btn_up_baas_crrf'])) {
 			$txt_control_number = $_POST['txt_control_number'];
 			$sql = mysqli_query($conn,"UPDATE tbl_baas set department = '$crrf_department', txt_others = '$crrf_txt_others', form_factor = '$crrf_form_factor', hostname = '$hostname', ip_add = '$ip_add', os = '$crrf_operating_system', os_version = '$crrf_os_version', action = '$crrf_action', backup_method = '$crrf_backup_method', backup_method_desc = '$crrf_backup_method_desc', backup_sched = '$specify_selection', backup_time = '$crrf_host_vm_lvl', backup_day = '$crrf_path_file_lvl', retention = '$crrf_retention', server_contact = '$server_contact', date_requested = NOW() WHERE control_number = '$txt_control_number' ");
+			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'updated','$status') ");
 		}
 
 		if (isset($_POST['btn_sub_draft_crrf'])) {
 			$txt_control_number = $_POST['txt_control_number'];
 			$status = 2;
 			$sql = mysqli_query($conn,"UPDATE tbl_baas set department = '$crrf_department', txt_others = '$crrf_txt_others', form_factor = '$crrf_form_factor', hostname = '$hostname', ip_add = '$ip_add', os = '$crrf_operating_system', os_version = '$crrf_os_version', action = '$crrf_action', backup_method = '$crrf_backup_method', backup_method_desc = '$crrf_backup_method_desc', backup_sched = '$specify_selection', backup_time = '$crrf_host_vm_lvl', backup_day = '$crrf_path_file_lvl', retention = '$crrf_retention', server_contact = '$server_contact', status = '$status' ,date_requested = NOW() WHERE control_number = '$txt_control_number' ");
+			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'resubmitted draft','$status') ");
 		}
 
 		if ($sql) {

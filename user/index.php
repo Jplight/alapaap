@@ -532,7 +532,7 @@ include 'model/save_profile.php';
             // DOMContentLoaded  end
         </script>
         <script>
-            // For Notifcation
+            // For Alerts
             $(document).ready(function () {
                 $.ajax({
                     type: "POST",
@@ -543,6 +543,24 @@ include 'model/save_profile.php';
                         $("#success_alert").toast('show');                
                     }
                 });
+            });
+        </script>
+        <script>
+            // For notifications
+            $(document).ready(function(){
+                $("#btn_notif").click(function(){
+                    setTimeout( function(){  
+                        $.ajax({
+                            type: "POST",
+                            url: "model/notif_icon.php",
+                            data: $("#frm_notif").serialize(),
+                            success: function (data) {                                         
+                                $("#notif_badge").html(data);       
+                            }
+                        });
+                    },100);   
+                });
+
             });
         </script>       
     </body>

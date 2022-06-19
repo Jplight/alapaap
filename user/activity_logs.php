@@ -121,29 +121,11 @@
                                                                 $form_type = 'BaaS CRRF';
                                                             }
 
-                                                            if($rows_reports['status'] == '2'){
-                                                                $act = 'Created';
-                                                            }
-                                                            if($rows_reports['status'] == '3'){
-                                                                $act = 'Approved';
-                                                            }
-                                                            if($rows_reports['status'] == '4'){
-                                                                $act = 'Received';
-                                                            }
-                                                            if($rows_reports['status'] == '5'){
-                                                                $act = 'Performed';
-                                                            }
-                                                            if($rows_reports['status'] == '6'){
-                                                                $act = 'Confirmed';
-                                                            }
-                                                            if($rows_reports['status'] == '7'){
-                                                                $act = 'Verified';
-                                                            }
                                                             
                                                             echo '<tr>';
                                                             echo '<td>'.$form_type.'</td>';
                                                             echo '<td>'.$rows_reports['control_number'].'</td>';
-                                                            echo '<td> has been '.$act.'</td>';  
+                                                            echo '<td> has been '.$rows_reports['activity'].'</td>';  
                                                             echo '<td>'.$rows_reports['date_requested'].'</td>';   
                                                             echo '</tr>';
                                                         endwhile; 

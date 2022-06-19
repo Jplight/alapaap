@@ -2,7 +2,8 @@
 if (!empty($control_number)):
     $tbl_cps = mysqli_query($conn,"SELECT * FROM `tbl_cps` where control_number = '$control_number' ");
     while ($rows = mysqli_fetch_array($tbl_cps)) {
-
+        
+        $get_uid                = $rows['uid'];
         $cps_new_control_num     = $rows['cps_new_control_num'];
         $cps_up_control_num     = $rows['cps_up_control_num'];
         $control_number     = $rows['control_number'];
@@ -111,6 +112,7 @@ endif;
                              <input type="hidden" name="his_role" value="<?php echo empty($my_role) ? '' : $my_role; ?>" readonly>
                             <input type="hidden" name="cps_new_control_num" value="<?php echo empty($cps_new_control_num) ? '' : $cps_new_control_num; ?>" readonly>
                             <input type="hidden" name="cps_up_control_num" id="cps_up_control_num" value="<?php echo empty($cps_up_control_num) ? '' : $cps_up_control_num; ?>"  placeholder="CPS Update No." >
+                            <input type="hidden" name="his_uid" value="<?php echo empty($get_uid) ? '' : $get_uid; ?>" readonly>
                         </div>
                     </div>
                             
@@ -288,6 +290,7 @@ endif;
                                                             echo '<td class="text-dark fw-bold">Disk (GB) '.$num++.'</td>';
                                                             echo '<td><input class="form-control text-dark" type="text" id="others_1[]" name="others_1[]" value="'.$rows['others_1'].'" readonly></td>';
                                                             echo '<td><input class="form-control text-dark" type="text" id="others_2[]" name="others_2[]" readonly></td>';
+                                                            echo '<td><input class="form-control text-dark" type="text" id="others_3[]" name="others_3[]" readonly></td>';
                                                             echo '<td><input class="form-control text-dark" type="text" id="others_4[]" name="others_4[]" readonly ></td>';
                                                             echo '</tr>';
                                                         }
