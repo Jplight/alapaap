@@ -209,9 +209,9 @@ include 'model/authorize_personnel.php';
                                                                 $revised = '';
                                                             }
                                                             if ($my_role == 1 && $rows_hci['status'] == 2 && $rows_hci['form_type'] == '1') {
-                                                                $cancel_btn = '<a class="btn btn-outline-danger btn-sm shadow-sm" href="model/hci_form.php?control_number='.$rows_hci["control_number"].'&f_type='.$rows_hci['form_type'].'&uid=" ><i class="fa-fw fas fa-times me-1"></i>Cancel</a>';
+                                                                $cancel_btn = '<a class="btn btn-outline-danger btn-sm shadow-sm" href="model/hci_form.php?uid='.$uid.'&control_number='.$rows_hci["control_number"].'&f_type='.$rows_hci['form_type'].'" ><i class="fa-fw fas fa-times me-1"></i>Cancel</a>';
                                                             }else if ($my_role == 1 && $rows_hci['status'] == 2 && $rows_hci['form_type'] == '1-1') {
-                                                                $cancel_btn = '<a class="btn btn-outline-danger btn-sm shadow-sm" href="model/hci_update_form.php?control_number='.$rows_hci["control_number"].'&f_type='.$rows_hci['form_type'].'" ><i class="fa-fw fas fa-times me-1"></i>Cancel</a>';
+                                                                $cancel_btn = '<a class="btn btn-outline-danger btn-sm shadow-sm" href="model/hci_update_form.php?uid='.$uid.'&control_number='.$rows_hci["control_number"].'&f_type='.$rows_hci['form_type'].'" ><i class="fa-fw fas fa-times me-1"></i>Cancel</a>';
                                                             }else{
                                                                 $cancel_btn = "";
                                                             }
@@ -304,7 +304,7 @@ include 'model/authorize_personnel.php';
                                                                     }
 
                                                                     if ($my_role == 1 && $rows_tci['status'] == 3) {
-                                                                        $cancel_btn = '<a class="btn btn-outline-danger btn-sm shadow-sm" href="model/tci_form.php?control_number='.$rows_tci["control_number"].'&f_type='.$rows_tci['form_type'].'" ><i class="fa-fw fas fa-times me-1"></i>Cancel</a>';
+                                                                        $cancel_btn = '<a class="btn btn-outline-danger btn-sm shadow-sm" href="model/tci_form.php?uid='.$uid.'&control_number='.$rows_tci["control_number"].'&f_type='.$rows_tci['form_type'].'" ><i class="fa-fw fas fa-times me-1"></i>Cancel</a>';
                                                                     }else{
                                                                         $cancel_btn = '';
                                                                     }
@@ -387,7 +387,7 @@ include 'model/authorize_personnel.php';
                                                                     }
 
                                                                     if ($my_role == 1 && $rows_cps['status'] == 2) {
-                                                                        $cancel_btn = '<a class="btn btn-outline-danger btn-sm shadow-sm" href="model/cps_form.php?control_number='.$rows_cps["control_number"].'&f_type='.$rows_cps['form_type'].'" ><i class="fa-fw fas fa-times me-1"></i>Cancel</a>';
+                                                                        $cancel_btn = '<a class="btn btn-outline-danger btn-sm shadow-sm" href="model/cps_form.php?uid='.$uid.'&control_number='.$rows_cps["control_number"].'&f_type='.$rows_cps['form_type'].'" ><i class="fa-fw fas fa-times me-1"></i>Cancel</a>';
                                                                     }else{
                                                                         $cancel_btn = '';
                                                                     }
@@ -481,7 +481,7 @@ include 'model/authorize_personnel.php';
                                                                         echo '<td>BaaS-CSRF</td>';
                                                                     }
                                                                     if ($my_role == 1 && $rows_baas['status'] == 2) {
-                                                                        $cancel_btn = '<a class="btn btn-outline-danger btn-sm shadow-sm" href="model/baas_form.php?control_number='.$rows_baas["control_number"].'&f_type='.$rows_baas['form_type'].'" ><i class="fa-fw fas fa-times me-1"></i>Cancel</a>';
+                                                                        $cancel_btn = '<a class="btn btn-outline-danger btn-sm shadow-sm" href="model/baas_form.php?uid='.$uid.'&control_number='.$rows_baas["control_number"].'&f_type='.$rows_baas['form_type'].'" ><i class="fa-fw fas fa-times me-1"></i>Cancel</a>';
                                                                     }else{
                                                                         $cancel_btn = '';
                                                                     }

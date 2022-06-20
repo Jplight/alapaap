@@ -364,7 +364,7 @@ endif;
                         <?php endif; ?>
                         <?php if ($my_role == 1 && $status == 2): ?>
                         <div>
-                            <button class="btn btn-danger" type="submit" name="btn_cancel" id="btn_cancel"><i class="fa-fw fas fa-times me-1"></i>Cancel</button>
+                            <button class="btn btn-danger" type="submit" name="btn_cancel_crrf" id="btn_cancel_crrf"><i class="fa-fw fas fa-times me-1"></i>Cancel</button>
                         </div>    
                         <?php endif; ?>
                         <?php if ($status == 2 && $my_role == 2): ?> <!-- // button for Approver -->

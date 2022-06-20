@@ -50,6 +50,7 @@ include 'model/authorize_personnel.php';
         <title>Alapaap | Disapproved Request</title>
         <link rel="icon" type="image/svg+xml" sizes="30x24" href="assets/img/android-chrome-192x192.png">
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
         <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
         <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
@@ -99,40 +100,9 @@ include 'model/authorize_personnel.php';
                     <div class="container-fluid">
                         <div class="d-sm-flex justify-content-between align-items-center mb-4">
                             <h3 class="text-dark mb-0 mb-3 mb-sm-0">Disapproved Form</h3>
-                            <?php if ($my_role == 1): ?>
-                            <!-- <div class="dropdown">
-                                <button class="btn btn-success dropdown-toggle shadow-none text-white" aria-expanded="false" data-bs-toggle="dropdown" type="button">Select Services</button>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item" href="#">HCI</a>
-                                    <a class="dropdown-item" href="#">TCI</a>
-                                    <a class="dropdown-item" href="#">CPS</a>
-                                    <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#view_baas">BaaS</a>
-                                </div>
-                            </div> -->
-                            <?php endif; ?>
                         </div>
                         <div class="card shadow">
                             <div class="card-body">
-                                <!-- <div class="row mb-3">
-                                    <div class="col-md-6 text-nowrap">
-                                        <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                                            <label class="form-label">Show&nbsp;</label>
-                                            <select class="d-inline-block form-select form-select-sm w-25">
-                                                <option value="10" selected="">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="text-md-end dataTables_filter" id="dataTable_filter">
-                                            <label class="form-label">
-                                                <input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search">
-                                            </label>                                         
-                                        </div>
-                                    </div>
-                                </div> -->
                                 <div>
                                     <ul class="nav nav-tabs" role="tablist">
                                         <li class="nav-item" role="presentation">
@@ -163,15 +133,15 @@ include 'model/authorize_personnel.php';
                                             </a>
                                         </li>
                                     </ul>
-                                    <div class="tab-content">
+                                    <div class="tab-content pt-4">
                                         <div class="tab-pane active" role="tabpanel" id="tab-1">
                                             <div class="table-responsive">
-                                                <table class="table table-hover user-select-none align-middle text-nowrap">
+                                                <table class="table table-hover user-select-none align-middle text-nowrap" id="hci_datatables">
                                                     <thead>
                                                         <tr>
                                                             <th>Requestor</th>
                                                             <th>Control No.</th>
-                                                            <th colspan="2">Date & Time Requested</th>
+                                                            <th>Date & Time Requested</th>
                                                             <th>Form Type</th>
                                                             <th>Status</th>
                                                             <?php if ($my_role == 1): ?>
@@ -179,6 +149,8 @@ include 'model/authorize_personnel.php';
                                                                 <th>Role</th>
                                                             <?php endif; ?>
                                                             <th>Action</th>
+                                                            <th></th>
+                                                            <th></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -190,8 +162,7 @@ include 'model/authorize_personnel.php';
                                                             }else{
                                                                 $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where approver_id = '$uid' and revised IS NULL and app_status = '0'  ORDER BY date_requested DESC ");
                                                             }
-                                                            $hci_count = mysqli_num_rows($hci_query);
-                                                            if ($hci_count > 0):   
+                                                             
                                                                 while ($rows_hci = mysqli_fetch_array($hci_query)):                        
                                                                     $control_number = $rows_hci['control_number'];
                                                                     $mydate = strtotime($rows_hci['date_requested']);
@@ -256,11 +227,7 @@ include 'model/authorize_personnel.php';
                                                                         
                                                                     echo '</tr>';
                                                                 endwhile;
-                                                            else:
-                                                                echo '<tr>';                                                   
-                                                                echo '<td class="text-center" colspan="9">There is no data in HCI to be showed!🤗</td>';                                                               
-                                                                echo '</tr>';
-                                                            endif; 
+                                                         
                                                         ?>
                                                     </tbody>
                                                 </table>
@@ -268,12 +235,12 @@ include 'model/authorize_personnel.php';
                                         </div>
                                         <div class="tab-pane" role="tabpanel" id="tab-3">
                                             <div class="table-responsive">
-                                                <table class="table table-hover user-select-none align-middle text-nowrap">
+                                                <table class="table table-hover user-select-none align-middle text-nowrap" id="tci_datatables">
                                                     <thead>
                                                         <tr>
                                                             <th>Requestor</th>
                                                             <th>Control No.</th>
-                                                            <th colspan="2">Date & Time Requested</th>
+                                                            <th>Date & Time Requested</th>
                                                             <th>Form Type</th>
                                                             <th>Status</th>
                                                             <?php if ($my_role == 1): ?>
@@ -281,6 +248,8 @@ include 'model/authorize_personnel.php';
                                                                 <th>Role</th>
                                                             <?php endif; ?>
                                                             <th>Action</th>
+                                                            <th></th>
+                                                            <th></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -292,8 +261,7 @@ include 'model/authorize_personnel.php';
                                                             }else{
                                                                 $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where approver_id = '$uid' and app_status = '0' and revised IS NULL  ORDER BY date_requested DESC ");
                                                             }
-                                                            $cps_count = mysqli_num_rows($cps_query);
-                                                            if ($cps_count > 0):   
+                                                             
                                                                 while ($rows_cps = mysqli_fetch_array($cps_query)):                        
                                                                     $control_number = $rows_cps['control_number'];
                                                                     $mydate = strtotime($rows_cps['date_requested']);
@@ -355,11 +323,7 @@ include 'model/authorize_personnel.php';
                                                                         
                                                                     echo '</tr>';
                                                                 endwhile;
-                                                            else:
-                                                                echo '<tr>';                                                   
-                                                                echo '<td class="text-center" colspan="9">There is no data in CPS to be showed!🤗</td>';                                                               
-                                                                echo '</tr>';
-                                                            endif; 
+                                                      
                                                         ?>
                                                     </tbody>
                                                 </table>
@@ -367,12 +331,12 @@ include 'model/authorize_personnel.php';
                                         </div>
                                         <div class="tab-pane" role="tabpanel" id="tab-4">
                                             <div class="table-responsive">
-                                                <table class="table table-hover user-select-none align-middle text-nowrap">
+                                                <table class="table table-hover user-select-none align-middle text-nowrap" id="baas_datatables">
                                                     <thead>
                                                         <tr>
                                                             <th>Requestor</th>
                                                             <th>Control No.</th>
-                                                            <th colspan="2">Date & Time Requested</th>
+                                                            <th>Date & Time Requested</th>
                                                             <th>Form Type</th>
                                                             <th>Status</th>
                                                             <?php if ($my_role == 1): ?>
@@ -380,6 +344,8 @@ include 'model/authorize_personnel.php';
                                                                 <th>Role</th>
                                                             <?php endif; ?>
                                                             <th>Action</th>
+                                                            <th></th>
+                                                            <th></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -391,8 +357,7 @@ include 'model/authorize_personnel.php';
                                                             }else{
                                                                 $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where approver_id = '$uid' and app_status = '0' and revised IS NULL ORDER BY date_requested DESC ");
                                                             }
-                                                            $count_baas = mysqli_num_rows($sql_baas);
-                                                            if ($count_baas > 0):   
+                                                      
                                                                 while ($rows_baas = mysqli_fetch_array($sql_baas)):                        
                                                                     $control_number = $rows_baas['control_number'];
                                                                     $mydate = strtotime($rows_baas['date_requested']);
@@ -445,11 +410,7 @@ include 'model/authorize_personnel.php';
                                                                     }    
                                                                     echo '</tr>';
                                                                 endwhile;
-                                                            else:
-                                                                echo '<tr>';                                                   
-                                                                echo '<td class="text-center" colspan="9">There is no data in BaaS to be showed!🤗</td>';                                                               
-                                                                echo '</tr>';
-                                                            endif; 
+                                                      
                                                         ?>
                                                     </tbody>
                                                 </table>
@@ -457,36 +418,7 @@ include 'model/authorize_personnel.php';
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="row">
-                                    <div class="col-md-6 align-self-center">
-                                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                            <ul class="pagination">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link" href="#" aria-label="Previous">
-                                                        <span aria-hidden="true">«</span>
-                                                    </a>
-                                                </li>
-                                                <li class="page-item active">
-                                                    <a class="page-link" href="#">1</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">2</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">3</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#" aria-label="Next">
-                                                        <span aria-hidden="true">»</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div> -->
+
                             </div>
                         </div>
                     </div>
@@ -506,6 +438,10 @@ include 'model/authorize_personnel.php';
         <?php include 'inc/baas_modal.php'; ?>
         <script src="assets/js/jquery-3.6.0.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Data Tables -->
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 
         <script src="assets/js/theme.js"></script>
         <script>
@@ -547,6 +483,17 @@ include 'model/authorize_personnel.php';
                     location.reload();
                 });                                  
             });            
+        </script>
+        <script>
+            $(document).ready(function(){
+                $('#hci_datatables, #tci_datatables, #cps_datatables, #baas_datatables').DataTable({
+                    
+                    "language": {
+                        "emptyTable": "There is no data to be showed!🤗",
+                        "zeroRecords": "No data found!🤗"
+                    }
+                }); // // Datatables 
+            });
         </script>
     </body>
 </html>

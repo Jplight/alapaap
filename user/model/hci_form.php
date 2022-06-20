@@ -227,6 +227,7 @@ if (isset($_REQUEST['control_number']) && isset($_REQUEST['f_type']) && isset($_
 	$status = 0;
 	$cancelled = 1;
 	$uid = $_REQUEST['uid'];
+	$form_type = $_REQUEST['f_type'];
 	$sql = mysqli_query($conn,"UPDATE `tbl_hci` SET `status`='$status', cancelled = '$cancelled', date_requested = NOW() WHERE control_number = '$txt_control_number' ");
 
 	$_SESSION['message'] = "Successfuly Canceled!";

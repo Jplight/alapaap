@@ -107,11 +107,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	mysqli_close($conn);
 }
 
-if (isset($_REQUEST['control_number']) && isset($_REQUEST['f_type'])) {
+if (isset($_REQUEST['control_number']) && isset($_REQUEST['f_type']) && isset($_REQUEST['uid'])) {
 
 	$txt_control_number = $_REQUEST['control_number'];
 	$status = 0;
 	$cancelled = 1;
+	$uid = $_REQUEST['uid'];
+	$form_type = $_REQUEST['f_type'];
 	$sql = mysqli_query($conn,"UPDATE `tbl_tci` SET `status`='$status', cancelled = '$cancelled', date_requested = NOW() WHERE control_number = '$txt_control_number' ");
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'canceled','$status') ");	
 	if ($sql) {

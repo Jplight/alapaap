@@ -79,6 +79,29 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			$sql = mysqli_query($conn,"UPDATE tbl_baas set department = '$crrf_department', txt_others = '$crrf_txt_others', form_factor = '$crrf_form_factor', hostname = '$hostname', ip_add = '$ip_add', os = '$crrf_operating_system', os_version = '$crrf_os_version', action = '$crrf_action', backup_method = '$crrf_backup_method', backup_method_desc = '$crrf_backup_method_desc', backup_sched = '$specify_selection', backup_time = '$crrf_host_vm_lvl', backup_day = '$crrf_path_file_lvl', retention = '$crrf_retention', server_contact = '$server_contact', status = '$status' ,date_requested = NOW() WHERE control_number = '$txt_control_number' ");
 			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'resubmitted draft','$status') ");
 		}
+		if (isset($_POST['btn_cancel_crrf'])) {
+			$txt_control_number = $_POST['txt_control_number'];
+			$status = 0;
+			$cancelled = 1;
+			$sql = mysqli_query($conn,"UPDATE `tbl_baas` SET `status`='$status', cancelled = '$cancelled', date_requested = NOW() WHERE control_number = '$txt_control_number' ");		
+			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'canceled','$status') ");		
+		}
+
+		if (isset($_REQUEST['control_number']) && isset($_REQUEST['f_type']) && isset($_REQUEST['uid'])) {
+
+			$txt_control_number = $_REQUEST['control_number'];
+			$status = 0;
+			$cancelled = 1;
+			$uid = $_REQUEST['uid'];
+			$form_type = $_REQUEST['f_type'];
+			$sql = mysqli_query($conn,"UPDATE `tbl_baas` SET `status`='$status', cancelled = '$cancelled', date_requested = NOW() WHERE control_number = '$txt_control_number' ");
+				
+			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'canceled','$status') ");
+			if ($sql) {
+				header("location: ../pending_request.php");
+				mysqli_close($conn);
+			}
+		}
 
 		if ($sql) {
 			header("location: index.php");
