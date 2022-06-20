@@ -140,7 +140,7 @@
                                                         echo '<tr>';
                                                             echo '<td>'; 
                                                             echo '<div class="d-flex justify-content-start align-items-center gap-3">'; 
-                                                                echo '<div><img class="border rounded-circle img-profile"  src="../user/'.$image.'" width="40" /></div>';
+                                                                echo '<div><img class="border rounded-circle img-profile"  src="../user/'.$image.'" width="40"  /></div>';
                                                                 echo '<div><span class="d-block fw-bold">'.ucwords($rows_users['first_name']).'&nbsp;'.ucwords($rows_users['last_name']).'</span><span class="d-block">'.$rows_users['email_add'].'</span></div>';
                                                             echo '</div>';
                                                             echo '</td>';                                                          
