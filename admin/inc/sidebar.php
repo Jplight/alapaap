@@ -3,7 +3,7 @@
                     <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="index.php">
                         <div class="sidebar-brand-icon">
                             <img class="img-fluid d-md-none" src="assets/img/dashboard_logo.png" width="50px" alt="Image">
-                            <img class="d-none d-md-block img-thumbnail" src="assets/img/ebiz-logo.png" alt="Image">
+                            <img class="d-none d-md-block img-thumbnail" src="assets/img/ebiz-logo2.png" alt="Image">
                         </div>
                     </a>
                     <hr class="sidebar-divider my-0">
