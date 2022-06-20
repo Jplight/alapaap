@@ -378,6 +378,7 @@ include 'model/save_profile.php';
                     </div>
                 </div>
                 <footer class="bg-white sticky-footer">
+                    <source src="assets/audio/notification_sound.mp3" id="audio" controls>
                     <div class="container my-auto">
                         <div class="text-center my-auto copyright">
                             <span>Copyright © Alapaap | eBizolution 2022</span>
@@ -401,6 +402,7 @@ include 'model/save_profile.php';
             include 'inc/baas_modal_2.php';
             include 'inc/change_role_modal.php';
         ?>
+
         <script src="assets/js/jquery-3.6.0.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/theme.js"></script>
@@ -412,10 +414,9 @@ include 'model/save_profile.php';
         <script src="controller/cps_up_script.js"></script>
         <script src="controller/cps_del_script.js"></script>
         <script src="controller/tci_script.js"></script>
-
-        <script>
+        <script>  
             $(document).ready(function(){
-
+                
                 $("#os").on('change',function(){
                     var os_name = $(this).val();
                     if (os_name == 'windows') {

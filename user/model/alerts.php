@@ -37,6 +37,7 @@ if (isset($_SESSION['control_number']) && isset($_SESSION['form_type']) ):
     }
     $sql = "SELECT control_number from tbl_hci where control_number = '$control_number'"
             ."UNION ALL SELECT control_number from tbl_tci where control_number = '$control_number'"
+            . "UNION ALL SELECT control_number from tbl_cps where control_number = '$control_number'"
             ."UNION ALL SELECT control_number from tbl_baas where control_number = '$control_number' ";
 
     $sql_notif = mysqli_query($conn,$sql);

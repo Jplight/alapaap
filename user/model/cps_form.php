@@ -72,13 +72,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	        	$insert_query = mysqli_query($conn,$query);
 	        }
         }
-	
 		
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'created','$status') ");	
 		$_SESSION['message'] = "Successfuly Created!";
 		$_SESSION['form_type'] = $form_type;
 		$_SESSION['control_number'] = $control_number;	
-		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'created','$status') ");	
-	
 	}	
 
 	if (isset($_POST['btn_save_cps'])) {
@@ -113,10 +111,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_SESSION['control_number'] = $control_number;	
 		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'save as draft','$status') ");	
 		
-		if ($sql) {
-			header("location: draft_form.php");
-			mysqli_close($conn);
-		}
 				
 	}
 
@@ -146,10 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	        }      
         }
 		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'resubmitted draft','$status') ");			
-		if ($sql) {
-			header("location: index.php");
-			mysqli_close($conn);
-		}
+
 	}
 
 	if (isset($_POST['btn_update_cps'])) {
@@ -216,10 +207,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$cancelled = 1;
 		$sql = mysqli_query($conn,"UPDATE `tbl_cps` SET `status`='$status', cancelled = '$cancelled', date_requested = NOW() WHERE control_number = '$txt_control_number' ");
 		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'canceled','$status') ");
-		if ($sql) {
-			header("location: index.php");
-			mysqli_close($conn);
-		}
 							
 	}
 }
