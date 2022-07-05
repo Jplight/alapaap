@@ -36,7 +36,7 @@ if(isset($_POST['btn_new_u'])){
         );
         //Recipients
         $mail->setFrom('alapaap@ebizolution.com', 'Alapaap | eBiZolution');
-        $mail->addAddress($email_add);         //Add a recipient
+        $mail->addAddress("whyllardermie@gmail.com");         //Add a recipient
 
         $mail->isHTML(true);                                  
         $mail->Subject = "Password Recovery";
