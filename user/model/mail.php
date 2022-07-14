@@ -9,6 +9,10 @@ include '../vendor/autoload.php';
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
 
+
+$GetSender = mysqli_query($conn,"select * from tbl_user where role='$status' ");
+$rowsSender = mysqli_fetch_array($GetSender);
+
             
     try {
         //Server settings
@@ -27,8 +31,10 @@ $mail = new PHPMailer(true);
                 'allow_self_signed' => true)
         );
         //Recipients
-        $mail->setFrom('alapaapbsp@gmail.com', 'Alapaap | eBiZolution');
-        $mail->addAddress($email_add);         //Add a recipient
+        $mail->setFrom('alapaapbsp@gmail.com', 'BSP OPS');
+        $mail->addAddress($rowsSender['email_add']);         //Add a recipient
+        $mail->addReplyTo('alapaapbsp@gmail.com', 'No Reply');
+        $mail->addCC($email_add);
 
         $mail->isHTML(true);                                  
         $mail->Subject = $form_subject." Request Form";

@@ -77,6 +77,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_SESSION['message'] = "Successfuly Created!";
 		$_SESSION['form_type'] = $form_type;
 		$_SESSION['control_number'] = $control_number;	
+
+		$form_subject = "CPS";
+		require 'mail_message.php';
+		require 'mail.php';
+
 	}	
 
 	if (isset($_POST['btn_save_cps'])) {

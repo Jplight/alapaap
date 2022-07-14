@@ -50,6 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			mysqli_close($conn);
 		}
 
+		$form_subject = "HCI Delete";
+		require 'mail_message.php';
+		require 'mail.php';
 		
 	}
 	

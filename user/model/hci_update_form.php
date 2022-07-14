@@ -93,6 +93,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			header("location: index.php");
 			mysqli_close($conn);
 		}
+
+		$form_subject = "HCI Update";
+		require 'mail_message.php';
+		require 'mail.php';
 	
 	}
 	if (isset($_POST['btn_savehci_up'])) {
