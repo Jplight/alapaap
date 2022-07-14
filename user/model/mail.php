@@ -31,7 +31,7 @@ $mail = new PHPMailer(true);
         $mail->addAddress($email_add);         //Add a recipient
 
         $mail->isHTML(true);                                  
-        $mail->Subject = "Password Recovery";
+        $mail->Subject = $form_subject." Request Form";
         $mail->Body    = $message;
         $mail->send();    
         
