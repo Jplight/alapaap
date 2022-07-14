@@ -84,6 +84,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_SESSION['form_type'] = $form_type;
 		$_SESSION['control_number'] = $control_number;
 		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'created','$status') ");
+		
+
+		require 'mail_message.php';
+		require 'mail.php';
+	
 	}
 
 	if (isset($_POST['btn_savehci'])) {
@@ -219,6 +224,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
  // this session will used to save the control number and form type and get the data and display to alert notification		
 		mysqli_close($conn);
+
+
 }
 
 if (isset($_REQUEST['control_number']) && isset($_REQUEST['f_type']) && isset($_REQUEST['uid'])) {
