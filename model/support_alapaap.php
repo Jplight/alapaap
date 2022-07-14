@@ -35,7 +35,7 @@ $email_hash = $resultmob;
                                 <p class="text-start"><br>Dear, Customer<br><br>We sent you a confirmation link in this email <b><?php echo $email_hash; ?></b>. Please check your email account to reset your password.<br><br>Thank You!<br><br></p>
                             </div>
                             <div class="text-center">
-                                <a class="btn btn-success text-capitalize rounded" href="https://<?php echo $_REQUEST['email']; ?>"><i class="fa fa-envelope me-2"></i>Go to Email</a>
+                                <a class="btn btn-success text-capitalize rounded" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>"><i class="fa-fw fas fa-arrow-left me-1"></i>Go Back</a>
                             </div>
                         </div>
                     </div>

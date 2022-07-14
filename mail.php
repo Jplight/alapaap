@@ -1,44 +1,52 @@
 <?php
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function
+
+/**
+ * This example shows making an SMTP connection without using authentication.
+ */
+
+//Import the PHPMailer class into the global namespace
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
 
-//Load Composer's autoloader
+//SMTP needs accurate times, and the PHP time zone MUST be set
+//This should be done in your php.ini, but this is how to do it if you don't have access to that
+date_default_timezone_set('Etc/UTC');
+
 require 'vendor/autoload.php';
 
-//Create an instance; passing `true` enables exceptions
-$mail = new PHPMailer(true);
+//Create a new PHPMailer instance
+$mail = new PHPMailer();
+//Tell PHPMailer to use SMTP
+$mail->isSMTP();
+//Enable SMTP debugging
+//SMTP::DEBUG_OFF = off (for production use)
+//SMTP::DEBUG_CLIENT = client messages
+//SMTP::DEBUG_SERVER = client and server messages
+$mail->SMTPDebug = 2;
+//Set the hostname of the mail server
+$mail->Host = '10.2.2.21';
+//Set the SMTP port number - likely to be 25, 465 or 587
+$mail->Port = 25;
+//We don't need to set this as it's the default value
+//$mail->SMTPAuth = false;
+//Set who the message is to be sent from
+$mail->setFrom('no-reply_bspops@bsp.gov.ph', 'BSP');
+//Set an alternative reply-to address
+$mail->addReplyTo('no-reply_bspops@bsp.gov.ph', 'Reply');
+//Set who the message is to be sent to
+$mail->addAddress('wermie@ebizolution.com', 'Whyllard Ermie');
+//Set the subject line
+$mail->Subject = 'PHPMailer SMTP without auth test';
+//Read an HTML message body from an external file, convert referenced images to embedded,
+//convert HTML into a basic plain-text alternative body
+$mail->Body = "This a Test Message";
+//Replace the plain text body with one created manually
+$mail->AltBody = 'This is a plain-text message body';
 
-try {
-    //Server settings
-    $mail->SMTPDebug = 3;               
-    $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'mail.laangkawalpilipinas.org';                     //Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'info@laangkawalpilipinas.org';                     //SMTP username
-    $mail->Password   = '3B1Zp@ss7028';                               //SMTP password
-    $mail->SMTPSecure = 'tls';           
-    $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-    $mail->SMTPOptions = array (
-        'ssl' => array(
-            'verify_peer'  => false,
-            'verify_peer_name'  => false,
-            'allow_self_signed' => true)
-    );
-    //Recipients
-    $mail->setFrom('alapaap@ebizolution.com', 'Alapaap | eBiZolution');
-    $mail->addAddress('wermie@ebizolution.com');         //Add a recipient
-
-    $mail->isHTML(true);                                  
-    $mail->Subject = "Password Recovery";
-    $mail->Body    = 'awdawd';
-    $mail->send();    
-    
-} catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-} 
-
-
+//send the message, check for errors
+if (!$mail->send()) {
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
+} else {
+    echo 'Message sent!';
+}
 ?>
