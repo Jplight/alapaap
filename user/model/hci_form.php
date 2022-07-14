@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	        	$insert_query = mysqli_query($conn,$query);
 	        }
         }
-
+		
 
 		$_SESSION['message'] = "Successfuly Created!";
 		$_SESSION['form_type'] = $form_type;
