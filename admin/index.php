@@ -169,7 +169,7 @@ $rows_disabled = mysqli_fetch_array($disabled_users);
                                     <div class="card-body">
                                         <div class="d-block">
                                             <div class="text-uppercase text-primary fw-bold text-xs">
-                                                <span class="text-secondary">User's Privilage</span>
+                                                <span class="text-secondary">User's Privilege</span>
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-between align-items-end">
