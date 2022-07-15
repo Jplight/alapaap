@@ -86,14 +86,15 @@ endif;
                             <label class="form-label d-block">Control No:&nbsp; <span class="fw-bold"><?php echo empty($control_number) ? '' : 'HCI/'.$control_number; ?></span></label>
                             <input type="hidden" name="txt_control_number" value="<?php echo empty($control_number) ? '' : $control_number; ?>" readonly >
                             <input type="hidden" name="contact_no" value="<?php echo empty($contact_no) ? '' : $contact_no; ?>" readonly>
-                            <input type="text" name="email_add" value="<?php echo empty($email) ? '' : $email; ?>" readonly>
+                            <input type="hidden" name="email_add" value="<?php echo empty($email) ? '' : $email; ?>" readonly>
+                            <input type="text" name="form_owner_mail" value="<?php echo empty($email_add) ? '' : $email_add; ?>" readonly>
                             <input type="hidden" name="form_type" value="<?php echo empty($form_type) ? '' : $form_type; ?>" readonly>
                             <input type="hidden" name="num_revised" value="<?php echo empty($num_revised) ? '' : $num_revised; ?>" readonly placeholder="Total Revised">
                             <input type="hidden" name="his_role" value="<?php echo empty($my_role) ? '' : $my_role; ?>" readonly>
                             <input type="hidden" name="his_uid" value="<?php echo empty($get_uid) ? '' : $get_uid; ?>" readonly>
                         </div>
                     </div>
-                    <input type="text" name="form_owner_mail" value="<?php echo empty($email_add) ? '' : $email_add; ?>" readonly>
+                    
                     <h4 class="text-capitalize text-center mt-3 fw-bold">Site information</h4>
                     <div class="row d-flex justify-content-center g-0 mb-5">
                         <div class="col-lg-10">
