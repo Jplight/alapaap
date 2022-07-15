@@ -12,7 +12,6 @@ $mail = new PHPMailer(true);
 
 $GetSender = mysqli_query($conn,"select * from tbl_user where role='$status' ");
 $rowsSender = mysqli_fetch_array($GetSender);
-
             
     try {
         //Server settings
@@ -31,7 +30,7 @@ $rowsSender = mysqli_fetch_array($GetSender);
                 'allow_self_signed' => true)
         );
         //Recipients
-        $mail->setFrom('alapaapbsp@gmail.com', 'BSP OPS');
+        $mail->setFrom('alapaapbsp@gmail.com', $department_name." Alapaap");
         $mail->addAddress($rowsSender['email_add']);         //Add a recipient
         $mail->addReplyTo('alapaapbsp@gmail.com', 'No Reply');
         $mail->addCC($email_add);
