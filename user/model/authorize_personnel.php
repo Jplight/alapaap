@@ -40,6 +40,12 @@ if (isset($_POST['btn_approver'])) {
 	}
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$my_fullname','$form_type','$txt_control_number', 'approved','$status') ");
 	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$control_number', 'approved','$status','0') ");
+
+	$form_subject = "HCI ";
+	require 'mail_message.php';
+	require 'mail.php';	
+
+
 }
 
 if (isset($_POST['app_disapproved'])) {
