@@ -12,7 +12,13 @@ $mail = new PHPMailer(true);
 
 $GetSender = mysqli_query($conn,"select * from tbl_user where role='$status' ");
 $rowsSender = mysqli_fetch_array($GetSender);
-            
+       
+if($status >=2 && $status <=6){
+    $sender_email = $rowsSender['email_add'];
+}else{
+    $sender_email = $form_owner_mail;
+}
+
     try {
         //Server settings
         $mail->SMTPDebug = 3;               
@@ -31,7 +37,7 @@ $rowsSender = mysqli_fetch_array($GetSender);
         );
         //Recipients
         $mail->setFrom('alapaapbsp@gmail.com', $department_name." Alapaap");
-        $mail->addAddress($rowsSender['email_add']);         //Add a recipient
+        $mail->addAddress($sender_email);         //Add a recipient
         $mail->addReplyTo('alapaapbsp@gmail.com', 'No Reply');
         $mail->addCC($email_add);
 
