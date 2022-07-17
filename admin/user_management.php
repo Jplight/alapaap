@@ -211,7 +211,7 @@
                 // });
                 setInterval(function(){
                     $("#alert").slideUp();
-                },2000);
+                },3000);
                 // $("#chk_app, #chk_rec, #chk_per").click(function(){
                 //     var chk_app = $("#chk_app").is(":checked");
                 //     var chk_rec = $("#chk_rec").is(":checked");

@@ -100,12 +100,14 @@
                                     </div>
                                 </form>
                                 <form method="POST">
+                                    
                                     <div class="card user-select-none">
                                         <!-- <div class="card-header d-flex justify-content-between align-items-center">
                                             <p class="text-primary m-0 fw-bold">My Role</p>
                                             <button type="button" class="btn text-danger"  data-bs-toggle="modal" data-bs-target="#clear_role" data-bs-backdrop="modal" data-bs-keyboard="false" title="Reset to default role"><i class="fa-fw fas fa-trash"></i></button>
                                         </div> -->
-                                        <div class="card-body">                   
+                                        <div class="card-body">     
+                                            <?php echo (!empty($requested_role_message)) ? $requested_role_message : ''; ?>
                                             <div class="mb-2 ">
                                                 <!-- backup code -->
                                                 <!-- <input class="form-check-input" type="checkbox" name="chk_reciever" id="chk_rec"  value="3" <?php echo strpos($multi_role,"3") !== false ? (strpos($my_role,"3") !== false ? 'checked' :'') : ($default_role == 3 ? 'checked' : 'disabled'); ?> > -->
@@ -358,7 +360,12 @@
                 });
                 setInterval(function(){
                     $("#alert").slideUp();
-                },2000);
+                },3000);
+
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                    // // Prevent from Resubmitting Previous Data in the form when using Force Refresh
+                }
             });
         </script>
     </body>

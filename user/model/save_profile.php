@@ -32,9 +32,6 @@ if (isset($_POST['btn_update_role'])) {
     }else{
         $new_role = $chk_requestor.$chk_approver.$chk_reciever.$chk_performer.$chk_confirmer.$chk_verifier;
         $sql = mysqli_query($conn,"UPDATE tbl_user set sub_role = '$new_role' where uid = '$uid' ");
-        if ($sql) {
-            header("location: profile.php");    
-        }
     }
 
 
@@ -46,35 +43,34 @@ if (isset($_POST['btn_c_role'])) {
     unset($_SESSION['role']);
     $_SESSION['role'] = $weng_id;
     $sql = mysqli_query($conn,"UPDATE tbl_user set role = '$weng_id' where uid = '$uid' ");
-    if ($sql) {
-        header("location: index.php");    
-    }
 }
 // This button is for change role that you will in the navbar on the dashboard, once the user has already enabled the Multi Role
 
 if (isset($_POST['btn_request_role'])) {
     $uid_role = rand(10000000,99999999);
-    $status = '0';
     $email_add  = $_POST['email_add'];
     $fullname  = $_POST['fullname'];
-    $chk_requestor  = $_POST['chk_requestor'];
-    $chk_requestor  = $_POST['chk_requestor'];
-    $chk_approver   = $_POST['chk_approver'];
-    $chk_reciever   = $_POST['chk_reciever'];
-    $chk_performer  = $_POST['chk_performer'];
-    $chk_confirmer  = $_POST['chk_confirmer'];
-    $chk_verifier   = $_POST['chk_verifier'];
+    $chk_requestor  = isset($_POST['chk_requestor']) ? $_POST['chk_requestor'] : '';
+    $chk_requestor  = isset($_POST['chk_requestor'])? $_POST['chk_requestor'] : '';
+    $chk_approver   = isset($_POST['chk_approver']) ? $_POST['chk_approver'] : '';
+    $chk_reciever   = isset($_POST['chk_reciever']) ? $_POST['chk_reciever'] : '';
+    $chk_performer  = isset($_POST['chk_performer']) ? $_POST['chk_performer'] : '';
+    $chk_confirmer  = isset($_POST['chk_confirmer']) ? $_POST['chk_confirmer'] : '';
+    $chk_verifier   = isset($_POST['chk_verifier']) ? $_POST['chk_verifier'] : '';
 
     $new_role = $chk_requestor.$chk_approver.$chk_reciever.$chk_performer.$chk_confirmer.$chk_verifier;
-    $sql = mysqli_query($conn,"INSERT INTO tbl_req_role (uid, his_id, fullname, email_add, role, requested_role, status, date_created) values ('$uid_role', '$uid','$fullname', '$email_add', '$role','$new_role','$status',NOW()) ");
-    header("location: profile.php");    
+    $sql = mysqli_query($conn,"INSERT INTO tbl_req_role (uid, his_id, fullname, email_add, role, requested_role, status, date_created) values ('$uid_role', '$uid','$fullname', '$email_add', '$role','$new_role','0',NOW()) ");
+    
+    $status = 'admin';
+    $form_subject = "Request Role";
+    require 'mail_message.php';
+    require 'mail.php';   
+    $requested_role_message = "<div class='alert alert-success' id='alert'>Requested role has been sent!</div>";
 }
 
 if (isset($_POST['btn_role_default'])) {
     $sql = mysqli_query($conn,"UPDATE tbl_user set role = $default_role, sub_role = null, multi_role = null where uid = '$uid' ");
-    if ($sql) {
-        header("location: profile.php");    
-    }     
+    
 }
 
 if(isset($_POST['btn_u_acc'])){
@@ -137,6 +133,7 @@ if (isset($_POST['btn_update_img'])) {
             $img_error = "<div class='alert alert-danger' id='alert'>Image Not Inserted</div>";
         }
     }
+    
 }
  
 

@@ -1,14 +1,5 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
-include 'connection.php';
-require '../vendor/autoload.php';
-
-$mail = new PHPMailer(true);
-
 if(isset($_POST['btn_new_u'])){
     $email_add = $_POST['email_add'];
     $pass = hash_hmac('md5',$_POST['pass'],'@Bsp1234*');
@@ -18,36 +9,11 @@ if(isset($_POST['btn_new_u'])){
     $backup = mysqli_query($conn,"INSERT INTO tbl_backup_pass (email_add,role,password,status) values ('$email_add','$u_role','".$_POST['pass']."','$status') ");
     
     $user_alert = "<div class='alert alert-success' id='alert'>Account <span class='fw-bold'> ".$email_add."</span> has been succefuly added.</div>";
-    try {
-        //Server settings
-        $mail->SMTPDebug = 3;               
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'mail.laangkawalpilipinas.org';                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'info@laangkawalpilipinas.org';                     //SMTP username
-        $mail->Password   = '3B1Zp@ss7028';                               //SMTP password
-        $mail->SMTPSecure = 'tls';           
-        $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-        $mail->SMTPOptions = array (
-            'ssl' => array(
-                'verify_peer'  => false,
-                'verify_peer_name'  => false,
-                'allow_self_signed' => true)
-        );
-        //Recipients
-        $mail->setFrom('alapaap@ebizolution.com', 'Alapaap | eBiZolution');
-        $mail->addAddress("whyllardermie@gmail.com");         //Add a recipient
 
-        $mail->isHTML(true);                                  
-        $mail->Subject = "Password Recovery";
-        $mail->Body    = "awdawdawdawd";
-        $mail->send();    
-        
-    } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    }
+    $subject = "New Account";
+    require 'mail_message.php';
+    require 'mail.php';
 
-    header("location: http://".$_SERVER['SERVER_NAME']."/admin/user_management.php");
 }
 
 if (isset($_POST['btn_update_role'])) {

@@ -19,7 +19,7 @@ $mail->setFrom('no-reply_bspops@bsp.gov.ph', 'BSP');
 
 $mail->addReplyTo('no-reply_bspops@bsp.gov.ph', 'No Reply');
 
-$mail->addAddress('wermie@ebizolution.com', 'Whyllard Ermie');
+$mail->addAddress('whyllardermie@gmail.com', 'Whyllard Ermie');
 
 $mail->Subject = 'PHPMailer SMTP without auth test';
 

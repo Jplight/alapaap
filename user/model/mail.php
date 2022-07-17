@@ -1,12 +1,12 @@
 <?php  
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
 
-//Load Composer's autoloader
+use PHPMailer\PHPMailer\Exception;
+date_default_timezone_set('Etc/UTC');
+
 include '../vendor/autoload.php';
-//Create an instance; passing `true` enables exceptions
+
 $mail = new PHPMailer(true);
 
 
@@ -15,30 +15,24 @@ $rowsSender = mysqli_fetch_array($GetSender);
        
 if($status >=2 && $status <=6){
     $sender_email = $rowsSender['email_add'];
+}else if($status == 'admin'){
+    $sender_email = $rowsSender['email_add'];
 }else{
     $sender_email = $form_owner_mail;
 }
 
     try {
         //Server settings
-        $mail->SMTPDebug = 3;               
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'alapaapbsp@gmail.com';                     //SMTP username
-        $mail->Password   = 'gzukzgnyuwjpfhwa';      // alapaapbsp@123                            //SMTP password
-        $mail->SMTPSecure = 'tls';           
-        $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-        $mail->SMTPOptions = array (
-            'ssl' => array(
-                'verify_peer'  => false,
-                'verify_peer_name'  => false,
-                'allow_self_signed' => true)
-        );
+        $mail->SMTPDebug = 1;               
+
+        $mail->Host = '10.2.2.21';
+ 
+        $mail->Port       = 25; 
+
         //Recipients
-        $mail->setFrom('alapaapbsp@gmail.com', $department_name." Alapaap");
+        $mail->setFrom('no-reply_bspops@bsp.gov.ph', $department_name." Alapaap");
         $mail->addAddress($sender_email);         //Add a recipient
-        $mail->addReplyTo('alapaapbsp@gmail.com', 'No Reply');
+        $mail->addReplyTo('no-reply_bspops@bsp.gov.ph', 'No Reply');
         $mail->addCC($email_add);
 
         $mail->isHTML(true);                                  
