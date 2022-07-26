@@ -179,7 +179,7 @@ endif;
                                         <tr class="align-top">
                                              <td class="fw-bold">OS</td>
                                              <td>
-                                                 <select class="form-select text-dark" name="os" required>
+                                                 <select class="form-select text-dark os" name="os" required>
                                                     <option value="" selected>Select OS</option>
                                                     <option value="windows" <?php echo empty($os) ? '' : ($os == 'windows' ? 'selected' : ''); ?> >Windows</option>
                                                     <option value="linux" <?php echo empty($os) ? '' : ($os == 'linux' ? 'selected' : ''); ?> >Linux</option>
@@ -194,10 +194,10 @@ endif;
                                                 <span class="invisible"></span>
                                             </td>
                                              <td>
-                                                <input class="form-control text-dark" type="text" name="txt_os_descript" value="<?php echo empty($txt_os_descript) ? '' : $txt_os_descript; ?>" placeholder="Specify OS Environment (with or w/o GUI:)" required >
+                                                <input class="form-control text-dark" type="text" name="txt_os_descript" value="<?php echo empty($txt_os_descript) ? '' : $txt_os_descript; ?>" placeholder="Specify OS Environment (with or w/o GUI:)"  >
                                             </td>
                                              <td>
-                                                <input class="form-control text-dark" type="text" name="txt_define_parti" value="<?php echo empty($txt_define_parti) ? '' : $txt_define_parti; ?>" placeholder="Please Define Partition:" required>
+                                                <input class="form-control text-dark" type="text" name="txt_define_parti" value="<?php echo empty($txt_define_parti) ? '' : $txt_define_parti; ?>" placeholder="Please Define Partition:" >
                                             </td>
                                          </tr>
                                          <tr>
@@ -212,7 +212,7 @@ endif;
                                          <tr>
                                              <td class="fw-bold">VLAN</td>
                                              <td>
-                                                 <input class="form-control text-dark " type="text" name="txt_ip_vlan" value="<?php echo empty($txt_ip_vlan) ? '' : $txt_ip_vlan; ?>" required maxlength="3" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" />
+                                                 <input class="form-control text-dark " type="text" name="txt_ip_vlan" value="<?php echo empty($txt_ip_vlan) ? '' : $txt_ip_vlan; ?>" required maxlength="4" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" />
                                              </td>
                                              <td>
                                                  <input class="form-control text-dark" type="text" name="vlan_comment"  value="<?php echo empty($vlan_comment) ? '' : $vlan_comment; ?>" >
@@ -224,7 +224,7 @@ endif;
                                                  <input class="form-control text-dark" type="text" name="hci_users" value="<?php echo empty($hci_users) ? '' : $hci_users; ?>" required/>
                                              </td>
                                              <td>
-                                                 <input class="form-control text-dark" type="text"  name="txt_hci_users" value="<?php echo empty($txt_hci_users) ? '' : $txt_hci_users; ?>" required  placeholder="NEW User"/>
+                                                 <input class="form-control text-dark" type="text"  name="txt_hci_users" value="<?php echo empty($txt_hci_users) ? '' : $txt_hci_users; ?>" placeholder="Optional"/>
                                              </td>
                                          </tr>
 

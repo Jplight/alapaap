@@ -418,14 +418,14 @@ include 'model/save_profile.php';
 
         <script>  
             $(document).ready(function(){                
-                $("#os").on('change',function(){
+                $(".os").on('change',function(){
                     var os_name = $(this).val();
                     if (os_name == 'windows') {
-                        $("#txt_os_descript, #txt_define_parti").prop('disabled',false).val('');    
+                        $("input[name=txt_os_descript], input[name=txt_define_parti]").prop('disabled',false).val('').prop('required',false);    
                     }else if (os_name == 'linux') {
-                        $("#txt_os_descript, #txt_define_parti").prop('disabled',false).val('');
+                        $("input[name=txt_os_descript], input[name=txt_define_parti]").prop('disabled',false).val('').prop('required',true);
                     }else{
-                        $("#txt_os_descript, #txt_define_parti").prop('disabled',true).val('');
+                        $("input[name=txt_os_descript], input[name=txt_define_parti]").prop('disabled',true).val('').prop('required',false);
                     }        
                 });
                 
@@ -483,11 +483,7 @@ include 'model/save_profile.php';
         //  window.addEventListener("resize", function() {
         //      "use strict"; window.location.reload(); 
         //  });
-
-
             document.addEventListener("DOMContentLoaded", function(){
-                
-
                 /////// Prevent closing from click inside dropdown
                 document.querySelectorAll('.dropdown-menu').forEach(function(element){
                     element.addEventListener('click', function (e) {
