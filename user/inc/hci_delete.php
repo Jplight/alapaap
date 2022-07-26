@@ -392,7 +392,7 @@ endif;
                         <?php endif; ?>
                         <?php if ($status == 4 && $my_role == 4): ?> <!-- // Button for Performer -->
                         <div>
-                            <button class="btn btn-outline-success me-2" type="submit" name="btn_performer" ><i class="fa-fw fas fa-check me-1"></i>Task Complete</button>      
+                            <button class="btn btn-outline-success me-2" type="submit" name="btn_performer" ><i class="fa-fw fas fa-check me-1"></i>Request Completed</button>      
                             <!-- <button class="btn btn-outline-danger" type="submit" name="performer_disapproved" ><i class="fa-fw fas fa-times me-1"></i>Return to Sender</button>  -->
                         </div>
                         <?php endif; ?>

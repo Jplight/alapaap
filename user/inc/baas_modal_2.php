@@ -162,7 +162,7 @@ endif;
                                 <label class="">Host Name:</label>
                             </div>
                             <div class="col-lg-7">
-                                <input type="text" class="form-control text-dark" name="hostname"  value="<?php echo empty($hostname) ? '' : $hostname; ?>" required > 
+                                <input type="text" class="form-control text-dark" name="hostname"  value="<?php echo empty($hostname) ? '' : $hostname; ?>" required  onkeypress="return /[0-9A-Z.-_]/i.test(event.key)"> 
                             </div>
                         </div>
                         <div class="row d-flex justify-content-center g-0 mb-2">
@@ -170,7 +170,7 @@ endif;
                                 <label class="">IP Address:</label>
                             </div>
                             <div class="col-lg-7">
-                                <input type="text" class="mb-2 form-control text-dark" name="ip_add"  value="<?php echo empty($ip_add) ? '' : $ip_add; ?>" required> 
+                                <input type="text" class="mb-2 form-control text-dark" name="ip_add"  value="<?php echo empty($ip_add) ? '' : $ip_add; ?>" required onkeypress="return /[0-9.]/i.test(event.key)"> 
                             </div>
                         </div>
                         <div class="row d-flex justify-content-center g-0 mb-2">
@@ -383,7 +383,7 @@ endif;
                         <?php endif; ?>
                         <?php if ($status == 4 && $my_role == 4): ?> <!-- // Button for Performer -->
                         <div>
-                            <button class="btn btn-outline-success me-2" type="submit" name="btn_performer" ><i class="fa-fw fas fa-check me-1"></i>Task Complete</button>      
+                            <button class="btn btn-outline-success me-2" type="submit" name="btn_performer" ><i class="fa-fw fas fa-check me-1"></i>Request Completed</button>      
                             <!-- <button class="btn btn-outline-danger" type="submit" name="performer_disapproved" ><i class="fa-fw fas fa-times me-1"></i>Return to Sender</button>  -->
                         </div>
                         <?php endif; ?>

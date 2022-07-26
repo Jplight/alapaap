@@ -5,7 +5,7 @@
         $count_notif = mysqli_num_rows(mysqli_query($conn,"select * from tbl_notification where uid = '$uid' and isViewed = '0'"));
         $GetView = mysqli_fetch_array($notif);
     }else{
-        $notif = mysqli_query($conn,"select * from tbl_pending_request where status = '$my_role'");
+        $notif = mysqli_query($conn,"select * from tbl_pending_request where status = '$my_role' order by date_requested desc");
         $count_notif = mysqli_num_rows($notif);
 
     }

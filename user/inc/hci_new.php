@@ -62,7 +62,7 @@ if (!empty($control_number)):
     }
 endif;
 ?>
-<form class="text-dark" method="post">
+<form class="text-dark" method="post" autocomplete="off">
     <div id="view_hci<?php echo empty($control_number) ? '' : $control_number; ?>" class="modal fade" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-xl modal-fullscreen-xl-down" role="document">
             <div class="modal-content">
@@ -138,7 +138,7 @@ endif;
                                                  </select>
                                             </td>
                                             <td class="align-top" colspan="3">
-                                                <input class="form-control text-dark" type="text" id="hostname" name="hostname" value="<?php echo empty($hostname) ? '' : $hostname; ?>" placeholder="Input your Host Name" required />
+                                                <input class="form-control text-dark" type="text" id="hostname" name="hostname" value="<?php echo empty($hostname) ? '' : $hostname; ?>" placeholder="Input your Host Name" required onkeypress="return /[0-9A-Z.-_]/i.test(event.key)" />
                                             </td>
                                         </tr>
                                     </tbody>
@@ -161,7 +161,7 @@ endif;
                                         <tr>
                                             <td class="fw-bold">vCPU</td>
                                             <td>
-                                                <input class="form-control text-dark" type="text" name="vcpu" value="<?php echo empty($vcpu) ? '' : $vcpu; ?>"  required/>
+                                                <input class="form-control text-dark" type="text" name="vcpu" value="<?php echo empty($vcpu) ? '' : $vcpu; ?>"  required maxlength="2" onkeypress="return /[0-9]/i.test(event.key)" >
                                             </td>
                                             <td>
                                                 <input class="form-control text-dark" type="text" name="vcpu_comment" value="<?php echo empty($vcpu_comment) ? '' : $vcpu_comment; ?>" />
@@ -170,10 +170,10 @@ endif;
                                         <tr>
                                             <td class="fw-bold">RAM (GB)</td>
                                             <td>
-                                                <input class="form-control text-dark" type="text" name="ram" value="<?php echo empty($ram) ? '' : $ram; ?>" required />
+                                                <input class="form-control text-dark" type="text" name="ram" value="<?php echo empty($ram) ? '' : $ram; ?>" required maxlength="2" onkeypress="return /[0-9]/i.test(event.key)"/>
                                             </td>
                                             <td>
-                                                <input class="form-control text-dark" type="text"  name="ram_comment" value="<?php echo empty($ram_comment) ? '' : $ram_comment; ?>" />
+                                                <input class="form-control text-dark" type="text"  name="ram_comment" value="<?php echo empty($ram_comment) ? '' : $ram_comment; ?>" onkeypress="return /[0-9]/i.test(event.key)" />
                                             </td>
                                         </tr>
                                         <tr class="align-top">
@@ -186,7 +186,7 @@ endif;
                                                  </select>                              
                                              </td>
                                              <td>
-                                                 <input class="form-control text-dark" type="text" name="os_comment" value="<?php echo empty($os_comment) ? '' : $os_comment; ?>" />  
+                                                 <input class="form-control text-dark" type="text" name="os_comment" value="<?php echo empty($os_comment) ? '' : $os_comment; ?>" placeholder="OS Version e.g. Window Server 2019" required onkeypress="return /[A-Z0-9 ]/i.test(event.key)"/>  
                                              </td>
                                          </tr>
                                          <tr>
@@ -194,25 +194,25 @@ endif;
                                                 <span class="invisible"></span>
                                             </td>
                                              <td>
-                                                <input class="form-control text-dark" type="text" name="txt_os_descript" value="<?php echo empty($txt_os_descript) ? '' : $txt_os_descript; ?>" placeholder="Specify OS Environment (with or w/o GUI:)" >
+                                                <input class="form-control text-dark" type="text" name="txt_os_descript" value="<?php echo empty($txt_os_descript) ? '' : $txt_os_descript; ?>" placeholder="Specify OS Environment (with or w/o GUI:)" required >
                                             </td>
                                              <td>
-                                                <input class="form-control text-dark" type="text" name="txt_define_parti" value="<?php echo empty($txt_define_parti) ? '' : $txt_define_parti; ?>" placeholder="Please Define Partion:" >
+                                                <input class="form-control text-dark" type="text" name="txt_define_parti" value="<?php echo empty($txt_define_parti) ? '' : $txt_define_parti; ?>" placeholder="Please Define Partition:" required>
                                             </td>
                                          </tr>
                                          <tr>
                                              <td class="fw-bold">IP Address</td>
                                              <td>
-                                                 <input class="form-control text-dark" type="text" name="ip_add_vlan" value="<?php echo empty($ip_add_vlan) ? '' : $ip_add_vlan; ?>" required />
+                                                 <input class="form-control text-dark" type="text" name="ip_add_vlan" value="<?php echo empty($ip_add_vlan) ? '' : $ip_add_vlan; ?>" maxlength="15" required  onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46)" placeholder="e.g: 19.22.23.1" />
                                              </td>
                                              <td>
-                                                 <input class="form-control text-dark" type="text" name="ip_comment" value="<?php echo empty($ip_comment) ? '' : $ip_comment; ?>" >
+                                                 <input class="form-control text-dark" type="text" name="ip_comment" value="<?php echo empty($ip_comment) ? '' : $ip_comment; ?>" required placeholder="Please input Subnet and Gateway" >
                                              </td>
                                          </tr>
                                          <tr>
                                              <td class="fw-bold">VLAN</td>
                                              <td>
-                                                 <input class="form-control text-dark" type="text" name="txt_ip_vlan" value="<?php echo empty($txt_ip_vlan) ? '' : $txt_ip_vlan; ?>" required />
+                                                 <input class="form-control text-dark " type="text" name="txt_ip_vlan" value="<?php echo empty($txt_ip_vlan) ? '' : $txt_ip_vlan; ?>" required maxlength="3" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" />
                                              </td>
                                              <td>
                                                  <input class="form-control text-dark" type="text" name="vlan_comment"  value="<?php echo empty($vlan_comment) ? '' : $vlan_comment; ?>" >
@@ -221,10 +221,10 @@ endif;
                                          <tr>
                                              <td class="fw-bold">Users </td>
                                              <td>
-                                                 <input class="form-control text-dark" type="text" name="hci_users" value="<?php echo empty($hci_users) ? '' : $hci_users; ?>" />
+                                                 <input class="form-control text-dark" type="text" name="hci_users" value="<?php echo empty($hci_users) ? '' : $hci_users; ?>" required/>
                                              </td>
                                              <td>
-                                                 <input class="form-control text-dark" type="text"  name="txt_hci_users" value="<?php echo empty($txt_hci_users) ? '' : $txt_hci_users; ?>" />
+                                                 <input class="form-control text-dark" type="text"  name="txt_hci_users" value="<?php echo empty($txt_hci_users) ? '' : $txt_hci_users; ?>" required  placeholder="NEW User"/>
                                              </td>
                                          </tr>
 
@@ -239,7 +239,7 @@ endif;
                                             <td class="fw-bold">Disk (GB) <?=$num++; ?></td>
                                             <td>
                                                 <input type="hidden" name="others_id[]" value="<?=$rows['others_id']; ?>" >
-                                                <input class="form-control text-dark uid1" type="text" name='others_1[]' value="<?=$rows['others_1']?>" >
+                                                <input class="form-control text-dark uid1" type="text" name='others_1[]' value="<?=$rows['others_1']?>" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" >
                                             </td>
                                             <td>
                                                 <input class="form-control text-dark uname1" type="text" name='others_2[]' value="<?=$rows['others_2']?>">
@@ -259,7 +259,7 @@ endif;
                                             <td>
                                                 <div class="d-flex justify-content-end position-relative">
                                                     <input type="hidden" name="others_id[]" >
-                                                    <input class="form-control text-dark uid1" type="text" name='others_1[]' >
+                                                    <input class="form-control text-dark uid1" type="text" name='others_1[]' required onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" >
 
                                                     <div class="position-absolute me-2 bg-white d-flex align-self-center" style="z-index:4;">
                                                         <div class="d-flex flex-column ">
@@ -269,7 +269,7 @@ endif;
                                                 </div>
                                             </td>
                                             <td>
-                                                <input class="form-control text-dark uname1" type="text" name='others_2[]' >
+                                                <input class="form-control text-dark uname1" type="text" name='others_2[]' required>
                                             </td>
                                         </tr>
                                         <?php endif; ?>
@@ -324,7 +324,7 @@ endif;
                         <?php endif; ?>
                         <?php if ($status == 4 && $my_role == 4): ?> <!-- // Button for Performer -->
                         <div>
-                            <button class="btn btn-outline-success me-2" type="submit" name="btn_performer" ><i class="fa-fw fas fa-check me-1"></i>Task Complete</button>      
+                            <button class="btn btn-outline-success me-2" type="submit" name="btn_performer" ><i class="fa-fw fas fa-check me-1"></i>Request Completed</button>      
                             <!-- <button class="btn btn-outline-danger" type="submit" name="performer_disapproved" ><i class="fa-fw fas fa-times me-1"></i>Return to Sender</button>  -->
                         </div>
                         <?php endif; ?>

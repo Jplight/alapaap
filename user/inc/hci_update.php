@@ -161,7 +161,7 @@ endif;
                                                 </div>
                                             <?php endif; ?>
                                             <?php if (!empty($control_number)): ?>
-                                                    <input class="form-control text-dark shadow-none" type="text" name="hci_up_search_txt" id="hci_up_search_txt" readonly value="<?php echo empty($hostname) ? '' : $hostname; ?>" >
+                                                    <input class="form-control text-dark shadow-none" type="text" name="hci_up_search_txt" id="hci_up_search_txt" readonly value="<?php echo empty($hostname) ? '' : $hostname; ?>" onkeypress="return /[0-9A-Z.-_]/i.test(event.key)" >
                                             <?php endif; ?>
                                             </td>
                                         </tr>
@@ -192,7 +192,7 @@ endif;
                                             <input class="form-control text-dark" type="text"  name="hci_up_vcpu" id="hci_up_vcpu" value="<?php echo empty($hci_up_vcpu) ? '' : $hci_up_vcpu; ?>" readonly />
                                         </td>
                                         <td>
-                                            <input class="form-control text-dark" type="text" name="hci_up_req_vcpu" id="hci_up_req_vcpu" value="<?php echo empty($hci_up_req_vcpu) ? '' : $hci_up_req_vcpu; ?>" required />
+                                            <input class="form-control text-dark" type="text" name="hci_up_req_vcpu" id="hci_up_req_vcpu" value="<?php echo empty($hci_up_req_vcpu) ? '' : $hci_up_req_vcpu; ?>" onkeypress="return /[0-9]/i.test(event.key)" />
                                         </td>
                                         <td>
                                             <input class="form-control text-dark" type="text" name="hci_up_vcpu_comment" id="hci_up_vcpu_comment" value="<?php echo empty($hci_up_vcpu_comment) ? '' : $hci_up_vcpu_comment; ?>" />
@@ -204,7 +204,7 @@ endif;
                                             <input class="form-control text-dark" type="text" name="hci_up_ram" id="hci_up_ram" value="<?php echo empty($hci_up_ram) ? '' : $hci_up_ram; ?>"  readonly />
                                         </td>
                                         <td>
-                                            <input class="form-control text-dark" type="text" name="hci_up_req_ram" id="hci_up_req_ram" value="<?php echo empty($hci_up_req_ram) ? '' : $hci_up_req_ram; ?>" required />
+                                            <input class="form-control text-dark" type="text" name="hci_up_req_ram" id="hci_up_req_ram" value="<?php echo empty($hci_up_req_ram) ? '' : $hci_up_req_ram; ?>" required onkeypress="return /[0-9]/i.test(event.key)" />
                                         </td>
                                         <td>
                                             <input class="form-control text-dark" type="text"  name="hci_up_ram_comment" id="hci_up_ram_comment" value="<?php echo empty($hci_up_ram_comment) ? '' : $hci_up_ram_comment; ?>" />
@@ -216,7 +216,7 @@ endif;
                                             <input class="form-control text-dark" type="text" name="hci_up_os_old" id="hci_up_os_old" value="<?php echo empty($hci_up_os_old) ? '' : $hci_up_os_old; ?>" readonly />                             
                                          </td>
                                          <td>
-                                            <input class="form-control text-dark" type="text" name="hci_up_req_os_new" id="hci_up_req_os_new" value="<?php echo empty($hci_up_req_os_new) ? '' : $hci_up_req_os_new; ?>" required />
+                                            <input class="form-control text-dark" type="text" name="hci_up_req_os_new" id="hci_up_req_os_new" value="<?php echo empty($hci_up_req_os_new) ? '' : $hci_up_req_os_new; ?>" required onkeypress="return /[A-Z0-9 ]/i.test(event.key)" />
                                         </td>
                                          <td>
                                              <input class="form-control text-dark" type="text" name="hci_up_os_comment" id="hci_up_os_comment" value="<?php echo empty($hci_up_os_comment) ? '' : $hci_up_os_comment; ?>" />  
@@ -230,7 +230,7 @@ endif;
                                             <input class="form-control text-dark" type="text" name="hci_up_os_desc_old" id="hci_up_os_desc_old" value="<?php echo empty($hci_up_os_desc_old) ? '' : $hci_up_os_desc_old; ?>" placeholder="Specify OS Environment (with or w/o GUI:)" readonly>
                                         </td>
                                         <td>
-                                            <input class="form-control text-dark" type="text" name="hci_up_req_desc" id="hci_up_req_desc" value="<?php echo empty($hci_up_req_desc) ? '' : $hci_up_req_desc; ?>" placeholder="Please Define Partion:" required />
+                                            <input class="form-control text-dark" type="text" name="hci_up_req_desc" id="hci_up_req_desc" value="<?php echo empty($hci_up_req_desc) ? '' : $hci_up_req_desc; ?>" placeholder="Please Define Partion:" required onkeypress="return /[A-Z0-9 ]/i.test(event.key)" />
                                         </td>
                                          <td>
                                             <input class="form-control text-dark" type="text" name="hci_up_req_parti" id="hci_up_req_parti" value="<?php echo empty($hci_up_req_parti) ? '' : $hci_up_req_parti; ?>"   >
@@ -242,7 +242,7 @@ endif;
                                              <input class="form-control text-dark" type="text"  name="hci_up_ipaddress" id="hci_up_ipaddress" value="<?php echo empty($hci_up_ipaddress) ? '' : $hci_up_ipaddress; ?>" readonly />
                                          </td>
                                          <td>
-                                            <input class="form-control text-dark" type="text" name="hci_up_req_ipadd" id="hci_up_req_ipadd" value="<?php echo empty($hci_up_req_ipadd) ? '' : $hci_up_req_ipadd; ?>" required />
+                                            <input class="form-control text-dark" type="text" name="hci_up_req_ipadd" id="hci_up_req_ipadd" value="<?php echo empty($hci_up_req_ipadd) ? '' : $hci_up_req_ipadd; ?>" required onkeypress="return /[0-9.]/i.test(event.key)" />
                                         </td>
                                          <td>
                                              <input class="form-control text-dark" type="text" name="hci_up_ipadd_comment" id="hci_up_ipadd_comment" value="<?php echo empty($hci_up_ipadd_comment) ? '' : $hci_up_ipadd_comment; ?>"  >
@@ -254,7 +254,7 @@ endif;
                                              <input class="form-control text-dark" type="text" id="hci_up_ip_vlan" name="hci_up_ip_vlan" value="<?php echo empty($hci_up_ip_vlan) ? '' : $hci_up_ip_vlan; ?>"  readonly/>
                                          </td>
                                          <td>
-                                            <input class="form-control text-dark" type="text" name="hci_up_req_vlan" id="hci_up_req_vlan" value="<?php echo empty($hci_up_req_vlan) ? '' : $hci_up_req_vlan; ?>" required />
+                                            <input class="form-control text-dark" type="text" name="hci_up_req_vlan" id="hci_up_req_vlan" value="<?php echo empty($hci_up_req_vlan) ? '' : $hci_up_req_vlan; ?>" required onkeypress="return /[0-9]/i.test(event.key)" />
                                         </td>
                                          <td>
                                              <input class="form-control text-dark" type="text" name="hci_up_vlan_comment" id="hci_up_vlan_comment" value="<?php echo empty($hci_up_vlan_comment) ? '' : $hci_up_vlan_comment; ?>"  >
@@ -266,7 +266,7 @@ endif;
                                              <input class="form-control text-dark" type="text" name="hci_up_users" id="hci_up_users" value="<?php echo empty($hci_up_users) ? '' : $hci_up_users; ?>" readonly />
                                          </td>
                                          <td>
-                                            <input class="form-control text-dark" type="text" name="hci_up_req_users" id="hci_up_req_users" value="<?php echo empty($hci_up_req_users) ? '' : $hci_up_req_users; ?>" />
+                                            <input class="form-control text-dark" type="text" name="hci_up_req_users" id="hci_up_req_users" value="<?php echo empty($hci_up_req_users) ? '' : $hci_up_req_users;  ?>" onkeypress="return /[A-Z0-9]/i.test(event.key)" />
                                         </td>
                                          <td>
                                              <input class="form-control text-dark" type="text" name="hci_up_users_comment" id="hci_up_users_comment" value="<?php echo empty($hci_up_users_comment) ? '' : $hci_up_users_comment; ?>"  />
@@ -285,14 +285,14 @@ endif;
                                                 echo '<tr>';
                                                 echo '<td class="text-dark fw-bold">Disk (GB) '.$num++.' </td>';
                                                 echo '<td><input type="hidden" name="others_id[]" value="'.$rows_2['others_id'].'" placeholder=""><input class="form-control text-dark" type="text" id="others_1[]" name="others_1[]" value="'.$rows_2['others_1'].'" readonly></td>';
-                                                echo '<td><input class="form-control text-dark" type="text" id="others_2[]" name="others_2[]" value="'.$rows_2['others_2'].'" ></td>';
+                                                echo '<td><input class="form-control text-dark" type="text" id="others_2[]" name="others_2[]" value="'.$rows_2['others_2'].'" onkeypress="return /[0-9]/i.test(event.key)" ></td>';
                                                 echo '<td><input class="form-control text-dark" type="text" id="others_3[]" name="others_3[]" value="'.$rows_2['others_3'].'" ></td>';
                                                 echo '</tr>';
                                             }
                                         }else{
                                             echo '<tr>';
                                             echo '<td class="text-dark fw-bold">Disk (GB)</td>';
-                                            echo '<td><input type="hidden" name="others_id[]" value="" placeholder=""><input class="form-control text-dark" type="text" id="others_1" name="others_1[]" value="" readonly></td>';
+                                            echo '<td><input type="hidden" name="others_id[]" value="" placeholder=""><input class="form-control text-dark" type="text" id="others_1" name="others_1[]" value="" readonly onkeypress="return /[0-9]/i.test(event.key)"></td>';
                                             echo '<td><input class="form-control text-dark" type="text" id="others_2" name="others_2[]" ></td>';
                                             echo '<td><input class="form-control text-dark" type="text" name="others_3[]"></td>';
                                             echo '</tr>';     
@@ -358,7 +358,7 @@ endif;
                         <?php endif; ?>
                         <?php if ($status == 4 && $my_role == 4): ?> <!-- // Button for Performer -->
                         <div>
-                            <button class="btn btn-outline-success me-2" type="submit" name="btn_performer" ><i class="fa-fw fas fa-check me-1"></i>Task Complete</button>      
+                            <button class="btn btn-outline-success me-2" type="submit" name="btn_performer" ><i class="fa-fw fas fa-check me-1"></i>Request Completed</button>      
                             <!-- <button class="btn btn-outline-danger" type="submit" name="performer_disapproved" ><i class="fa-fw fas fa-times me-1"></i>Return to Sender</button>  -->
                         </div>
                         <?php endif; ?>

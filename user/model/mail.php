@@ -32,7 +32,6 @@ if($status >=2 && $status <=6){
         //Recipients
         $mail->setFrom('no-reply_bspops@bsp.gov.ph', $department_name." Alapaap");
         $mail->addAddress($sender_email);         //Add a recipient
-        $mail->addReplyTo('no-reply_bspops@bsp.gov.ph', 'No Reply');
         $mail->addCC($email_add);
 
         $mail->isHTML(true);                                  

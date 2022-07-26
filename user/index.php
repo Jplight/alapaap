@@ -401,6 +401,7 @@ include 'model/save_profile.php';
             include 'inc/baas_modal.php';
             include 'inc/baas_modal_2.php';
             include 'inc/change_role_modal.php';
+            include 'inc/prompt_message.php';   
         ?>
 
         <script src="assets/js/jquery-3.6.0.js"></script>
@@ -414,9 +415,9 @@ include 'model/save_profile.php';
         <script src="controller/cps_up_script.js"></script>
         <script src="controller/cps_del_script.js"></script>
         <script src="controller/tci_script.js"></script>
+
         <script>  
-            $(document).ready(function(){
-                
+            $(document).ready(function(){                
                 $("#os").on('change',function(){
                     var os_name = $(this).val();
                     if (os_name == 'windows') {

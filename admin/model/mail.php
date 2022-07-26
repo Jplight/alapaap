@@ -17,7 +17,6 @@ $mail = new PHPMailer(true);
 
         $mail->setFrom('no-reply_bspops@bsp.gov.ph', 'BSP OPS');
         $mail->addAddress($email_add);         //Add a recipient
-        $mail->addReplyTo('no-reply_bspops@bsp.gov.ph', 'No Reply');
 
         $mail->isHTML(true);                                  
         $mail->Subject = $subject;
