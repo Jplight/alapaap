@@ -21,21 +21,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		if ($_POST['new_pass'] !== $_POST['retype_pass']){
 			$response['status'] = 'not_match';
-			$response['message'] = 'Your New Password and Retype password does not Match!';	
-		}else if($txt_fname == null || $txt_lname == null || $txt_contact_no == null || $new_pass == null){
+			$response['message'] = 'new password and retype password does not match!';	
+		}else if($txt_fname == null || $txt_lname == null || $_POST['new_pass'] == null || $_POST['retype_pass'] == null){
 			$response['status'] = 'null_fields';
-			$response['message'] = 'Some of the fields must be fill up first!';	
+			$response['message'] = 'fill out the fields!';	
         }else if ($count < 1){
 			$response['status'] = 'invalid';
-			$response['message'] = 'Current Password is incorrect!';	
+			$response['message'] = 'current password is incorrect!';	
         }else{
-			$sql2 = mysqli_query($conn,"UPDATE `tbl_user` SET `first_name`='$txt_fname',`last_name`='$txt_lname',`home_address`='$home_add', `password`='$new_pass',`contact_no`='$txt_contact_no',`status`='$status',`date_modified`= NOW() WHERE email_add = '$txt_email_add' ");	
-            $rows = mysqli_fetch_array($sql);
-			$_SESSION['uid'] = $rows['uid'];
-			$_SESSION['role'] = $rows['role'];
+			$UpdateAccount = mysqli_query($conn,"UPDATE `tbl_user` SET `first_name`='$txt_fname',`last_name`='$txt_lname',`home_address`='$home_add', `password`='$new_pass',`contact_no`='$txt_contact_no',`status`='$status',`date_modified`= NOW() WHERE email_add = '$txt_email_add' ");	
+            // $rows = mysqli_fetch_array($sql);
+			// $_SESSION['uid'] = $rows['uid'];
+			// $_SESSION['role'] = $rows['role'];
 			$response['status'] = 'verified';
-			$response['message'] = 'Your Account has been verified! You may Login your account';
-            $response['link'] = '../user/index.php';
+			$response['message'] = 'Account has been verified!';
+            $response['link'] = 'http://'.$_SERVER['SERVER_NAME'];
         }
         unset($_SESSION['email']);
         mysqli_close($conn);

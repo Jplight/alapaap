@@ -62,7 +62,7 @@ if (!empty($control_number)):
     }
 endif;
 ?>
-<form class="text-dark" method="post" autocomplete="off">
+<form class="text-dark" method="post" autocomplete="off" id="gog" >
     <div id="view_hci<?php echo empty($control_number) ? '' : $control_number; ?>" class="modal fade" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-xl modal-fullscreen-xl-down" role="document">
             <div class="modal-content">

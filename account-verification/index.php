@@ -44,12 +44,12 @@ session_start();
                                     <input class="form-control form-control" type="text" id="txt_lname" autocomplete="nope" required="" name="txt_lname" minlength="2" maxlength="30" tabindex="2">
                                 </div>
                                 <div class="mb-2">
-                                    <label class="form-label fw-bold">Home Address *</label>
+                                    <label class="form-label fw-bold">Home Address </label>
                                     <textarea class="form-control" name="home" id="home" placeholder="Optional" tabindex="3" rows="4"></textarea>
                                 </div>
                                 <div class="mb-2">
-                                    <label class="form-label fw-bold">Contact No. *</label>
-                                    <input class="form-control form-control" type="text" id="txt_contact_no" required="" name="txt_contact_no" minlength="11" maxlength="11" tabindex="4">
+                                    <label class="form-label fw-bold">Contact No. </label>
+                                    <input class="form-control form-control" type="text" id="txt_contact_no" name="txt_contact_no" minlength="11" maxlength="11" tabindex="4" placeholder="Optional">
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -159,7 +159,7 @@ session_start();
                             dataType: 'JSON',
                             beforeSend: function(){
                                 $("#btn_submit").prop('disabled', true);
-                                $("input").attr('disabled',true);
+                                $("input, textarea").attr('disabled',true);
                             },
                             success: function(data){
                                 if (data.status ==='verified') {
@@ -180,7 +180,7 @@ session_start();
                                 
                             },complete: function(){
                                 $("#btn_submit").prop('disabled', false);
-                                $("input").attr('disabled',false);
+                                $("input, textarea").attr('disabled',false);
                             },error: function(data){
                                 alert("Oops something went wrong!");
                             }

@@ -5,15 +5,19 @@ if(isset($_POST['btn_new_u'])){
     $pass = hash_hmac('md5',$_POST['pass'],'@Bsp1234*');
     $u_role = $_POST['u_role'];
     $status = '0';
-    $sql = mysqli_query($conn,"INSERT INTO `tbl_user`(`email_add`, `password`,`status`,`role`,`default_role`,`created_by`) VALUES ('$email_add','$pass','$status','$u_role','$u_role','$my_role')");
-    $backup = mysqli_query($conn,"INSERT INTO tbl_backup_pass (email_add,role,password,status) values ('$email_add','$u_role','".$_POST['pass']."','$status') ");
     
-    $user_alert = "<div class='alert alert-success' id='alert'>Account <span class='fw-bold'> ".$email_add."</span> has been succefuly added.</div>";
-
-    $subject = "New Account";
-    require 'mail_message.php';
-    require 'mail.php';
-
+    $ValidateData = mysqli_query($conn,"select * from tbl_user where email_add = '$email_add' ");
+    if (mysqli_num_rows($ValidateData) > 0) {
+        $message_error = "Email already exist!";
+    }else{
+        $AddData = mysqli_query($conn,"INSERT INTO `tbl_user`(`email_add`, `password`,`status`,`role`,`default_role`,`created_by`) VALUES ('$email_add','$pass','$status','$u_role','$u_role','$my_role')");
+        $BackupData = mysqli_query($conn,"INSERT INTO tbl_backup_pass (email_add,role,password,status) values ('$email_add','$u_role','".$_POST['pass']."','$status') ");
+        $user_alert = "<div class='alert alert-success' id='alert'>Account <span class='fw-bold'> ".$email_add."</span> has been succefuly added.</div>";
+        $subject = "New Account";
+        require 'mail_message.php';
+        require 'mail.php';
+    }
+    
 }
 
 if (isset($_POST['btn_update_role'])) {

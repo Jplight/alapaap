@@ -25,16 +25,17 @@
                     <div class="mb-2">
                         <label for="d-block">Email</label>
                         <input class="form-control" type="email" name="email_add" autocomplete="off" required>
+                        <?php echo (!empty($message_error)) ? $message_error : ''; ?>
                     </div>
                     <div class="mb-2">
-                        <label for="d-block">Generated Password</label>
+                        <!-- <label for="d-block">Generated Password</label> -->
                         <div class="input-group">
-                            <input type="text" class="form-control"  name="pass" rel="gp" data-size="10" data-character-set="a-z,A-Z,0-9,#" readonly required >
-                            <span class="input-group-btn">
+                            <input type="hidden" class="form-control"  name="pass" rel="gp" data-size="10" data-character-set="a-z,A-Z,0-9,#" readonly required >
+                            <!-- <span class="input-group-btn">
                                 <button type="button" class="btn btn-default getNewPass">
                                     <span class="fa fa-refresh"></span>
                                 </button>
-                            </span>
+                            </span> -->
                         </div>
                     </div>
                 </div>

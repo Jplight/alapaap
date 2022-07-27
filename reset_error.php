@@ -33,11 +33,9 @@ $email_hash = $resultmob;
                     <div class="card shadow-sm" style="font-family: 'Open Sans', sans-serif;">
                         <img class="card-img-top w-100 d-block" src="assets/img/kisspng-rox-hotel-flat-design-user-interface-content-connected-lines-5b379baa936332.2436380315303709866037.png">
                         <div class="card-body">
-                            <h4 class="text-center card-title fw-bold"><span>Oops link is already used!</span></h4>
-                            <p class="text-start"><br>Dear, Customer</p>
-                                <p>This link is for one time used only! you can't used it again otherwise you may contact our customer service!</p>
-                                <p>Please let me know if you have any questions or would like further information, otherwise, no response is needed.</p>
-                                <p>Thank you!</p>
+                            <div class="py-4">
+                                <h4 class="text-center card-title fw-bold"><span>This link has already been used or expired!</span></h4>
+                            </div>
                             <div class="text-center">
                                 <a class="btn btn-success text-capitalize rounded" href="index.php"><i class="fa-fw fas fa-home me-1"></i>Home</a>
                             </div>

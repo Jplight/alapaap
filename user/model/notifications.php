@@ -58,19 +58,19 @@
                     $notification = ucwords($data['fullname']).' has '.$st.' your '.$form_type." request with control no:  ".$form_type."/".$data['control_number'];
                 }
                 if ($my_role == '2'){
-                    $notification = ucwords($NotifName).' has been '.$st.' '.$form_type." with control no: ".$form_type."/".$data['control_number'];
+                    $notification = ucwords($NotifName).' has '.$st.' '.$form_type." with control no: ".$form_type."/".$data['control_number'];
                 }
                 if ($my_role == '3' && $data['form_type'] == '1'){
-                    $notification = ucwords($NotifName).' has been '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control no: ".$form_type."/".$data['control_number'];
+                    $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control no: ".$form_type."/".$data['control_number'];
                 }
                 if ($my_role == '3' && $data['form_type'] == '2'){
-                    $notification = ucwords($NotifName).' has been '.$st.' '.$form_type." with control no: ".$form_type."/".$data['control_number'];
+                    $notification = ucwords($NotifName).' has '.$st.' '.$form_type." with control no: ".$form_type."/".$data['control_number'];
                 }
                 if ($my_role == '3' && $data['form_type'] != '2'){
-                    $notification = ucwords($NotifName).' has been '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control no: ".$form_type."/".$data['control_number'];
+                    $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control no: ".$form_type."/".$data['control_number'];
                 }
                 if ($my_role >= '4' && $my_role <= '6'){
-                    $notification = ucwords($NotifName).' has been '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control no: ".$form_type."/".$data['control_number'];
+                    $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control no: ".$form_type."/".$data['control_number'];
                 }
                            
         ?>

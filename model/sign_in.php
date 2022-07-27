@@ -65,16 +65,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			}
 		}else if ($rows['status'] == '2'){
 			$response['status'] = 'disabled';
-			$response['message'] = 'It seems your account has been disabled by the Administrator. To activate your account you must contact your administrator Thank you!';
+			$response['message'] =  "This account has been disabled by the Administrator. Please contact your administrator.";
 		}else{
 			$response['status'] = 'Unverified';		
-			$response['message'] = 'It seems your account is not activated. Click Ok to proceed!';	
+			$response['message'] = 'This is account needs to be verified!';	
 			$response['link'] = 'account-verification/index.php';
 			$_SESSION['email'] = $rows['email_add'];
 		}		
 	}else{
 		$response['status'] = 'not_exist';
-		$response['message'] = 'The Account you entered does not exist! Please Register to our website!';		
+		$response['message'] = 'This account does not exist!';		
 	}
 	mysqli_close($conn);
 	echo json_encode($response);

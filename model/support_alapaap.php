@@ -32,7 +32,7 @@ $email_hash = $resultmob;
                         <div class="card-body">
                             <h4 class="text-center card-title fw-bold">You're almost done!</h4>
                             <div class="d-flex justify-content-center">
-                                <p class="text-start"><br>Dear, Customer<br><br>We sent you a confirmation link in this email <b><?php echo $email_hash; ?></b>. Please check your email account to reset your password.<br><br>Thank You!<br><br></p>
+                                <p class="text-start"><br>Hello User!<br><br>You requested to reset the password for your Alapaap account with the email address of <b><?php echo $email_hash; ?></b> confirmation link was sent to this email.</p>
                             </div>
                             <div class="text-center">
                                 <a class="btn btn-success text-capitalize rounded" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>"><i class="fa-fw fas fa-arrow-left me-1"></i>Go Back</a>

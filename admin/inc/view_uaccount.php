@@ -52,11 +52,10 @@
 
                                         </span>
                                     </div>
-                                    <div class="d-block">
+                                    <!-- <div class="d-block">
                                         <label class="fw-bold mb-2">Password: </label>
                                         <span id="p1"><?=$getData['password'];?></span>
-    
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
