@@ -55,7 +55,7 @@
                 if($data['form_type'] == '4-2'){$form_type = 'BaaS CRRF'; }
 
                 if($data['uid'] == $uid){
-                    $notification = ucwords($data['fullname']).' has been '.$st.' your '.$form_type." with control no: ".$form_type."/".$data['control_number'];
+                    $notification = ucwords($data['fullname']).' has '.$st.' your '.$form_type." request with control no:  ".$form_type."/".$data['control_number'];
                 }
                 if ($my_role == '2'){
                     $notification = ucwords($NotifName).' has been '.$st.' '.$form_type." with control no: ".$form_type."/".$data['control_number'];
@@ -83,7 +83,7 @@
             </div>
             <div class="small ">
                 <span class="d-block text-muted"><?=date('F d, Y - h:i:s A',strtotime($data['date_requested'])); ?></span>
-                <span class="fw-bold d-block text-muted" ><?= get_time_ago(strtotime($data['date_requested']));?></span>                                                  
+                <span class="fw-bold d-block text-muted" ><?=get_time_ago(strtotime($data['date_requested']));?></span>                                                  
                 <?=$notification; ?>
             </div>
         </a>
