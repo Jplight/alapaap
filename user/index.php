@@ -415,7 +415,66 @@ include 'model/save_profile.php';
         <script src="controller/cps_up_script.js"></script>
         <script src="controller/cps_del_script.js"></script>
         <script src="controller/tci_script.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
+
+
+
+
+
+        <script>
+            $(document).ready(function(){
+                $("button[name=btn_submit_hci]").click(function(){
+                    if($("input[name=hostname]").val() !== '' && $("input[name=vcpu]").val() !== '' && $("input[name=department]").val() !== '' && $("input[name=ram]").val() !== '' && $("input[name=ram_comment]").val() !== '' && $("input[name=os]").val() !== '' && $("input[name=os_comment]").val() !== '' && $("input[name=txt_os_descript]").val() !== '' && $("input[name=ip_comment]").val() !== '' && $("input[name=txt_ip_vlan]").val() !== '' && $("input[name=hci_users]").val() !== '' && $("input[name=txt_hci_users]").val() !== ''){
+                        
+                        $("button[name=btn_submit_hci]").attr('type','button');
+                        $("button[name=btn_submit_hci]").attr('type','submit');
+                        Swal.fire({
+                            title: 'Do you want to submit?',
+                            showDenyButton: true,
+                            confirmButtonText: 'Submit',
+                            denyButtonText: `Cancel`,
+                            }).then((result) => {
+                            /* Read more about isConfirmed, isDenied below */
+                            if (result.isDenied) {
+                               
+                                $("button[name=btn_submit_hci]").attr('type','button');
+                            }
+                            if (result.isConfirmed) {
+                                
+                                $("button[name=btn_submit_hci]").submit();
+                
+                            }
+                        })
+                    }
+                });         
+            });
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
         <script>  
             $(document).ready(function(){                
                 $(".os").on('change',function(){
