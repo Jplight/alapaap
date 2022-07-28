@@ -215,6 +215,7 @@ $(document).ready(function () {
 				if (result.isConfirmed) {
 					isConfirmDelete = true
 					console.log(r_cancel.prop("href"))
+					window.location.href = r_cancel.prop("href")
 				}
 			})
 		}
