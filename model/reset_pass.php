@@ -29,7 +29,7 @@ if (isset($_REQUEST['email']) && isset($_REQUEST['token']) && isset($_REQUEST['a
                               
                     $mail->Host = '10.2.2.21';       
                     $mail->Port       = 25;                               
-                    $mail->setFrom('no-reply_bspops@bsp.gov.ph', 'BSP');
+                    $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
                     $mail->addAddress($email);      
     
                     $mail->isHTML(true);                                  

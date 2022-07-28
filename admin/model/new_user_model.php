@@ -13,7 +13,8 @@ if(isset($_POST['btn_new_u'])){
         $AddData = mysqli_query($conn,"INSERT INTO `tbl_user`(`email_add`, `password`,`status`,`role`,`default_role`,`created_by`) VALUES ('$email_add','$pass','$status','$u_role','$u_role','$my_role')");
         $BackupData = mysqli_query($conn,"INSERT INTO tbl_backup_pass (email_add,role,password,status) values ('$email_add','$u_role','".$_POST['pass']."','$status') ");
         $user_alert = "<div class='alert alert-success' id='alert'>Account <span class='fw-bold'> ".$email_add."</span> has been succefuly added.</div>";
-        $subject = "New Account";
+        
+        $subject = "Alapaap Credentials";
         require 'mail_message.php';
         require 'mail.php';
     }

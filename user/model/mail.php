@@ -30,7 +30,7 @@ if($status >=2 && $status <=6){
         $mail->Port       = 25; 
 
         //Recipients
-        $mail->setFrom('no-reply_bspops@bsp.gov.ph', $department_name." Alapaap");
+        $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', $department_name." Alapaap");
         $mail->addAddress($sender_email);         //Add a recipient
         $mail->addCC($email_add);
 

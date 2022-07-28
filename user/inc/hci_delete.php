@@ -411,10 +411,10 @@ endif;
                 <?php if (empty($control_number)): ?>
                     <div class="modal-footer d-flex justify-content-end">
                         <div>
-                            <div class="btn btn-secondary" name="div_save_hci_del"><i class="fa-fw fas fa-file me-1"></i>Draft</div>
+                            <!-- <div class="btn btn-secondary" name="div_save_hci_del"><i class="fa-fw fas fa-file me-1"></i>Draft</div>
                             <div class="btn btn-primary" name="div_submit_hci_del"><i class="fa-fw fas fa-paper-plane me-1"></i>Submit</div>
                             <button type="submit" name="btn_save_hci_del"></button>
-                            <button type="submit" name="btn_submit_hci_del"></button>
+                            <button type="submit" name="btn_submit_hci_del"></button> -->
                         </div>
                     </div>
                 <?php endif; ?>

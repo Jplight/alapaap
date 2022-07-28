@@ -392,7 +392,7 @@ include 'model/save_profile.php';
         </div>
         <?php 
             include 'inc/hci_new.php';
-            include 'inc/hci_update.php';
+            include 'inc/hci_update.php'; 
             include 'inc/hci_delete.php';
             include 'inc/tci_modal.php';
             include 'inc/cps_new.php';
@@ -465,8 +465,6 @@ include 'model/save_profile.php';
             });
         </script>
 
-
-
         <script>
             // Delete Form Submit
             $(document).ready(function(){
@@ -512,7 +510,7 @@ include 'model/save_profile.php';
         <script>
             // Update Form Submit
             $(document).ready(function(){
-                $("div[name=div_submit_hci_up]").click(function(){
+                $("#div_submit_hci_up").click(function(){
                     if($("input[name=hostname]").val() !== '' && $("input[name=vcpu]").val() !== '' && $("input[name=department]").val() !== '' && $("input[name=ram]").val() !== '' && $("input[name=ram_comment]").val() !== '' && $("input[name=os]").val() !== '' && $("input[name=os_comment]").val() !== '' && $("input[name=txt_os_descript]").val() !== '' && $("input[name=ip_comment]").val() !== '' && $("input[name=txt_ip_vlan]").val() !== '' && $("input[name=hci_users]").val() !== '' && $("input[name=txt_hci_users]").val() !== ''){
                         Swal.fire({
                             title: 'Do you want to Update?',
@@ -532,7 +530,7 @@ include 'model/save_profile.php';
         <script>
             // Update Form Submit
             $(document).ready(function(){
-                $("div[name=div_save_hci_up]").click(function(){
+                $("#div_save_hci_up").click(function(){
                     if($("input[name=hostname]").val() !== '' && $("input[name=vcpu]").val() !== '' && $("input[name=department]").val() !== '' && $("input[name=ram]").val() !== '' && $("input[name=ram_comment]").val() !== '' && $("input[name=os]").val() !== '' && $("input[name=os_comment]").val() !== '' && $("input[name=txt_os_descript]").val() !== '' && $("input[name=ip_comment]").val() !== '' && $("input[name=txt_ip_vlan]").val() !== '' && $("input[name=hci_users]").val() !== '' && $("input[name=txt_hci_users]").val() !== ''){
                         Swal.fire({
                             title: 'Save as Draft?',

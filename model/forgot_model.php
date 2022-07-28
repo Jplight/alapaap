@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                               
                 $mail->Host = '10.2.2.21';       
                 $mail->Port       = 25;                               
-                $mail->setFrom('no-reply_bspops@bsp.gov.ph', 'BSP');
+                $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
                 $mail->addAddress($email_add);      
 
                 $mail->isHTML(true);                                  

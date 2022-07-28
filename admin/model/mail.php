@@ -11,12 +11,11 @@ include '../vendor/autoload.php';
 $mail = new PHPMailer(true);
      
     try {
-        //Server settings
-        // $mail->SMTPDebug = 1;               
+        //Server settings             
         $mail->Host = '10.2.2.21';          
         $mail->Port = 25;                               
 
-        $mail->setFrom('no-reply_bspops@bsp.gov.ph', 'BSP OPS');
+        $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
         $mail->addAddress($email_add);         //Add a recipient
 
         $mail->isHTML(true);                                  
