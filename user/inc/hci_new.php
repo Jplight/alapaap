@@ -62,7 +62,7 @@ if (!empty($control_number)):
     }
 endif;
 ?>
-<form class="text-dark" method="post" autocomplete="off" id="gog" >
+<form class="text-dark" method="post" autocomplete="off" id="gog" name="gog">
     <div id="view_hci<?php echo empty($control_number) ? '' : $control_number; ?>" class="modal fade" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-xl modal-fullscreen-xl-down" role="document">
             <div class="modal-content">
@@ -306,12 +306,14 @@ endif;
                         <?php endif; ?>
                         <?php if ($my_role == 1 && $status == 2): ?>
                         <div>
-                            <button class="btn btn-danger" type="submit" name="btn_cancel" ><i class="fa-fw fas fa-times me-1"></i>Cancel</button>
+                            <div class="btn btn-danger" id="hci_cancel_1" ><i class="fa-fw fas fa-times me-1"></i>Cancel</div>
+                            <button type="submit" name="btn_cancel" hidden></button>
                         </div>    
                         <?php endif; ?>
                         <?php if ($status == 2 && $my_role == 2): ?> <!-- // button for Approver -->
                         <div>
-                            <button class="btn btn-outline-success me-2" type="submit" name="btn_approver" ><i class="fw-fw fas fa-check me-1"></i>Approve</button>      
+                            <div class="btn btn-outline-success me-2" id="btn_approver_app" ><i class="fw-fw fas fa-check me-1"></i>Approve</div>      
+                            <button type="submit" name="btn_approver" hidden></button>
                             <button class="btn btn-outline-danger me-2" type="submit" name="app_disapproved" ><i class="fa-fw fas fa-times me-1"></i>Disapprove</button>
                             <button class="btn btn-danger" type="submit" name="approver_returned" ><i class="fa-fw fas fa-times me-1"></i>Return to Sender</button> 
                         </div>
@@ -343,8 +345,10 @@ endif;
                 <?php if (empty($control_number)): ?>
                     <div class="modal-footer d-flex justify-content-end">
                         <div>
-                            <button class="btn btn-secondary" type="submit" name="btn_savehci" ><i class="fa-fw fas fa-file me-1"></i>Draft</button>
-                            <button class="btn btn-primary" type="submit" name="btn_submit_hci" ><i class="fa-fw fas fa-paper-plane me-1"></i>Submit</button>
+                            <div class="btn btn-secondary" name="dra"><i class="fa-fw fas fa-file me-1"></i>Draft</div>
+                            <div class="btn btn-primary" name="sub"><i class="fa-fw fas fa-paper-plane me-1"></i>Submit</div>
+                            <button type="submit" name="btn_savehci" hidden></button>
+                            <button type="submit" name="btn_submit_hci" hidden></button>
                         </div>
                     </div>
                 <?php endif; ?>

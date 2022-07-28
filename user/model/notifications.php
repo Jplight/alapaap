@@ -37,11 +37,11 @@
             foreach($notif as $data):
                 
                 if($my_role == '1'){ $NotifName = $data['fullname']; $st = $data['activity']; }
-                if($my_role == '2'){ $NotifName = $data['fullname']; $st = "Requested"; }
-                if($my_role == '3' && $data['form_type'] != '2'){ $NotifName = $data['approver']; $st = 'Approved'; }
-                if($my_role == '3' && $data['form_type'] == '2'){ $NotifName = $data['fullname']; $st = 'Requested'; }
-                if($my_role == '4'){ $NotifName = $data['reciever'];  $st = 'Received';}
-                if($my_role == '5'){ $NotifName = $data['performer']; $st = 'Performed';}
+                if($my_role == '2'){ $NotifName = $data['fullname']; $st = "requested"; }
+                if($my_role == '3' && $data['form_type'] != '2'){ $NotifName = $data['approver']; $st = 'approved'; }
+                if($my_role == '3' && $data['form_type'] == '2'){ $NotifName = $data['fullname']; $st = 'requested'; }
+                if($my_role == '4'){ $NotifName = $data['reciever'];  $st = 'received';}
+                if($my_role == '5'){ $NotifName = $data['performer']; $st = 'performed';}
                 if($my_role == '6'){ $NotifName = $data['verifier']; $st = 'conformed';}
 
                 if($data['form_type'] == '1'){$form_type = 'HCI'; }
@@ -55,22 +55,22 @@
                 if($data['form_type'] == '4-2'){$form_type = 'BaaS CRRF'; }
 
                 if($data['uid'] == $uid){
-                    $notification = ucwords($data['fullname']).' has '.$st.' your '.$form_type." request with control no:  ".$form_type."/".$data['control_number'];
+                    $notification = ucwords($data['fullname']).' has '.$st.' your '.$form_type." request with control number of  ".$form_type."/".$data['control_number'];
                 }
                 if ($my_role == '2'){
-                    $notification = ucwords($NotifName).' has '.$st.' '.$form_type." with control no: ".$form_type."/".$data['control_number'];
+                    $notification = ucwords($NotifName).' has '.$st.' '.$form_type." with control number of ".$form_type."/".$data['control_number'];
                 }
                 if ($my_role == '3' && $data['form_type'] == '1'){
-                    $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control no: ".$form_type."/".$data['control_number'];
+                    $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control number of ".$form_type."/".$data['control_number'];
                 }
                 if ($my_role == '3' && $data['form_type'] == '2'){
-                    $notification = ucwords($NotifName).' has '.$st.' '.$form_type." with control no: ".$form_type."/".$data['control_number'];
+                    $notification = ucwords($NotifName).' has '.$st.' '.$form_type." with control number of ".$form_type."/".$data['control_number'];
                 }
                 if ($my_role == '3' && $data['form_type'] != '2'){
-                    $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control no: ".$form_type."/".$data['control_number'];
+                    $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control number of ".$form_type."/".$data['control_number'];
                 }
                 if ($my_role >= '4' && $my_role <= '6'){
-                    $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control no: ".$form_type."/".$data['control_number'];
+                    $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control number of ".$form_type."/".$data['control_number'];
                 }
                            
         ?>

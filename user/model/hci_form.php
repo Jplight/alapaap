@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$role = $_POST['his_role'];
 	$comment_id = rand(100000,999999);
 
-	if (isset($_POST['btn_submit_hci'])) {
+	if (isset($_POST['btn_submit_hci']) || isset($_POST['gog'])) {
 		$status = 2;
 		$control_number = $concatnumber;
 		$sql = mysqli_query($conn,"INSERT INTO `tbl_hci` (`uid`, `control_number`, `form_type`, `fullname`, `email_add`, `contact_no`, `department`, `location`, `cluster`, `hostname`, `vcpu`, `vcpu_comment`, `ram`, `ram_comment`, `os`, `os_comment`, `txt_os_descript`, `txt_define_parti`, `ip_add_vlan`, `ip_comment` , `txt_ip_vlan`, `vlan_comment`,`hci_users`, `txt_hci_users`,`status`, `date_requested`) VALUES ('$uid','$control_number', '$form_type','$fullname','$email_add','$contact_no','$department','$location','$cluster','$hostname','$vcpu','$vcpu_comment','$ram','$ram_comment','$os','$os_comment', '$txt_os_descript', '$txt_define_parti', '$ip_add_vlan', '$ip_comment', '$txt_ip_vlan', '$vlan_comment', '$hci_users', '$txt_hci_users','$status',NOW()) ");

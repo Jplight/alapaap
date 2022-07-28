@@ -24,6 +24,7 @@ if (isset($_POST['btn_approver'])) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$approver_name','$comments', '$role', NOW()) ");
 		}
 		$form_subject = "HCI ";	
+		$alert = "<div class='alert alert-danger' id='alert'>Incorrect Current Password</div>";
 	}
 	if ($_POST['form_type'] == 3 || $_POST['form_type'] == '3-1' || $_POST['form_type'] == '3-2' ) {
 		$sql = mysqli_query($conn,"UPDATE tbl_cps set status = '$status', approver_id = '$approver_id', approver = '$approver_name', app_status = '$app_status', appr_date = NOW() where control_number = '$txt_control_number' ");
@@ -391,6 +392,7 @@ if (isset($_POST['btn_verifier'])) {
 	        }      
         }// with the table form others, it will update the status into 1, after fully verified by the verifier
 		$form_subject = "HCI";
+
 	}
 	if ($_POST['form_type'] == 2) {
 		$sql = mysqli_query($conn,"UPDATE tbl_tci set status = '$status', verifier_2id = '$verifier_2id', verifier_2 = '$verifier_2_name', ver2_status = '$ver2_status', ver2_date = NOW() where control_number = '$txt_control_number' ");
