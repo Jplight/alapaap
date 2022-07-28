@@ -433,46 +433,46 @@ endif;
                     <div class="modal-footer d-flex justify-content-end">
                         <?php if ($status == 1 && $my_role == 1): ?> <!-- // Draft button -->
                         <div>
-                            <button class="btn btn-secondary me-2" type="submit" name="btn_update_tci" ><i class="fa-fw fas fa-refresh me-1"></i>Update</button>
-                            <button class="btn btn-primary" type="submit" name="btn_resubmit_tci_draft" ><i class="fa-fw fas fa-paper-plane me-1"></i>Resubmit</button>
+                            <button class="btn btn-secondary me-2" type="submit" name="btn_update_tci" id="btn_update_tci" ><i class="fa-fw fas fa-refresh me-1"></i>Update</button>
+                            <button class="btn btn-primary" type="submit" name="btn_resubmit_tci_draft" id="btn_resubmit_tci_draft" ><i class="fa-fw fas fa-paper-plane me-1"></i>Resubmit</button>
                         </div>
                         <?php endif; ?>
                         <?php if  ($my_role == 1 && $revised == 1): ?> <!-- // Disapproved  -->
                         <div>
-                            <button class="btn btn-primary" type="submit" name="btn_resubmit_tci" ><i class="fa-fw fas fa-paper-plane me-1"></i>Resubmit</button>  
+                            <button class="btn btn-primary" type="submit" name="btn_resubmit_tci" id="btn_resubmit_tci" ><i class="fa-fw fas fa-paper-plane me-1"></i>Resubmit</button>  
                         </div>
                         <?php endif; ?>
                         <?php if ($my_role == 1 && $status == 3): ?>
                         <div>
-                            <button class="btn btn-danger" type="submit" name="btn_cancel" ><i class="fa-fw fas fa-times me-1"></i>Cancel</button>
+                            <button class="btn btn-danger" type="submit" name="btn_cancel" id="btn_cancel" ><i class="fa-fw fas fa-times me-1"></i>Cancel</button>
                         </div>    
                         <?php endif; ?>
                         <?php if ($status == 2 && $my_role == 2): ?> <!-- // button for Approver -->
                         <div>
-                            <button class="btn btn-outline-success me-2" type="submit" name="btn_approver" ><i class="fw-fw fas fa-check me-1"></i>Approve</button>      
-                            <button class="btn btn-outline-danger" type="submit" name="app_disapproved" ><i class="fa-fw fas fa-times me-1"></i>Disapprove</button> 
+                            <button class="btn btn-outline-success me-2" type="submit" name="btn_approver" id="name="btn_reciever" " ><i class="fw-fw fas fa-check me-1"></i>Approve</button>      
+                            <button class="btn btn-outline-danger" type="submit" name="app_disapproved" id="app_disapproved" ><i class="fa-fw fas fa-times me-1"></i>Disapprove</button> 
                         </div>
                         <?php endif; ?>
                         <?php if ($status == 3 && $my_role == 3): ?> <!-- // Button for Reciever -->
                         <div>
-                            <button class="btn btn-outline-success me-2" type="submit" name="btn_reciever" ><i class="fa-fw fas fa-check me-1"></i>Acknowledge Receipt</button>      
+                            <button class="btn btn-outline-success me-2" type="submit" name="btn_reciever" id="btn_reciever" ><i class="fa-fw fas fa-check me-1"></i>Acknowledge Receipt</button>      
                             <!-- <button class="btn btn-outline-danger" type="submit" name="rec_disapproved" ><i class="fa-fw fas fa-times me-1"></i>Return to Sender</button>  -->
                         </div>
                         <?php endif; ?>
                         <?php if ($status == 4 && $my_role == 4): ?> <!-- // Button for Performer -->
                         <div>
-                            <button class="btn btn-outline-success me-2" type="submit" name="btn_performer" ><i class="fa-fw fas fa-check me-1"></i>Task Complete</button>      
+                            <button class="btn btn-outline-success me-2" type="submit" name="btn_performer" id="btn_performer" ><i class="fa-fw fas fa-check me-1"></i>Task Complete</button>      
                             <!-- <button class="btn btn-outline-danger" type="submit" name="performer_disapproved" ><i class="fa-fw fas fa-times me-1"></i>Return to Sender</button>  -->
                         </div>
                         <?php endif; ?>
                         <?php if ($status == 5 && $my_role == 5): ?> <!-- // Button for Confirmer -->
                         <div>
-                            <button class="btn btn-outline-success me-2" type="submit" name="btn_confirmer" ><i class="fa-fw fas fa-check me-1"></i>Confirm</button>
+                            <button class="btn btn-outline-success me-2" type="submit" name="btn_confirmer" id="btn_confirmer" ><i class="fa-fw fas fa-check me-1"></i>Confirm</button>
                         </div>
                         <?php endif; ?>
                         <?php if ($status == 6 && $my_role == 6): ?> <!-- // Button for Verifier -->
                         <div>
-                            <button class="btn btn-outline-success me-2" type="submit" name="btn_verifier" ><i class="fa-fw fas fa-check me-1"></i>Verify</button>                                      
+                            <button class="btn btn-outline-success me-2" type="submit" name="btn_verifier" id="btn_verifier" ><i class="fa-fw fas fa-check me-1"></i>Verify</button>                                      
                         </div>
                         <?php endif; ?>    
                     </div>
@@ -480,8 +480,8 @@ endif;
                 <?php if (empty($control_number)): ?>
                     <div class="modal-footer d-flex justify-content-end">
                         <div>
-                            <button class="btn btn-secondary" type="submit" name="btn_save_tci" ><i class="fa-fw fas fa-file me-1"></i>Draft</button>
-                            <button class="btn btn-primary" type="submit" name="btn_submit_tci" ><i class="fa-fw fas fa-paper-plane me-1"></i>Submit</button>                                
+                            <button class="btn btn-secondary" type="submit" name="btn_save_tci" id="btn_save_tci" ><i class="fa-fw fas fa-file me-1"></i>Draft</button>
+                            <button class="btn btn-primary" type="submit" name="btn_submit_tci" id="btn_submit_tci" ><i class="fa-fw fas fa-paper-plane me-1"></i>Submit</button>                                
                         </div>
                     </div>    
                 <?php endif; ?>

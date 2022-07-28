@@ -405,6 +405,7 @@ include 'model/save_profile.php';
 
         <script src="assets/js/jquery-3.6.0.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.validate.js"></script>
         <script src="assets/js/theme.js"></script>
         <script src="controller/hci_script.js"></script>
         <script src="controller/hci_del.js"></script>
@@ -414,161 +415,9 @@ include 'model/save_profile.php';
         <script src="controller/cps_up_script.js"></script>
         <script src="controller/cps_del_script.js"></script>
         <script src="controller/tci_script.js"></script>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-        <script>
-            $(document).ready(function(){
-                // Submitting New Dat
-                $("div[name=sub]").click(function(){
-                    if($("input[name=hostname]").val() !== '' && $("input[name=vcpu]").val() !== '' && $("input[name=department]").val() !== '' && $("input[name=ram]").val() !== '' && $("input[name=ram_comment]").val() !== '' && $("input[name=os]").val() !== '' && $("input[name=os_comment]").val() !== '' && $("input[name=txt_os_descript]").val() !== '' && $("input[name=ip_comment]").val() !== '' && $("input[name=txt_ip_vlan]").val() !== '' && $("input[name=hci_users]").val() !== '' && $("input[name=txt_hci_users]").val() !== ''){
-                        
-                        Swal.fire({
-                            title: 'Do you want to submit?',
-                            showDenyButton: true,
-                            confirmButtonText: 'Submit',
-                            denyButtonText: `Cancel`,
-                            }).then((result) => {
-                            
-                            console.log(result)
-                            if (result.isConfirmed) {
-                                
-                                $("button[name=btn_submit_hci]").click();
-                
-                            }
-                        })
-                    }
-                });         
-            });
-        </script>
-        <script>
-            // Submitting New Draft
-            $(document).ready(function(){
-                $("div[name=dra]").click(function(){
-                    if($("input[name=hostname]").val() !== '' && $("input[name=vcpu]").val() !== '' && $("input[name=department]").val() !== '' && $("input[name=ram]").val() !== '' && $("input[name=ram_comment]").val() !== '' && $("input[name=os]").val() !== '' && $("input[name=os_comment]").val() !== '' && $("input[name=txt_os_descript]").val() !== '' && $("input[name=ip_comment]").val() !== '' && $("input[name=txt_ip_vlan]").val() !== '' && $("input[name=hci_users]").val() !== '' && $("input[name=txt_hci_users]").val() !== ''){
-                        
-                        Swal.fire({
-                            title: 'Save as Draft?',
-                            showDenyButton: true,
-                            confirmButtonText: 'Submit',
-                            denyButtonText: `Cancel`,
-                            }).then((result) => {
-                            
-                            console.log(result)
-                            if (result.isConfirmed) {
-                                
-                                $("button[name=btn_savehci]").click();
-                
-                            }
-                        })
-                    }
-                });         
-            });
-        </script>
-
-        <script>
-            // Delete Form Submit
-            $(document).ready(function(){
-                $("div[name=div_submit_hci_del]").click(function(){
-                    if($("input[name=hostname]").val() !== '' && $("input[name=vcpu]").val() !== '' && $("input[name=department]").val() !== '' && $("input[name=ram]").val() !== '' && $("input[name=ram_comment]").val() !== '' && $("input[name=os]").val() !== '' && $("input[name=os_comment]").val() !== '' && $("input[name=txt_os_descript]").val() !== '' && $("input[name=ip_comment]").val() !== '' && $("input[name=txt_ip_vlan]").val() !== '' && $("input[name=hci_users]").val() !== '' && $("input[name=txt_hci_users]").val() !== ''){
-                        
-                        Swal.fire({
-                            title: 'Do you want to submit for delete?',
-                            showDenyButton: true,
-                            confirmButtonText: 'Submit',
-                            denyButtonText: `Cancel`,
-                            }).then((result) => {
-                            if (result.isConfirmed) {
-                                $("button[name=btn_submit_hci_del]").click();
-                            }
-                        })
-                    }
-                });         
-            });
-        </script>
-
-
-        <script>
-            // Delete Form Draft
-            $(document).ready(function(){
-                $("div[name=div_save_hci_del]").click(function(){
-                    if($("input[name=hostname]").val() !== '' && $("input[name=vcpu]").val() !== '' && $("input[name=department]").val() !== '' && $("input[name=ram]").val() !== '' && $("input[name=ram_comment]").val() !== '' && $("input[name=os]").val() !== '' && $("input[name=os_comment]").val() !== '' && $("input[name=txt_os_descript]").val() !== '' && $("input[name=ip_comment]").val() !== '' && $("input[name=txt_ip_vlan]").val() !== '' && $("input[name=hci_users]").val() !== '' && $("input[name=txt_hci_users]").val() !== ''){
-                        Swal.fire({
-                            title: 'Save as draft?',
-                            showDenyButton: true,
-                            confirmButtonText: 'Submit',
-                            denyButtonText: `Cancel`,
-                            }).then((result) => {
-                            if (result.isConfirmed) {
-                                $("button[name=btn_save_hci_del]").click();
-                            }
-                        })
-                    }
-                });
-            });
-        </script>
-
-        <script>
-            // Update Form Submit
-            $(document).ready(function(){
-                $("#div_submit_hci_up").click(function(){
-                    if($("input[name=hostname]").val() !== '' && $("input[name=vcpu]").val() !== '' && $("input[name=department]").val() !== '' && $("input[name=ram]").val() !== '' && $("input[name=ram_comment]").val() !== '' && $("input[name=os]").val() !== '' && $("input[name=os_comment]").val() !== '' && $("input[name=txt_os_descript]").val() !== '' && $("input[name=ip_comment]").val() !== '' && $("input[name=txt_ip_vlan]").val() !== '' && $("input[name=hci_users]").val() !== '' && $("input[name=txt_hci_users]").val() !== ''){
-                        Swal.fire({
-                            title: 'Do you want to Update?',
-                            showDenyButton: true,
-                            confirmButtonText: 'Submit',
-                            denyButtonText: `Cancel`,
-                            }).then((result) => {
-                            if (result.isConfirmed) {
-                                $("button[name=btn_submit_hci_up]").click();
-                            }
-                        })
-                    }
-                });
-            });
-        </script>
-
-        <script>
-            // Update Form Submit
-            $(document).ready(function(){
-                $("#div_save_hci_up").click(function(){
-                    if($("input[name=hostname]").val() !== '' && $("input[name=vcpu]").val() !== '' && $("input[name=department]").val() !== '' && $("input[name=ram]").val() !== '' && $("input[name=ram_comment]").val() !== '' && $("input[name=os]").val() !== '' && $("input[name=os_comment]").val() !== '' && $("input[name=txt_os_descript]").val() !== '' && $("input[name=ip_comment]").val() !== '' && $("input[name=txt_ip_vlan]").val() !== '' && $("input[name=hci_users]").val() !== '' && $("input[name=txt_hci_users]").val() !== ''){
-                        Swal.fire({
-                            title: 'Save as Draft?',
-                            showDenyButton: true,
-                            confirmButtonText: 'Submit',
-                            denyButtonText: `Cancel`,
-                            }).then((result) => {
-                            if (result.isConfirmed) {
-                                $("button[name=btn_save_hci_up]").click();
-                            }
-                        })
-                    }
-                });
-            });
-        </script>
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <script src="assets/js/sweetalert2@11.js"></script>
+        <!-- <script src="controller/validation.js"></script> -->
+        <script src="controller/global.validation.js"></script>
         
         <script>  
             $(document).ready(function(){                
@@ -644,8 +493,6 @@ include 'model/save_profile.php';
                       e.stopPropagation();
                     });
                 })
-
-
 
                 // make it as accordion for smaller screens
                 if (window.innerWidth < 992) {

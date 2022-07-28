@@ -62,7 +62,7 @@ if (!empty($control_number)):
     }
 endif;
 ?>
-<form class="text-dark" method="post" autocomplete="off" id="gog" name="gog">
+<form method="post" autocomplete="off" id="form_new" name="form_new" action="">
     <div id="view_hci<?php echo empty($control_number) ? '' : $control_number; ?>" class="modal fade" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-xl modal-fullscreen-xl-down" role="document">
             <div class="modal-content">
@@ -164,16 +164,16 @@ endif;
                                                 <input class="form-control text-dark" type="text" name="vcpu" value="<?php echo empty($vcpu) ? '' : $vcpu; ?>"  required maxlength="2" onkeypress="return /[0-9]/i.test(event.key)" >
                                             </td>
                                             <td>
-                                                <input class="form-control text-dark" type="text" name="vcpu_comment" value="<?php echo empty($vcpu_comment) ? '' : $vcpu_comment; ?>" />
+                                                <input class="form-control text-dark" type="text" name="vcpu_comment" value="<?php echo empty($vcpu_comment) ? '' : $vcpu_comment; ?>" placeholder="Optional" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="fw-bold">RAM (GB)</td>
                                             <td>
-                                                <input class="form-control text-dark" type="text" name="ram" value="<?php echo empty($ram) ? '' : $ram; ?>" required maxlength="2" onkeypress="return /[0-9]/i.test(event.key)"/>
+                                                <input class="form-control text-dark" type="text" name="ram" value="<?php echo empty($ram) ? '' : $ram; ?>" required maxlength="4" onkeypress="return /[0-9]/i.test(event.key)"/>
                                             </td>
                                             <td>
-                                                <input class="form-control text-dark" type="text"  name="ram_comment" value="<?php echo empty($ram_comment) ? '' : $ram_comment; ?>" onkeypress="return /[0-9]/i.test(event.key)" />
+                                                <input class="form-control text-dark" type="text"  name="ram_comment" value="<?php echo empty($ram_comment) ? '' : $ram_comment; ?>" placeholder="Optional" />
                                             </td>
                                         </tr>
                                         <tr class="align-top">
@@ -186,7 +186,7 @@ endif;
                                                  </select>                              
                                              </td>
                                              <td>
-                                                 <input class="form-control text-dark" type="text" name="os_comment" value="<?php echo empty($os_comment) ? '' : $os_comment; ?>" placeholder="OS Version e.g. Window Server 2019" required onkeypress="return /[A-Z0-9 ]/i.test(event.key)"/>  
+                                                 <input class="form-control text-dark" type="text" name="os_comment" value="<?php echo empty($os_comment) ? '' : $os_comment; ?>" placeholder="OS Version e.g. Window Server 2019" required onkeypress="return /[A-Z0-9. ]/i.test(event.key)"/>  
                                              </td>
                                          </tr>
                                          <tr>
@@ -215,7 +215,7 @@ endif;
                                                  <input class="form-control text-dark " type="text" name="txt_ip_vlan" value="<?php echo empty($txt_ip_vlan) ? '' : $txt_ip_vlan; ?>" required maxlength="4" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" />
                                              </td>
                                              <td>
-                                                 <input class="form-control text-dark" type="text" name="vlan_comment"  value="<?php echo empty($vlan_comment) ? '' : $vlan_comment; ?>" >
+                                                 <input class="form-control text-dark" type="text" name="vlan_comment"  value="<?php echo empty($vlan_comment) ? '' : $vlan_comment; ?>" placeholder="Optional" >
                                              </td>
                                          </tr>
                                          <tr>
@@ -242,7 +242,7 @@ endif;
                                                 <input class="form-control text-dark uid1" type="text" name='others_1[]' value="<?=$rows['others_1']?>" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" >
                                             </td>
                                             <td>
-                                                <input class="form-control text-dark uname1" type="text" name='others_2[]' value="<?=$rows['others_2']?>">
+                                                <input class="form-control text-dark uname1" type="text" name='others_2[]' value="<?=$rows['others_2']?>" placeholder="Optional">
                                             </td>
                                         </tr>
                                         <?php 
@@ -269,7 +269,7 @@ endif;
                                                 </div>
                                             </td>
                                             <td>
-                                                <input class="form-control text-dark uname1" type="text" name='others_2[]' required>
+                                                <input class="form-control text-dark uname1" type="text" name='others_2[]' placeholder="Optional">
                                             </td>
                                         </tr>
                                         <?php endif; ?>
@@ -290,13 +290,13 @@ endif;
                     <div class="modal-footer d-flex justify-content-end">       
                         <?php if ($status == 1 && $my_role == 1): ?> <!-- // Draft button -->
                         <div>
-                            <button class="btn btn-secondary me-2" type="submit" name="btn_update" ><i class="fa-fw fas fa-refresh me-1"></i>Update</button>
-                            <button class="btn btn-primary" type="submit" name="btn_submit_draft" ><i class="fa-fw fas fa-paper-plane me-1"></i>Resubmit</button>
+                            <button class="btn btn-secondary me-2" type="submit" name="btn_update" id="btn_update" ><i class="fa-fw fas fa-refresh me-1"></i>Update</button>
+                            <button class="btn btn-primary" type="submit" name="btn_submit_draft" id="btn_submit_draft" ><i class="fa-fw fas fa-paper-plane me-1"></i>Resubmit</button>
                         </div>
                         <?php endif; ?>
                         <?php if ($my_role == 1 && $revised == 1): ?>
                         <div>
-                            <button class="btn btn-primary" type="submit" name="btn_resubmit" ><i class="fa-fw fas fa-paper-plane me-1"></i>Resubmit</button>
+                            <button class="btn btn-primary" type="submit" name="btn_resubmit" id="btn_resubmit" ><i class="fa-fw fas fa-paper-plane me-1"></i>Resubmit</button>
                         </div>    
                         <?php endif; ?>
                         <?php if ($status == 0 && $my_role == 1): ?> <!-- // Disapproved  -->
@@ -312,32 +312,31 @@ endif;
                         <?php endif; ?>
                         <?php if ($status == 2 && $my_role == 2): ?> <!-- // button for Approver -->
                         <div>
-                            <div class="btn btn-outline-success me-2" id="btn_approver_app" ><i class="fw-fw fas fa-check me-1"></i>Approve</div>      
-                            <button type="submit" name="btn_approver" hidden></button>
-                            <button class="btn btn-outline-danger me-2" type="submit" name="app_disapproved" ><i class="fa-fw fas fa-times me-1"></i>Disapprove</button>
-                            <button class="btn btn-danger" type="submit" name="approver_returned" ><i class="fa-fw fas fa-times me-1"></i>Return to Sender</button> 
-                        </div>
+                            <button class="btn btn-outline-success me-2" type="submit" id="btn_approver" name="btn_approver" ><i class="fw-fw fas fa-check me-1"></i>Approve</button>
+                            <button class="btn btn-outline-danger me-2" type="submit" name="app_disapproved" id="app_disapproved" ><i class="fa-fw fas fa-times me-1"></i>Disapprove</button>
+                            <button class="btn btn-danger" type="submit" name="approver_returned" id="approver_returned" ><i class="fa-fw fas fa-times me-1"></i>Return to Sender</button>
+                        </div> 
                         <?php endif; ?>
                         <?php if ($status == 3 && $my_role == 3): ?> <!-- // Button for Reciever -->
                         <div>
-                            <button class="btn btn-outline-success me-2" type="submit" name="btn_reciever" ><i class="fa-fw fas fa-check me-1"></i>Acknowledge Receipt</button>      
+                            <button class="btn btn-outline-success me-2" type="submit" name="btn_reciever" id="btn_reciever" ><i class="fa-fw fas fa-check me-1"></i>Acknowledge Receipts</button>      
                             <!-- <button class="btn btn-outline-danger" type="submit" name="rec_disapproved" ><i class="fa-fw fas fa-times me-1"></i>Return to Sender</button>  -->
                         </div>
                         <?php endif; ?>
                         <?php if ($status == 4 && $my_role == 4): ?> <!-- // Button for Performer -->
                         <div>
-                            <button class="btn btn-outline-success me-2" type="submit" name="btn_performer" ><i class="fa-fw fas fa-check me-1"></i>Request Completed</button>      
+                            <button class="btn btn-outline-success me-2" type="submit" name="btn_performer" id="btn_performer" ><i class="fa-fw fas fa-check me-1"></i>Request Completed</button>      
                             <!-- <button class="btn btn-outline-danger" type="submit" name="performer_disapproved" ><i class="fa-fw fas fa-times me-1"></i>Return to Sender</button>  -->
                         </div>
                         <?php endif; ?>
                         <?php if ($status == 5 && $my_role == 5): ?> <!-- // Button for Confirmer -->
                         <div>
-                            <button class="btn btn-outline-success me-2" type="submit" name="btn_confirmer" ><i class="fa-fw fas fa-check me-1"></i>Confirm</button>
+                            <button class="btn btn-outline-success me-2" type="submit" name="btn_confirmer" id="btn_confirmer" ><i class="fa-fw fas fa-check me-1"></i>Confirm</button>
                         </div>
                         <?php endif; ?>
                         <?php if ($status == 6 && $my_role == 6): ?> <!-- // Button for Verifier -->
                         <div>
-                            <button class="btn btn-outline-success me-2" type="submit" name="btn_verifier" ><i class="fa-fw fas fa-check me-1"></i>Verify</button>                                      
+                            <button class="btn btn-outline-success me-2" type="submit" name="btn_verifier" id="btn_verifier"><i class="fa-fw fas fa-check me-1"></i>Verify</button>                                      
                         </div>
                         <?php endif; ?>    
                     </div>
@@ -345,11 +344,10 @@ endif;
                 <?php if (empty($control_number)): ?>
                     <div class="modal-footer d-flex justify-content-end">
                         <div>
-                            <button type="submit" name="btn_savehci" hidden></button>
-                            <button type="submit" name="btn_submit_hci" hidden></button>
-                            <div class="btn btn-secondary" name="dra"><i class="fa-fw fas fa-file me-1"></i>Draft</div>
-                            <div class="btn btn-primary" name="sub"><i class="fa-fw fas fa-paper-plane me-1"></i>Submit</div>
-                           
+                            <!-- <button type="submit" name="btn_savehci" hidden></button>
+                            <button type="submit" name="btn_submit_hci" hidden></button> -->
+                            <button class="btn btn-secondary" name="btn_savehci" type="submit" id="btn_savehci"><i class="fa-fw fas fa-file me-1"></i>Draft</button>
+                            <button class="btn btn-primary" name="btn_submit_hci" type="submit" id="btn_submit_hci"><i class="fa-fw fas fa-paper-plane me-1"></i>Submit</button>
                         </div>
                     </div>
                 <?php endif; ?>

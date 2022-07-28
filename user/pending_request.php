@@ -7,6 +7,7 @@ require 'inc/GetTimeAgo.php';
 
 $uid = $_SESSION['uid'];
 $role = $_SESSION['role'];
+$alert = isset($_SESSION['message']) ? $_SESSION['message']: '';
 $url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 if (!isset($uid)) {
     header("location: ../index.php");
@@ -126,8 +127,8 @@ include 'model/authorize_personnel.php';
                         <div class="d-sm-flex justify-content-between align-items-center mb-4">
                             <h3 class="text-dark mb-0 mb-3 mb-sm-0">Pending Request</h3>
                         </div>
-                        <?php echo (!empty($alert)) ? $alert : ''; ?>
-                        
+                        <?php echo (!empty($_SESSION['message'])) ? $alert : ''; ?>
+                
                         <div class="card shadow">
                             <div class="card-body">
                                 <div>
@@ -211,12 +212,12 @@ include 'model/authorize_personnel.php';
                                                                 $revised = '';
                                                             }
                                                             if ($my_role == 1 && $rows_hci['status'] == 2 && $rows_hci['form_type'] == '1') {
-                                                                $cancel_btn_dummy = '<div class="btn btn-outline-danger btn-sm shadow-sm" id="hci_cancel_2">Cancel</div>';
-                                                                $cancel_btn = '<a class="btn btn-outline-danger btn-sm shadow-sm" href="model/hci_form.php?uid='.$uid.'&control_number='.$rows_hci["control_number"].'&f_type='.$rows_hci['form_type'].'" id="hci_r_cancel" hidden><i class="fa-fw fas fa-times me-1"></i>Cancel</a>';
+                                                                // $cancel_btn_dummy = '<div class="btn btn-outline-danger btn-sm shadow-sm" id="hci_cancel_2">Cancel</div>';
+                                                                $cancel_btn = '<a class="btn btn-outline-danger btn-sm shadow-sm" href="model/hci_form.php?uid='.$uid.'&control_number='.$rows_hci["control_number"].'&f_type='.$rows_hci['form_type'].'" id="hci_r_cancel" ><i class="fa-fw fas fa-times me-1"></i>Cancel</a>';
                                                             }else if ($my_role == 1 && $rows_hci['status'] == 2 && $rows_hci['form_type'] == '1-1') {
                                                                 $cancel_btn = '<a class="btn btn-outline-danger btn-sm shadow-sm" href="model/hci_update_form.php?uid='.$uid.'&control_number='.$rows_hci["control_number"].'&f_type='.$rows_hci['form_type'].'" ><i class="fa-fw fas fa-times me-1"></i>Cancel</a>';
                                                             }else{
-                                                                $cancel_btn_dummy = "";
+                                                                // $cancel_btn_dummy = "";
                                                                 $cancel_btn = "";
                                                             }
                                                             if ($rows_hci['status'] == '2') {
@@ -248,7 +249,7 @@ include 'model/authorize_personnel.php';
                                                             }else{
                                                                 echo '<td class="d-flex gap-2">'.
                                                                         '<a class="btn btn-outline-primary btn-sm shadow-sm" href="inc/print/print_hci.php?control_number='.$rows_hci["control_number"].'" target="_blank"  ><i class="fa-fw fas fa-print"></i>Print</a>'.
-                                                                        '<a class="btn btn-outline-primary btn-sm shadow-sm" href="#view_hci'.$rows_hci["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a>'.$cancel_btn_dummy.$cancel_btn.
+                                                                        '<a class="btn btn-outline-primary btn-sm shadow-sm" href="#view_hci'.$rows_hci["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a>'.$cancel_btn.
                                                                     '</td>';                                                              
                                                                 echo '<td>';
                                                                     include 'inc/hci_new.php';
@@ -456,7 +457,8 @@ include 'model/authorize_personnel.php';
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <?php  
+                                                        <?php
+
                                                             $num = 1;
                                                             if ($my_role == 1) {
                                                                 $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where uid = '$uid' and status BETWEEN 2 and 6  ORDER BY date_requested DESC ");
@@ -566,7 +568,9 @@ include 'model/authorize_personnel.php';
         <script src="controller/tci_script.js"></script>
         <script src="controller/cps_script.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
+        <script src="controller/global.validation.js"></script>
+
+        <!-- <script>
             // Canceled HCI Prompt Message
             $(document).ready(function(){
                 $("#hci_cancel_1, #hci_cancel_2").click(function(){
@@ -598,20 +602,17 @@ include 'model/authorize_personnel.php';
                             title: 'Do you want to approved?',
                             showDenyButton: true,
                             confirmButtonText: 'Yes',
-                            denyButtonText: `Cancel`,
+                            denyButtonText: `No`,
                             }).then((result) => {
-                            
                             console.log(result)
-                            if (result.isConfirmed) {
-                                
+                            if (result.isConfirmed) {                             
                                 $("button[name=btn_approver]").click();
-                
                             }
                         })
                     
                 });         
             });
-        </script>
+        </script> -->
 
 
         <script>
@@ -636,18 +637,25 @@ include 'model/authorize_personnel.php';
 
             });            
         </script>
-        <script>
+        <!-- <script>
             // For Notifcation
             $(document).ready(function () { 
                 $.ajax({
                     type: "POST",
-                    url: "model/notification.php",
+                    url: "model/notifications.php",
                     dataType: "html",
                     success: function (data) {
                         $("#frm_notification").html(data);
                         $("#success_alert").toast('show');                
                     }
                 });
+            });
+        </script> -->
+        <script>
+            $(document).ready(function(){    
+                setInterval(function(){
+                    $("#alert").slideUp();
+                },3000);
             });
         </script> 
     </body>

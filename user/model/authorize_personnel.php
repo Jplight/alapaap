@@ -24,7 +24,6 @@ if (isset($_POST['btn_approver'])) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$approver_name','$comments', '$role', NOW()) ");
 		}
 		$form_subject = "HCI ";	
-		$alert = "<div class='alert alert-danger' id='alert'>Incorrect Current Password</div>";
 	}
 	if ($_POST['form_type'] == 3 || $_POST['form_type'] == '3-1' || $_POST['form_type'] == '3-2' ) {
 		$sql = mysqli_query($conn,"UPDATE tbl_cps set status = '$status', approver_id = '$approver_id', approver = '$approver_name', app_status = '$app_status', appr_date = NOW() where control_number = '$txt_control_number' ");
@@ -45,8 +44,16 @@ if (isset($_POST['btn_approver'])) {
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$my_fullname','$form_type','$txt_control_number', 'approved','$status') ");
 	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$control_number', 'approved','$status','0') ");
 
+	$alert = '<div class="alert alert-success alert-dismissible fade show" id="alert" role="alert">'.
+	'<i class="fa-fw fas fa-check-circle me-2"></i><strong>Succesfully Added!</strong>'.
+	'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'.
+	'</div>';
+
+	$_SESSION['message'] = $alert;
+
 	require 'mail_message.php';
-	require 'mail.php';	
+	require 'mail.php';
+
 
 
 }
@@ -68,15 +75,18 @@ if (isset($_POST['app_disapproved'])) {
 		if (!empty($comments)) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`, `remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$approver_name','$comments', '$role', NOW()) ");
 		}		
+		$form_subject = "HCI";	
 	}
 	if ($_POST['form_type'] == 3 || $_POST['form_type'] == '3-1' || $_POST['form_type'] == '3-2' ) {
 		$sql = mysqli_query($conn,"UPDATE tbl_cps set status = '$status', revised = null, num_revised = null, approver_id = '$approver_id', approver = '$approver_name', app_status = '$app_status', appr_date = NOW() where control_number = '$txt_control_number' ");
 		if (!empty($comments)) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`, `remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$approver_name','$comments', '$role', NOW()) ");
 		}		
+		$form_subject = "CPS";	
 	}
 	if ($_POST['form_type'] == 4 || $_POST['form_type'] == '4-2') {
 		$sql = mysqli_query($conn,"UPDATE tbl_baas set status = '$status', revised = null, num_revised = null, approver_id = '$approver_id', approver = '$approver_name', app_status = '$app_status', appr_date = NOW() where control_number = '$txt_control_number' ");	
+		$form_subject = "BaaS";	
 	}
 	if ($sql) {
 		header("location: pending_request.php");
@@ -437,5 +447,7 @@ if (isset($_POST['btn_verifier'])) {
 
 
 // ====== For Verifier ======
+
+	
 
 ?>

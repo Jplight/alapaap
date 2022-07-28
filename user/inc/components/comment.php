@@ -63,7 +63,7 @@
                                     <tbody>
                                          <tr>
                                              <td colspan="3">
-                                                 <textarea class="form-control text-dark" name="comments" placeholder="Please leave a comments here..."></textarea>
+                                                 <textarea class="form-control text-dark" name="comments" placeholder="Please leave a comments here..."  ></textarea>
                                              </td>
                                          </tr>
                                      </tbody>    
