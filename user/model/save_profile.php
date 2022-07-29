@@ -103,9 +103,7 @@ if (isset($_POST['btn_update_img'])) {
     $get_img = mysqli_query($conn,"SELECT * from tbl_user where uid = '$uid' ");
     $rows_img = mysqli_fetch_array($get_img);
     $del_img = $rows_img['image'];  
-    if($del_img != null){
-        unlink($del_img);
-    }
+
     
     $permited  = array('jpg', 'jpeg', 'png', 'gif');
     $file_name = $_FILES['image']['name'];
@@ -124,7 +122,9 @@ if (isset($_POST['btn_update_img'])) {
     } elseif (in_array($file_ext, $permited) === false) {
         $img_error = "<div class='alert alert-danger' id='alert'>You can upload only:-".implode(', ', $permited)."</div>";
     } else{
-
+        if($del_img != null){
+            unlink($del_img);
+        }
         move_uploaded_file($file_temp, $uploaded_image);
         $query = mysqli_query($conn,"UPDATE tbl_user set image = '$uploaded_image' where uid = '$uid' ");
         if ($query) {
