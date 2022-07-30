@@ -128,10 +128,10 @@
                                                         }
 
                                                         if($rows_users['status'] == 1){
-                                                            $action = '<a class="btn btn-outline-secondary btn-sm shadow-none" href="model/udisabled_model.php?uid='.$rows_users['uid'].'&email='.$rows_users['email_add'].'&stat=1" ><i class="fa-fw fas fa-user-slash me-1"></i>Disabled</a>';
+                                                            $action = '<a class="btn btn-outline-secondary btn-sm shadow-none" href="model/udisabled_model.php?uid='.$rows_users['uid'].'&email='.$rows_users['email_add'].'&stat=1" ><i class="fa-fw fas fa-user-slash me-1"></i>Disable</a>';
                                                         }
                                                         if($rows_users['status'] == 2){
-                                                            $action = '<a class="btn btn-outline-success btn-sm shadow-none" href="model/udisabled_model.php?uid='.$rows_users['uid'].'&email='.$rows_users['email_add'].'&stat=2" ><i class="fa-fw fas fa-user-check me-1"></i>Enabled</a>';
+                                                            $action = '<a class="btn btn-outline-success btn-sm shadow-none" href="model/udisabled_model.php?uid='.$rows_users['uid'].'&email='.$rows_users['email_add'].'&stat=2" ><i class="fa-fw fas fa-user-check me-1"></i>Enable</a>';
                                                             
                                                         }
                                                         if($rows_users['status'] == 0){

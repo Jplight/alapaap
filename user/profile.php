@@ -73,6 +73,12 @@
               background: #555; 
               cursor: pointer; 
             }
+            .myimg{
+                width:160px;
+                height:160px;
+                object-fit:cover;
+                border-radius:50%;
+            }  /* Circle Image  */
         </style>
     </head>
     <body id="page-top">
@@ -90,7 +96,7 @@
                                         <div class="card-body shadow">
                                         <?php echo (!empty($img_error)) ? $img_error : ''; ?>
                                             <div class="text-center ">
-                                                <img class="rounded-circle mb-3 mt-4" src="<?php echo $my_image != null ? $my_image : 'assets/img/profile.jpg';?>" width="160" height="160" alt="Image">
+                                                <img class="myimg mb-3 mt-4" src="<?php echo $my_image != null ? $my_image : 'assets/img/profile.jpg';?>" alt="Image">
                                             </div>
                                                 <input type="file" id="customFile" name="image" class="form-control p-5 shadow-none mb-2" style="border-style: dashed; border-color: lightgrey; border-width:3px; font-size: small;">                               
                                             <div class="mb-3">
