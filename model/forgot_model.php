@@ -1,7 +1,7 @@
 <?php  
 session_start();
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
+// use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 date_default_timezone_set('Etc/UTC');
 require 'vendor/autoload.php';
