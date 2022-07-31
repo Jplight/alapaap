@@ -319,13 +319,13 @@ endif;
                         <?php endif; ?>
                         <?php if ($status == 3 && $my_role == 3): ?> <!-- // Button for Reciever -->
                         <div>
-                            <button class="btn btn-outline-success me-2" type="submit" name="btn_reciever" id="btn_reciever" ><i class="fa-fw fas fa-check me-1"></i>Acknowledge Receipts</button>      
+                            <button class="btn btn-outline-success me-2" type="submit" name="btn_reciever" id="btn_reciever" ><i class="fa-fw fas fa-check me-1"></i>Acknowledge Request</button>      
                             <!-- <button class="btn btn-outline-danger" type="submit" name="rec_disapproved" ><i class="fa-fw fas fa-times me-1"></i>Return to Sender</button>  -->
                         </div>
                         <?php endif; ?>
                         <?php if ($status == 4 && $my_role == 4): ?> <!-- // Button for Performer -->
                         <div>
-                            <button class="btn btn-outline-success me-2" type="submit" name="btn_performer" id="btn_performer" ><i class="fa-fw fas fa-check me-1"></i>Request Completed</button>      
+                            <button class="btn btn-outline-success me-2" type="submit" name="btn_performer" id="btn_performer" ><i class="fa-fw fas fa-check me-1"></i>Request Performed</button>      
                             <!-- <button class="btn btn-outline-danger" type="submit" name="performer_disapproved" ><i class="fa-fw fas fa-times me-1"></i>Return to Sender</button>  -->
                         </div>
                         <?php endif; ?>
