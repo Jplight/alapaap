@@ -87,7 +87,7 @@ endif;
                             <input type="hidden" name="txt_control_number" value="<?php echo empty($control_number) ? '' : $control_number; ?>" readonly >
                             <input type="hidden" name="contact_no" value="<?php echo empty($contact_no) ? '' : $contact_no; ?>" readonly>
                             <input type="hidden" name="email_add" value="<?php echo empty($email) ? '' : $email; ?>" readonly>
-                            <input type="hidden" name="form_owner_mail" value="<?php echo empty($email_add) ? '' : $email_add; ?>" readonly>
+                            <input type="text" name="form_owner_mail" value="<?php echo empty($email_add) ? '' : $email_add; ?>" readonly>
                             <input type="hidden" name="form_type" value="<?php echo empty($form_type) ? '' : $form_type; ?>" readonly>
                             <input type="hidden" name="num_revised" value="<?php echo empty($num_revised) ? '' : $num_revised; ?>" readonly placeholder="Total Revised">
                             <input type="hidden" name="his_role" value="<?php echo empty($my_role) ? '' : $my_role; ?>" readonly>
@@ -186,7 +186,7 @@ endif;
                                                  </select>                              
                                              </td>
                                              <td>
-                                                 <input class="form-control text-dark" type="text" name="os_comment" value="<?php echo empty($os_comment) ? '' : $os_comment; ?>" placeholder="OS Version e.g. Window Server 2019" required onkeypress="return /[A-Z0-9. ]/i.test(event.key)"/>  
+                                                 <input class="form-control text-dark" type="text" name="os_comment" value="<?php echo empty($os_comment) ? '' : $os_comment; ?>" placeholder="OS version" required onkeypress="return /[A-Z0-9. ]/i.test(event.key)"/>  
                                              </td>
                                          </tr>
                                          <tr>

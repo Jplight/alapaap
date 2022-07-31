@@ -426,12 +426,16 @@ include 'model/save_profile.php';
                     if (os_name == 'windows') {
                         $("input[name=txt_os_descript], input[name=txt_define_parti]").prop('disabled',false).val('').prop('required',false);    
                         $("input[name=txt_os_descript]").attr('placeholder','Specify OS Environment (with or w/o GUI:)');
+                        $("input[name=os_comment]").attr('placeholder','OS Version e.g. Window Server 2019');
                     }else if (os_name == 'linux') {
                         $("input[name=txt_os_descript], input[name=txt_define_parti]").prop('disabled',false).val('').prop('required',true);
                         $("input[name=txt_os_descript]").attr('placeholder','For Linux OS, please specify if w/ or w/o GUI');
+                        $("input[name=os_comment]").attr('placeholder','Linux Distribution and version number');
+                        
                     }else{
                         $("input[name=txt_os_descript], input[name=txt_define_parti]").prop('disabled',true).val('').prop('required',false);
                         $("input[name=txt_os_descript]").attr('placeholder','Specify OS Environment (with or w/o GUI:)');
+                        $("input[name=os_comment]").attr('placeholder','OS version');
                     }        
                 });
                 

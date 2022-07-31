@@ -134,10 +134,10 @@ require 'model/update_role.php';
 
                                                         echo '<td><span class="badge rounded-pill bg-secondary">Pending</span></td>';
                                                         echo '<td>'.
-                                                                '<a class="btn btn-primary btn-sm shadow-sm me-2" href="#view_req'.$users_id.'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a>'.
-                                                                include 'inc/req_rol_modal.php';
-                                                            '</td>';
-                                                            
+                                                                '<a class="btn btn-primary btn-sm shadow-sm me-2" href="#view_req'.$users_id.'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a></td>';
+                                                        echo '<td>';
+                                                        include 'inc/req_rol_modal.php';
+                                                        echo '</td>';
                                                         echo '</tr>';
                                                         
                                                     endwhile;
