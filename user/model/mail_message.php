@@ -1,4 +1,17 @@
 <?php 
+
+$GetSender = mysqli_query($conn,"select * from tbl_user where role='$status' ");
+$rowsSender = mysqli_fetch_array($GetSender);
+       
+if($status >=2 && $status <=6){
+    $recipient = $rowsSender['email_add'];    // To Approver, Receiver,Performer,Confirmer and Verifier
+}else if($status == 'admin'){
+    $recipient = $rowsSender['email_add'];  
+}else{
+    $recipient = $_POST['form_owner_mail'];
+}
+
+
     // Mail Message
     if($status == 2){$stat_name = 'Approver'; $department_name = "BSP"; }
     if($status == 3){$stat_name = 'Receiver'; $department_name = "BSP"; }
