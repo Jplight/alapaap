@@ -224,10 +224,32 @@ endif;
                                                  <input class="form-control text-dark" type="text" name="hci_users" value="<?php echo empty($hci_users) ? '' : $hci_users; ?>" required/>
                                              </td>
                                              <td>
-                                                 <input class="form-control text-dark" type="text"  name="txt_hci_users" value="<?php echo empty($txt_hci_users) ? '' : $txt_hci_users; ?>" placeholder="Optional"/>
+                                                 <!-- <input class="form-control text-dark" type="text"  name="txt_hci_users" value="<?php echo empty($txt_hci_users) ? '' : $txt_hci_users; ?>" placeholder="Optional"/> -->
+                                                 <select class="form-select" name="txt_hci_users" id="txt_hci_users">
+                                                    <option value="" selected>Select Role</option>
+                                                    <option value="vm_power_user" <?php echo empty($txt_hci_users) ? '' : ($txt_hci_users == 'vm_power_user' ? 'selected' : ''); ?>>VM Power User</option>
+                                                    <option value="vm_power_sample" <?php echo empty($txt_hci_users) ? '' : ($txt_hci_users == 'vm_power_sample' ? 'selected' : ''); ?>>VM User Sample</option>
+                                                 </select>
                                              </td>
                                          </tr>
-
+                                         <tr>
+                                            <td class="fw-bold">VM Deployment</td>
+                                            <td>
+                                                <input class="form-control" type="date">
+                                            </td>
+                                            <td>
+                                                <input class="form-control" type="text" placeholder="Optional">
+                                            </td>
+                                         </tr>
+                                        <tr>
+                                            <td class="fw-bold">Communication</td>
+                                            <td>
+                                                <input type="text" class="form-control">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" placeholder="Optional">
+                                            </td>
+                                        </tr>
                                         <!-- Display data of DISK GB -->
                                         <?php
                                             if (!empty($control_number)):

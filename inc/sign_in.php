@@ -1,4 +1,4 @@
-<form method="post" id="frm_signin">
+<form method="post" id="frm_signin" action="../model/signup_model.php">
     <div class="mb-3">
         <label class="form-label fw-bold">Email:</label>
         <input class="form-control form-control" type="email" name="email_add" id="email_add" autocomplete="off" placeholder="Input your email address">
@@ -23,7 +23,7 @@
     <div class="text-start">
         <h6 class="small">Forgot your account? <a class="ms-2 " href="forgot_password.php">Click here</a></h6>
     </div>
-    <!-- <div class="text-center">
+    <div class="text-center">
         <h6 class="text-start small">Dont have an account? <a class="text-decoration-none ms-2" href="sign_up.php">Sign up now</a></h6>
-    </div> -->
+    </div>
 </form>

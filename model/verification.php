@@ -16,7 +16,7 @@ if (isset($_REQUEST['email'])) {
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>Alapaap | Reset Password</title>
+        <title>BSP | Alapaap</title>
         <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&amp;display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&amp;display=swap">
@@ -31,6 +31,24 @@ if (isset($_REQUEST['email'])) {
 
         <div class="container vh-100 d-grid align-items-center">
             <div class="row">
+                <?php
+                    if(isset($_REQUEST['display_name']) && isset($_REQUEST['email'])):
+                ?>                
+                <div class="col-md-8 col-lg-6 col-xl-6 offset-md-2 offset-lg-3 offset-xl-3">
+                    <div class="card shadow-sm" style="font-family: 'Open Sans', sans-serif;">
+                        <img class="card-img-top w-100 d-block" src="../assets/img/kisspng-rox-hotel-flat-design-user-interface-content-connected-lines-5b379baa936332.2436380315303709866037.png">
+                        <div class="card-body ">
+                            <h4 class="text-center card-title fw-bold">You're almost done!</h4>
+                            <div class="d-flex justify-content-center">
+                                <p><br>Hi, <?php  echo ucfirst(convert_string('decrypt', $_REQUEST['display_name'])); ?><br>Thank you for registering in our Website!<br>Our team will review your application.<br>Once your application is approved We will sent you a confirmation link through this email <b><?php echo $email_hash; ?></b><br>so, Please stay tuned!.<br><br>Thank You!<br><br></p>
+                            </div>
+                            <div class="text-center">
+                                <a class="btn btn-success text-capitalize rounded" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>" ><i class="fa fa-home me-2"></i>Home</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
                 <?php if(isset($_REQUEST['email']) && isset($_REQUEST['token'])): ?>
                 <div class="col-md-8 col-lg-6 col-xl-6 offset-md-2 offset-lg-3 offset-xl-3">
                     <div class="card shadow-sm" style="font-family: 'Open Sans', sans-serif;">
