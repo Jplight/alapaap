@@ -28,13 +28,13 @@
                             <div class="col-12 col-md-6">
                                 <div class="mb-2">
                                     <label class="form-label fw-bold">First Name *</label>
-                                    <input class="form-control form-control" type="text" id="fname" autocomplete="nope" required="" name="fname" maxlength="30" minlength="2" tabindex="1" >
+                                    <input class="form-control form-control" type="text" id="fname" autocomplete="nope" required="" name="fname" maxlength="30" minlength="2" tabindex="1" onkeypress="return /[a-zA-Z ]/i.test(event.key)" >
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
                                 <div class="mb-2">
                                     <label class="form-label fw-bold">Last Name *</label>
-                                    <input class="form-control form-control" type="text" id="lname" autocomplete="nope" required="" name="lname" minlength="2" maxlength="30" tabindex="2">
+                                    <input class="form-control form-control" type="text" id="lname" autocomplete="nope" required="" name="lname" minlength="2" maxlength="30" tabindex="2" onkeypress="return /[a-zA-Z ]/i.test(event.key)" >
                                 </div>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                         </div>
                         <div class="mb-2">
                             <label class="form-label fw-bold">Contact No.</label>
-                            <input class="form-control form-control" type="text" id="contact_no" required="" name="contact_no" minlength="11" maxlength="11" tabindex="4">
+                            <input class="form-control form-control" type="text" id="contact_no"  name="contact_no" minlength="11" maxlength="11" tabindex="4" onkeypress="return /[0-9]/i.test(event.key)">
                         </div>
                         <div class="mb-2">
                             <label class="form-label fw-bold">Password *</label>

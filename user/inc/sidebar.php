@@ -14,6 +14,14 @@
                                 <span class="h6">Dashboard</span>
                             </a>
                         </li>
+                        <?php if ($role == 2): ?>
+                        <li class="nav-item ">
+                            <a class="nav-link nav-link_active" href="new_users.php">
+                                <i class="fa-fw fas fa-users"></i>
+                                <span class="h6">New Accounts</span>
+                            </a>
+                        </li>
+                        <?php endif; ?>
                         <li class="nav-item">
                             <a class="nav-link nav-link_active" href="profile.php" >
                                 <i class="fa-fw fas fa-user"></i>

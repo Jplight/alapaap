@@ -31,6 +31,8 @@ if (!empty($control_number)):
         $txt_ip_vlan        = $rows['txt_ip_vlan'];
         $hci_users          = $rows['hci_users'];
         $txt_hci_users      = $rows['txt_hci_users'];
+        $vm_deployment      = $rows['vm_deployment'];
+        $vm_deployment_comment = $rows['vm_deployment_comment'];
 
         $status             = $rows['status'];
         $date_requested     = $rows['date_requested'];
@@ -235,21 +237,12 @@ endif;
                                          <tr>
                                             <td class="fw-bold">VM Deployment</td>
                                             <td>
-                                                <input class="form-control" type="date">
+                                                <input class="form-control" type="date" name="vm_deployment" id="vm_deployment" value="<?php echo empty($vm_deployment) ? '' : $vm_deployment; ?>" required>
                                             </td>
                                             <td>
-                                                <input class="form-control" type="text" placeholder="Optional">
+                                                <input class="form-control" type="text" placeholder="Optional" name="vm_deployment_comment" id="vm_deployment_comment" value="<?php echo empty($vm_deployment_comment) ? '' : $vm_deployment_comment; ?>" >
                                             </td>
                                          </tr>
-                                        <tr>
-                                            <td class="fw-bold">Communication</td>
-                                            <td>
-                                                <input type="text" class="form-control">
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control" placeholder="Optional">
-                                            </td>
-                                        </tr>
                                         <!-- Display data of DISK GB -->
                                         <?php
                                             if (!empty($control_number)):

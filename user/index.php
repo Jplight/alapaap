@@ -150,9 +150,9 @@ include 'model/save_profile.php';
             background: #18a974;
             color: black;
         }
-        .navbar-nav .nav-item .nav-link_active{
-            /* color: black; */
-        }
+        /* .navbar-nav .nav-item .nav-link_active{
+            color: black;
+        } */
         .navbar-nav .nav-item .nav-link_active:hover:not(.active){
             background: #1aba80;
         }
