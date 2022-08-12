@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2022 at 08:46 AM
+-- Generation Time: Aug 12, 2022 at 09:37 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -73,11 +73,9 @@ CREATE TABLE `tbl_activity_logs` (
 --
 
 INSERT INTO `tbl_activity_logs` (`id`, `uid`, `fullname`, `form_type`, `control_number`, `activity`, `status`, `date_requested`) VALUES
-(1, '6', 'whyllard ermie', '1', '2022071800001', 'created', '2', '2022-07-18 01:59:31'),
-(2, '6', '', '1', '2022071800001', 'canceled', '0', '2022-07-18 02:01:26'),
-(3, '6', '', '1', '2022071800001', 'canceled', '0', '2022-07-18 02:02:16'),
-(4, '6', '', '1', '2022071800001', 'canceled', '0', '2022-07-18 02:53:12'),
-(5, '6', '', '1', '2022071800001', 'canceled', '0', '2022-07-18 03:52:14');
+(1, '6', 'whyllard ermie', '1-1', '2022080400002', 'requested', '2', '2022-08-04 14:58:09'),
+(2, '6', 'whyllard ermie', '1-1', '2022080400002', 'requested', '2', '2022-08-04 15:02:16'),
+(3, '6', 'whyllard ermie', '1', '2022081200002', 'created', '2', '2022-08-12 07:03:46');
 
 -- --------------------------------------------------------
 
@@ -219,6 +217,13 @@ CREATE TABLE `tbl_cps` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `tbl_cps`
+--
+
+INSERT INTO `tbl_cps` (`id`, `uid`, `control_number`, `cps_new_control_num`, `cps_up_control_num`, `form_type`, `fullname`, `email_add`, `contact_no`, `cps_action`, `system_name`, `hostname`, `pattern`, `instance_name`, `location`, `env_profile`, `ip_add`, `ip_group`, `vcpu_size`, `vcpu_filesystem`, `vcpu_remarks`, `ram_size`, `ram_filesystem`, `ram_remarks`, `ue_enroll_size`, `ue_filesystem`, `ue_remarks`, `status`, `revised`, `num_revised`, `cancelled`, `date_requested`, `approver_id`, `approver`, `app_status`, `appr_date`, `reciever_id`, `reciever`, `rec_status`, `rec_date`, `performer_id`, `performer`, `perf_status`, `perform_date`, `verifier_id`, `verifier`, `ver_status`, `ver_date`, `verifier_2id`, `verifier_2`, `ver2_status`, `ver2_date`) VALUES
+(1, '6', '2022080300001', NULL, NULL, '3', 'whyllard ermie', 'whyllardermie@gmail.com', '09554194598', NULL, '123123123', 'ermie_db2', 'awdawdawd', '123213', 'ho', 'silver', '123123', '12312', '3123', '12', '312', '12312312', '312312', '312', '312', '3', '3', '7', NULL, NULL, NULL, '2022-08-03 19:03:59', '1', 'maximo george', '1', '2022-08-03 19:05:45', '2', 'carlo sanchez', '1', '2022-08-03 19:06:00', '3', 'ervin delos reyes', '1', '2022-08-03 19:06:30', '4', 'rodrigo de guzman', '1', '2022-08-03 19:06:45', '5', 'richard ocampo', '1', '2022-08-03 19:07:21');
+
+--
 -- Triggers `tbl_cps`
 --
 DELIMITER $$
@@ -245,6 +250,14 @@ CREATE TABLE `tbl_forms_others` (
   `others_4` text DEFAULT NULL,
   `status` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_forms_others`
+--
+
+INSERT INTO `tbl_forms_others` (`id`, `uid`, `hostname`, `form_type`, `control_number`, `others_id`, `others_1`, `others_2`, `others_3`, `others_4`, `status`) VALUES
+(1, '6', 'weng_db2', '1', '2022080300001', '697919', '12312', '3123', NULL, NULL, '1'),
+(2, '6', 'ermie_db2', '3', '2022080300001', '806433', '312312', '312', '123123', NULL, '1');
 
 -- --------------------------------------------------------
 
@@ -281,6 +294,8 @@ CREATE TABLE `tbl_hci` (
   `vlan_comment` text DEFAULT NULL,
   `hci_users` text DEFAULT NULL,
   `txt_hci_users` text DEFAULT NULL,
+  `vm_deployment` text DEFAULT NULL,
+  `vm_deployment_comment` text DEFAULT NULL,
   `status` text DEFAULT NULL,
   `revised` text DEFAULT NULL,
   `cancelled` text DEFAULT NULL,
@@ -312,8 +327,9 @@ CREATE TABLE `tbl_hci` (
 -- Dumping data for table `tbl_hci`
 --
 
-INSERT INTO `tbl_hci` (`id`, `uid`, `control_number`, `hci_new_control_num`, `hci_up_control_num`, `deleted_hostname`, `form_type`, `fullname`, `email_add`, `contact_no`, `department`, `location`, `cluster`, `hostname`, `vcpu`, `vcpu_comment`, `ram`, `ram_comment`, `os`, `os_comment`, `txt_os_descript`, `txt_define_parti`, `ip_add_vlan`, `ip_comment`, `txt_ip_vlan`, `vlan_comment`, `hci_users`, `txt_hci_users`, `status`, `revised`, `cancelled`, `num_revised`, `date_requested`, `approver_id`, `approver`, `app_status`, `appr_date`, `reciever_id`, `reciever`, `rec_status`, `rec_date`, `performer_id`, `performer`, `perf_status`, `perform_date`, `verifier_id`, `verifier`, `ver_status`, `ver_date`, `verifier_2id`, `verifier_2`, `ver2_status`, `ver2_date`) VALUES
-(1, '6', '2022071800001', NULL, NULL, NULL, '1', 'whyllard ermie', 'whyllardermie@gmail.com', '09554194598', 'db2', 'HO', 'general_cluster', 'awdawd', 'awdawd', '', 'dawd', '', 'windows', '', 'awd', '', '12131awdada', '1231', 'awd', '', 'awd', '', '2', NULL, NULL, NULL, '2022-07-18 11:52:14', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_hci` (`id`, `uid`, `control_number`, `hci_new_control_num`, `hci_up_control_num`, `deleted_hostname`, `form_type`, `fullname`, `email_add`, `contact_no`, `department`, `location`, `cluster`, `hostname`, `vcpu`, `vcpu_comment`, `ram`, `ram_comment`, `os`, `os_comment`, `txt_os_descript`, `txt_define_parti`, `ip_add_vlan`, `ip_comment`, `txt_ip_vlan`, `vlan_comment`, `hci_users`, `txt_hci_users`, `vm_deployment`, `vm_deployment_comment`, `status`, `revised`, `cancelled`, `num_revised`, `date_requested`, `approver_id`, `approver`, `app_status`, `appr_date`, `reciever_id`, `reciever`, `rec_status`, `rec_date`, `performer_id`, `performer`, `perf_status`, `perform_date`, `verifier_id`, `verifier`, `ver_status`, `ver_date`, `verifier_2id`, `verifier_2`, `ver2_status`, `ver2_date`) VALUES
+(1, '6', '2022080300001', NULL, NULL, NULL, '1', 'whyllard ermie', 'whyllardermie@gmail.com', '09554194598', 'awdawdaw', 'HO', 'general_cluster', 'weng_db2', '11', '123', '3123', '123', 'windows', '123', 'aaa', '123', '13213', '123', '123', '12312', '213', '312', NULL, NULL, '7', NULL, NULL, NULL, '2022-08-03 17:51:45', '1', 'maximo george', '1', '2022-08-03 17:52:23', '2', 'carlo sanchez', '1', '2022-08-03 17:52:35', '3', 'ervin delos reyes', '1', '2022-08-03 17:52:51', '4', 'rodrigo de guzman', '1', '2022-08-03 17:53:07', '5', 'richard ocampo', '1', '2022-08-03 17:53:20'),
+(7, '6', '2022081200002', NULL, NULL, NULL, '1', 'whyllard ermie', 'whyllardermie@gmail.com', '09554194598', '12312312', 'HO', 'general_cluster', '123123123', '12', '3123', '2312', '12312', 'windows', '12312', '3123', '3123', '12312', '123123123123', '3123', '', '3123', 'vm_power_sample', '2022-08-24', '123123123', '2', NULL, NULL, NULL, '2022-08-12 15:03:46', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Triggers `tbl_hci`
@@ -344,7 +360,10 @@ CREATE TABLE `tbl_hostname` (
 --
 
 INSERT INTO `tbl_hostname` (`id`, `uid`, `control_number`, `form_type`, `hostname`, `action`, `date_created`) VALUES
-(1, '6', '2022071800001', '1', 'awdawd', 'inserted', '2022-07-18 09:59:31');
+(1, '6', '2022080400002', '1-1', 'weng_db2', 'inserted', '2022-08-04 22:18:11'),
+(3, '6', '2022080400002', '1-1', 'weng_db2', 'inserted', '2022-08-04 22:58:09'),
+(4, '6', '2022080400002', '1-1', 'weng_db2', 'inserted', '2022-08-04 23:02:16'),
+(5, '6', '2022081200002', '1', '123123123', 'inserted', '2022-08-12 15:03:46');
 
 -- --------------------------------------------------------
 
@@ -415,7 +434,19 @@ CREATE TABLE `tbl_remarks` (
 --
 
 INSERT INTO `tbl_remarks` (`id`, `form_type`, `control_number`, `comment_id`, `uid`, `fullname`, `comments`, `remarks_date`, `role`, `toRole`) VALUES
-(1, '1', '2022071800001', '763824', '6', 'whyllard ermie', 'awdawd', '2022-07-18 09:59:31', '1', NULL);
+(1, '1-1', '2022080400002', '254450', '6', 'whyllard ermie', '1231231231123123', '2022-08-04 22:18:11', '1', NULL),
+(2, '1-1', '2022080400002', '951591', '1', 'maximo george', 'awdawdawd', '2022-08-04 22:18:27', '2', NULL),
+(3, '1-1', '2022080400002', '340605', '2', 'carlo sanchez', 'awdawdawd', '2022-08-04 22:18:38', '3', NULL),
+(4, '1-1', '2022080400002', '844358', '3', 'ervin delos reyes', 'awdawdadawd', '2022-08-04 22:18:56', '4', NULL),
+(5, '1-1', '2022080400002', '938016', '4', 'rodrigo de guzman', '213123123', '2022-08-04 22:19:13', '5', NULL),
+(6, '1-1', '2022080400002', '154176', '5', 'richard ocampo', '123123awd', '2022-08-04 22:19:43', '6', NULL),
+(7, '1-2', '2022080400004', '515534', '6', 'whyllard ermie', 'pa delete po', '2022-08-04 22:22:16', '1', NULL),
+(8, '1-2', '2022080400004', '511765', '1', 'maximo george', 'a123131', '2022-08-04 22:38:47', '2', NULL),
+(9, '1-2', '2022080400004', '408388', '2', 'carlo sanchez', '123131', '2022-08-04 22:38:57', '3', NULL),
+(10, '1-2', '2022080400004', '533068', '3', 'ervin delos reyes', '123123', '2022-08-04 22:39:13', '4', NULL),
+(11, '1-2', '2022080400004', '411059', '4', 'rodrigo de guzman', '123123', '2022-08-04 22:39:43', '5', NULL),
+(12, '1-2', '2022080400004', '373603', '5', 'richard ocampo', 'awdawdawd', '2022-08-04 22:40:42', '6', NULL),
+(13, '1', '2022081200002', '940488', '6', 'whyllard ermie', '123123', '2022-08-12 15:03:46', '1', NULL);
 
 -- --------------------------------------------------------
 
@@ -514,7 +545,7 @@ CREATE TABLE `tbl_user` (
   `contact_no` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `is_online` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `is_online` text COLLATE utf8_unicode_ci DEFAULT '0',
   `token` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `attempt` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `role` text COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -534,19 +565,19 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`uid`, `email_add`, `password`, `first_name`, `last_name`, `middle_name`, `home_address`, `contact_no`, `image`, `status`, `is_online`, `token`, `attempt`, `role`, `sub_role`, `default_role`, `multi_role`, `title`, `designation`, `department`, `date_created`, `date_modified`, `created_by`) VALUES
-(1, 'approver.role.ebiz@gmail.com', '0071d2e9dce14ead24e8635ca64803a6', 'maximo', 'george', NULL, NULL, '09095547291', NULL, '1', '0', '0', NULL, '2', NULL, '2', NULL, NULL, NULL, NULL, '2022-07-17 15:18:01', NULL, 'admin'),
-(2, 'receiver.role.ebiz@gmail.com', 'b8c6a8ae0af5be0078c552364e264748', 'carlo', 'sanchez', NULL, NULL, '09503560331', NULL, '1', '0', '0', NULL, '3', NULL, '3', NULL, NULL, NULL, NULL, '2022-07-15 08:01:25', NULL, 'admin'),
-(3, 'performer.role.ebiz@gmail.com', '28a89ff85c683cb147a3d1625d21dd08', 'ervin', 'delos reyes', NULL, NULL, '09397944150', NULL, '1', '0', '0', NULL, '4', NULL, '4', NULL, NULL, NULL, NULL, '2022-07-15 01:31:25', NULL, 'admin'),
-(4, 'verifier.role.ebiz@gmail.com', '12780478482c15a9c2cb302a8ecf6f7b', 'rodrigo', 'de guzman', NULL, NULL, '09095547291', NULL, '1', '0', '0', NULL, '5', NULL, '5', NULL, NULL, NULL, NULL, '2022-07-15 01:36:08', NULL, 'admin'),
-(5, 'verifier2.role.ebiz@gmail.com', 'a9a0fe80497a3b9ce9787c9ae13fcd7a', 'richard', 'ocampo', NULL, NULL, '09353173681', NULL, '1', '0', '0', NULL, '6', NULL, '6', NULL, NULL, NULL, NULL, '2022-07-17 15:18:23', NULL, 'admin'),
-(6, 'whyllardermie@gmail.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'whyllard', 'ermie', '', '', '09554194598', NULL, '1', '1', 'c0e2bf725db7e7a854b8c181154d8059', '1', '1', NULL, '1', NULL, 'developer', 'full stack developer', 'devops', '2022-07-18 01:55:38', NULL, 'admin'),
-(7, 'edwinville@gmail.com', '049c8cd3537b52d0f843c27e96ebc702', 'edwin', 'vjllapando', NULL, NULL, '09610679355', NULL, '1', '0', '0', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-06-19 15:26:11', NULL, 'admin'),
-(9, 'borjiedechavez@gmail.com', '7bdeae478bc83a76c88a8e72a8a80e4d', 'borjie', 'de chavez', NULL, NULL, '09095547291', NULL, '1', '0', '0', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-06-19 15:26:13', NULL, 'admin'),
-(10, 'nlapis5711@gmail.com', '4c832d0e13c987e77f79c28e0d59cad3', 'nuel', 'lapis', NULL, NULL, '09095547291', NULL, '1', '0', '0', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-06-20 03:27:16', NULL, 'admin'),
-(11, 'eduardoermie@gmail.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'eduardo', 'ermie', NULL, NULL, '09095547291', NULL, '1', '0', '0', NULL, '2', NULL, '2', NULL, NULL, NULL, NULL, '2022-06-19 15:26:12', NULL, 'admin'),
-(12, 'admin@ebizolution.com', '18617f440f78ad488cff35f557b880ad', 'Jericho', 'Roxales', '', '', '09554194598', NULL, '1', '0', '0', NULL, 'admin', NULL, NULL, NULL, NULL, NULL, NULL, '2022-07-17 16:15:51', NULL, 'admin'),
-(13, 'aadaya@ebizolution.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'alyssa claire', 'adaya', NULL, NULL, '09262359755', NULL, '1', '0', '0', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-06-20 01:12:35', NULL, 'admin'),
-(27, 'jreyes@ebizolution.com', 'a22b049fd91b2670e49e9d3607893a7b', 'jeramy lai', 'reyes', NULL, NULL, '09216234092', NULL, '1', '0', '0', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-06-07 01:52:08', NULL, 'admin');
+(1, 'approver.role.ebiz@gmail.com', '0071d2e9dce14ead24e8635ca64803a6', 'maximo', 'george', NULL, NULL, '09095547291', NULL, '1', '0', '0', NULL, '2', NULL, '2', NULL, NULL, NULL, NULL, '2022-08-12 06:51:26', NULL, 'admin'),
+(2, 'receiver.role.ebiz@gmail.com', 'b8c6a8ae0af5be0078c552364e264748', 'carlo', 'sanchez', NULL, NULL, '09503560331', NULL, '1', '0', '0', NULL, '3', NULL, '3', NULL, NULL, NULL, NULL, '2022-08-12 05:50:36', NULL, 'admin'),
+(3, 'performer.role.ebiz@gmail.com', '28a89ff85c683cb147a3d1625d21dd08', 'ervin', 'delos reyes', NULL, NULL, '09397944150', NULL, '1', '0', '0', NULL, '4', NULL, '4', NULL, NULL, NULL, NULL, '2022-08-04 14:39:34', NULL, 'admin'),
+(4, 'verifier.role.ebiz@gmail.com', '12780478482c15a9c2cb302a8ecf6f7b', 'rodrigo', 'de guzman', NULL, NULL, '09095547291', NULL, '1', '0', '0', NULL, '5', NULL, '5', NULL, NULL, NULL, NULL, '2022-08-04 14:39:44', NULL, 'admin'),
+(5, 'verifier2.role.ebiz@gmail.com', 'a9a0fe80497a3b9ce9787c9ae13fcd7a', 'richard', 'ocampo', NULL, NULL, '09353173681', NULL, '1', '0', '0', NULL, '6', NULL, '6', NULL, NULL, NULL, NULL, '2022-08-04 14:40:44', NULL, 'admin'),
+(6, 'whyllardermie@gmail.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'whyllard', 'ermie', '', '', '09554194598', NULL, '1', '0', '3d5aee0c1323e00d005e25940b65bf00', '1', '1', NULL, '1', '12', 'developer', 'full stack developer', 'devops', '2022-08-12 07:08:02', NULL, 'admin'),
+(7, 'edwinville@gmail.com', '049c8cd3537b52d0f843c27e96ebc702', 'edwin', 'vjllapando', NULL, NULL, '09610679355', NULL, '1', '0', '0', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-05-31 08:43:36', NULL, 'admin'),
+(9, 'borjiedechavez@gmail.com', '7bdeae478bc83a76c88a8e72a8a80e4d', 'borjie', 'de chavez', NULL, NULL, '09095547291', NULL, '1', '0', '0', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-05-31 08:43:36', NULL, 'admin'),
+(10, 'nlapis5711@gmail.com', '4c832d0e13c987e77f79c28e0d59cad3', 'nuel', 'lapis', NULL, NULL, '09095547291', NULL, '1', '0', '0', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-08-12 03:52:13', NULL, 'admin'),
+(11, 'eduardoermie@gmail.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'eduardo', 'ermie', NULL, NULL, '09095547291', NULL, '1', '0', '0', NULL, '2', NULL, '2', NULL, NULL, NULL, NULL, '2022-08-12 06:29:06', NULL, 'admin'),
+(12, 'admin@ebizolution.com', '18617f440f78ad488cff35f557b880ad', 'Jericho', 'Roxales', '', '', '09554194598', NULL, '1', '1', '0', NULL, 'admin', NULL, NULL, NULL, NULL, NULL, NULL, '2022-08-12 06:43:00', NULL, 'admin'),
+(13, 'aadaya@ebizolution.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'alyssa claire', 'adaya', NULL, NULL, '09262359755', NULL, '1', '0', '0', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-08-12 06:21:55', NULL, 'admin'),
+(27, 'jreyes@ebizolution.com', 'a22b049fd91b2670e49e9d3607893a7b', 'jeramy lai', 'reyes', NULL, NULL, '09216234092', NULL, '1', '0', '0', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-08-12 06:29:57', NULL, 'admin');
 
 -- --------------------------------------------------------
 
@@ -696,7 +727,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_activity_logs`
 --
 ALTER TABLE `tbl_activity_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_baas`
@@ -714,25 +745,25 @@ ALTER TABLE `tbl_backup_pass`
 -- AUTO_INCREMENT for table `tbl_cps`
 --
 ALTER TABLE `tbl_cps`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_forms_others`
 --
 ALTER TABLE `tbl_forms_others`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_hci`
 --
 ALTER TABLE `tbl_hci`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_hostname`
 --
 ALTER TABLE `tbl_hostname`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_notification`
@@ -744,7 +775,7 @@ ALTER TABLE `tbl_notification`
 -- AUTO_INCREMENT for table `tbl_remarks`
 --
 ALTER TABLE `tbl_remarks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tbl_req_role`
@@ -762,7 +793,7 @@ ALTER TABLE `tbl_tci`
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=214;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
