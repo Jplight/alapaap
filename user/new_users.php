@@ -1,84 +1,93 @@
 <?php  
-    session_start();
-    ob_start();
-    date_default_timezone_set('Asia/Manila');
-    
-    include '../model/connection.php';
-    $uid = $_SESSION['uid'];
-    $role = $_SESSION['role'];
-    if (!isset($uid)) {
-        header("location: ../index.php");
-    }
-    
-    $sql = mysqli_query($conn,"SELECT * FROM tbl_user where uid = '$uid' and role = '$role' ");
-    while ($rows = mysqli_fetch_array($sql)):
-        $my_fullname    = $rows['first_name']." ".$rows['last_name'];
-        $email          = $rows['email_add'];
-        $contact_no     = $rows['contact_no'];
-        $my_role        = $rows['role'];
-    endwhile;
+session_start();
+ob_start();
+date_default_timezone_set('Asia/Manila');
+include '../model/connection.php';
+require 'inc/GetTimeAgo.php';
 
-    // include 'model/new_user_model.php';
-    // include 'model/ureset_acc.php';
+$uid = $_SESSION['uid'];
+$role = $_SESSION['role'];
+$alert = isset($_SESSION['message']) ? $_SESSION['message']: '';
+$url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+if (!isset($uid)) {
+    header("location: ../index.php");
+}   
+
+$sql = mysqli_query($conn,"SELECT * FROM tbl_user where uid = '$uid'  ");
+while ($rows = mysqli_fetch_array($sql)):
+    $my_fullname    = $rows['first_name']." ".$rows['last_name'];
+    $email          = $rows['email_add'];
+    $contact_no     = $rows['contact_no'];
+    $my_role        = $rows['role'];
+    $sub_role       = $rows['sub_role'];
+    $role_count     = $my_role + 1;
+endwhile;
+
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>Alapaap | Approved Request</title>
+        <title>Alapaap | New Accounts</title>
         <link rel="icon" type="image/svg+xml" sizes="30x24" href="assets/img/android-chrome-192x192.png">
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/dataTables.bootstrap5.min.css">
-
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
         <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
         <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
         <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
         <style>
-            /* width */
-            ::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
-            cursor: pointer;
-            }
-            /* Track */
-            ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            cursor: pointer;
-            }
-            /* Handle */
-            ::-webkit-scrollbar-thumb {
-            background: #888; 
-            border-radius: 10px;
-            cursor: pointer;
-            }
-            /* Handle on hover */
-            ::-webkit-scrollbar-thumb:hover {
-            background: #555; 
-            cursor: pointer; 
-            }
-            .btn-outline-success:hover{
+        /* width */
+        ::-webkit-scrollbar {
+          width: 10px;
+          height: 5px;
+           cursor: pointer;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          cursor: pointer;
+        }
+         
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+          background: #888; 
+          border-radius: 10px;
+          cursor: pointer;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+          background: #555; 
+          cursor: pointer; 
+        }
+        .btn-outline-success:hover{
             color: white;
-            }
-            .badge-small{
+        }
+        .badge-small{
             font-size: 10px;
-            }
+        }
         </style>
     </head>
     <body id="page-top">
+
+    <div id="frm_notification"></div>
+
         <div id="wrapper">
             <?php include 'inc/sidebar.php'; ?>
             <div class="d-flex flex-column" id="content-wrapper">
                 <div id="content">
+                    
                     <?php include 'inc/navbar.php'; ?>
+
                     <div class="container-fluid mb-5">
-                        <div class="d-sm-flex justify-content-between align-items-between mb-4">
-                            <h3 class="text-dark mb-0 mb-3 mb-sm-0">
-                                Pending
-                            </h3>
-                            
+                        <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                            <h3 class="text-dark mb-0 mb-3 mb-sm-0">Pending Account</h3>
                         </div>
+                        <?php echo (!empty($_SESSION['message'])) ? $alert : ''; ?>
+                
                         <div class="card shadow">
                             <div class="card-body">                          
                                 <div class="table-responsive pt-4">
@@ -161,7 +170,7 @@
                     <div class="container-fluid">
                         <div class="d-sm-flex justify-content-between align-items-between mb-4">
                             <h3 class="text-dark mb-0 mb-3 mb-sm-0">
-                                Disapproved
+                                Disapproved Account
                             </h3>
                             
                         </div>
@@ -175,8 +184,7 @@
                                                 <th>Role</th>
                                                 <th>Status</th>
                                                 <th>Date Added</th>
-                                                <th>Action</th>
-                                              
+                                                <th>Action</th>                                            
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -230,8 +238,7 @@
                                                                 require 'inc/new_user_account.php';
                                                             echo '</td>';
                                                         echo '</tr>';                                                        
-                                                    endwhile; 
-                                                                                                        
+                                                    endwhile;                                                          
                                             ?>
                                         </tbody>
                                     </table>
@@ -248,22 +255,21 @@
                     </div>
                 </footer>
             </div>
-            <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i> </a>
-
-            <!-- Modal -->
-
+            <a class="border rounded d-inline scroll-to-top" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
         </div>
-
         <script src="assets/js/jquery-3.6.0.js"></script>
-        <!-- Datatables -->
+        <script src="assets/bootstrap/js/popper.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Data Tables -->
         <script src="assets/js/jquery.dataTables.min.js"></script>
         <script src="assets/js/dataTables.bootstrap5.min.js"></script>
 
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/theme.js"></script>
         <script>
             $(document).ready(function(){
-
                 $('#user_datatables, #user_datatables_disapproved').DataTable({
                    
                     pageLength: 5,
@@ -281,25 +287,9 @@
                 },3000);
             });
         </script>
-        <script>
-            $(document).ready(function(){
-                // $("#frm_approve_account").submit(function(){
-                //     return false;
-                // });
-
-                // $("button[name=btn_approved_yes]").click(function(){
-                //     $('.modal').modal('hide');
-                //     $.ajax({
-                //         type: "POST",
-                //         url: "model/new_accounts.php",
-                //         data: $("#frm_approve_account").serialize(),
-                //         success: function (data) {
-                //             $('.modal').modal('hide');   
-                //         }
-                //     });
-                // });
-            });
-        </script>
     </body>
 </html>
-<?php ob_end_flush(); ?>
+<?php 
+mysqli_close($conn);
+ob_end_flush(); 
+?>

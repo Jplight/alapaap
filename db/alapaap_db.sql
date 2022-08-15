@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2022 at 09:37 AM
+-- Generation Time: Aug 15, 2022 at 10:33 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -221,7 +221,7 @@ CREATE TABLE `tbl_cps` (
 --
 
 INSERT INTO `tbl_cps` (`id`, `uid`, `control_number`, `cps_new_control_num`, `cps_up_control_num`, `form_type`, `fullname`, `email_add`, `contact_no`, `cps_action`, `system_name`, `hostname`, `pattern`, `instance_name`, `location`, `env_profile`, `ip_add`, `ip_group`, `vcpu_size`, `vcpu_filesystem`, `vcpu_remarks`, `ram_size`, `ram_filesystem`, `ram_remarks`, `ue_enroll_size`, `ue_filesystem`, `ue_remarks`, `status`, `revised`, `num_revised`, `cancelled`, `date_requested`, `approver_id`, `approver`, `app_status`, `appr_date`, `reciever_id`, `reciever`, `rec_status`, `rec_date`, `performer_id`, `performer`, `perf_status`, `perform_date`, `verifier_id`, `verifier`, `ver_status`, `ver_date`, `verifier_2id`, `verifier_2`, `ver2_status`, `ver2_date`) VALUES
-(1, '6', '2022080300001', NULL, NULL, '3', 'whyllard ermie', 'whyllardermie@gmail.com', '09554194598', NULL, '123123123', 'ermie_db2', 'awdawdawd', '123213', 'ho', 'silver', '123123', '12312', '3123', '12', '312', '12312312', '312312', '312', '312', '3', '3', '7', NULL, NULL, NULL, '2022-08-03 19:03:59', '1', 'maximo george', '1', '2022-08-03 19:05:45', '2', 'carlo sanchez', '1', '2022-08-03 19:06:00', '3', 'ervin delos reyes', '1', '2022-08-03 19:06:30', '4', 'rodrigo de guzman', '1', '2022-08-03 19:06:45', '5', 'richard ocampo', '1', '2022-08-03 19:07:21');
+(1, '6', '2022080300001', NULL, NULL, '3', 'whyllard ermie', 'whyllardermie@gmail.com', '09554194598', NULL, '123123123', 'ermie_db2', 'awdawdawd', '123213', 'ho', 'silver', '123123', '12312', '3123', '12', '312', '12312312', '312312', '312', '312', '3', '3', '7', NULL, NULL, NULL, '2022-08-03 19:03:59', '1', 'maximo george', '1', '2022-08-03 19:05:45', '2', 'carlo sanchez', '1', '2022-08-03 19:06:00', '3', 'ervin delos reyes', '1', '2022-08-03 19:06:30', '4', 'rodrigo de guzman', '1', '2022-08-03 19:06:45', '5', '0', '1', '2022-08-03 19:07:21');
 
 --
 -- Triggers `tbl_cps`
@@ -551,7 +551,7 @@ CREATE TABLE `tbl_user` (
   `role` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `sub_role` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `default_role` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `multi_role` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `multi_role` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`multi_role`)),
   `title` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `designation` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `department` text COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -565,19 +565,29 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`uid`, `email_add`, `password`, `first_name`, `last_name`, `middle_name`, `home_address`, `contact_no`, `image`, `status`, `is_online`, `token`, `attempt`, `role`, `sub_role`, `default_role`, `multi_role`, `title`, `designation`, `department`, `date_created`, `date_modified`, `created_by`) VALUES
-(1, 'approver.role.ebiz@gmail.com', '0071d2e9dce14ead24e8635ca64803a6', 'maximo', 'george', NULL, NULL, '09095547291', NULL, '1', '0', '0', NULL, '2', NULL, '2', NULL, NULL, NULL, NULL, '2022-08-12 06:51:26', NULL, 'admin'),
+(1, 'approver.role.ebiz@gmail.com', '0071d2e9dce14ead24e8635ca64803a6', 'maximo', 'george', NULL, NULL, '09095547291', NULL, '1', '0', '0', NULL, '2', NULL, '2', NULL, NULL, NULL, NULL, '2022-08-15 07:12:13', NULL, 'admin'),
 (2, 'receiver.role.ebiz@gmail.com', 'b8c6a8ae0af5be0078c552364e264748', 'carlo', 'sanchez', NULL, NULL, '09503560331', NULL, '1', '0', '0', NULL, '3', NULL, '3', NULL, NULL, NULL, NULL, '2022-08-12 05:50:36', NULL, 'admin'),
 (3, 'performer.role.ebiz@gmail.com', '28a89ff85c683cb147a3d1625d21dd08', 'ervin', 'delos reyes', NULL, NULL, '09397944150', NULL, '1', '0', '0', NULL, '4', NULL, '4', NULL, NULL, NULL, NULL, '2022-08-04 14:39:34', NULL, 'admin'),
 (4, 'verifier.role.ebiz@gmail.com', '12780478482c15a9c2cb302a8ecf6f7b', 'rodrigo', 'de guzman', NULL, NULL, '09095547291', NULL, '1', '0', '0', NULL, '5', NULL, '5', NULL, NULL, NULL, NULL, '2022-08-04 14:39:44', NULL, 'admin'),
 (5, 'verifier2.role.ebiz@gmail.com', 'a9a0fe80497a3b9ce9787c9ae13fcd7a', 'richard', 'ocampo', NULL, NULL, '09353173681', NULL, '1', '0', '0', NULL, '6', NULL, '6', NULL, NULL, NULL, NULL, '2022-08-04 14:40:44', NULL, 'admin'),
-(6, 'whyllardermie@gmail.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'whyllard', 'ermie', '', '', '09554194598', NULL, '1', '0', '3d5aee0c1323e00d005e25940b65bf00', '1', '1', NULL, '1', '12', 'developer', 'full stack developer', 'devops', '2022-08-12 07:08:02', NULL, 'admin'),
+(6, 'whyllardermie@gmail.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'whyllard', 'ermie', '', '', '09554194598', NULL, '1', '0', '3d5aee0c1323e00d005e25940b65bf00', '1', '1', NULL, '1', NULL, 'developer', 'full stack developer', 'devops', '2022-08-15 07:12:01', NULL, 'admin'),
 (7, 'edwinville@gmail.com', '049c8cd3537b52d0f843c27e96ebc702', 'edwin', 'vjllapando', NULL, NULL, '09610679355', NULL, '1', '0', '0', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-05-31 08:43:36', NULL, 'admin'),
 (9, 'borjiedechavez@gmail.com', '7bdeae478bc83a76c88a8e72a8a80e4d', 'borjie', 'de chavez', NULL, NULL, '09095547291', NULL, '1', '0', '0', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-05-31 08:43:36', NULL, 'admin'),
 (10, 'nlapis5711@gmail.com', '4c832d0e13c987e77f79c28e0d59cad3', 'nuel', 'lapis', NULL, NULL, '09095547291', NULL, '1', '0', '0', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-08-12 03:52:13', NULL, 'admin'),
 (11, 'eduardoermie@gmail.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'eduardo', 'ermie', NULL, NULL, '09095547291', NULL, '1', '0', '0', NULL, '2', NULL, '2', NULL, NULL, NULL, NULL, '2022-08-12 06:29:06', NULL, 'admin'),
 (12, 'admin@ebizolution.com', '18617f440f78ad488cff35f557b880ad', 'Jericho', 'Roxales', '', '', '09554194598', NULL, '1', '1', '0', NULL, 'admin', NULL, NULL, NULL, NULL, NULL, NULL, '2022-08-12 06:43:00', NULL, 'admin'),
 (13, 'aadaya@ebizolution.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'alyssa claire', 'adaya', NULL, NULL, '09262359755', NULL, '1', '0', '0', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-08-12 06:21:55', NULL, 'admin'),
-(27, 'jreyes@ebizolution.com', 'a22b049fd91b2670e49e9d3607893a7b', 'jeramy lai', 'reyes', NULL, NULL, '09216234092', NULL, '1', '0', '0', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-08-12 06:29:57', NULL, 'admin');
+(27, 'jreyes@ebizolution.com', 'a22b049fd91b2670e49e9d3607893a7b', 'jeramy lai', 'reyes', NULL, NULL, '09216234092', NULL, '1', '0', '0', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-08-12 06:29:57', NULL, 'admin'),
+(214, 'whyllardermie@gmail.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'awdawdawd', 'awdawdawdawd', NULL, NULL, '99999999999', NULL, '1', '0', '', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-08-15 01:46:32', NULL, NULL),
+(215, 'whyllardermie@gmail.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'awdawdaw', 'dawdawda', NULL, NULL, '12312312312', NULL, '0', '0', '', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-08-15 01:48:25', NULL, NULL),
+(216, 'whyllardermie@gmail.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'awdawdaw', 'dawdawda', NULL, NULL, '12312312312', NULL, '0', '0', '', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-08-15 01:53:55', NULL, NULL),
+(217, 'whyllardermie@gmail.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'awdadawd', 'awdawd', NULL, NULL, '12312312312', NULL, '0', '0', '', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-08-15 02:00:25', NULL, NULL),
+(218, 'whyllardermie@gmail.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'awdawdawd', 'awdawdawd', NULL, NULL, '12312312312', NULL, '0', '0', '', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-08-15 02:01:02', NULL, NULL),
+(219, 'whyllardermie@gmail.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'eaawdawdawd', 'awdawdadawd', NULL, NULL, '12312312312', NULL, '0', '0', '', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-08-15 02:19:13', NULL, NULL),
+(220, 'whyllardermie@gmail.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'awdawdawd', 'awdawdawdawdawd', NULL, NULL, '12312312312', NULL, '0', '0', '', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-08-15 02:43:11', NULL, NULL),
+(221, 'whyllardermie@gmail.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'awdadaw', 'awdawdawd', NULL, NULL, '12312312312', NULL, '0', '0', '', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-08-15 02:44:25', NULL, NULL),
+(222, 'whyllardermie@gmail.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'awdawawdawda', 'wdawdawdawd', NULL, NULL, '12312312312', NULL, '0', '0', '', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-08-15 02:45:18', NULL, NULL),
+(223, 'whyllardermie@gmail.com', 'efb65a2fb845ce8a7b3509a6360a9f65', 'awdawawdawda', 'wdawdawdawd', NULL, NULL, '12312312312', NULL, '0', '0', '', NULL, '1', NULL, '1', NULL, NULL, NULL, NULL, '2022-08-15 02:51:39', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -793,7 +803,7 @@ ALTER TABLE `tbl_tci`
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=214;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=224;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

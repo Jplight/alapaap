@@ -22,7 +22,7 @@ if (isset($_GET['email']) && isset($_GET['uid'])) {
     if ($count > 0){ 
             $sql_2 = mysqli_query($conn,"UPDATE tbl_user SET token='$token', attempt='$attempt' WHERE email_add = '$email_add' ");
 
-            $link = "http://localhost/alapaap.ebizolution.com/model/reset_pass.php?email=".$email_add."&token=".$token."&attempt=".$attempt;
+            $link = "http://".$_SERVER['SERVER_NAME']."/model/reset_pass.php?email=".$email_add."&token=".$token."&attempt=".$attempt;
             $message = "Dear Customer<br>"
             . "Please click the link below to reset your password.<br>"
             . "You will be automatically redirected to a welcome page where you can then change your password in your account.<br><br>"            
@@ -56,7 +56,7 @@ if (isset($_GET['email']) && isset($_GET['uid'])) {
                 $mail->Subject = "Password Recovery";
                 $mail->Body    = $message;
                 $mail->send();    
-                header("location: http://localhost/alapaap.ebizolution.com/model/support_alapaap.php?email=".$email_add."&token=".$token);
+                header("location: http://".$_SERVER['SERVER_NAME']."/model/support_alapaap.php?email=".$email_add."&token=".$token);
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }       

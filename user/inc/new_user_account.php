@@ -9,7 +9,7 @@
                     <input type="hidden" name="approver_mail" value="<?=$email;?>">
                     <h3 class="modal-title mb-5">Do you want to <span class="text-success">approve</span> this account?</h3>
                     <button class="btn btn-outline-danger shadow-none" type="button" data-bs-dismiss="modal">No</button>
-                    <button class="btn btn-outline-success shadow-none" type="submit" name="btn_approved_yes" id="btn_approved_yes">Yes <?=$rows_users['uid'];?></button>
+                    <button class="btn btn-outline-success shadow-none" type="submit" name="btn_approved_yes" id="btn_approved_yes">Yes</button>
                 </div>
             </div>
         </div>
@@ -23,7 +23,6 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body text-wrap text-center">
-                    <span><?=$rows_users['uid'];?></span>
                     <h3 class="modal-title mb-5">Do you want to <span class="text-danger">disapprove</span> this account?</h3>
                     <button class="btn btn-outline-secondary shadow-none" type="button" data-bs-dismiss="modal">No</button>
                     <button class="btn btn-outline-danger shadow-none" type="button" name="" id="">Yes</button>

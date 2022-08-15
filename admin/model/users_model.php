@@ -17,7 +17,7 @@ if (isset($_GET['userid'])) {
 
 	$message = "Good Day ".ucfirst($rows['first_name'])." ".ucfirst($rows['last_name']).",<br><br>"
     . "Your account has been verified by our System Administrator.<br>"
-    . "Please click <a href='http://localhost/revision_alapaap/index.php'>Here</a> the click below to proceed in out Login Page!<br><br>"               
+    . "Please click <a href='http://".$_SERVER['SERVER_NAME']."/index.php'>Here</a> the click below to proceed in out Login Page!<br><br>"               
     . "Thank you<br>";
 	
 	try {

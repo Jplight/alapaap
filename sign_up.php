@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         <div class="d-grid">
-                            <button class="btn btn-success" id="btn_submit" name="btn_submit" type="submit">Submit</button>
+                            <button class="btn btn-success" id="btn_submit" name="btn_submit" type="submit" >Submit</button>
                         </div>
                         <span class="small text-danger"><?php echo (!empty($user_error)) ? $user_error : ''; ?></span>
                     </form>
@@ -97,13 +97,9 @@
                         $("#btn_showpass").html('<i class="far fa-eye-slash"></i>');
                     }
                 });
-                $('#btn_showpass2').click(function(){
-                    if('password' == $('#confirm_pword').attr('type')){
-                         $('#confirm_pword').prop('type', 'text');
-                         $("#btn_showpass2").html('<i class="far fa-eye"></i>');
-                    }else{
-                         $('#confirm_pword').prop('type', 'password');
-                         $("#btn_showpass2").html('<i class="far fa-eye-slash"></i>');
+                $("#pword, #confirm_pword").keyup(function(){
+                    if ($("#pword").val().length !== $("#confirm_pword").val().length){
+                    $("#btn_submit").attr('disabled',false);
                     }
                 });
                 $("#confirm_pword").keyup(function(){
