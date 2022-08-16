@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$validate_hostname = mysqli_query($conn,"SELECT * from tbl_hostname where hostname = '$hci_up_search_txt' and action = 'deleted' ");
 	if (mysqli_num_rows($validate_hostname) < 1):
 
-		$sql_2 = mysqli_query($conn,"SELECT * FROM tbl_forms_others where hostname = '$hci_up_search_txt' and form_type = '1' and uid = '$uid' ");
+		$sql_2 = mysqli_query($conn,"SELECT * FROM tbl_forms_others where hostname = '$hci_up_search_txt' and form_type = '1'");
 		$count_2 = mysqli_num_rows($sql_2);
 		if ($count_2 > 0) {
 			while ($rows_2 = mysqli_fetch_assoc($sql_2)) {

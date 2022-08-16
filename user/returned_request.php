@@ -62,13 +62,13 @@ $sql_baas = mysqli_query($conn,$query_baas);
 $returned_count_baas = mysqli_num_rows($sql_baas); // Count the number of Disapproved Form CPS
 
 include 'model/hci_form.php';
-include 'model/hci_update_form.php';
-include 'model/tci_form.php';
+// include 'model/hci_update_form.php';
+// include 'model/tci_form.php';
 
-include 'model/cps_form.php';
-include 'model/cps_form_update.php';
+// include 'model/cps_form.php';
+// include 'model/cps_form_update.php';
 
-include 'model/baas_form.php';
+// include 'model/baas_form.php';
 include 'model/authorize_personnel.php';
 ?>
 <!DOCTYPE html>
@@ -198,7 +198,7 @@ include 'model/authorize_personnel.php';
 
                                                             $num = 1;
                                                             if ($my_role == 1) {
-                                                                $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where uid = '$uid' and status = '0' and revised = '1'  ORDER BY date_requested DESC ");
+                                                                $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where uid = '$uid' and status = '0' and revised = '1' ORDER BY date_requested DESC ");
                                                             }elseif ($my_role == 2){
                                                                 $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where approver_id = '$uid' and app_status = '0' and revised = '1' ORDER BY date_requested DESC ");
                                                             }elseif ($my_role == 3){
@@ -277,7 +277,7 @@ include 'model/authorize_personnel.php';
                                                 </table>
                                             </div>
                                         </div>
-                                        <div class="tab-pane" role="tabpanel" id="tab-2">
+                                        <!-- <div class="tab-pane" role="tabpanel" id="tab-2">
                                             <div class="table-responsive">
                                                 <table class="table table-hover user-select-none align-middle text-nowrap" id="tci_datatables">
                                                     <thead>
@@ -563,7 +563,7 @@ include 'model/authorize_personnel.php';
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -582,7 +582,7 @@ include 'model/authorize_personnel.php';
                 <i class="fas fa-angle-up"></i>
             </a>
         </div>
-        <?php include 'inc/baas_modal.php'; ?>
+
         <script src="assets/js/jquery-3.6.0.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 

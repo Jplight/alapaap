@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 
 
-	$sql = mysqli_query($conn,"SELECT * FROM tbl_hci where hostname = '$hci_up_search_txt' and uid = '$uid' ");
+	$sql = mysqli_query($conn,"SELECT * FROM tbl_hci where hostname = '$hci_up_search_txt' ");
 	$count = mysqli_num_rows($sql);
 	if ($count > 0) {
 			$rows = mysqli_fetch_assoc($sql);

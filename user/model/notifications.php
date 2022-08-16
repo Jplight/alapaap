@@ -42,7 +42,7 @@
                 if($my_role == '3' && $data['form_type'] == '2'){ $NotifName = $data['fullname']; $st = 'requested'; }
                 if($my_role == '4'){ $NotifName = $data['reciever'];  $st = 'received';}
                 if($my_role == '5'){ $NotifName = $data['performer']; $st = 'performed';}
-                if($my_role == '6'){ $NotifName = $data['verifier']; $st = 'conformed';}
+                if($my_role == '6'){ $NotifName = $data['verifier']; $st = 'confirmed';}
 
                 if($data['form_type'] == '1'){$form_type = 'HCI'; }
                 if($data['form_type'] == '1-1'){$form_type = 'HCI UPDATE'; }
@@ -61,19 +61,25 @@
                     $notification = ucwords($NotifName).' has '.$st.' '.$form_type." with control number of ".$form_type."/".$data['control_number'];
                 }
                 if ($my_role == '3' && $data['form_type'] == '1'){
-                    $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control number of ".$form_type."/".$data['control_number'];
+                    // $notification = "<Approver> has approved the request of <Requestor> with control number <control_number>";
+                    // $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control number of ".$form_type."/".$data['control_number'];
+                    $notification = ucwords($NotifName).' has '.$st.' the request of '.ucwords($data['fullname'])." with control number of ".$form_type."/".$data['control_number'];
                 }
                 if ($my_role == '3' && $data['form_type'] == '2'){
                     $notification = ucwords($NotifName).' has '.$st.' '.$form_type." with control number of ".$form_type."/".$data['control_number'];
                 }
-                if ($my_role == '3' && $data['form_type'] != '2'){
-                    $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control number of ".$form_type."/".$data['control_number'];
-                }
+                // if ($my_role == '3' && $data['form_type'] != '2'){
+                //     $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control number of ".$form_type."/".$data['control_number'];
+                // }
                 if ($my_role >= '4' && $my_role <= '6'){
-                    $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control number of ".$form_type."/".$data['control_number'];
+                    
+                    // $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control number of ".$form_type."/".$data['control_number'];
+                    $notification = ucwords($NotifName).' has '.$st.' the request of '.ucwords($data['fullname'])." with control number of ".$form_type."/".$data['control_number'];
                 }
                            
         ?>
+
+
 
         <a class="dropdown-item d-flex align-items-center " href="javascript:void(0)">
             <div class="me-3">

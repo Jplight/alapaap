@@ -129,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (isset($_POST['btn_submit_draft'])) {
 		$txt_control_number = $_POST['txt_control_number'];
 		$status = 2;
-		$sql = mysqli_query($conn,"UPDATE `tbl_hci` SET `form_type`='$form_type',`fullname`='$fullname',`department`='$department',`location`='$location',`cluster` = '$cluster' ,`hostname`='$hostname',`vcpu`='$vcpu',`vcpu_comment`='$vcpu_comment',`ram`='$ram',`ram_comment`='$ram_comment', `os`='$os',`os_comment`='$os_comment', `txt_os_descript` = '$txt_os_descript', `txt_define_parti` = '$txt_define_parti',`ip_add_vlan` = '$ip_add_vlan', `ip_comment` = '$ip_comment', `vlan_comment` = '$vlan_comment' , `txt_ip_vlan`= '$txt_ip_vlan', `hci_users` = '$hci_users', `txt_hci_users` = '$txt_hci_users', '$vm_deployment', '$vm_deployment_comment',`status`='$status', date_requested = NOW() WHERE control_number = '$txt_control_number' ");
+		$sql = mysqli_query($conn,"UPDATE `tbl_hci` SET `form_type`='$form_type',`fullname`='$fullname',`department`='$department',`location`='$location',`cluster` = '$cluster' ,`hostname`='$hostname',`vcpu`='$vcpu',`vcpu_comment`='$vcpu_comment',`ram`='$ram',`ram_comment`='$ram_comment', `os`='$os',`os_comment`='$os_comment', `txt_os_descript` = '$txt_os_descript', `txt_define_parti` = '$txt_define_parti',`ip_add_vlan` = '$ip_add_vlan', `ip_comment` = '$ip_comment', `vlan_comment` = '$vlan_comment' , `txt_ip_vlan`= '$txt_ip_vlan', `hci_users` = '$hci_users', `txt_hci_users` = '$txt_hci_users', `vm_deployment` = '$vm_deployment', `vm_deployment_comment` = '$vm_deployment_comment', '$vm_deployment', '$vm_deployment_comment',`status`='$status', date_requested = NOW() WHERE control_number = '$txt_control_number' ");
 		if (!empty($comments)) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`, `uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$control_number','$comment_id','$uid','$fullname','$comments','$role',NOW()) ");
 		}
@@ -158,7 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (isset($_POST['btn_update'])) {
 		$txt_control_number = $_POST['txt_control_number'];
 		$status = 1;
-		$sql = mysqli_query($conn,"UPDATE `tbl_hci` SET `form_type`='$form_type',`fullname`='$fullname',`department`='$department',`location`='$location',`cluster` = '$cluster' ,`hostname`='$hostname',`vcpu`='$vcpu',`vcpu_comment`='$vcpu_comment',`ram`='$ram',`ram_comment`='$ram_comment',`os`='$os',`os_comment`='$os_comment', `txt_os_descript` = '$txt_os_descript', `txt_define_parti` = '$txt_define_parti',`ip_add_vlan` = '$ip_add_vlan', `ip_comment` = '$ip_comment', `vlan_comment` = '$vlan_comment' , `txt_ip_vlan`= '$txt_ip_vlan', `hci_users` = '$hci_users', `txt_hci_users` = '$txt_hci_users', '$vm_deployment', '$vm_deployment_comment',`status`='$status', date_requested = NOW() WHERE control_number = '$txt_control_number' ");
+		$sql = mysqli_query($conn,"UPDATE `tbl_hci` SET `form_type`='$form_type',`fullname`='$fullname',`department`='$department',`location`='$location',`cluster` = '$cluster' ,`hostname`='$hostname',`vcpu`='$vcpu',`vcpu_comment`='$vcpu_comment',`ram`='$ram',`ram_comment`='$ram_comment',`os`='$os',`os_comment`='$os_comment', `txt_os_descript` = '$txt_os_descript', `txt_define_parti` = '$txt_define_parti',`ip_add_vlan` = '$ip_add_vlan', `ip_comment` = '$ip_comment', `vlan_comment` = '$vlan_comment' , `txt_ip_vlan`= '$txt_ip_vlan', `hci_users` = '$hci_users', `txt_hci_users` = '$txt_hci_users', `vm_deployment` = '$vm_deployment', `vm_deployment_comment` = '$vm_deployment_comment', '$vm_deployment', '$vm_deployment_comment',`status`='$status', date_requested = NOW() WHERE control_number = '$txt_control_number' ");
 		if (!empty($comments)) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`, `uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$fullname','$comments','$role',NOW()) ");
 		}
@@ -183,12 +183,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 
 	if (isset($_POST['btn_resubmit'])) {
-
+		echo "dawdawd";
 		$txt_control_number = $_POST['txt_control_number'];
 		$status = 2;
 		$revised = 0;
 
-		$sql = mysqli_query($conn,"UPDATE `tbl_hci` SET `form_type`='$form_type',`fullname`='$fullname',`department`='$department',`location`='$location',`cluster` = '$cluster' ,`hostname`='$hostname',`vcpu`='$vcpu',`vcpu_comment`='$vcpu_comment',`ram`='$ram',`ram_comment`='$ram_comment',`os`='$os',`os_comment`='$os_comment', `txt_os_descript` = '$txt_os_descript', `txt_define_parti` = '$txt_define_parti' ,`ip_add_vlan` = '$ip_add_vlan', `txt_ip_vlan`= '$txt_ip_vlan',  `ip_comment` = '$ip_comment', `vlan_comment` = '$vlan_comment' , `hci_users` = '$hci_users', `txt_hci_users` = '$txt_hci_users', '$vm_deployment', '$vm_deployment_comment',`status`='$status', revised = '$revised',  date_requested = NOW(), approver_id = NULL, approver = NULL, app_status = NULL, appr_date = NULL, reciever_id = NULL, reciever = NULL, rec_status = NULL, rec_date = NULL, performer_id = NULL, performer = NULL, perf_status = NULL, perform_date = NULL WHERE control_number = '$txt_control_number' ");
+		$sql = mysqli_query($conn,"UPDATE `tbl_hci` SET `form_type`='$form_type',`fullname`='$fullname',`department`='$department',`location`='$location',`cluster` = '$cluster' ,`hostname`='$hostname',`vcpu`='$vcpu',`vcpu_comment`='$vcpu_comment',`ram`='$ram',`ram_comment`='$ram_comment',`os`='$os',`os_comment`='$os_comment', `txt_os_descript` = '$txt_os_descript', `txt_define_parti` = '$txt_define_parti' ,`ip_add_vlan` = '$ip_add_vlan', `txt_ip_vlan`= '$txt_ip_vlan',  `ip_comment` = '$ip_comment', `vlan_comment` = '$vlan_comment' , `hci_users` = '$hci_users', `txt_hci_users` = '$txt_hci_users', `vm_deployment` = '$vm_deployment', `vm_deployment_comment` = '$vm_deployment_comment', `status`='$status', revised = '$revised',  date_requested = NOW(), approver_id = NULL, approver = NULL, app_status = NULL, appr_date = NULL, reciever_id = NULL, reciever = NULL, rec_status = NULL, rec_date = NULL, performer_id = NULL, performer = NULL, perf_status = NULL, perform_date = NULL WHERE control_number = '$txt_control_number' ");
 		if (!empty($comments)) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`, `uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$fullname','$comments','$role',NOW()) ");
 		}
@@ -209,6 +209,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
 		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'returned','$status') ");				
+	
+		$form_subject = "HCI";
+		require 'mail_message.php';
+		require 'mail.php';
+	
 	}
 
 	if (isset($_POST['btn_cancel'])) {

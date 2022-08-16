@@ -18,35 +18,29 @@ if($status >=2 && $status <=6){
     $recipient = $rowsSender['email_add'];    // To Approver, Receiver,Performer,Confirmer and Verifier
 }else if($status == 'admin'){
     $recipient = $rowsSender['email_add'];  
-}else{
-    $recipient = $_POST['form_owner_mail'];
 }
 
+
     // try {
-    //     //Server settings
-    //     // $mail->SMTPDebug = 1;               
-
-    //     $mail->Host = '10.2.2.21';
- 
-    //     $mail->Port       = 25; 
-
-    //     //Recipients
-    //     $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', $department_name." Alapaap");
-    //     $mail->addAddress($recipient);         //Add a recipient
-    //     $mail->addCC($email_add);
+                              
+    //     $mail->Host = '10.2.2.21';       
+    //     $mail->Port       = 25;                               
+    //     $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
+    //     $mail->addAddress($recipient == null ? $_POST['form_owner_mail'] : $rowsSender['email_add']);         //Add a recipient
+    //     $mail->addCC($email_add);      
 
     //     $mail->isHTML(true);                                  
-    //     $mail->Subject = $subject;
+    //     $mail->Subject = "Password Recovery";
     //     $mail->Body    = $message;
     //     $mail->send();    
         
     // } catch (Exception $e) {
     //     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    // }       
-
+    // }
+ 
 try {
     //Server settings
-    $mail->SMTPDebug = 3;               
+    // $mail->SMTPDebug = 3;               
     $mail->isSMTP();                                            //Send using SMTP
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
@@ -62,7 +56,7 @@ try {
     );
     //Recipients
     $mail->setFrom('alapaapbsp@gmail.com', 'BSP Alapaap');
-    $mail->addAddress($recipient);         //Add a recipient
+    $mail->addAddress($recipient == null ? $_POST['form_owner_mail'] : $rowsSender['email_add']);         //Add a recipient
     $mail->addCC($email_add);
     
     $mail->isHTML(true);                                  

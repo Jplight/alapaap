@@ -86,14 +86,14 @@ endif;
                         <div class="col-md-12 col-lg-5 col-xl-4 offset-lg-1 offset-xl-1">
                             <label class="form-label d-block">Date Requested: <span class="fw-bold"><?php echo empty($date_requested) ? date('F d, Y') : date('F d, Y - h:i A',strtotime($date_requested)); ?></span></label>
                             <label class="form-label d-block">Control No:&nbsp; <span class="fw-bold"><?php echo empty($control_number) ? '' : 'HCI/'.$control_number; ?></span></label>
-                            <input type="hidden" name="txt_control_number" value="<?php echo empty($control_number) ? '' : $control_number; ?>" readonly >
-                            <input type="hidden" name="contact_no" value="<?php echo empty($contact_no) ? '' : $contact_no; ?>" readonly>
-                            <input type="hidden" name="email_add" value="<?php echo empty($email) ? '' : $email; ?>" readonly>
-                            <input type="hidden" name="form_owner_mail" value="<?php echo empty($email_add) ? '' : $email_add; ?>" readonly>
-                            <input type="hidden" name="form_type" value="<?php echo empty($form_type) ? '' : $form_type; ?>" readonly>
-                            <input type="hidden" name="num_revised" value="<?php echo empty($num_revised) ? '' : $num_revised; ?>" readonly placeholder="Total Revised">
-                            <input type="hidden" name="his_role" value="<?php echo empty($my_role) ? '' : $my_role; ?>" readonly>
-                            <input type="hidden" name="his_uid" value="<?php echo empty($get_uid) ? '' : $get_uid; ?>" readonly>
+                            <input type="text" name="txt_control_number" value="<?php echo empty($control_number) ? '' : $control_number; ?>" readonly >
+                            <input type="text" name="contact_no" value="<?php echo empty($contact_no) ? '' : $contact_no; ?>" readonly>
+                            <input type="text" name="email_add" value="<?php echo empty($email) ? '' : $email; ?>" readonly>
+                            <input type="text" name="form_owner_mail" value="<?php echo empty($email_add) ? '' : $email_add; ?>" readonly>
+                            <input type="text" name="form_type" value="<?php echo empty($form_type) ? '' : $form_type; ?>" readonly>
+                            <input type="text" name="num_revised" value="<?php echo empty($num_revised) ? '' : $num_revised; ?>" readonly placeholder="Total Revised">
+                            <input type="text" name="his_role" value="<?php echo empty($my_role) ? '' : $my_role; ?>" readonly>
+                            <input type="text" name="his_uid" value="<?php echo empty($get_uid) ? '' : $get_uid; ?>" readonly>
                         </div>
                     </div>
                     
