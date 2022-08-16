@@ -71,6 +71,7 @@ if (!empty($control_number)):
         $hci_up_ipaddress           = $rows_2['ip_add_vlan'];
         $hci_up_ip_vlan             = $rows_2['txt_ip_vlan'];
         $hci_up_users               = $rows_2['hci_users'];
+        $date_accomplished          = $rows_2['date_requested'];
     }
 endif;
 ?>
@@ -94,7 +95,8 @@ endif;
                 <div class="modal-body">
                     <div class="row g-0 d-flex flex-column-reverse flex-lg-row w-100 gap-3 gap-lg-0">
                         <div class="col-md-12 col-lg-5 col-xl-4 offset-lg-1 offset-xl-1">
-                            <label class="form-label d-block">Date Requested: <span class="fw-bold"><?php echo empty($date_requested) ? date('F d, Y') : date('F d, Y - h:i A',strtotime($date_requested)); ?></span></label>
+                            <label class="form-label d-block">Date Requested: <span class="fw-bold"><?php echo empty($date_requested) ? date('F d, Y') : date('F d, Y - h:i A',strtotime($date_requested)); ?></span></label> 
+                            <label class="form-label d-block">Date Approved: <span class="fw-bold" id="date_accomplished"><?php echo empty($date_accomplished) ? '' : $date_accomplished; ?></span></label>
                             <label class="form-label d-block">Control No:&nbsp; <span class="fw-bold"><?php echo empty($control_number) ? '' : 'HCI/'.$control_number; ?></span></label>
                             <input type="hidden" name="txt_control_number" value="<?php echo empty($control_number) ? '' : $control_number; ?>" readonly >
                             <input type="hidden" name="contact_no" value="<?php echo empty($contact_no) ? '' : $contact_no; ?>" readonly>

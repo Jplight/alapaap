@@ -35,13 +35,30 @@ $(document).ready(function () {
 					$("#hci_up_department").val(data.department)
 					$("#hci_up_location").val(data.location)
 					$("#hci_up_cluster").val(data.cluster)
-					$("#hci_up_vcpu").val(data.vcpu)
-					$("#hci_up_ram").val(data.ram)
-					$("#hci_up_os_old").val(data.os)
-					$("#hci_up_os_desc_old").val(data.txt_os_descript)
-					$("#hci_up_ipaddress").val(data.ip_add_vlan)
-					$("#hci_up_ip_vlan").val(data.txt_ip_vlan)
-					$("#hci_up_users").val(data.hci_users)
+					$("#hci_up_vcpu, #hci_up_req_vcpu").val(data.vcpu)
+					$("#hci_up_ram, #hci_up_req_ram").val(data.ram)
+					$("#hci_up_os_old, #hci_up_req_os_new").val(data.os)
+					$("#hci_up_os_desc_old, #hci_up_req_desc").val(data.txt_os_descript)
+					$("#hci_up_ipaddress, #hci_up_req_ipadd").val(data.ip_add_vlan)
+					$("#hci_up_ip_vlan, #hci_up_req_vlan").val(data.txt_ip_vlan)
+					$("#hci_up_users, #hci_up_req_users").val(data.hci_users)
+
+					// 2022-08-16 19:36:55
+					var options = {
+						year: "numeric",
+						month: "long",
+						day: "numeric",
+						time: "",
+					}
+
+					const nDate = new Date(data.date_accomplished)
+					$("#date_accomplished").text(
+						`${nDate.toLocaleDateString(
+							"en-US",
+							options
+						)} ${nDate.toLocaleTimeString()}`
+					)
+
 					// alert("Jquery Testing Alert"+data.cluster);
 					$("#btn_savehci_up, #btn_submit_hci_up").removeAttr("disabled")
 

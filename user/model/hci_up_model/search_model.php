@@ -31,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		    $response['ip_add_vlan'] 	= $rows['ip_add_vlan'];
 		    $response['txt_ip_vlan'] 	= $rows['txt_ip_vlan'];
 		    $response['hci_users'] 	= $rows['hci_users'];
+			$response['date_accomplished'] 	= $rows['date_requested'];
 	}else{
 		$response['status'] = 'invalid';
 		$response['message'] = 'No data found!';

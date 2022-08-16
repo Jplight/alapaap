@@ -62,13 +62,13 @@ $sql_baas = mysqli_query($conn,$query_baas);
 $returned_count_baas = mysqli_num_rows($sql_baas); // Count the number of Disapproved Form CPS
 
 include 'model/hci_form.php';
-// include 'model/hci_update_form.php';
-// include 'model/tci_form.php';
+include 'model/hci_update_form.php';
+include 'model/tci_form.php';
 
-// include 'model/cps_form.php';
-// include 'model/cps_form_update.php';
+include 'model/cps_form.php';
+include 'model/cps_form_update.php';
 
-// include 'model/baas_form.php';
+include 'model/baas_form.php';
 include 'model/authorize_personnel.php';
 ?>
 <!DOCTYPE html>
@@ -277,7 +277,7 @@ include 'model/authorize_personnel.php';
                                                 </table>
                                             </div>
                                         </div>
-                                        <!-- <div class="tab-pane" role="tabpanel" id="tab-2">
+                                        <div class="tab-pane" role="tabpanel" id="tab-2">
                                             <div class="table-responsive">
                                                 <table class="table table-hover user-select-none align-middle text-nowrap" id="tci_datatables">
                                                     <thead>
@@ -563,7 +563,7 @@ include 'model/authorize_personnel.php';
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        </div> -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>

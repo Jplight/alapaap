@@ -183,7 +183,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 
 	if (isset($_POST['btn_resubmit'])) {
-		echo "dawdawd";
 		$txt_control_number = $_POST['txt_control_number'];
 		$status = 2;
 		$revised = 0;
@@ -209,10 +208,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
 		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'returned','$status') ");				
-	
-		$form_subject = "HCI";
-		require 'mail_message.php';
-		require 'mail.php';
 	
 	}
 
