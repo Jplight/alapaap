@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $subject = "Alapaap Account has been Verified";
 	$message = "Good Day ".ucfirst($rows_users['first_name'])." ".ucfirst($rows_users['last_name']).",<br><br>"
     . "Your account has been verified by our Approver.<br>"
-    . "Please click <a href='http://localhost/revision_alapaap/index.php'>Here</a> the click below to proceed in out Login Page!<br><br>"               
+    . "Please click <a href='http://".$_SERVER['SERVER_NAME']."/index.php'>Here</a> the click below to proceed in out Login Page!<br><br>"               
     . "Thank you<br>";
 
     try {
