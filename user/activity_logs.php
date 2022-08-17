@@ -120,12 +120,11 @@
                                                             if($rows_reports['form_type'] == '4-2'){
                                                                 $form_type = 'BaaS CRRF';
                                                             }
-
-                                                            
+   
                                                             echo '<tr>';
                                                             echo '<td>'.$form_type.'</td>';
                                                             echo '<td>'.$rows_reports['control_number'].'</td>';
-                                                            echo '<td> has been '.$rows_reports['activity'].'</td>';  
+                                                            echo '<td> '.$rows_reports['activity'].' </td>';  
                                                             echo '<td>'.$rows_reports['date_requested'].'</td>';   
                                                             echo '</tr>';
                                                         endwhile; 

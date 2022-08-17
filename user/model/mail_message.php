@@ -13,13 +13,12 @@ if($status >=2 && $status <=6){
 
 
     // Mail Message
-    if($status == 2){$stat_name = 'Approver'; $department_name = "BSP"; }
-    if($status == 3){$stat_name = 'Receiver'; $department_name = "BSP"; }
-    if($status == 4){$stat_name = 'Performer'; $department_name = "BSP"; }
-    if($status == 5){$stat_name = 'Confirmer'; $department_name = "BSP";}
-    if($status == 6){$stat_name = 'Verifier'; $department_name = "BSP";}
-    if($status == 7){$department_name = "BSP";}
-    if($status == 'admin'){$stat_name = 'Administrator'; $department_name = "BSP";}
+    if($status == 2){$stat_name = 'Approver';  }
+    if($status == 3){$stat_name = 'Receiver'; }
+    if($status == 4){$stat_name = 'Performer';  }
+    if($status == 5){$stat_name = 'Confirmer'; }
+    if($status == 6){$stat_name = 'Verifier'; }
+    if($status == 'admin'){$stat_name = 'Administrator'; }
 
     if($status >=2 && $status <=6){
         $message = "Hi <b>".$stat_name."</b>,<br><br>".
