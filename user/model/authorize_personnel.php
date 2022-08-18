@@ -47,6 +47,7 @@ if (isset($_POST['btn_approver'])) {
 
 	// $_SESSION['message'] = $alert;
 
+	$control_number = $txt_control_number;
 	require 'mail_message.php';
 	require 'mail.php';
 
@@ -178,49 +179,13 @@ if (isset($_POST['btn_reciever'])) {
 
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$reciever_id', '$my_fullname','$form_type','$txt_control_number', 'approved','$status') ");
 	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$txt_control_number', 'received','$status','0') ");
-
+	
+	$control_number = $txt_control_number;
 	require 'mail_message.php';
 	require 'mail.php';	
 
 }
 
-if (isset($_POST['rec_disapproved'])) {
-	$reciever_name = $_POST['reciever_name'];
-	$reciever_id = $_POST['reciever_id'];
-	$num_revised	= intval($_POST['num_revised']) + 1;
-	$txt_control_number = $_POST['txt_control_number'];
-	$comments = $_POST['comments'];
-	$role = $_POST['his_role'];
-	$form_type = $_POST['form_type'];
-	$status = 0;
-	$revised = 1;
-	$rec_status = 0;
-	$comment_id = rand(100000,999999);
-	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2') {
-		$sql = mysqli_query($conn,"UPDATE tbl_hci set status = '$status', revised = '$revised', num_revised = '$num_revised', reciever_id = '$reciever_id', reciever = '$reciever_name', rec_status = '$rec_status', rec_date = NOW() where control_number = '$txt_control_number' ");
-		if (!empty($comments)) {
-			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$reciever_name','$comments', '$role',NOW()) ");
-		}	
-	}
-	if ($_POST['form_type'] == 2) {
-		$sql = mysqli_query($conn,"UPDATE tbl_tci set status = '$status', revised = '$revised', num_revised = '$num_revised' ,reciever_id = '$reciever_id', reciever = '$reciever_name', rec_status = '$rec_status', rec_date = NOW() where control_number = '$txt_control_number' ");	
-		if (!empty($comments)) {
-			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$reciever_name','$comments','$role' ,NOW()) ");
-		}
-	}
-	if ($_POST['form_type'] == 3 || $_POST['form_type'] == '3-1' || $_POST['form_type'] == '3-2' ) {
-		$sql = mysqli_query($conn,"UPDATE tbl_cps set status = '$status', revised = '$revised', num_revised = '$num_revised', reciever_id = '$reciever_id', reciever = '$reciever_name', rec_status = '$rec_status', rec_date = NOW() where control_number = '$txt_control_number' ");
-		if (!empty($comments)) {
-			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$reciever_name','$comments', '$role',NOW()) ");
-		}	
-	}
-	if ($_POST['form_type'] == 4 || $_POST['form_type'] == '4-2') {
-		$sql = mysqli_query($conn,"UPDATE tbl_baas set status = '$status', revised = '$revised', num_revised = '$num_revised' ,reciever_id = '$reciever_id', reciever = '$reciever_name', rec_status = '$rec_status', rec_date = NOW() where control_number = '$txt_control_number' ");	
-	}	
-
-
-	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$reciever_id', '$my_fullname','$form_type','$txt_control_number', 'disapproved','$status') ");
-}
  // ====== For Reciever ======
 
  // ====== For Performer ======
@@ -265,54 +230,12 @@ if (isset($_POST['btn_performer'])) {
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$performer_id', '$my_fullname','$form_type','$txt_control_number', 'performed','$status') ");
 	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$txt_control_number', 'performed','$status','0') ");
 
+	$control_number = $txt_control_number;
 	require 'mail_message.php';
 	require 'mail.php';	
 
 }
-if (isset($_POST['performer_disapproved'])) {
-	$performer_name = $_POST['performer_name'];
-	$performer_id = $_POST['performer_id'];
-	$num_revised	= intval($_POST['num_revised']) + 1;
-	$txt_control_number = $_POST['txt_control_number'];
-	$comments = $_POST['comments'];
-	$role = $_POST['his_role'];
-	$form_type = $_POST['form_type'];
-	$status = 0;
-	$revised = 1;
-	$perf_status = 0;
-	$comment_id = rand(100000,999999);
-	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2') {
-		$sql = mysqli_query($conn,"UPDATE tbl_hci set status = '$status', revised = '$revised', num_revised = '$num_revised', performer_id = '$performer_id', performer = '$performer_name', perf_status = '$perf_status', perform_date = NOW() where control_number = '$txt_control_number' ");
-		if (!empty($comments)) {
-			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$performer_name','$comments', '$role',NOW()) ");
-		}
-		$form_subject = "HCI";	
-	}
-	if ($_POST['form_type'] == 2) {
-		$sql = mysqli_query($conn,"UPDATE tbl_tci set status = '$status', revised = '$revised', num_revised = '$num_revised' ,performer_id = '$performer_id', performer = '$performer_name', perf_status = '$perf_status', perform_date = NOW() where control_number = '$txt_control_number' ");	
-		if (!empty($comments)) {
-			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$performer_name','$comments','$role' ,NOW()) ");
-		}
-		$form_subject = "Adhoc";
-	}
-	if ($_POST['form_type'] == 3 || $_POST['form_type'] == '3-1' || $_POST['form_type'] == '3-2' ) {
-		$sql = mysqli_query($conn,"UPDATE tbl_cps set status = '$status', revised = '$revised', num_revised = '$num_revised', performer_id = '$performer_id', performer = '$performer_name', perf_status = '$perf_status', perform_date = NOW() where control_number = '$txt_control_number' ");
-		if (!empty($comments)) {
-			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$performer_name','$comments', '$role',NOW()) ");
-		}	
-		$form_subject = "CPS";
-	}
-	if ($_POST['form_type'] == 4 || $_POST['form_type'] == '4-2') {
-		$sql = mysqli_query($conn,"UPDATE tbl_baas set status = '$status', revised = '$revised', performer_id = '$performer_id', performer = '$performer_name', perf_status = '$perf_status', perform_date = NOW() where control_number = '$txt_control_number' ");	
-		$form_subject = "BaaS";
-	}
 
-	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$performer_id', '$my_fullname','$form_type','$txt_control_number', 'disapproved','$status') ");
-	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$txt_control_number', 'confirmed','$status','0') ");
-
-	require 'mail_message.php';
-	require 'mail.php';	
-}
  // ====== For Performer ======
 
 
@@ -358,6 +281,7 @@ if (isset($_POST['btn_confirmer'])) {
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$verifier_id', '$my_fullname','$form_type','$txt_control_number', 'confirmed','$status') ");
 	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$txt_control_number', 'confirmed','$status','0') ");
 
+	$control_number = $txt_control_number;
 	require 'mail_message.php';
 	require 'mail.php';	
 
@@ -366,7 +290,7 @@ if (isset($_POST['btn_confirmer'])) {
 
 // ====== For Verifier ======
 if (isset($_POST['btn_verifier'])) {
-	$form_owner_mail = $_POST['form_owner_mail'];
+	$recipient = $_POST['form_owner_mail'];
 	$verifier_2_name = $_POST['verifier_2_name'];
 	$verifier_2id = $_POST['verifier_2id'];
 	$txt_control_number = $_POST['txt_control_number'];
@@ -437,10 +361,5 @@ if (isset($_POST['btn_verifier'])) {
 	require 'mail_message.php';
 	require 'mail.php';
 }
-
-
 // ====== For Verifier ======
-
-	
-
 ?>

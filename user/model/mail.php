@@ -13,21 +13,30 @@ $mail = new PHPMailer(true);
 
 $GetSender = mysqli_query($conn,"select * from tbl_user where role='$status' ");
 $rowsSender = mysqli_fetch_array($GetSender);
-       
+
 if($status >=2 && $status <=6){
     $recipient = $rowsSender['email_add'];    // To Approver, Receiver,Performer,Confirmer and Verifier
+   
 }else if($status == 'admin'){
     $recipient = $rowsSender['email_add'];  
+}else{
+    $recipient = $_POST['form_owner_mail'];
 }
 
-    try {
-                              
+    try {                            
         $mail->Host = '10.2.2.21';       
         $mail->Port       = 25;                               
         $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
         $mail->addAddress($recipient == null ? $_POST['form_owner_mail'] : $rowsSender['email_add']);         //Add a recipient
-        $mail->addCC($email_add);      
-
+        $mail->addCC($email_add);                 
+        switch ($status) {
+            case $status >=3 && $status <=6:
+                $bccMail = $mail->addBCC($_POST['form_owner_mail']);
+                break;
+            default:
+                $bccMail = null;
+                break;
+        }
         $mail->isHTML(true);                                  
         $mail->Subject = $subject;
         $mail->Body    = $message;
@@ -52,11 +61,21 @@ if($status >=2 && $status <=6){
     //             'verify_peer_name'  => false,
     //             'allow_self_signed' => true)
     //     );
+
     //     //Recipients
     //     $mail->setFrom('alapaapbsp@gmail.com', 'BSP Alapaap');
-    //     $mail->addAddress($recipient == null ? $_POST['form_owner_mail'] : $rowsSender['email_add']);         //Add a recipient
+    //     $mail->addAddress($recipient);  //Add a recipient
     //     $mail->addCC($email_add);
-        
+                
+    //     switch ($status) {
+    //         case $status >=3 && $status <=6:
+    //             $bccMail = $mail->addBCC($_POST['form_owner_mail']);
+    //             break;
+    //         default:
+    //             $bccMail = null;
+    //             break;
+    //     }
+
     //     $mail->isHTML(true);                                  
     //     $mail->Subject = $subject;
     //     $mail->Body    = $message;

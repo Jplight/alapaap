@@ -564,7 +564,7 @@ include 'model/save_profile.php';
                                 $("#notif_badge").html(data);       
                             }
                         });
-                    },100);   
+                    },500);   
                 });
 
             });

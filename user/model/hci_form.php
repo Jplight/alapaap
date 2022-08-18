@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		require 'mail_message.php';
 		require 'mail.php';
-		require 'create_pdf.php';
+		// require 'create_pdf.php';
 	}
 
 	if (isset($_POST['btn_savehci'])) {

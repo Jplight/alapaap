@@ -56,11 +56,14 @@
 
                 if($data['uid'] == $uid){
                     $notification = ucwords($data['fullname']).' has '.$st.' your '.$form_type." request with control number of  ".$form_type."/".$data['control_number'];
+                    $notifDate = $data['date_requested'];
                 }
                 if ($my_role == '2'){
+                    $notifDate = $data['date_requested'];
                     $notification = ucwords($NotifName).' has '.$st.' '.$form_type." with control number of ".$form_type."/".$data['control_number'];
                 }
                 if ($my_role == '3' && $data['form_type'] == '1'){
+                    $notifDate = $data['appr_date'];
                     // $notification = "<Approver> has approved the request of <Requestor> with control number <control_number>";
                     // $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control number of ".$form_type."/".$data['control_number'];
                     $notification = ucwords($NotifName).' has '.$st.' the request of '.ucwords($data['fullname'])." with control number of ".$form_type."/".$data['control_number'];
@@ -72,6 +75,19 @@
                 //     $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control number of ".$form_type."/".$data['control_number'];
                 // }
                 if ($my_role >= '4' && $my_role <= '6'){
+                   switch ($my_role) {
+                    case '4':
+                        $notifDate = $data['rec_date'];
+                        break;
+                    case '5':
+                        $notifDate = $data['perform_date'];
+                        break;
+                    case '6':
+                        $notifDate = $data['ver_date'];
+                        break;
+                    default:
+                        break;
+                   }
                     
                     // $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control number of ".$form_type."/".$data['control_number'];
                     $notification = ucwords($NotifName).' has '.$st.' the request of '.ucwords($data['fullname'])." with control number of ".$form_type."/".$data['control_number'];
@@ -88,8 +104,8 @@
                 </div>
             </div>
             <div class="small ">
-                <span class="d-block text-muted"><?=date('F d, Y - h:i:s A',strtotime($data['date_requested'])); ?></span>
-                <span class="fw-bold d-block text-muted" ><?=get_time_ago(strtotime($data['date_requested']));?></span>                                                  
+                <span class="d-block text-muted"><?=date('F d, Y - h:i:s A',strtotime($notifDate)); ?></span>
+                <span class="fw-bold d-block text-muted" ><?=get_time_ago(strtotime($notifDate));?></span>                                                  
                 <?=$notification; ?>
             </div>
         </a>
