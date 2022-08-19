@@ -33,6 +33,9 @@ if (!empty($control_number)):
         $txt_hci_users      = $rows['txt_hci_users'];
         $vm_deployment      = $rows['vm_deployment'];
         $vm_deployment_comment = $rows['vm_deployment_comment'];
+        $comm                  = $rows['comm'];
+        $comm_comment          = $rows['comm_comment'];
+        
 
         $status             = $rows['status'];
         $date_requested     = $rows['date_requested'];
@@ -241,6 +244,21 @@ endif;
                                             </td>
                                             <td>
                                                 <input class="form-control" type="text" placeholder="Optional" name="vm_deployment_comment" id="vm_deployment_comment" value="<?php echo empty($vm_deployment_comment) ? '' : $vm_deployment_comment; ?>" >
+                                            </td>
+                                         </tr>
+                                         <tr>
+                                            <td class="fw-bold">Communication</td>
+                                            <td>
+                                                <input class="form-control" type="text" name="comm" id="comm" value="<?php echo empty($comm) ? '' : $comm; ?>" required onkeypress="return /[0-9A-Z ]/i.test(event.key)">
+                                            </td>
+                                            <td>
+                                                <input class="form-control" type="text" placeholder="Optional" name="comm_comment" id="comm_comment" value="<?php echo empty($comm_comment) ? '' : $comm_comment; ?>" >
+                                            </td>
+                                         </tr>
+                                         <tr>
+                                            <td class="fw-bold">Attachment</td>
+                                            <td colspan="2">
+                                                <input type="file" class="form-control"  >
                                             </td>
                                          </tr>
                                         <!-- Display data of DISK GB -->

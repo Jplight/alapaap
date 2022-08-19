@@ -2,11 +2,6 @@
 session_start();
 ob_start();
 
-use PHPMailer\PHPMailer\PHPMailer;
-// use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-date_default_timezone_set('Etc/UTC');
-require '../vendor/autoload.php';
 include 'connection.php';
 
 if (isset($_REQUEST['email']) && isset($_REQUEST['token']) && isset($_REQUEST['attempt'])) {
@@ -25,57 +20,13 @@ if (isset($_REQUEST['email']) && isset($_REQUEST['token']) && isset($_REQUEST['a
             $sql = mysqli_query($conn,"UPDATE tbl_user SET password = '$txt_pword', token = '0', attempt='0' where email_add = '$email' ");            
             if ($sql) {  
                 
-                $mail = new PHPMailer(true);
-
+                $subject = "Password Reset";
                 $message = "Hello Alapaap User,<br><br>".
                 "Your password has been changed succesfully.<br><br><br>".
                 "<i>This message is intended only for the use of the person requesting.".
                 "If you did not request assistance with your password, please notify the administrators by sending an e-mail to bspops@ebizolution.com</i>";
 
-                try {
-                              
-                    $mail->Host = '10.2.2.21';       
-                    $mail->Port       = 25;                               
-                    $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
-                    $mail->addAddress($email);      
-    
-                    $mail->isHTML(true);                                  
-                    $mail->Subject = "Password Reset";
-                    $mail->Body    = $message;
-                    $mail->send();       
-                    
-                } catch (Exception $e) {
-                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-                }  
-                // try {
-                //     //Server settings
-                //     // $mail->SMTPDebug = 3;               
-                //     $mail->isSMTP();                                            //Send using SMTP
-                //     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-                //     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                //     $mail->Username   = 'alapaapbsp@gmail.com';                     //SMTP username
-                //     $mail->Password   = 'lykcjxwaufpwhznx';      // alapaap@Bsp123                            //SMTP password
-                //     $mail->SMTPSecure = 'tls';           
-                //     $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-                //     $mail->SMTPOptions = array (
-                //         'ssl' => array(
-                //             'verify_peer'  => false,
-                //             'verify_peer_name'  => false,
-                //             'allow_self_signed' => true)
-                //     );
-                //     //Recipients
-                //     $mail->setFrom('alapaapbsp@gmail.com', 'Alapaap | eBiZolution');
-                //     $mail->addAddress($email);         //Add a recipient
-        
-                //     $mail->isHTML(true);                                  
-                //     $mail->Subject = "Password Recovery";
-                //     $mail->Body    = $message;
-                //     $mail->send();    
-                    
-                // } catch (Exception $e) {
-                //     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-                // }  
-
+                require 'mail.php';
 
                 header("location: verification.php?token=".$_REQUEST['token']."&attempt=".$attempt);
             }

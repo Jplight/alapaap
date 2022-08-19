@@ -46,16 +46,16 @@
                             <label class="form-label fw-bold">Contact No.</label>
                             <input class="form-control form-control" type="text" id="contact_no"  name="contact_no" minlength="11" maxlength="11" tabindex="4" onkeypress="return /[0-9]/i.test(event.key)">
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label class="form-label fw-bold">Password *</label>
                             <div class="d-flex justify-content-end">
-                                <input class="form-control" type="password" name="pword" id="pword" required minlength="8" maxlength="30" tabindex="5" style="font-family: 'Open Sans', sans-serif;"> 
+                                <input class="form-control" type="password" name="pword" id="pword" required minlength="8" maxlength="30" tabindex="5" style="font-family: 'Open Sans', sans-serif;" autocomplete="nope" > 
                                 <div class="position-absolute me-2 bg-white d-flex align-self-center" style="z-index:4;">
                                     <button class="btn shadow-none btn-sm " type="button" id="btn_showpass" name="btn_showpass" hidden style="background-color: transparent;"><i class="far fa-eye-slash"></i></button>
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label class="form-label fw-bold">Confirm Password *</label>
                             <div class="d-flex justify-content-end">
                                 <input class="form-control" type="password" name="confirm_pword" id="confirm_pword" required minlength="8" maxlength="30" tabindex="6" style="font-family: 'Open Sans', sans-serif;"> 
@@ -63,15 +63,28 @@
                                     <button class="btn shadow-none btn-sm" type="button" id="btn_showpass2" name="btn_showpass2" hidden><i class="far fa-eye-slash"></i></button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="d-grid">
-                            <button class="btn btn-success" id="btn_submit" name="btn_submit" type="submit" >Submit</button>
+                            <button class="btn btn-success" id="modal_submit" name="modal_submit" type="button" data-bs-toggle="modal" data-bs-target="#new_account" disabled>Submit</button>
                         </div>
-                        <span class="small text-danger"><?php echo (!empty($user_error)) ? $user_error : ''; ?></span>
+                        <!-- Modal -->
+                        <div class="modal" id="new_account" data-bs-backdrop="modal" data-bs-keyboard="false" >
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body text-wrap text-center">
+                                        <h3 class="modal-title mb-3">Register this account?</h3>
+                                        <button class="btn btn-outline-danger shadow-none" type="button" data-bs-dismiss="modal">No</button>
+                                        <button class="btn btn-outline-success shadow-none" type="submit" name="btn_submit" id="btn_submit">Yes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal -->
                     </form>
                 </div>
             </div>
         </div>
+    
         <script src="assets/js/jquery-3.6.0.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/bs-init.js"></script>
@@ -80,6 +93,7 @@
         <script type="text/javascript">
             $(document).ready(function(){
                 $('#btn_showpass').click(function(){
+                    
                     if('password' == $('#pword').attr('type')){
                          $('#pword').prop('type', 'text');
                          $("#btn_showpass").html('<i class="far fa-eye"></i>');
@@ -97,20 +111,26 @@
                         $("#btn_showpass").html('<i class="far fa-eye-slash"></i>');
                     }
                 });
-                $("#pword, #confirm_pword").keyup(function(){
-                    if ($("#pword").val().length !== $("#confirm_pword").val().length){
-                    $("#btn_submit").attr('disabled',false);
-                    }
+
+                $("#pword").keydown(function(){
+                    if ($(this).val().length >= 7) {
+                        $("#modal_submit").attr('disabled',false); 
+                        console.log($(this).val().length);
+                    }else if ($(this).val().length < 7) {
+                        $("#modal_submit").attr('disabled',true); 
+                       
+                    }                    
                 });
-                $("#confirm_pword").keyup(function(){
-                    if ($(this).val().length >= 1) {
-                        $("#btn_showpass2").removeAttr('hidden');   
-                    }else{
-                        $("#btn_showpass2").attr('hidden',true);
-                        $('#confirm_pword').prop('type', 'password');
-                        $("#btn_showpass2").html('<i class="far fa-eye-slash"></i>');
-                    }
-                });                
+                
+                // $("#confirm_pword").keyup(function(){
+                //     if ($(this).val().length >= 1) {
+                //         $("#btn_showpass2").removeAttr('hidden');   
+                //     }else{
+                //         $("#btn_showpass2").attr('hidden',true);
+                //         $('#confirm_pword').prop('type', 'password');
+                //         $("#btn_showpass2").html('<i class="far fa-eye-slash"></i>');
+                //     }
+                // });                
             });
         </script>
         <script>
