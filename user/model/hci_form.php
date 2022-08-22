@@ -92,7 +92,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		$form_subject = "HCI";
 		
-		require 'create_pdf.php';
 		require 'mail_message.php';
 		require 'mail.php';
 		

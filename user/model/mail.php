@@ -89,6 +89,7 @@ if (isset($_POST['app_disapproved'])) {
     //             break;
     //     }
         
+       
     //     for ($i=0; $i < count($_FILES['file']['tmp_name']) ; $i++) { 
     //         $mail->addAttachment($_FILES['file']['tmp_name'][$i], $_FILES['file']['name'][$i]);    // Optional name
     //     }        
