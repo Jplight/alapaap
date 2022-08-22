@@ -60,7 +60,7 @@ $(document).ready(function () {
 					)
 
 					// alert("Jquery Testing Alert"+data.cluster);
-					$("#btn_savehci_up, #btn_submit_hci_up").removeAttr("disabled")
+					$("#btn_save_hci_up, #btn_submit_hci_up").removeAttr("disabled")
 
 					$("#hci_up_disk").remove() // this code will remove the DISK GB, if theres data tobe fetch
 				}

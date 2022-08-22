@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 
 
-	$sql = mysqli_query($conn,"SELECT * FROM tbl_hci where hostname = '$hci_up_search_txt' ");
+	$sql = mysqli_query($conn,"SELECT * FROM tbl_hci where hostname = '$hci_up_search_txt' and hci_new_control_num <> control_number and status >=1 and status < 3  ");
 	$count = mysqli_num_rows($sql);
 	if ($count > 0) {
 			$rows = mysqli_fetch_assoc($sql);
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$response['date_accomplished'] 	= $rows['date_requested'];
 	}else{
 		$response['status'] = 'invalid';
-		$response['message'] = 'No data found!';
+		$response['message'] = 'No Stale Data Found!';
 	}
 
 	// WHen hostname is search, it's validate if the hostname in this table is already deleted

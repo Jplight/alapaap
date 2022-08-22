@@ -143,13 +143,13 @@ endwhile;
                                     <tbody class="text-dark">
                                         <tr>
                                             <td>
-                                                <input class="form-control form-control-sm text-dark" type="text" name="fullname" value="<?php echo empty($fullname) ? $my_fullname : ucwords($fullname); ?>" readonly="readonly" />
+                                                <input class="form-control form-control-sm text-dark" type="text" name="fullname" value="<?php echo empty($fullname) ? $my_fullname : ucwords($fullname); ?>" readonly="readonly" disabled />
                                             </td>
                                             <td>
-                                                <input class="form-control form-control-sm text-dark" type="text" name="department" value="<?php echo empty($department) ? '' : $department; ?>" required/>
+                                                <input class="form-control form-control-sm text-dark"  type="text" name="department" value="<?php echo empty($department) ? '' : $department; ?>" required disabled/>
                                             </td>
                                             <td>
-                                                <select class="form-select form-select-sm text-dark"  name="location" required>
+                                                <select class="form-select form-select-sm text-dark"  name="location" required disabled>
                                                     <option value="" selected="">Select your Location</option>
                                                     <option value="HO"  <?php echo empty($location) ? '' : ($location == 'HO' ? 'selected' : ''); ?> >HO - Head Office</option>
                                                     <option value="LFC" <?php echo empty($location) ? '' : ($location == 'LFC' ? 'selected' : ''); ?> >LFC - Local Fallback Center</option>
@@ -163,7 +163,7 @@ endwhile;
                                         </tr>
                                         <tr>
                                             <td>
-                                                <select class="form-select form-select-sm text-dark" name="cluster" required>
+                                                <select class="form-select form-select-sm text-dark" name="cluster" required disabled>
                                                     <option value="" selected>Select Cluster</option>
                                                     <option value="general_cluster" <?php echo empty($cluster) ? '' : ($cluster == 'general_cluster' ? 'selected' : ''); ?> >General Cluster</option>
                                                     <option value="sql_cluster"  <?php echo empty($cluster) ? '' : ($cluster == 'sql_cluster' ? 'selected' : ''); ?> >SQL Cluster</option>
@@ -171,7 +171,7 @@ endwhile;
                                                  </select>
                                             </td>
                                             <td class="align-top" colspan="3">
-                                                <input class="form-control form-control-sm text-dark" type="text" id="hostname" name="hostname" value="<?php echo empty($hostname) ? '' : $hostname; ?>" placeholder="Input your Host Name" required />
+                                                <input class="form-control form-control-sm text-dark" type="text" id="hostname" name="hostname" value="<?php echo empty($hostname) ? '' : $hostname; ?>" placeholder="Input your Host Name" required disabled />
                                             </td>
                                         </tr>
                                     </tbody>
@@ -194,32 +194,32 @@ endwhile;
                                         <tr>
                                             <td class="fw-bold">vCPU</td>
                                             <td>
-                                                <input class="form-control form-control-sm text-dark" type="text" name="vcpu" value="<?php echo empty($vcpu) ? '' : $vcpu; ?>" />
+                                                <input class="form-control form-control-sm text-dark" type="text" name="vcpu" value="<?php echo empty($vcpu) ? '' : $vcpu; ?>" disabled/>
                                             </td>
                                             <td>
-                                                <input class="form-control form-control-sm  text-dark" type="text" name="vcpu_comment" value="<?php echo empty($vcpu_comment) ? '' : $vcpu_comment; ?>" />
+                                                <input class="form-control form-control-sm  text-dark" type="text" name="vcpu_comment" value="<?php echo empty($vcpu_comment) ? '' : $vcpu_comment; ?>" disabled />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="fw-bold">RAM (GB)</td>
                                             <td>
-                                                <input class="form-control form-control-sm text-dark" type="text" name="ram" value="<?php echo empty($ram) ? '' : $ram; ?>" />
+                                                <input class="form-control form-control-sm text-dark" type="text" name="ram" value="<?php echo empty($ram) ? '' : $ram; ?>" disabled/>
                                             </td>
                                             <td>
-                                                <input class="form-control form-control-sm text-dark" type="text"  name="ram_comment" value="<?php echo empty($ram_comment) ? '' : $ram_comment; ?>" />
+                                                <input class="form-control form-control-sm text-dark" type="text"  name="ram_comment" value="<?php echo empty($ram_comment) ? '' : $ram_comment; ?>" disabled />
                                             </td>
                                         </tr>
                                         <tr class="align-top">
                                              <td class="fw-bold">OS</td>
                                              <td>
-                                                 <select class="form-select form-select-sm text-dark" name="os" >
+                                                 <select class="form-select form-select-sm text-dark" name="os" disabled>
                                                     <option value="" selected>Select OS</option>
                                                     <option value="windows" <?php echo empty($os) ? '' : ($os == 'windows' ? 'selected' : ''); ?> >Windows</option>
                                                     <option value="linux" <?php echo empty($os) ? '' : ($os == 'linux' ? 'selected' : ''); ?> >Linux</option>
                                                  </select>                              
                                              </td>
                                              <td>
-                                                 <input class="form-control form-control-sm text-dark" type="text" name="os_comment" value="<?php echo empty($os_comment) ? '' : $os_comment; ?>" />  
+                                                 <input class="form-control form-control-sm text-dark" type="text" name="os_comment" value="<?php echo empty($os_comment) ? '' : $os_comment; ?>" disabled/>  
                                              </td>
                                          </tr>
                                          <tr>
@@ -227,37 +227,37 @@ endwhile;
                                                 <span class="invisible"></span>
                                             </td>
                                              <td>
-                                                <input class="form-control form-control-sm text-dark" type="text" name="txt_os_descript" value="<?php echo empty($txt_os_descript) ? '' : $txt_os_descript; ?>" placeholder="Specify OS Environment (with or w/o GUI:)" >
+                                                <input class="form-control form-control-sm text-dark" type="text" name="txt_os_descript" value="<?php echo empty($txt_os_descript) ? '' : $txt_os_descript; ?>" placeholder="Specify OS Environment (with or w/o GUI:)" disabled>
                                             </td>
                                              <td>
-                                                <input class="form-control form-control-sm text-dark" type="text" name="txt_define_parti" value="<?php echo empty($txt_define_parti) ? '' : $txt_define_parti; ?>" placeholder="Please Define Partion:" >
+                                                <input class="form-control form-control-sm text-dark" type="text" name="txt_define_parti" value="<?php echo empty($txt_define_parti) ? '' : $txt_define_parti; ?>" placeholder="Please Define Partion:" disabled>
                                             </td>
                                          </tr>
                                          <tr>
                                              <td class="fw-bold">IP Address</td>
                                              <td>
-                                                 <input class="form-control form-control-sm text-dark" type="text" name="ip_add_vlan" value="<?php echo empty($ip_add_vlan) ? '' : $ip_add_vlan; ?>" />
+                                                 <input class="form-control form-control-sm text-dark" type="text" name="ip_add_vlan" value="<?php echo empty($ip_add_vlan) ? '' : $ip_add_vlan; ?>" disabled/>
                                              </td>
                                              <td>
-                                                 <input class="form-control form-control-sm text-dark" type="text" name="ip_comment" value="<?php echo empty($ip_comment) ? '' : $ip_comment; ?>" >
+                                                 <input class="form-control form-control-sm text-dark" type="text" name="ip_comment" value="<?php echo empty($ip_comment) ? '' : $ip_comment; ?>" disabled>
                                              </td>
                                          </tr>
                                          <tr>
                                              <td class="fw-bold">VLAN</td>
                                              <td>
-                                                 <input class="form-control form-control-sm text-dark" type="text" name="txt_ip_vlan" value="<?php echo empty($txt_ip_vlan) ? '' : $txt_ip_vlan; ?>" />
+                                                 <input class="form-control form-control-sm text-dark" type="text" name="txt_ip_vlan" value="<?php echo empty($txt_ip_vlan) ? '' : $txt_ip_vlan; ?>" disabled/>
                                              </td>
                                              <td>
-                                                 <input class="form-control form-control-sm text-dark" type="text" name="vlan_comment"  value="<?php echo empty($vlan_comment) ? '' : $vlan_comment; ?>" >
+                                                 <input class="form-control form-control-sm text-dark" type="text" name="vlan_comment"  value="<?php echo empty($vlan_comment) ? '' : $vlan_comment; ?>"disabled >
                                              </td>
                                          </tr>
                                          <tr>
                                              <td class="fw-bold">Users </td>
                                              <td>
-                                                 <input class="form-control form-control-sm text-dark" type="text" name="hci_users" value="<?php echo empty($hci_users) ? '' : $hci_users; ?>" />
+                                                 <input class="form-control form-control-sm text-dark" type="text" name="hci_users" value="<?php echo empty($hci_users) ? '' : $hci_users; ?>" disabled/>
                                              </td>
                                              <td>
-                                                 <input class="form-control form-control-sm text-dark" type="text"  name="txt_hci_users" value="<?php echo empty($txt_hci_users) ? '' : $txt_hci_users; ?>" />
+                                                 <input class="form-control form-control-sm text-dark" type="text"  name="txt_hci_users" value="<?php echo empty($txt_hci_users) ? '' : $txt_hci_users; ?>" disabled/>
                                              </td>
                                          </tr>
 
@@ -271,11 +271,11 @@ endwhile;
                                         <tr>
                                             <td class="fw-bold">Disk (GB) <?=$num++; ?></td>
                                             <td>
-                                                <input type="hidden" name="others_id[]" value="<?=$rows['others_id']; ?>" >
-                                                <input class="form-control form-control-sm text-dark uid1" type="text" name='others_1[]' value="<?=$rows['others_1']?>" >
+                                                <input type="hidden" name="others_id[]" value="<?=$rows['others_id']; ?>" disabled>
+                                                <input class="form-control form-control-sm text-dark uid1" type="text" name='others_1[]' value="<?=$rows['others_1']?>" disabled>
                                             </td>
                                             <td>
-                                                <input class="form-control form-control-sm text-dark uname1" type="text" name='others_2[]' value="<?=$rows['others_2']?>">
+                                                <input class="form-control form-control-sm text-dark uname1" type="text" name='others_2[]' value="<?=$rows['others_2']?>" disabled>
                                             </td>
                                         </tr>
                                         <?php 
@@ -291,8 +291,8 @@ endwhile;
                                             <td class="fw-bold">DISK (GB)</td>
                                             <td>
                                                 <div class="d-flex justify-content-end position-relative">
-                                                    <input type="hidden" name="others_id[]" >
-                                                    <input class="form-control form-control-sm text-dark uid1" type="text" name='others_1[]' >
+                                                    <input type="hidden" name="others_id[]" disabled>
+                                                    <input class="form-control form-control-sm text-dark uid1" type="text" name='others_1[]' disabled>
 
                                                     <div class="position-absolute me-2 bg-white d-flex align-self-center" style="z-index:4;">
                                                         <div class="d-flex flex-column ">

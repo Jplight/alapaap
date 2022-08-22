@@ -379,8 +379,8 @@ endif;
                 <?php if (empty($control_number)): ?>
                     <div class="modal-footer d-flex justify-content-end">
                         <div>
-                            <button class="btn btn-secondary" type="submit" id="btn_save_hci_up" name="btn_save_hci_up" ><i class="fa-fw fas fa-file me-1"></i>Draft</button>
-                            <button class="btn btn-primary" type="submit"  id="btn_submit_hci_up" name="btn_submit_hci_up" ><i class="fa-fw fas fa-paper-plane me-1"></i>Submit</button>      
+                            <button class="btn btn-secondary" type="submit" id="btn_save_hci_up" name="btn_save_hci_up" disabled ><i class="fa-fw fas fa-file me-1" ></i>Draft</button>
+                            <button class="btn btn-primary" type="submit"  id="btn_submit_hci_up" name="btn_submit_hci_up" disabled ><i class="fa-fw fas fa-paper-plane me-1"></i>Submit</button>      
                         </div>
                     </div>
                 <?php endif; ?>
