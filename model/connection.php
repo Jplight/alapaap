@@ -1,10 +1,10 @@
 <?php  
 
-$conn = mysqli_connect('localhost','root','whyllard','alapaap_db');
-if (mysqli_connect_error()) {
-	echo "Connection Failed! 😥";
-	echo '<h3>'.mysqli_connect_error().'</h3>';
-	exit();
-}
+	$conn = mysqli_connect('localhost','root','whyllard','alapaap_db');
+	if (mysqli_connect_error()) {
+		echo "Connection Failed! 😥";
+		echo '<h3>'.mysqli_connect_error().'</h3>';
+		exit();
+	}
 
 ?>

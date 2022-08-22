@@ -67,7 +67,7 @@ if (!empty($control_number)):
     }
 endif;
 ?>
-<form method="post" autocomplete="off" id="form_new" name="form_new" action="">
+<form method="post" autocomplete="off" id="form_new" name="form_new" action="" enctype="multipart/form-data">
     <div id="view_hci<?php echo empty($control_number) ? '' : $control_number; ?>" class="modal fade" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-xl modal-fullscreen-xl-down" role="document">
             <div class="modal-content">
@@ -258,7 +258,7 @@ endif;
                                          <tr>
                                             <td class="fw-bold">Attachment</td>
                                             <td colspan="2">
-                                                <input type="file" class="form-control"  >
+                                                <input name="file[]" multiple="multiple" class="form-control" type="file" id="file">
                                             </td>
                                          </tr>
                                         <!-- Display data of DISK GB -->

@@ -5,12 +5,13 @@ use PHPMailer\PHPMailer\PHPMailer;
 // use PHPMailer\PHPMailer\SMTP;
 
 use PHPMailer\PHPMailer\Exception;
+use Dompdf\Dompdf;
 date_default_timezone_set('Etc/UTC');
 
 include '../vendor/autoload.php';
-
+require '../vendor/dompdf/autoload.inc.php';
 $mail = new PHPMailer(true);
-
+$dompdf = new Dompdf();
 
 
 $GetSender = mysqli_query($conn,"select * from tbl_user where role='$status' ");
@@ -46,6 +47,9 @@ if (isset($_POST['app_disapproved'])) {
                 $bccMail = null;
                 break;
         }
+        for ($i=0; $i < count($_FILES['file']['tmp_name']) ; $i++) { 
+            $mail->addAttachment($_FILES['file']['tmp_name'][$i], $_FILES['file']['name'][$i]);    // Optional name
+        }
         $mail->isHTML(true);                                  
         $mail->Subject = $subject;
         $mail->Body    = $message;
@@ -75,7 +79,7 @@ if (isset($_POST['app_disapproved'])) {
     //     $mail->setFrom('alapaapbsp@gmail.com', 'BSP Alapaap');
     //     $mail->addAddress($recipient); // $recipient   //Add a recipient
     //     $mail->addCC($email_add);    // $email_add
-                
+          
     //     switch ($status) {
     //         case $status >=3 && $status <=6:
     //             $bccMail = $mail->addBCC($_POST['form_owner_mail']);
@@ -84,7 +88,10 @@ if (isset($_POST['app_disapproved'])) {
     //             $bccMail = null;
     //             break;
     //     }
-
+        
+    //     for ($i=0; $i < count($_FILES['file']['tmp_name']) ; $i++) { 
+    //         $mail->addAttachment($_FILES['file']['tmp_name'][$i], $_FILES['file']['name'][$i]);    // Optional name
+    //     }        
     //     $mail->isHTML(true);                                  
     //     $mail->Subject = $subject;
     //     $mail->Body    = $message;

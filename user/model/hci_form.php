@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$vm_deployment_comment = $_POST['vm_deployment_comment'];
 	$comm                  = $_POST['comm'];
 	$comm_comment          = $_POST['comm_comment'];
-	
+	$file_pdf = $_POST['file'];
 
 	$form_type = 1; 
 	$comments = $_POST['comments'];
@@ -92,9 +92,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		$form_subject = "HCI";
 		
+		require 'create_pdf.php';
 		require 'mail_message.php';
 		require 'mail.php';
-		// require 'create_pdf.php';
+		
 	}
 
 	if (isset($_POST['btn_savehci'])) {

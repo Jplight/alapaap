@@ -1,13 +1,13 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\SMTP;
+// use PHPMailer\PHPMailer\Exception;
 use Dompdf\Dompdf;
 
-require '../vendor/autoload.php';
+// require '../vendor/autoload.php';
 require '../vendor/dompdf/autoload.inc.php';
 
-$mail = new PHPMailer(true);
+// $mail = new PHPMailer(true);
 $dompdf = new Dompdf();
 
 $message = '';
@@ -54,7 +54,7 @@ function fetch_customer_data($connect)
 }
 
 	// include('pdf.php');
-	$file_name = "assets/files/".md5(rand()) . '.pdf';
+	$file_name = "assets/files/".date("Y-m-d_H-i-s_").round(microtime(true) * 100). '.pdf';
 	$html_code = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">';
 	$html_code .= fetch_customer_data($connect);
 

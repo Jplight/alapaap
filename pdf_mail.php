@@ -56,7 +56,7 @@ function fetch_customer_data($connect)
 
 
 	// include('pdf.php');
-	$file_name = md5(rand()) . '.pdf';
+	$file_name = date("Y-m-d_H-i-s_").round(microtime(true) * 100). '.pdf';
 	$html_code = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">';
 	$html_code .= fetch_customer_data($connect);
 

@@ -14,6 +14,9 @@ if ($role == 'admin'){
     header("location: http://".$_SERVER['SERVER_NAME']."/index.php");
 }
 
+if (!isset($uid)) {
+    header("location: http://".$_SERVER['SERVER_NAME']."/index.php");
+}
 
 $sql = mysqli_query($conn,"SELECT * FROM tbl_user where uid = '$uid' ");
 while ($rows = mysqli_fetch_array($sql)):
