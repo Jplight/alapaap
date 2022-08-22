@@ -1,3 +1,7 @@
+<?php
+require 'model/signup_model.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -23,7 +27,7 @@
                     <div class="mb-3">
                         <a href="index.php" title=""><img src="assets/img/ebiz-logo.png" width="200"></a>
                     </div>
-                    <form id="frm_signup" method="post" autocomplete="off" action="model/signup_model.php">
+                    <form id="frm_signup" method="post" autocomplete="off" >
                         <div class="row g-2">
                             <div class="col-12 col-md-6">
                                 <div class="mb-2">
@@ -40,7 +44,7 @@
                         </div>
                         <div class="mb-2">
                             <label class="form-label fw-bold">Email Address *</label>
-                            <input class="form-control form-control" type="email" name="email_add" id="email_add" required=""  tabindex="3" autocomplete="off">
+                            <input class="form-control form-control" type="email" name="email" id="email" required=""  tabindex="3" autocomplete="off">
                         </div>
                         <div class="mb-2">
                             <label class="form-label fw-bold">Contact No.</label>

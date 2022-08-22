@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($count > 0){ 
             $sql_2 = mysqli_query($conn,"UPDATE tbl_user SET token='$token', attempt='$attempt' WHERE email_add = '$email' ");
             
-            $link = "http://".$_SERVER['SERVER_NAME']."/model/reset_pass.php?email=".$email."&token=".$token."&attempt=".$attempt;
+            $link = "http://".$_SERVER['SERVER_NAME']."/reset_pass.php?email=".$email."&token=".$token."&attempt=".$attempt;
             
             $subject = "Password Recovery";
             $message = "Hello Alapaap User,<br><br>".
