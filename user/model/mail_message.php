@@ -46,7 +46,6 @@ if($status >=2 && $status <=6){
             $link_pdf = "<a href='http://".$_SERVER['SERVER_NAME']."/user/inc/print/print_hci_delete.php?control_number=".$control_number."'>Click Here</a><br><br>";
         }
 
-
         $message = "Hi <b>".ucwords($fullname)."</b>,<br><br>".
         "Your <b>HCI</b> request with Control Number of <b>HCI/".$control_number."</b> has verified.<br>".
         "To view the file please ".$link_pdf.".<br>".

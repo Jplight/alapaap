@@ -14,8 +14,8 @@ $mail = new PHPMailer(true);
 $dompdf = new Dompdf();
 
 
-$getRecipients = mysqli_query($conn,"select * from tbl_user where role='$status' ");
-$rowsSender = mysqli_fetch_array($getRecipients);
+$GetSender = mysqli_query($conn,"select * from tbl_user where role='$status' ");
+$rowsSender = mysqli_fetch_array($GetSender);
 
 if($status >=2 && $status <=6){
     $recipient = $rowsSender['email_add'];    // To Approver, Receiver,Performer,Confirmer and Verifier
@@ -37,15 +37,7 @@ if (isset($_POST['app_disapproved'])) {
         $mail->Host = '10.2.2.21';       
         $mail->Port       = 25;                               
         $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
-        foreach ($getRecipients as $row) {
-            try {
-                $mail->addAddress($row['email_add'], $row['first_name']);
-            } catch (Exception $e) {
-                echo 'Invalid address skipped: ' . htmlspecialchars($row['email_add']) . '<br>';
-                continue;
-            }
-        }
-        $mail->addAddress($recipient); 
+        $mail->addAddress($recipient);         //Add a recipient
         $mail->addCC($email_add);                 
         switch ($status) {
             case $status >=3 && $status <=6:
@@ -61,14 +53,7 @@ if (isset($_POST['app_disapproved'])) {
         $mail->isHTML(true);                                  
         $mail->Subject = $subject;
         $mail->Body    = $message;
-        try {
-            $mail->send();
-        } catch (Exception $e) {
-            echo 'Mailer Error (' . htmlspecialchars($row['email_add']) . ') ' . $mail->ErrorInfo . '<br>';
-            $mail->getSMTPInstance()->reset();
-        }         
-        $mail->clearAddresses();
-        $mail->clearAttachments();
+        $mail->send();           
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
@@ -92,15 +77,7 @@ if (isset($_POST['app_disapproved'])) {
 
     //     //Recipients
     //     $mail->setFrom('alapaapbsp@gmail.com', 'BSP Alapaap');
-    //     $mail->addAddress($recipient); 
-    //     foreach ($getRecipients as $row) {
-    //         try {
-    //             $mail->addAddress($row['email_add'], $row['first_name']);
-    //         } catch (Exception $e) {
-    //             echo 'Invalid address skipped: ' . htmlspecialchars($row['email_add']) . '<br>';
-    //             continue;
-    //         }
-    //     }
+    //     $mail->addAddress($recipient); // $recipient   //Add a recipient
     //     $mail->addCC($email_add);    // $email_add
           
     //     switch ($status) {
@@ -116,26 +93,11 @@ if (isset($_POST['app_disapproved'])) {
     //     for ($i=0; $i < count($_FILES['file']['tmp_name']) ; $i++) { 
     //         $mail->addAttachment($_FILES['file']['tmp_name'][$i], $_FILES['file']['name'][$i]);    // Optional name
     //     }        
-
     //     $mail->isHTML(true);                                  
     //     $mail->Subject = $subject;
     //     $mail->Body    = $message;
-
-    //     try {
-    //         // if (!empty($row['photo'])) {
-    //         //     //Assumes the image data is stored in the DB
-    //         //     $mail->addStringAttachment($row['photo'], 'YourPhoto.jpg');
-    //         // }
-    //         $mail->send();
-    //     } catch (Exception $e) {
-    //         echo 'Mailer Error (' . htmlspecialchars($row['email_add']) . ') ' . $mail->ErrorInfo . '<br>';
-    //         //Reset the connection to abort sending this message
-    //         //The loop will continue trying to send to the rest of the list
-    //         $mail->getSMTPInstance()->reset();
-    //     }
-    //     //Clear all addresses and attachments for the next iteration
-    //     $mail->clearAddresses();
-    //     $mail->clearAttachments();
+    //     $mail->send();    
+        
     // } catch (Exception $e) {
     //     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     // }   
