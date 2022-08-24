@@ -10,13 +10,15 @@ include '../vendor/autoload.php';
 
 $mail = new PHPMailer(true);
      
+$recipient = $txt_email_add;
+
     try {
         //Server settings             
         $mail->Host = '10.2.2.21';          
         $mail->Port = 25;                               
 
         $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
-        $mail->addAddress($email_add);         //Add a recipient
+        $mail->addAddress($recipient);         //Add a recipient
 
         $mail->isHTML(true);                                  
         $mail->Subject = $subject;
@@ -43,10 +45,10 @@ $mail = new PHPMailer(true);
     //     );
     //     //Recipients
     //     $mail->setFrom('alapaapbsp@gmail.com', 'Alapaap | eBiZolution');
-    //     $mail->addAddress($email_add);         //Add a recipient
+    //     $mail->addAddress($recipient);         //Add a recipient
 
     //     $mail->isHTML(true);                                  
-    //     $mail->Subject = "Password Recovery";
+    //     $mail->Subject = $subject;
     //     $mail->Body    = $message;
     //     $mail->send();    
         

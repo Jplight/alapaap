@@ -233,8 +233,7 @@ endwhile;
                                                             echo '<td>'.$rows_users['date_created'].'</td>';
                                                            
                                                             echo '<td >';
-                                                                echo '<a class="btn btn-outline-success btn-sm shadow-none me-2" data-bs-target="#new_account'.$rows_users['uid'].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-user-check me-1"></i>Approve</a>';
-                                                                echo '<a class="btn btn-outline-danger btn-sm shadow-none" data-bs-target="#remove_account'.$rows_users['uid'].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-user-times me-1"></i>Diapprove</a>';
+                                                                echo '<a class="btn btn-outline-danger btn-sm shadow-none" data-bs-target="#delete_account'.$rows_users['uid'].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-user-times me-1"></i>Delete</a>';
                                                                 require 'inc/new_user_account.php';
                                                             echo '</td>';
                                                         echo '</tr>';                                                        

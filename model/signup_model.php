@@ -14,11 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$fname = strtolower($_POST['fname']) ;
 	$lname = strtolower($_POST['lname']) ;
 	$email = $_POST['email'];
-	$contact_no = $_POST['contact_no'];
 	$pword = hash_hmac('md5',$_POST['pword'],'@Bsp1234*');
 	// $confirm_pword = $_POST['confirm_pword'];
 	$status		= '0';
-	$token 			= null;
 	$role = '1'; // Role for requestor is always 1
 
 	
@@ -32,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if ($countEmailExist > 0){
 		$error_alert = "Email is already exist!";
 	}else{
-		$sql = mysqli_query($conn,"INSERT into tbl_user (first_name,last_name,email_add,contact_no,password,status,token,role, default_role) values ('$fname','$lname','$email','$contact_no','$pword','$status','$token','$role', '1') ");
+		$sql = mysqli_query($conn,"INSERT into tbl_user (first_name,last_name,email_add,password,status,role, default_role) values ('$fname','$lname','$email','$pword','$status','$role', '1') ");
 		$subject = "Account Registration";
 		$message = "Hello <b>".ucfirst($_POST['fname'])." ".ucfirst($_POST['lname'])."</b>,<br><br>"
 		. "Our Approver is reviewing your account.<br>"
