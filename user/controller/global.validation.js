@@ -118,12 +118,12 @@ $(document).ready(function () {
 		{
 			form: "frm_cps_new_id",
 			buttons: [
-				{ name: "#btn_submit_cps", msg: "Save as draft?" },
-				{ name: "#btn_save_cps", msg: "Do you want to submit?" },
-				{ name: "#btn_cancel_cps", msg: "Submit draft?" },
+				{ name: "#btn_submit_cps", msg: "Do you want to submit?" },
+				{ name: "#btn_save_cps", msg: "Save as draft?" },
+				{ name: "#btn_cancel_cps", msg: "Do you wish to cancel this form?" },
 				{ name: "#btn_resubmit_cps", msg: "Resubmit this form?" },
 				{ name: "#btn_submit_draft_cps", msg: "btn_submit_draft_cps" },
-				{ name: "#btn_update_cps", msg: "btn_update_cps" },
+				{ name: "#btn_update_cps", msg: "Do you want to update?" },
 				{ name: "#btn_approver", msg: "Approve this form?" },
 				{ name: "#app_disapproved", msg: "Disapprove this form?" },
 				{ name: "#approver_returned", msg: "Return this form?" },

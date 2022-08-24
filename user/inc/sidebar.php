@@ -40,7 +40,7 @@
                         <li class="nav-item">
                             <a class="nav-link nav-link_active" href="activity_logs.php">
                                 <i class="fa-fw fas fa-history"></i>
-                                <span class="h6">Activity Logs</span>
+                                <span class="h6">History Logs</span>
                             </a>
                         </li>
                         

@@ -37,6 +37,7 @@ if (isset($_POST['app_disapproved'])) {
         $mail->Host = '10.2.2.21';       
         $mail->Port       = 25;                               
         $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
+        $mail->addAddress($recipient);         //Add a recipient
         foreach ($getRecipients as $row) {
             try {
                 $mail->addAddress($row['email_add'], $row['first_name']);
@@ -45,7 +46,6 @@ if (isset($_POST['app_disapproved'])) {
                 continue;
             }
         }
-        $mail->addAddress($recipient); 
         $mail->addCC($email_add);                 
         switch ($status) {
             case $status >=3 && $status <=6:
@@ -60,15 +60,16 @@ if (isset($_POST['app_disapproved'])) {
         }
         $mail->isHTML(true);                                  
         $mail->Subject = $subject;
-        $mail->Body    = $message;
+        $mail->Body    = $message;      
         try {
+                    
             $mail->send();
         } catch (Exception $e) {
             echo 'Mailer Error (' . htmlspecialchars($row['email_add']) . ') ' . $mail->ErrorInfo . '<br>';
             $mail->getSMTPInstance()->reset();
-        }         
+        }
         $mail->clearAddresses();
-        $mail->clearAttachments();
+        $mail->clearAttachments();    
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }

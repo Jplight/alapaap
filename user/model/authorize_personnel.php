@@ -38,7 +38,9 @@ if (isset($_POST['btn_approver'])) {
 		$form_subject = "BaaS";
 	}
 	
-	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$my_fullname','$form_type','$txt_control_number', 'approved','$status') ");
+
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$uid',  '$role', '$my_fullname','$form_type','$txt_control_number', 'approved','$status') ");
+	
 	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$txt_control_number', 'approved','$status','0') ");
 	// $alert = '<div class="alert alert-success alert-dismissible fade show" id="alert" role="alert">'.
 	// '<i class="fa-fw fas fa-check-circle me-2"></i><strong>Succesfully Approved!</strong>'.
@@ -86,7 +88,8 @@ if (isset($_POST['app_disapproved'])) {
 		$form_subject = "BaaS";	
 	}
 
-	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$approver_id', '$my_fullname','$form_type','$txt_control_number', 'disapproved','$status') ");
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$approver_id',  '$role', '$my_fullname','$form_type','$txt_control_number', 'disapproved','$status') ");
+	
 	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$txt_control_number', 'disapproved','$status','0') ");
 	
 	$subject = "Disapproved Form"; 
@@ -132,7 +135,8 @@ if (isset($_POST['approver_returned'])) {
 		$fType = "BaaS";
 	}
 
-	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$approver_id', '$my_fullname','$form_type','$txt_control_number', 'returned','$status') ");
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$approver_id',  '$role', '$my_fullname','$form_type','$txt_control_number', 'returned','$status') ");
+	
 	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$txt_control_number', 'returned','$status','0') ");
 	
 	$subject = "Returned Form"; 
@@ -187,7 +191,8 @@ if (isset($_POST['btn_reciever'])) {
 	}
 	
 
-	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$reciever_id', '$my_fullname','$form_type','$txt_control_number', 'approved','$status') ");
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$reciever_id',  '$role', '$my_fullname','$form_type','$txt_control_number', 'approved','$status') ");
+	
 	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$txt_control_number', 'received','$status','0') ");
 	
 	$control_number = $txt_control_number;
@@ -237,7 +242,8 @@ if (isset($_POST['btn_performer'])) {
 		$form_subject = "BaaS";
 	}	
 
-	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$performer_id', '$my_fullname','$form_type','$txt_control_number', 'performed','$status') ");
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$performer_id',  '$role', '$my_fullname','$form_type','$txt_control_number', 'performed','$status') ");
+	
 	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$txt_control_number', 'performed','$status','0') ");
 
 	$control_number = $txt_control_number;
@@ -288,7 +294,8 @@ if (isset($_POST['btn_confirmer'])) {
 		$form_subject = "BaaS";
 	}	
 
-	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$verifier_id', '$my_fullname','$form_type','$txt_control_number', 'confirmed','$status') ");
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$verifier_id',  '$role', '$my_fullname','$form_type','$txt_control_number', 'confirmed','$status') ");
+	
 	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$txt_control_number', 'confirmed','$status','0') ");
 
 	$control_number = $txt_control_number;
@@ -364,7 +371,8 @@ if (isset($_POST['btn_verifier'])) {
 		$form_subject = "BaaS";
 	}	
 
-	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$verifier_2id', '$my_fullname','$form_type','$txt_control_number', 'verified','$status') ");
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$verifier_2id',  '$role', '$my_fullname','$form_type','$txt_control_number', 'verified','$status') ");
+	
 	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$txt_control_number', 'verified','$status','0') ");
 
 	$control_number = $txt_control_number;

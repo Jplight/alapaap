@@ -141,7 +141,7 @@ include 'model/authorize_personnel.php';
                                                         <tr>
                                                             <th>Requestor</th>
                                                             <th>Control No.</th>
-                                                            <th>Date & Time Requested</th>
+                                                            <th>Date & Time </th>
                                                             <th>Form Type</th>
                                                             <th>Status</th>
                                                             <?php if ($my_role == 1): ?>
@@ -160,20 +160,19 @@ include 'model/authorize_personnel.php';
                                                             if ($my_role == 1) {
                                                                 $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where uid = '$uid' and status = '0' and revised IS NULL and app_status = 0  ORDER BY date_requested DESC ");
                                                             }else{
-                                                                $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where approver_id = '$uid' and revised IS NULL and app_status = '0'  ORDER BY date_requested DESC ");
+                                                                $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where approver_id = '$uid' and revised IS NULL and app_status = '0'  ORDER BY appr_date DESC ");
                                                             }
                                                              
                                                                 while ($rows_hci = mysqli_fetch_array($hci_query)):                        
                                                                     $control_number = $rows_hci['control_number'];
-                                                                    $mydate = strtotime($rows_hci['date_requested']);
-                                                                    $new_date = date('F d, Y',$mydate);
-                                                                    $mytime = strtotime($rows_hci['date_requested']);
-                                                                    $new_time = date('h:i:s A',$mytime); 
+                                                                    if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_hci['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['appr_date'])); }
+                                                                    if ($my_role == 2){$new_date = date('F d, Y',strtotime($rows_hci['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['appr_date'])); }
+                                                                    
                                                                     echo '<tr>';
                                                                     echo '<td>'.ucwords($rows_hci['fullname']).'</td>';
                                                                     echo '<td>HCI/'.$control_number.'</td>';
-                                                                    echo '<td>'.$new_date.'</td>';
-                                                                    echo '<td>'.$new_time.'</td>';
+                                                                    echo '<td>'.$new_date." - ".$new_time.'</td>';
+                                                                    
 
                                                                     if ($rows_hci['form_type'] == '1-1') {
                                                                         echo '<td>HCI - UPDATE</td>';
@@ -233,7 +232,7 @@ include 'model/authorize_personnel.php';
                                                 </table>
                                             </div>
                                         </div>
-                                        <div class="tab-pane" role="tabpanel" id="tab-3">
+                                        <!-- <div class="tab-pane" role="tabpanel" id="tab-3">
                                             <div class="table-responsive">
                                                 <table class="table table-hover user-select-none align-middle text-nowrap" id="tci_datatables">
                                                     <thead>
@@ -259,20 +258,19 @@ include 'model/authorize_personnel.php';
                                                             if ($my_role == 1) {
                                                                 $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where uid = '$uid' and status = '0' and revised IS NULL and app_status = 0  ORDER BY date_requested DESC ");
                                                             }else{
-                                                                $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where approver_id = '$uid' and app_status = '0' and revised IS NULL  ORDER BY date_requested DESC ");
+                                                                $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where approver_id = '$uid' and app_status = '0' and revised IS NULL  ORDER BY appr_date DESC ");
                                                             }
                                                              
                                                                 while ($rows_cps = mysqli_fetch_array($cps_query)):                        
                                                                     $control_number = $rows_cps['control_number'];
-                                                                    $mydate = strtotime($rows_cps['date_requested']);
-                                                                    $new_date = date('F d, Y',$mydate);
-                                                                    $mytime = strtotime($rows_cps['date_requested']);
-                                                                    $new_time = date('h:i:s A',$mytime); 
+                                                                    if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_hci['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['appr_date'])); }
+                                                                    if ($my_role == 2){$new_date = date('F d, Y',strtotime($rows_hci['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['appr_date'])); }
+                                                                    
                                                                     echo '<tr>';
-                                                                    echo '<td>'.ucwords($rows_cps['fullname']).'</td>';
-                                                                    echo '<td>CPS/'.$control_number.'</td>';
-                                                                    echo '<td>'.$new_date.'</td>';
-                                                                    echo '<td>'.$new_time.'</td>';
+                                                                    echo '<td>'.ucwords($rows_hci['fullname']).'</td>';
+                                                                    echo '<td>HCI/'.$control_number.'</td>';
+                                                                    echo '<td>'.$new_date." - ".$new_time.'</td>';
+                                                                    
 
                                                                     if ($rows_cps['form_type'] == '3-1') {
                                                                         echo '<td>CPS - UPDATE</td>';
@@ -328,7 +326,7 @@ include 'model/authorize_personnel.php';
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="tab-pane" role="tabpanel" id="tab-4">
                                             <div class="table-responsive">
                                                 <table class="table table-hover user-select-none align-middle text-nowrap" id="baas_datatables">
@@ -355,20 +353,19 @@ include 'model/authorize_personnel.php';
                                                             if ($my_role == 1) {
                                                                 $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where uid = '$uid' and status = '0' and revised IS NULL and app_status = '0' ORDER BY date_requested DESC ");
                                                             }else{
-                                                                $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where approver_id = '$uid' and app_status = '0' and revised IS NULL ORDER BY date_requested DESC ");
+                                                                $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where approver_id = '$uid' and app_status = '0' and revised IS NULL ORDER BY appr_date DESC ");
                                                             }
                                                       
                                                                 while ($rows_baas = mysqli_fetch_array($sql_baas)):                        
                                                                     $control_number = $rows_baas['control_number'];
-                                                                    $mydate = strtotime($rows_baas['date_requested']);
-                                                                    $new_date = date('F d, Y',$mydate);
-                                                                    $mytime = strtotime($rows_baas['date_requested']);
-                                                                    $new_time = date('h:i:s A',$mytime); 
+                                                                    if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_hci['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['appr_date'])); }
+                                                                    if ($my_role == 2){$new_date = date('F d, Y',strtotime($rows_hci['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['appr_date'])); }
+                                                                    
                                                                     echo '<tr>';
-                                                                    echo '<td>'.ucwords($rows_baas['fullname']).'</td>';
-                                                                    echo '<td>BaaS/'.$control_number.'</td>';
-                                                                    echo '<td>'.$new_date.'</td>';
-                                                                    echo '<td>'.$new_time.'</td>';
+                                                                    echo '<td>'.ucwords($rows_hci['fullname']).'</td>';
+                                                                    echo '<td>HCI/'.$control_number.'</td>';
+                                                                    echo '<td>'.$new_date." - ".$new_time.'</td>';
+                                                                    
                                                                     
 
                                                                     if ($rows_baas['form_type'] == '4-2') {
@@ -486,7 +483,7 @@ include 'model/authorize_personnel.php';
         </script>
         <script>
             $(document).ready(function(){
-                $('#hci_datatables, #tci_datatables, #cps_datatables, #baas_datatables').DataTable({
+                $('#hci_datatables, #cps_datatables, #baas_datatables').DataTable({
                     
                     "language": {
                         "emptyTable": "There is no data to be showed!🤗",

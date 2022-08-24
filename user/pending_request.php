@@ -570,7 +570,7 @@ include 'model/authorize_personnel.php';
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="controller/global.validation.js"></script>
 
-        <!-- <script>
+        <script>
             // Canceled HCI Prompt Message
             $(document).ready(function(){
                 $("#hci_cancel_1, #hci_cancel_2").click(function(){
@@ -578,8 +578,8 @@ include 'model/authorize_personnel.php';
                         Swal.fire({
                             title: 'Do you want to cancel?',
                             showDenyButton: true,
-                            confirmButtonText: 'Submit',
-                            denyButtonText: `Cancel`,
+                            confirmButtonText: 'Yes',
+                            denyButtonText: `No`,
                             }).then((result) => {
                             
                             console.log(result)
@@ -612,7 +612,7 @@ include 'model/authorize_personnel.php';
                     
                 });         
             });
-        </script> -->
+        </script>
 
 
         <script>

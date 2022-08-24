@@ -27,6 +27,7 @@ require 'model/signup_model.php';
                     <div class="mb-3">
                         <a href="index.php" title=""><img src="assets/img/ebiz-logo.png" width="200"></a>
                     </div>
+                    <?php echo !empty($error_alert) ? $error_alert : '';?>
                     <form id="frm_signup" method="post" autocomplete="off" >
                         <div class="row g-2">
                             <div class="col-12 col-md-6">

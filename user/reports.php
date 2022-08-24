@@ -76,7 +76,7 @@
                         </div>
                         <div class="card shadow">
                             <div class="card-body">
-                                <form method="POST" action="makepdf.php">                          
+                                <form method="POST" >                          
                                     <div class="table-responsive">
                                         <table class="table table-hover align-middle user-select-none text-nowrap" id="report_datatables">
                                             <thead>

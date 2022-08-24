@@ -19,11 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email_add = $_POST['approver_mail'];
 
 	$sql = mysqli_query($conn,"UPDATE tbl_user set status = '1' where uid = '$uid_account' ");
-    $department_name = "BSP";
-    $subject = "Alapaap Account has been Verified";
-	$message = "Good Day ".ucfirst($rows_users['first_name'])." ".ucfirst($rows_users['last_name']).",<br><br>"
-    . "Your account has been verified by our Approver.<br>"
-    . "Please click <a href='http://".$_SERVER['SERVER_NAME']."/index.php'>Here</a> the click below to proceed in out Login Page!<br><br>"               
+
+    $subject = "Alapaap Account Verified";
+	$message = "Hello".ucfirst($rows_users['first_name'])." ".ucfirst($rows_users['last_name']).",<br><br>"
+    . "Your account has verified by our Approver.<br>"
+    . "To login your account please <a href='http://".$_SERVER['SERVER_NAME']."/index.php'>click Here</a>.<br><br>"               
     . "Thank you<br>";
 
     try {
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mail->Host = '10.2.2.21';
         $mail->Port       = 25; 
         //Recipients
-        $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', $department_name." Alapaap");
+        $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', "BSP Alapaap");
         $mail->addAddress($recipient);         //Add a recipient
         $mail->addCC($email_add);
 
@@ -50,8 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //     $mail->isSMTP();                                            //Send using SMTP
     //     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     //     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    //     $mail->Username   = 'alapaapbsp@gmail.com';                     //SMTP username
-    //     $mail->Password   = 'lykcjxwaufpwhznx';      // alapaap@Bsp123                            //SMTP password
+    //     $mail->Username   = 'whyllardermie@gmail.com';                     //SMTP username
+    //     $mail->Password   = 'gtoigwbluxfubmrh';      // alapaap@Bsp123                            //SMTP password
     //     $mail->SMTPSecure = 'tls';           
     //     $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
     //     $mail->SMTPOptions = array (
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //     $mail->addCC($email_add);
         
     //     $mail->isHTML(true);                                  
-    //     $mail->Subject = "Alapaap Account has been Verified";
+    //     $mail->Subject = $subject;
     //     $mail->Body    = $message;
     //     $mail->send();    
         

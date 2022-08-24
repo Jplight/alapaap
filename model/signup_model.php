@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$emailExist = mysqli_query($conn,"SELECT * from tbl_user where email_add = '$email' ");
 	$countEmailExist = mysqli_num_rows($emailExist);
 	if ($countEmailExist > 0){
-		
+		$error_alert = "Email is already exist!";
 	}else{
 		$sql = mysqli_query($conn,"INSERT into tbl_user (first_name,last_name,email_add,contact_no,password,status,token,role, default_role) values ('$fname','$lname','$email','$contact_no','$pword','$status','$token','$role', '1') ");
 		$subject = "Account Registration";
@@ -43,6 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		require 'mail.php';
 	
 	}
-	header("location: http://".$_SERVER['SERVER_NAME']."/model/verification.php?display_name=".convert_string('encrypt',$fname)."&email=".$email_add);
+	header("location: http://".$_SERVER['SERVER_NAME']."/model/verification.php?display_name=".convert_string('encrypt',$fname)."&email=".$email);
 }
 ?>

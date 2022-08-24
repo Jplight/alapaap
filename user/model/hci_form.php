@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_SESSION['message'] = "Successfuly Created!";
 		$_SESSION['form_type'] = $form_type;
 		$_SESSION['control_number'] = $control_number;
-		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'created','$status') ");
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$uid',  '$role', '$fullname','$form_type','$control_number', 'created','$status') ");
 
 		
 		$form_subject = "HCI";
@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_SESSION['message'] = "Save as Draft!";
 		$_SESSION['form_type'] = $form_type;
 		$_SESSION['control_number'] = $control_number;
-		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'save as draft','$status') ");
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$uid',  '$role', '$fullname','$form_type','$control_number', 'save as draft','$status') ");
 
 	}
 	if (isset($_POST['btn_submit_draft'])) {
@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_SESSION['message'] = "Resubmit!";
 		$_SESSION['form_type'] = $form_type;
 		$_SESSION['control_number'] = $control_number;
-		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'resubmitted draft','$status') ");
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$uid',  '$role', '$fullname','$form_type','$txt_control_number', 'resubmitted draft','$status') ");
 
 	}
 	if (isset($_POST['btn_update'])) {
@@ -182,7 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	        }      
         }
 
-		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'updated','$status') ");
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$uid',  '$role', '$fullname','$form_type','$txt_control_number', 'updated','$status') ");
 	
 	}
 
@@ -211,7 +211,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	        }      
         }
 
-		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'returned','$status') ");				
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$uid',  '$role', '$fullname','$form_type','$txt_control_number', 'returned','$status') ");				
 		
 		$subject = "HCI Returned Form";
 		$message = "Hello <b>Approver</b>,<br><br>".
@@ -232,7 +232,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_SESSION['message'] = "Successfuly Canceled!";
 		$_SESSION['form_type'] = $form_type;
 		$_SESSION['control_number'] = $txt_control_number;
-		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'canceled','$status') ");				
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$uid',  '$role', '$fullname','$form_type','$txt_control_number', 'canceled','$status') ");				
 	
 	}
  // this session will used to save the control number and form type and get the data and display to alert notification		
@@ -253,7 +253,7 @@ if (isset($_REQUEST['control_number']) && isset($_REQUEST['f_type']) && isset($_
 	$_SESSION['message'] = "Successfuly Canceled!";
 	$_SESSION['form_type'] = $form_type;
 	$_SESSION['control_number'] = $txt_control_number;
-	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'canceled','$status') ");					
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$uid',  '$role', '$fullname','$form_type','$txt_control_number', 'canceled','$status') ");					
 	header("location: ../pending_request.php");
 }
 

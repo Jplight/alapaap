@@ -8,20 +8,42 @@
     $mail = new PHPMailer(true);
 
     try {
-                                
-        $mail->Host = '10.2.2.21';       
-        $mail->Port       = 25;                               
-        $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
-        $mail->addAddress($email);      
-
+        //Server settings  
+        $mail->Host = '10.2.2.21';                            //Set the SMTP server to send through
+        $mail->Port       = 25;     
+        $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');                             
+        
+        //Recipients
+        $getRecipients = mysqli_query($conn,"select * from tbl_user where role = '2' ");
+        foreach ($getRecipients as $row) {
+            try {
+                $mail->addAddress($row['email_add']);
+            } catch (Exception $e) {
+                echo 'Invalid address skipped: ' . htmlspecialchars($row['email_add']) . '<br>';
+                continue;
+            }
+        }
+        $mail->addCC($email);    // $email_add
+          
         $mail->isHTML(true);                                  
         $mail->Subject = $subject;
         $mail->Body    = $message;
-        $mail->send();    
-        
+
+        try {
+            $mail->send();
+        } catch (Exception $e) {
+            echo 'Mailer Error (' . htmlspecialchars($row['email_add']) . ') ' . $mail->ErrorInfo . '<br>';
+            //Reset the connection to abort sending this message
+            //The loop will continue trying to send to the rest of the list
+            $mail->getSMTPInstance()->reset();
+        }
+        //Clear all addresses and attachments for the next iteration
+        $mail->clearAddresses();
+        $mail->clearAttachments();
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }  
+
 
     // try {
     //     //Server settings
@@ -29,8 +51,8 @@
     //     $mail->isSMTP();                                            //Send using SMTP
     //     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     //     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    //     $mail->Username   = 'alapaapbsp@gmail.com';                     //SMTP username
-    //     $mail->Password   = 'lykcjxwaufpwhznx';      // alapaap@Bsp123                            //SMTP password
+    //     $mail->Username   = 'whyllardermie@gmail.com';                     //SMTP username
+    //     $mail->Password   = 'gtoigwbluxfubmrh';       // alapaap@Bsp123                            //SMTP password
     //     $mail->SMTPSecure = 'tls';           
     //     $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
     //     $mail->SMTPOptions = array (
@@ -39,16 +61,36 @@
     //             'verify_peer_name'  => false,
     //             'allow_self_signed' => true)
     //     );
+    //     $getRecipients = mysqli_query($conn,"select * from tbl_user where role = '2' ");
     //     //Recipients
-    //     $mail->setFrom('alapaapbsp@gmail.com', 'Alapaap | eBiZolution');
-    //     $mail->addAddress($email);         //Add a recipient
+    //     $mail->setFrom('alapaapbsp@gmail.com', 'BSP Alapaap');
+    //     foreach ($getRecipients as $row) {
+    //         try {
+    //             $mail->addAddress($row['email_add']);
+    //         } catch (Exception $e) {
+    //             echo 'Invalid address skipped: ' . htmlspecialchars($row['email_add']) . '<br>';
+    //             continue;
+    //         }
+    //     }
+    //     $mail->addCC($email);    // $email_add
+          
     //     $mail->isHTML(true);                                  
     //     $mail->Subject = $subject;
     //     $mail->Body    = $message;
-    //     $mail->send();    
-        
+
+    //     try {
+    //         $mail->send();
+    //     } catch (Exception $e) {
+    //         echo 'Mailer Error (' . htmlspecialchars($row['email_add']) . ') ' . $mail->ErrorInfo . '<br>';
+    //         //Reset the connection to abort sending this message
+    //         //The loop will continue trying to send to the rest of the list
+    //         $mail->getSMTPInstance()->reset();
+    //     }
+    //     //Clear all addresses and attachments for the next iteration
+    //     $mail->clearAddresses();
+    //     $mail->clearAttachments();
     // } catch (Exception $e) {
     //     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    // }
+    // }  
 
 ?>

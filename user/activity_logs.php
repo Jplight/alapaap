@@ -27,6 +27,7 @@
         <title>Alapaap | Activity Logs</title>
         <link rel="icon" type="image/svg+xml" sizes="30x24" href="assets/img/android-chrome-192x192.png">
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/dataTables.bootstrap5.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
         <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
         <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
@@ -70,24 +71,25 @@
                     <?php include 'inc/navbar.php'; ?>
                     <div class="container-fluid">
                         <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                            <h3 class="text-dark mb-0 mb-3 mb-sm-0">Activity Logs</h3>
+                            <h3 class="text-dark mb-0 mb-3 mb-sm-0">History Logs</h3>
                         </div>
                         <div class="card shadow">
                             <div class="card-body">
-                                <form method="POST" action="makepdf.php">                          
+                                <form method="POST">                          
                                     <div class="table-responsive">
-                                        <table class="table table-hover align-middle user-select-none text-nowrap">
+                                        <table class="table table-hover align-middle user-select-none text-nowrap" id="report_datatables">
                                             <thead>
                                                 <tr>
                                                     <th>Form Type</th>
                                                     <th>Control No.</th>
                                                     <th>Status</th>
+                                                    <th><?php echo $my_role == 1 ? 'Created By': 'Updated By'; ?></th>
                                                     <th>Time Stamp</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php            
-                                                    $sql_reports = "SELECT * FROM `tbl_activity_logs` where uid = '$uid' ORDER by date_requested DESC";
+                                                    $sql_reports = "SELECT * FROM `tbl_activity_logs` where role = '$my_role' ORDER by date_requested DESC";
                                                     $query = mysqli_query($conn,$sql_reports);
                                                     $count = mysqli_num_rows($query);
                                                     if ($count > 0):   
@@ -124,7 +126,8 @@
                                                             echo '<tr>';
                                                             echo '<td>'.$form_type.'</td>';
                                                             echo '<td>'.$rows_reports['control_number'].'</td>';
-                                                            echo '<td> '.$rows_reports['activity'].' </td>';  
+                                                            echo '<td> '.$rows_reports['activity'].' </td>'; 
+                                                            echo '<td> '.$rows_reports['fullname'].' </td>'; 
                                                             echo '<td>'.$rows_reports['date_requested'].'</td>';   
                                                             echo '</tr>';
                                                         endwhile; 
@@ -153,8 +156,25 @@
             </div>
 
         </div>
-        <script src="assets/js/jquery-3.6.0.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        
+        <!-- Data Tables -->
+        <script src="assets/js/jquery.dataTables.min.js"></script>
+        <script src="assets/js/dataTables.bootstrap5.min.js"></script>
+
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/theme.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#report_datatables').DataTable({
+                    "language": {
+                        "emptyTable": "There is no data to be showed!🤗",
+                        "zeroRecords": "No data found!🤗"
+                    }
+                }); 
+            });
+        </script>
+
+        
     </body>
 </html>
