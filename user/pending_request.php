@@ -596,8 +596,7 @@ include 'model/authorize_personnel.php';
         <script>
             // Canceled HCI Prompt Message
             $(document).ready(function(){
-                $("#btn_approver_app").click(function(){
-  
+                $("#btn_approver_app").click(function(){ 
                         Swal.fire({
                             title: 'Do you want to approved?',
                             showDenyButton: true,
@@ -619,6 +618,7 @@ include 'model/authorize_personnel.php';
             $(document).ready(function(){
                 $('#hci_datatables, #tci_datatables, #cps_datatables, #baas_datatables').DataTable({
                     responsive: true,
+                    "order": [[ 3, "desc" ]],
                     "language": {
                         "emptyTable": "There is no data to be showed!🤗",
                         "zeroRecords": "No data found!🤗"

@@ -154,7 +154,7 @@ endwhile;
                                                            
                                                             echo '<td >';
                                                                 echo '<a class="btn btn-outline-success btn-sm shadow-none me-2" data-bs-target="#new_account'.$rows_users['uid'].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-user-check me-1"></i>Approve</a>';
-                                                                echo '<a class="btn btn-outline-danger btn-sm shadow-none" data-bs-target="#remove_account'.$rows_users['uid'].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-user-times me-1"></i>Diapprove</a>';
+                                                                echo '<a class="btn btn-outline-danger btn-sm shadow-none" data-bs-target="#remove_account'.$rows_users['uid'].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-user-times me-1"></i>Disapprove</a>';
                                                                 require 'inc/new_user_account.php';
                                                             echo '</td>';
                                                         echo '</tr>';                                                        
@@ -270,7 +270,7 @@ endwhile;
         <script>
             $(document).ready(function(){
                 $('#user_datatables, #user_datatables_disapproved').DataTable({
-                   
+                    "order": [[ 3, "desc" ]],
                     pageLength: 5,
                     lengthMenu: [5, 10, 20, 50, 100, 200, 500],
                     "language": {

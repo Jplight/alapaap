@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$email_add = $_POST['email_add'];
 	$pass_hash = hash_hmac('md5',$_POST['pass'],'@Bsp1234*');
 
-	$verify_email = mysqli_query($conn,"SELECT * FROM tbl_user WHERE email_add = '$email_add'");
+	$verify_email = mysqli_query($conn,"SELECT * FROM tbl_user WHERE email_add = '$email_add' and password = '$pass_hash' ");
 	$count = mysqli_num_rows($verify_email);
 	$rows = mysqli_fetch_array($verify_email);
 	if ($count > 0){
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}		
 	}else{
 		$response['status'] = 'not_exist';
-		$response['message'] = 'This account does not exist!';		
+		$response['message'] = 'Incorrect Username or Password!';		
 	}
 	mysqli_close($conn);
 	echo json_encode($response);

@@ -641,6 +641,7 @@ include 'model/authorize_personnel.php';
             $(document).ready(function(){
                 $('#hci_datatables, #tci_datatables, #cps_datatables, #baas_datatables').DataTable({
                     responsive: true,
+                    "order": [[ 3, "desc" ]],
                     "language": {
                         "emptyTable": "There is no data to be showed!🤗",
                         "zeroRecords": "No data found!🤗"
