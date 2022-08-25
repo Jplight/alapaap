@@ -1,6 +1,6 @@
                 <!-- Modal Component -->
                 <?php
-                    $getEmail = mysqli_query($conn,"select * from tbl_backup_pass where email_add = '".$rows_users['email_add']."' ");
+                    $getEmail = mysqli_query($conn,"select * from tbl_user where email_add = '".$rows_users['email_add']."' ");
                     $getData = mysqli_fetch_array($getEmail);
                 
                 ?>
@@ -26,7 +26,7 @@
                                                 foreach($getEmail as $getEmail){
                                                     
                                                     if ($getData['role'] == '1'){
-                                                        echo 'Requester';
+                                                        echo 'Requestor';
                                                     }
                                                     if ($getData['role'] == '2'){
                                                         echo 'Approver';
@@ -52,10 +52,7 @@
 
                                         </span>
                                     </div>
-                                    <!-- <div class="d-block">
-                                        <label class="fw-bold mb-2">Password: </label>
-                                        <span id="p1"><?=$getData['password'];?></span>
-                                    </div> -->
+
                                 </div>
                             </div>
                         </div>

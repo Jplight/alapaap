@@ -195,6 +195,7 @@
                    
                     pageLength: 5,
                     lengthMenu: [5, 10, 20, 50, 100, 200, 500],
+                    "order": [[ 3, "desc" ]],
                     "language": {
                         "emptyTable": "There is no data to be showed!🤗",
                         "zeroRecords": "No data found!🤗"

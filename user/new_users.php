@@ -106,7 +106,7 @@ endwhile;
                                             <?php
                                              
                                                 $num = 1;
-                                                $list_users = mysqli_query($conn,"SELECT * FROM tbl_user where status = '0' ORDER BY date_created DESC");
+                                                $list_users = mysqli_query($conn,"SELECT * FROM tbl_user where created_by = 'user' and status = '0' ORDER BY date_created DESC");
                                                  
                                                     while ($rows_users = mysqli_fetch_array($list_users)): 
                                                         $Requestor = (strpos($rows_users['role'],'1') !== false) ? 'Requestor ' : '';
