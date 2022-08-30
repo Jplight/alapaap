@@ -117,6 +117,8 @@
                                                         }
 
                                                         $multi_role = $Requestor.$Approver.$Receiver.$Performer.$Confirmer.$Verifier;
+
+                                                        
                                                         if($rows_users['status'] == 1 ){
                                                             $stat = '<span class="badge rounded-pill bg-success">Active</span>';
                                                         }
@@ -137,6 +139,12 @@
                                                         if($rows_users['status'] == 0){
                                                             $action = '<a class="btn btn-outline-primary btn-sm shadow-none" data-bs-target="#view_uacc'.$rows_users['uid'].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a>';
                                                         }
+                                                        if($rows_users['created_by'] == null){
+                                                            $added_by = 'User';
+                                                        }
+                                                        if($rows_users['created_by'] != null){
+                                                            $added_by = $rows_users['created_by'];
+                                                        }
                                                         echo '<tr>';
                                                             echo '<td>'; 
                                                             echo '<div class="d-flex justify-content-start align-items-center gap-3">'; 
@@ -147,7 +155,7 @@
                                                             echo '<td><span>'.$multi_role.'</span></td>';
                                                             echo '<th>'.$stat.'</th>';
                                                             echo '<td>'.$rows_users['date_created'].'</td>';
-                                                            echo '<td>'.ucfirst($rows_users['created_by']).'</td>';
+                                                            echo '<td>'.$added_by.'</td>';
                                                             echo '<td>';
                                                             echo $action;
                                                             // echo '<a class="btn btn-outline-danger btn-sm shadow-none me-2"  data-bs-target="#reset_user'.$rows_users['uid'].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-user-edit me-1"></i>Reset</a>';

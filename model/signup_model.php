@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if ($countEmailExist > 0){
 		$error_alert = "Email is already exist!";
 	}else{
-		$sql = mysqli_query($conn,"INSERT into tbl_user (first_name,last_name,email_add,password,status,role, default_role) values ('$fname','$lname','$email','$pword','$status','$role', '1') ");
+		$sql = mysqli_query($conn,"INSERT into tbl_user (first_name,last_name,email_add,password,status,role, default_role,created_by) values ('$fname','$lname','$email','$pword','$status','$role', '1','user') ");
 		$subject = "Account Registration";
 		$message = "Hello <b>".ucfirst($_POST['fname'])." ".ucfirst($_POST['lname'])."</b>,<br><br>"
 		. "Our Approver is reviewing your account.<br>"

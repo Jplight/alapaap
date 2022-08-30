@@ -365,11 +365,11 @@ include 'model/authorize_personnel.php';
                                                             while ($rows_tci = mysqli_fetch_array($tci_query)):                        
                                                                 $control_number = $rows_tci['control_number'];
 
-                                                                if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_hci['date_requested'])); $new_time = date('h:i:s A',strtotime($rows_hci['date_requested'])); }
-                                                                if ($my_role == 3){$new_date = date('F d, Y',strtotime($rows_hci['rec_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['rec_date'])); }
-                                                                if ($my_role == 4){$new_date = date('F d, Y',strtotime($rows_hci['perform_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['perform_date'])); }
-                                                                if ($my_role == 5){$new_date = date('F d, Y',strtotime($rows_hci['ver_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['ver_date'])); }
-                                                                if ($my_role == 6){$new_date = date('F d, Y',strtotime($rows_hci['ver2_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['ver2_date'])); }
+                                                                if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_tci['date_requested'])); $new_time = date('h:i:s A',strtotime($rows_tci['date_requested'])); }
+                                                                if ($my_role == 3){$new_date = date('F d, Y',strtotime($rows_tci['rec_date'])); $new_time = date('h:i:s A',strtotime($rows_tci['rec_date'])); }
+                                                                if ($my_role == 4){$new_date = date('F d, Y',strtotime($rows_tci['perform_date'])); $new_time = date('h:i:s A',strtotime($rows_tci['perform_date'])); }
+                                                                if ($my_role == 5){$new_date = date('F d, Y',strtotime($rows_tci['ver_date'])); $new_time = date('h:i:s A',strtotime($rows_tci['ver_date'])); }
+                                                                if ($my_role == 6){$new_date = date('F d, Y',strtotime($rows_tci['ver2_date'])); $new_time = date('h:i:s A',strtotime($rows_tci['ver2_date'])); }
                                                                 
                                                                 echo '<tr>';
                                                                 echo '<td>'.ucwords($rows_tci['fullname']).'</td>';
@@ -445,12 +445,12 @@ include 'model/authorize_personnel.php';
                                                             while ($rows_cps = mysqli_fetch_array($cps_query)):                        
                                                                 $control_number = $rows_cps['control_number'];
 
-                                                                if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_hci['date_requested'])); $new_time = date('h:i:s A',strtotime($rows_hci['date_requested'])); }
-                                                                if ($my_role == 2){$new_date = date('F d, Y',strtotime($rows_hci['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['appr_date'])); }
-                                                                if ($my_role == 3){$new_date = date('F d, Y',strtotime($rows_hci['rec_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['rec_date'])); }
-                                                                if ($my_role == 4){$new_date = date('F d, Y',strtotime($rows_hci['perform_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['perform_date'])); }
-                                                                if ($my_role == 5){$new_date = date('F d, Y',strtotime($rows_hci['ver_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['ver_date'])); }
-                                                                if ($my_role == 6){$new_date = date('F d, Y',strtotime($rows_hci['ver2_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['ver2_date'])); }
+                                                                if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_cps['date_requested'])); $new_time = date('h:i:s A',strtotime($rows_cps['date_requested'])); }
+                                                                if ($my_role == 2){$new_date = date('F d, Y',strtotime($rows_cps['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_cps['appr_date'])); }
+                                                                if ($my_role == 3){$new_date = date('F d, Y',strtotime($rows_cps['rec_date'])); $new_time = date('h:i:s A',strtotime($rows_cps['rec_date'])); }
+                                                                if ($my_role == 4){$new_date = date('F d, Y',strtotime($rows_cps['perform_date'])); $new_time = date('h:i:s A',strtotime($rows_cps['perform_date'])); }
+                                                                if ($my_role == 5){$new_date = date('F d, Y',strtotime($rows_cps['ver_date'])); $new_time = date('h:i:s A',strtotime($rows_cps['ver_date'])); }
+                                                                if ($my_role == 6){$new_date = date('F d, Y',strtotime($rows_cps['ver2_date'])); $new_time = date('h:i:s A',strtotime($rows_cps['ver2_date'])); }
                                                                 
                                                                 echo '<tr>';
                                                                 echo '<td>'.ucwords($rows_cps['fullname']).'</td>';
@@ -549,12 +549,12 @@ include 'model/authorize_personnel.php';
                                                             while ($rows_baas = mysqli_fetch_array($sql_baas)):                        
                                                                 $control_number = $rows_baas['control_number'];
 
-                                                                if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_hci['date_requested'])); $new_time = date('h:i:s A',strtotime($rows_hci['date_requested'])); }
-                                                                if ($my_role == 2){$new_date = date('F d, Y',strtotime($rows_hci['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['appr_date'])); }
-                                                                if ($my_role == 3){$new_date = date('F d, Y',strtotime($rows_hci['rec_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['rec_date'])); }
-                                                                if ($my_role == 4){$new_date = date('F d, Y',strtotime($rows_hci['perform_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['perform_date'])); }
-                                                                if ($my_role == 5){$new_date = date('F d, Y',strtotime($rows_hci['ver_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['ver_date'])); }
-                                                                if ($my_role == 6){$new_date = date('F d, Y',strtotime($rows_hci['ver2_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['ver2_date'])); }
+                                                                if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_baas['date_requested'])); $new_time = date('h:i:s A',strtotime($rows_baas['date_requested'])); }
+                                                                if ($my_role == 2){$new_date = date('F d, Y',strtotime($rows_baas['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_baas['appr_date'])); }
+                                                                if ($my_role == 3){$new_date = date('F d, Y',strtotime($rows_baas['rec_date'])); $new_time = date('h:i:s A',strtotime($rows_baas['rec_date'])); }
+                                                                if ($my_role == 4){$new_date = date('F d, Y',strtotime($rows_baas['perform_date'])); $new_time = date('h:i:s A',strtotime($rows_baas['perform_date'])); }
+                                                                if ($my_role == 5){$new_date = date('F d, Y',strtotime($rows_baas['ver_date'])); $new_time = date('h:i:s A',strtotime($rows_baas['ver_date'])); }
+                                                                if ($my_role == 6){$new_date = date('F d, Y',strtotime($rows_baas['ver2_date'])); $new_time = date('h:i:s A',strtotime($rows_baas['ver2_date'])); }
                                                                 
                                                                 echo '<tr>';
                                                                 echo '<td>'.ucwords($rows_baas['fullname']).'</td>';

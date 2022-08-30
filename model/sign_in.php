@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$count = mysqli_num_rows($verify_email);
 	$rows = mysqli_fetch_array($verify_email);
 	if ($count > 0){
-		if ($rows['status'] == '1'){
+		if ($rows['status'] == '1' ){
 			$sql_2 = mysqli_query($conn,"SELECT * FROM tbl_user WHERE email_add = '$email_add' and password = '$pass_hash' ");
 			$count_2 = mysqli_num_rows($sql_2);
 			if ($count_2 > 0) {
@@ -66,12 +66,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}else if ($rows['status'] == '2'){
 			$response['status'] = 'disabled';
 			$response['message'] =  "This account has been disabled by the Administrator. Please contact your administrator.";
-		}else{
+		}else if ($rows['created_by'] == 'admin'){
 			$response['status'] = 'Unverified';		
-			$response['message'] = 'This is account needs to be verified!';	
+			$response['message'] = 'Your account is not fully verified!';	
 			$response['link'] = 'account-verification/index.php';
 			$_SESSION['email'] = $rows['email_add'];
-		}		
+		}else{
+			$response['status'] = 'not_exist';
+			$response['message'] = 'Your account is not approved by our approver!';	
+		}	
 	}else{
 		$response['status'] = 'not_exist';
 		$response['message'] = 'Incorrect Username or Password!';		

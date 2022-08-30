@@ -303,7 +303,7 @@ include 'model/authorize_personnel.php';
                                                         
                                                                 while ($rows_tci = mysqli_fetch_array($sql_tci)):                        
                                                                     $control_number = $rows_tci['control_number'];
-                                                                    if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_hci['date_requested'])); $new_time = date('h:i:s A',strtotime($rows_hci['date_requested'])); }
+                                                                    if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_tci['date_requested'])); $new_time = date('h:i:s A',strtotime($rows_tci['date_requested'])); }
                                                                     echo '<tr>';
                                                                     echo '<td>'.ucwords($rows_tci['fullname']).'</td>';
                                                                     echo '<td>Adhoc/'.$control_number.'</td>';
@@ -388,8 +388,8 @@ include 'model/authorize_personnel.php';
                                                                 while ($rows_cps = mysqli_fetch_array($cps_query)):                        
                                                                     $control_number = $rows_cps['control_number'];
 
-                                                                    if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_hci['date_requested'])); $new_time = date('h:i:s A',strtotime($rows_hci['date_requested'])); }
-                                                                    if ($my_role == 2){$new_date = date('F d, Y',strtotime($rows_hci['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['appr_date'])); }
+                                                                    if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_cps['date_requested'])); $new_time = date('h:i:s A',strtotime($rows_cps['date_requested'])); }
+                                                                    if ($my_role == 2){$new_date = date('F d, Y',strtotime($rows_cps['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_cps['appr_date'])); }
 
                                                                     echo '<tr>';
                                                                     echo '<td>'.ucwords($rows_cps['fullname']).'</td>';
@@ -488,8 +488,8 @@ include 'model/authorize_personnel.php';
                                                                 while ($rows_baas = mysqli_fetch_array($baas_query)):                        
                                                                     $control_number = $rows_baas['control_number'];
 
-                                                                    if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_hci['date_requested'])); $new_time = date('h:i:s A',strtotime($rows_hci['date_requested'])); }
-                                                                    if ($my_role == 2){$new_date = date('F d, Y',strtotime($rows_hci['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['appr_date'])); }
+                                                                    if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_baas['date_requested'])); $new_time = date('h:i:s A',strtotime($rows_baas['date_requested'])); }
+                                                                    if ($my_role == 2){$new_date = date('F d, Y',strtotime($rows_baas['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_baas['appr_date'])); }
                                                                     
                                                                     echo '<tr>';
                                                                     echo '<td>'.ucwords($rows_baas['fullname']).'</td>';
