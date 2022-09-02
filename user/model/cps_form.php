@@ -72,8 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	        	$insert_query = mysqli_query($conn,$query);
 	        }
         }
-		
-		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'created','$status') ");	
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$uid',  '$role', '$fullname','$form_type','$control_number', 'created','$status') ");
+	
 		$_SESSION['message'] = "Successfuly Created!";
 		$_SESSION['form_type'] = $form_type;
 		$_SESSION['control_number'] = $control_number;	
@@ -114,9 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_SESSION['message'] = "Successfuly Created!";
 		$_SESSION['form_type'] = $form_type;
 		$_SESSION['control_number'] = $control_number;	
-		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'save as draft','$status') ");	
-		
-				
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$uid',  '$role', '$fullname','$form_type','$control_number', 'created','$status') ");				
 	}
 
 	if (isset($_POST['btn_submit_draft_cps'])) {
@@ -144,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	        	$insert_query = mysqli_query($conn,$query);
 	        }      
         }
-		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'resubmitted draft','$status') ");			
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$uid',  '$role', '$fullname','$form_type','$txt_control_number', 'resubmitted draft','$status') ");		
 
 	}
 
@@ -173,7 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	        	$insert_query = mysqli_query($conn,$query);
 	        }      
         }
-		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'updated','$status') ");			
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$uid',  '$role', '$fullname','$form_type','$txt_control_number', 'updated','$status') ");		
 
 	}
 
@@ -202,7 +200,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	        	$insert_query = mysqli_query($conn,$query);
 	        }      
         }
-		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'returned','$status') ");			
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$uid',  '$role', '$fullname','$form_type','$txt_control_number', 'returned','$status') ");		
 
 	}
 
@@ -211,8 +209,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$status = 0;
 		$cancelled = 1;
 		$sql = mysqli_query($conn,"UPDATE `tbl_cps` SET `status`='$status', cancelled = '$cancelled', date_requested = NOW() WHERE control_number = '$txt_control_number' ");
-		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'canceled','$status') ");
-							
+		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$uid',  '$role', '$fullname','$form_type','$txt_control_number', 'canceled','$status') ");					
 	}
 }
 
@@ -224,7 +221,9 @@ if (isset($_REQUEST['control_number']) && isset($_REQUEST['f_type']) && isset($_
 	$uid = $_REQUEST['uid'];
 	$form_type = $_REQUEST['f_type'];
 	$sql = mysqli_query($conn,"UPDATE `tbl_cps` SET `status`='$status', cancelled = '$cancelled', date_requested = NOW() WHERE control_number = '$txt_control_number' ");
-	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'canceled','$status') ");
+	
+	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$uid',  '$role', '$fullname','$form_type','$txt_control_number', 'canceled','$status') ");
+	
 	if ($sql) {
 		header("location: ../pending_request.php");
 		mysqli_close($conn);
