@@ -256,14 +256,14 @@ endif;
                                             </td>
                                          </tr>
 
-                                         <?php if($my_role == 1): ?>
+                                         
                                          <tr>
                                             <td class="fw-bold">Attachment</td>
                                             <td colspan="2">
                                                 <input name="file[]" multiple="multiple" class="form-control" type="file" id="file">
                                             </td>
                                          </tr>
-                                         <?php endif; ?>
+                                         
                                         <!-- Display data of DISK GB -->
                                         <?php
                                             if (!empty($control_number)):

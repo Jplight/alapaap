@@ -32,6 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 				$response['ip_add_vlan'] 	= $rows['ip_add_vlan'];
 				$response['txt_ip_vlan'] 	= $rows['txt_ip_vlan'];
 				$response['hci_users'] 	= $rows['hci_users'];
+				$response['txt_hci_users'] 	= $rows['txt_hci_users'];
+				$response['vm_deployment'] 	= $rows['vm_deployment'];
+				$response['comm'] 	= $rows['comm'];		
 				$response['date_accomplished'] 	= $rows['date_requested'];
 			}else{
 				$response['status'] = 'invalid';

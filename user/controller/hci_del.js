@@ -21,6 +21,8 @@ $(document).ready(function () {
 					$("#hci_del_ipaddress").val(data.ip_add_vlan)
 					$("#hci_del_ip_vlan").val(data.txt_ip_vlan)
 					$("#hci_del_users").val(data.hci_users)
+					$("#hci_del_vm_deployment").val(data.vm_deployment)
+					$("#hci_del_comm").val(data.comm)
 
 					// DATA of Update HCI form
 					$("#hci_del_req_vcpu").val(data.hci_del_req_vcpu)
@@ -30,6 +32,13 @@ $(document).ready(function () {
 					$("#hci_del_req_ipadd").val(data.hci_del_req_ipadd)
 					$("#hci_del_req_vlan").val(data.hci_del_req_vlan)
 					$("#hci_del_req_users").val(data.hci_del_req_users)
+					$("#hci_del_req_vm_deployment").val(data.hci_del_req_vm_deployment)
+					$("#hci_del_req_vm_deployment_comment").val(
+						data.hci_del_req_vm_deployment_comment
+					)
+
+					$("#hci_del_req_comm").val(data.hci_del_req_comm)
+					$("#hci_del_comm_comment").val(data.hci_del_comm_comment)
 
 					$("#hci_del_vcpu_comment").val(data.hci_del_vcpu_comment)
 					$("#hci_del_ram_comment").val(data.hci_del_ram_comment)

@@ -46,82 +46,92 @@ endwhile;
     </head>
     <body> 
         <div class="col-10 offset-1" >
-            <?php  
-                if (!empty($control_number)):
-                    $tbl_hci_update = mysqli_query($conn,"SELECT * FROM `tbl_hci` where control_number = '$control_number' ");
-                    while ($rows = mysqli_fetch_array($tbl_hci_update)) {
+        <?php  
+// // HCI Update table
+if (!empty($control_number)):
+    $tbl_hci_update = mysqli_query($conn,"SELECT * FROM `tbl_hci` where control_number = '$control_number' ");
+    while ($rows = mysqli_fetch_array($tbl_hci_update)) {
+        $get_uid                    = $rows['uid'];
+        $hci_new_control_num        = $rows['hci_new_control_num'];
+        $control_number             = $rows['control_number'];
+        $form_type                  = $rows['form_type'];
+        $fullname                   = $rows['fullname'];
+        $email_add                  = $rows['email_add'];
+        $contact_no                 = $rows['contact_no'];
+        $department                 = $rows['department'];
+        $location                   = $rows['location'];
+        $cluster                    = $rows['cluster'];
 
-                        $hci_new_control_num   = $rows['hci_new_control_num'];
-                        $control_number             = $rows['control_number'];
-                        $form_type                  = $rows['form_type'];
-                        $fullname                   = $rows['fullname'];
-                        $email_add                  = $rows['email_add'];
-                        $contact_no                 = $rows['contact_no'];
-                        $department                 = $rows['department'];
-                        $location                   = $rows['location'];
-                        $cluster                    = $rows['cluster'];
+        $hostname                   = $rows['hostname'];
+        $hci_up_req_vcpu            = $rows['vcpu'];
+        $hci_up_vcpu_comment        = $rows['vcpu_comment'];
+        $hci_up_req_ram             = $rows['ram'];
+        $hci_up_ram_comment         = $rows['ram_comment'];
 
-                        $hostname                   = $rows['hostname'];
-                        $hci_up_req_vcpu            = $rows['vcpu'];
-                        $hci_up_vcpu_comment        = $rows['vcpu_comment'];
-                        $hci_up_req_ram             = $rows['ram'];
-                        $hci_up_ram_comment         = $rows['ram_comment'];
+        $hci_up_req_os_new          = $rows['os'];
+        $hci_up_os_comment          = $rows['os_comment'];
 
-                        $hci_up_req_os_new          = $rows['os'];
-                        $hci_up_os_comment          = $rows['os_comment'];
+        $hci_up_req_desc            = $rows['txt_os_descript'];
+        $hci_up_req_parti           = $rows['txt_define_parti'];
 
-                        $hci_up_req_desc            = $rows['txt_os_descript'];
-                        $hci_up_req_parti           = $rows['txt_define_parti'];
+        $hci_up_ipadd_comment       = $rows['ip_comment'];
+        $hci_up_vlan_comment        = $rows['vlan_comment'];
 
-                        $hci_up_ipadd_comment       = $rows['ip_comment'];
-                        $hci_up_vlan_comment        = $rows['vlan_comment'];
+        $hci_up_req_ipadd           = $rows['ip_add_vlan'];
+        $hci_up_req_vlan            = $rows['txt_ip_vlan'];
+        $hci_up_req_users           = $rows['hci_users'];
+        $hci_up_req_txt_hci_users   = $rows['txt_hci_users'];
+        $hci_up_req_vm_deployment   = $rows['vm_deployment'];
+        $hci_up_req_vm_deployment_comment = $rows['vm_deployment_comment'];
+        $hci_up_req_comm            = $rows['comm']; 
+        $hci_up_comm_comment =      $rows['comm_comment'];
+        $status                     = $rows['status'];
+        $date_requested             = $rows['date_requested'];
+        $revised                    = $rows['revised'];
+        $num_revised                = $rows['num_revised'];
 
-                        $hci_up_req_ipadd           = $rows['ip_add_vlan'];
-                        $hci_up_req_vlan            = $rows['txt_ip_vlan'];
-                        $hci_up_req_users           = $rows['hci_users'];
-                        $hci_up_users_comment       = $rows['txt_hci_users'];
+        $approver_id                = $rows['approver_id'];
+        $approver                   = $rows['approver'];
+        $app_status                 = $rows['app_status'];
+        $appr_date                  = $rows['appr_date'];
 
-                        $status                     = $rows['status'];
-                        $date_requested             = $rows['date_requested'];
-                        $revised                    = $rows['revised'];
-                        $num_revised                = $rows['num_revised'];
+        $reciever_id                = $rows['reciever_id'];
+        $reciever                   = $rows['reciever'];
+        $rec_status                 = $rows['rec_status'];
+        $rec_date                   = $rows['rec_date'];
 
-                        $approver_id                = $rows['approver_id'];
-                        $approver                   = $rows['approver'];
-                        $app_status                 = $rows['app_status'];
-                        $appr_date                  = $rows['appr_date'];
+        $performer_id               = $rows['performer_id'];
+        $performer                  = $rows['performer'];
+        $perf_status                = $rows['perf_status'];
+        $perform_date               = $rows['perform_date'];
 
-                        $reciever_id                = $rows['reciever_id'];
-                        $reciever                   = $rows['reciever'];
-                        $rec_status                 = $rows['rec_status'];
-                        $rec_date                   = $rows['rec_date'];
+        $verifier                   = $rows['verifier'];
+        $ver_status                 = $rows['ver_status'];
+        $ver_date                   = $rows['ver_date']; 
 
-                        $performer_id               = $rows['performer_id'];
-                        $performer                  = $rows['performer'];
-                        $perf_status                = $rows['perf_status'];
-                        $perform_date               = $rows['perform_date'];
+        $verifier_2                 = $rows['verifier_2'];
+        $ver2_status                = $rows['ver2_status'];
+        $ver2_date                  = $rows['ver2_date'];     
+    } 
 
-                        $verifier                   = $rows['verifier'];
-                        $ver_status                 = $rows['ver_status'];
-                        $ver_date                   = $rows['ver_date']; 
 
-                        $verifier_2                 = $rows['verifier_2'];
-                        $ver2_status                = $rows['ver2_status'];
-                        $ver2_date                  = $rows['ver2_date'];     
-                    } 
-
-                    $tbl_hci = mysqli_query($conn,"SELECT * FROM `tbl_hci` where control_number = '$hci_new_control_num' ");
-                    while ($rows_2 = mysqli_fetch_array($tbl_hci)) {
-                        $hci_up_vcpu                = $rows_2['vcpu'];
-                        $hci_up_ram                 = $rows_2['ram'];
-                        $hci_up_os_old              = $rows_2['os'];
-                        $hci_up_os_desc_old         = $rows_2['txt_os_descript'];
-                        $hci_up_ipaddress           = $rows_2['ip_add_vlan'];
-                        $hci_up_ip_vlan             = $rows_2['txt_ip_vlan'];
-                        $hci_up_users               = $rows_2['hci_users'];
-                    }
-                endif;
-            ?>
+    // // HCI NEW table
+    $tbl_hci = mysqli_query($conn,"SELECT * FROM `tbl_hci` where control_number = '$hci_new_control_num' ");
+    while ($rows_2 = mysqli_fetch_array($tbl_hci)) {
+        $hci_up_form_type                  = $rows_2['form_type'];
+        $hci_up_vcpu                = $rows_2['vcpu'];
+        $hci_up_ram                 = $rows_2['ram'];
+        $hci_up_os_old              = $rows_2['os'];
+        $hci_up_os_desc_old         = $rows_2['txt_os_descript'];
+        $hci_up_ipaddress           = $rows_2['ip_add_vlan'];
+        $hci_up_ip_vlan             = $rows_2['txt_ip_vlan'];
+        $hci_up_users               = $rows_2['hci_users'];     
+        $hci_up_vm_deployment      = $rows_2['vm_deployment'];
+        $hci_up_comm               = $rows_2['comm'];   
+        $date_accomplished          = $rows_2['date_requested'];
+    }
+endif;
+?>
 
             <div class="mt-5 d-flex justify-content-between">
                         <div class="col-md-6 col-lg-5 col-xl-4 offset-lg-1 offset-xl-1">
@@ -140,13 +150,13 @@ endwhile;
                         <div class="col-md-12 col-lg-5 col-xl-4 offset-lg-1 offset-xl-1">
                             <label class="form-label d-block">Date Requested: <span class="fw-bold"><?php echo empty($date_requested) ? date('F d, Y') : date('F d, Y - h:i A',strtotime($date_requested)); ?></span></label>
                             <label class="form-label d-block">Control No:&nbsp; <span class="fw-bold"><?php echo empty($control_number) ? '' : 'HCI/'.$control_number; ?></span></label>
-                            <input type="hidden" name="txt_control_number" value="<?php echo empty($control_number) ? '' : $control_number; ?>" readonly >
-                            <input type="hidden" name="contact_no" value="<?php echo empty($contact_no) ? '' : $contact_no; ?>" readonly>
-                            <input type="hidden" name="email_add" value="<?php echo empty($email) ? '' : $email; ?>" readonly>
-                            <input type="hidden" name="form_type" value="<?php echo empty($form_type) ? '' : $form_type; ?>" readonly>
-                            <input type="hidden" name="num_revised" value="<?php echo empty($num_revised) ? '' : $num_revised; ?>" readonly placeholder="Total Revised">
-                            <input type="hidden" name="his_role" value="<?php echo empty($my_role) ? '' : $my_role; ?>" readonly>
-                            <input type="hidden" name="hci_new_control_num" >
+                            <input readonly type="hidden" name="txt_control_number" value="<?php echo empty($control_number) ? '' : $control_number; ?>" readonly >
+                            <input readonly type="hidden" name="contact_no" value="<?php echo empty($contact_no) ? '' : $contact_no; ?>" readonly>
+                            <input readonly type="hidden" name="email_add" value="<?php echo empty($email) ? '' : $email; ?>" readonly>
+                            <input readonly type="hidden" name="form_type" value="<?php echo empty($form_type) ? '' : $form_type; ?>" readonly>
+                            <input readonly type="hidden" name="num_revised" value="<?php echo empty($num_revised) ? '' : $num_revised; ?>" readonly placeholder="Total Revised">
+                            <input readonly type="hidden" name="his_role" value="<?php echo empty($my_role) ? '' : $my_role; ?>" readonly>
+                            <input readonly type="hidden" name="hci_new_control_num" >
                         </div>
                     </div>
 
@@ -165,13 +175,13 @@ endwhile;
                                     <tbody class="text-dark">
                                         <tr>
                                             <td>
-                                                <input class="form-control form-control-sm text-dark" type="text" name="fullname" value="<?php echo empty($fullname) ? $my_fullname : ucwords($fullname); ?>" readonly="readonly" />
+                                                <input readonly class="form-control form-control-sm text-dark" type="text" name="fullname" value="<?php echo empty($fullname) ? $my_fullname : ucwords($fullname); ?>" />
                                             </td>
                                             <td>
-                                                <input class="form-control form-control-sm text-dark" type="text" name="hci_up_department" id="hci_up_department" value="<?php echo empty($department) ? '' : $department; ?>" readonly />
+                                                <input readonly class="form-control form-control-sm text-dark" type="text" name="hci_up_department" id="hci_up_department" value="<?php echo empty($department) ? '' : $department; ?>" />
                                             </td>
                                             <td>
-                                                <select class="form-select form-select-sm text-dark" name="hci_up_location" id="hci_up_location" required>
+                                                <select class="form-select form-select-sm text-dark" name="hci_up_location" id="hci_up_location" required disabled>
                                                     <option value="" selected="">Select your Location</option>
                                                     <option value="HO"  <?php echo empty($location) ? '' : ($location == 'HO' ? 'selected' : ''); ?> >HO - Head Office</option>
                                                     <option value="LFC" <?php echo empty($location) ? '' : ($location == 'LFC' ? 'selected' : ''); ?> >LFC - Local Fallback Center</option>
@@ -185,7 +195,7 @@ endwhile;
                                         </tr>
                                         <tr>
                                             <td>
-                                                <select class="form-select form-select-sm text-dark" name="hci_up_cluster" id="hci_up_cluster" required>
+                                                <select class="form-select form-select-sm text-dark" name="hci_up_cluster" id="hci_up_cluster" required disabled>
                                                     <option value="" selected>Select Cluster</option>
                                                     <option value="general_cluster" <?php echo empty($cluster) ? '' : ($cluster == 'general_cluster' ? 'selected' : ''); ?> >General Cluster</option>
                                                     <option value="sql_cluster"  <?php echo empty($cluster) ? '' : ($cluster == 'sql_cluster' ? 'selected' : ''); ?> >SQL Cluster</option>
@@ -196,7 +206,7 @@ endwhile;
                                             <td colspan="3">
                                             <?php if (empty($control_number)): ?>
                                                 <div class="input-group">
-                                                    <input class="form-control form-control-sm text-dark shadow-none" type="search" name="hci_up_search_txt" id="hci_up_search_txt" value="<?php echo empty($hostname) ? '' : $hostname; ?>" >
+                                                    <input readonly class="form-control form-control-sm text-dark shadow-none" type="search" name="hci_up_search_txt" id="hci_up_search_txt" value="<?php echo empty($hostname) ? '' : $hostname; ?>" >
                                                     <button class="btn btn-secondary shadow-none" type="button" id="btn_hci_up_search" name="btn_hci_up_search">Search</button>   
                                                 </div>                                                
                                                 <div class="position-absolute">
@@ -204,7 +214,7 @@ endwhile;
                                                 </div>
                                             <?php endif; ?>
                                             <?php if (!empty($control_number)): ?>
-                                                    <input class="form-control form-control-sm text-dark shadow-none" type="text" name="hci_up_search_txt" id="hci_up_search_txt" readonly value="<?php echo empty($hostname) ? '' : $hostname; ?>" >
+                                                    <input readonly class="form-control form-control-sm text-dark shadow-none" type="text" name="hci_up_search_txt" id="hci_up_search_txt" readonly value="<?php echo empty($hostname) ? '' : $hostname; ?>" >
                                             <?php endif; ?>
                                             </td>
                                         </tr>
@@ -232,37 +242,37 @@ endwhile;
                                     <tr>
                                         <td class="fw-bold">vCPU</td>
                                         <td>
-                                            <input class="form-control form-control-sm text-dark" type="text"  name="hci_up_vcpu" id="hci_up_vcpu" value="<?php echo empty($hci_up_vcpu) ? '' : $hci_up_vcpu; ?>" readonly />
+                                            <input readonly class="form-control form-control-sm text-dark" type="text"  name="hci_up_vcpu" id="hci_up_vcpu" value="<?php echo empty($hci_up_vcpu) ? '' : $hci_up_vcpu; ?>" readonly />
                                         </td>
                                         <td>
-                                            <input class="form-control form-control-sm text-dark" type="text" name="hci_up_req_vcpu" id="hci_up_req_vcpu" value="<?php echo empty($hci_up_req_vcpu) ? '' : $hci_up_req_vcpu; ?>" />
+                                            <input readonly class="form-control form-control-sm text-dark" type="text" name="hci_up_req_vcpu" id="hci_up_req_vcpu" value="<?php echo empty($hci_up_req_vcpu) ? '' : $hci_up_req_vcpu; ?>" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-control-sm text-dark" type="text" name="hci_up_vcpu_comment" id="hci_up_vcpu_comment" value="<?php echo empty($hci_up_vcpu_comment) ? '' : $hci_up_vcpu_comment; ?>" />
+                                            <input readonly class="form-control form-control-sm text-dark" type="text" name="hci_up_vcpu_comment" id="hci_up_vcpu_comment" value="<?php echo empty($hci_up_vcpu_comment) ? '' : $hci_up_vcpu_comment; ?>" />
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="fw-bold">RAM (GB)</td>
                                         <td>
-                                            <input class="form-control form-control-sm text-dark" type="text" name="hci_up_ram" id="hci_up_ram" value="<?php echo empty($hci_up_ram) ? '' : $hci_up_ram; ?>"  readonly />
+                                            <input readonly class="form-control form-control-sm text-dark" type="text" name="hci_up_ram" id="hci_up_ram" value="<?php echo empty($hci_up_ram) ? '' : $hci_up_ram; ?>"  readonly />
                                         </td>
                                         <td>
-                                            <input class="form-control form-control-sm text-dark" type="text" name="hci_up_req_ram" id="hci_up_req_ram" value="<?php echo empty($hci_up_req_ram) ? '' : $hci_up_req_ram; ?>" />
+                                            <input readonly class="form-control form-control-sm text-dark" type="text" name="hci_up_req_ram" id="hci_up_req_ram" value="<?php echo empty($hci_up_req_ram) ? '' : $hci_up_req_ram; ?>" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-control-sm text-dark" type="text"  name="hci_up_ram_comment" id="hci_up_ram_comment" value="<?php echo empty($hci_up_ram_comment) ? '' : $hci_up_ram_comment; ?>" />
+                                            <input readonly class="form-control form-control-sm text-dark" type="text"  name="hci_up_ram_comment" id="hci_up_ram_comment" value="<?php echo empty($hci_up_ram_comment) ? '' : $hci_up_ram_comment; ?>" />
                                         </td>
                                     </tr>
                                     <tr class="align-top">
                                          <td class="fw-bold">OS</td>
                                          <td>
-                                            <input class="form-control form-control-sm text-dark" type="text" name="hci_up_os_old" id="hci_up_os_old" value="<?php echo empty($hci_up_os_old) ? '' : $hci_up_os_old; ?>" readonly />                             
+                                            <input readonly class="form-control form-control-sm text-dark" type="text" name="hci_up_os_old" id="hci_up_os_old" value="<?php echo empty($hci_up_os_old) ? '' : $hci_up_os_old; ?>" readonly />                             
                                          </td>
                                          <td>
-                                            <input class="form-control form-control-sm text-dark" type="text" name="hci_up_req_os_new" id="hci_up_req_os_new" value="<?php echo empty($hci_up_req_os_new) ? '' : $hci_up_req_os_new; ?>" />
+                                            <input readonly class="form-control form-control-sm text-dark" type="text" name="hci_up_req_os_new" id="hci_up_req_os_new" value="<?php echo empty($hci_up_req_os_new) ? '' : $hci_up_req_os_new; ?>" />
                                         </td>
                                          <td>
-                                             <input class="form-control form-control-sm text-dark" type="text" name="hci_up_os_comment" id="hci_up_os_comment" value="<?php echo empty($hci_up_os_comment) ? '' : $hci_up_os_comment; ?>" />  
+                                             <input readonly class="form-control form-control-sm text-dark" type="text" name="hci_up_os_comment" id="hci_up_os_comment" value="<?php echo empty($hci_up_os_comment) ? '' : $hci_up_os_comment; ?>" />  
                                          </td>
                                      </tr>
                                      <tr>
@@ -270,51 +280,89 @@ endwhile;
                                             <span class="invisible"></span>
                                         </td>
                                          <td>
-                                            <input class="form-control form-control-sm text-dark" type="text" name="hci_up_os_desc_old" id="hci_up_os_desc_old" value="<?php echo empty($hci_up_os_desc_old) ? '' : $hci_up_os_desc_old; ?>" placeholder="Specify OS Environment (with or w/o GUI:)" readonly>
+                                            <input readonly class="form-control form-control-sm text-dark" type="text" name="hci_up_os_desc_old" id="hci_up_os_desc_old" value="<?php echo empty($hci_up_os_desc_old) ? '' : $hci_up_os_desc_old; ?>" placeholder="Specify OS Environment (with or w/o GUI:)" readonly>
                                         </td>
                                         <td>
-                                            <input class="form-control form-control-sm text-dark" type="text" name="hci_up_req_desc" id="hci_up_req_desc" value="<?php echo empty($hci_up_req_desc) ? '' : $hci_up_req_desc; ?>" placeholder="Please Define Partion:" />
+                                            <input readonly class="form-control form-control-sm text-dark" type="text" name="hci_up_req_desc" id="hci_up_req_desc" value="<?php echo empty($hci_up_req_desc) ? '' : $hci_up_req_desc; ?>" placeholder="Please Define Partion:" />
                                         </td>
                                          <td>
-                                            <input class="form-control form-control-sm text-dark" type="text" name="hci_up_req_parti" id="hci_up_req_parti" value="<?php echo empty($hci_up_req_parti) ? '' : $hci_up_req_parti; ?>"   >
+                                            <input readonly class="form-control form-control-sm text-dark" type="text" name="hci_up_req_parti" id="hci_up_req_parti" value="<?php echo empty($hci_up_req_parti) ? '' : $hci_up_req_parti; ?>"   >
                                         </td>
                                      </tr>
                                      <tr>
                                          <td class="fw-bold">IP Address</td>
                                          <td>
-                                             <input class="form-control form-control-sm text-dark" type="text"  name="hci_up_ipaddress" id="hci_up_ipaddress" value="<?php echo empty($hci_up_ipaddress) ? '' : $hci_up_ipaddress; ?>" readonly />
+                                             <input readonly class="form-control form-control-sm text-dark" type="text"  name="hci_up_ipaddress" id="hci_up_ipaddress" value="<?php echo empty($hci_up_ipaddress) ? '' : $hci_up_ipaddress; ?>" readonly />
                                          </td>
                                          <td>
-                                            <input class="form-control form-control-sm text-dark" type="text" name="hci_up_req_ipadd" id="hci_up_req_ipadd" value="<?php echo empty($hci_up_req_ipadd) ? '' : $hci_up_req_ipadd; ?>" />
+                                            <input readonly class="form-control form-control-sm text-dark" type="text" name="hci_up_req_ipadd" id="hci_up_req_ipadd" value="<?php echo empty($hci_up_req_ipadd) ? '' : $hci_up_req_ipadd; ?>" />
                                         </td>
                                          <td>
-                                             <input class="form-control form-control-sm text-dark" type="text" name="hci_up_ipadd_comment" id="hci_up_ipadd_comment" value="<?php echo empty($hci_up_ipadd_comment) ? '' : $hci_up_ipadd_comment; ?>"  >
+                                             <input readonly class="form-control form-control-sm text-dark" type="text" name="hci_up_ipadd_comment" id="hci_up_ipadd_comment" value="<?php echo empty($hci_up_ipadd_comment) ? '' : $hci_up_ipadd_comment; ?>"  >
                                          </td>
                                      </tr>
                                      <tr>
                                          <td class="fw-bold">VLAN</td>
                                          <td>
-                                             <input class="form-control form-control-sm text-dark" type="text" id="hci_up_ip_vlan" name="hci_up_ip_vlan" value="<?php echo empty($hci_up_ip_vlan) ? '' : $hci_up_ip_vlan; ?>"  readonly/>
+                                             <input readonly class="form-control form-control-sm text-dark" type="text" id="hci_up_ip_vlan" name="hci_up_ip_vlan" value="<?php echo empty($hci_up_ip_vlan) ? '' : $hci_up_ip_vlan; ?>"  readonly/>
                                          </td>
                                          <td>
-                                            <input class="form-control form-control-sm text-dark" type="text" name="hci_up_req_vlan" id="hci_up_req_vlan" value="<?php echo empty($hci_up_req_vlan) ? '' : $hci_up_req_vlan; ?>" />
+                                            <input readonly class="form-control form-control-sm text-dark" type="text" name="hci_up_req_vlan" id="hci_up_req_vlan" value="<?php echo empty($hci_up_req_vlan) ? '' : $hci_up_req_vlan; ?>" />
                                         </td>
                                          <td>
-                                             <input class="form-control form-control-sm text-dark" type="text" name="hci_up_vlan_comment" id="hci_up_vlan_comment" value="<?php echo empty($hci_up_vlan_comment) ? '' : $hci_up_vlan_comment; ?>"  >
+                                             <input readonly class="form-control form-control-sm text-dark" type="text" name="hci_up_vlan_comment" id="hci_up_vlan_comment" value="<?php echo empty($hci_up_vlan_comment) ? '' : $hci_up_vlan_comment; ?>"  >
                                          </td>
                                      </tr>
                                      <tr>
                                          <td class="fw-bold">Users </td>
                                          <td>
-                                             <input class="form-control form-control-sm text-dark" type="text" name="hci_up_users" id="hci_up_users" value="<?php echo empty($hci_up_users) ? '' : $hci_up_users; ?>" readonly />
+                                             <input readonly class="form-control text-dark" type="text" name="hci_up_users" id="hci_up_users" value="<?php echo empty($hci_up_users) ? '' : $hci_up_users; ?>" readonly />
                                          </td>
                                          <td>
-                                            <input class="form-control form-control-sm text-dark" type="text" name="hci_up_req_users" id="hci_up_req_users" value="<?php echo empty($hci_up_req_users) ? '' : $hci_up_req_users; ?>" />
+                                            <input readonly class="form-control text-dark" type="text" name="hci_up_req_users" id="hci_up_req_users" maxlength="30" value="<?php echo empty($hci_up_req_users) ? '' : $hci_up_req_users;  ?>" onkeypress="return /[A-Z0-9 ]/i.test(event.key)" />
                                         </td>
-                                         <td>
-                                             <input class="form-control form-control-sm text-dark" type="text" name="hci_up_users_comment" id="hci_up_users_comment" value="<?php echo empty($hci_up_users_comment) ? '' : $hci_up_users_comment; ?>"  />
-                                         </td>
-                                     </tr>                                     
+                                        <td>
+                                            <select class="form-select" name="hci_up_req_txt_hci_users" id="hci_up_req_txt_hci_users" disabled >
+                                                <option value="" selected>Select Role</option>
+                                                <option value="vm_power_user" <?php echo empty($hci_up_req_txt_hci_users) ? '' : ($hci_up_req_txt_hci_users == 'vm_power_user' ? 'selected' : ''); ?>>VM Power User</option>
+                                                <option value="vm_power_sample" <?php echo empty($hci_up_req_txt_hci_users) ? '' : ($hci_up_req_txt_hci_users == 'vm_power_sample' ? 'selected' : ''); ?>>VM User Sample</option>
+                                            </select>
+                                        </td>
+                                     </tr>
+                                     <tr>
+                                        <td class="fw-bold">VM Deployment</td>
+                                        <td>
+                                            <input readonly class="form-control" type="date" name="hci_up_vm_deployment" id="hci_up_vm_deployment" value="<?php echo empty($hci_up_vm_deployment) ? '' : $hci_up_vm_deployment; ?>"  readonly required>
+                                        </td>
+                                        <td>
+                                            <input readonly class="form-control" type="date" placeholder="Optional" name="hci_up_req_vm_deployment" id="hci_up_req_vm_deployment" value="<?php echo empty($hci_up_req_vm_deployment) ? '' : $hci_up_req_vm_deployment; ?>"  >
+                                        </td>
+                                        <td>
+                                            <input readonly class="form-control" type="text" placeholder="Optional" name="hci_up_req_vm_deployment_comment" id="hci_up_req_vm_deployment_comment" value="<?php echo empty($hci_up_req_vm_deployment_comment) ? '' : $hci_up_req_vm_deployment_comment; ?>" >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Communication</td>
+                                        <td>
+                                            <input readonly class="form-control" type="text" name="hci_up_comm" id="hci_up_comm"  value="<?php echo empty($hci_up_comm) ? '' : $hci_up_comm; ?>" required readonly onkeypress="return /[0-9A-Z ]/i.test(event.key)">
+                                        </td>
+                                        <td>
+                                            <input readonly class="form-control" type="text" placeholder="Optional" name="hci_up_req_comm" id="hci_up_req_comm" value="<?php echo empty($hci_up_req_comm) ? '' : $hci_up_req_comm; ?>" >
+                                        </td>
+                                        <td>
+                                            <input readonly class="form-control" type="text" placeholder="Optional" name="hci_up_comm_comment" id="hci_up_comm_comment" value="<?php echo empty($hci_up_comm_comment) ? '' : $hci_up_comm_comment; ?>" >
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="fw-bold">Attachment</td>
+                                        <td colspan="3">
+                                            <input readonly name="file[]" multiple="multiple" class="form-control" type="file" id="file">
+                                        </td>
+                                    </tr>
+                                     
+
+
                                 </tbody>
                              
                                 <tbody id="load_others"></tbody>
@@ -327,17 +375,17 @@ endwhile;
                                             while ($rows_2 = mysqli_fetch_assoc($sql_2)) {
                                                 echo '<tr>';
                                                 echo '<td class="text-dark fw-bold">Disk (GB) '.$num++.' </td>';
-                                                echo '<td><input type="hidden" name="others_id[]" value="'.$rows_2['others_id'].'" placeholder=""><input class="form-control form-control-sm text-dark" type="text" id="others_1[]" name="others_1[]" value="'.$rows_2['others_1'].'" readonly></td>';
-                                                echo '<td><input class="form-control form-control-sm text-dark" type="text" id="others_2[]" name="others_2[]" value="'.$rows_2['others_2'].'" ></td>';
-                                                echo '<td><input class="form-control form-control-sm text-dark" type="text" id="others_3[]" name="others_3[]" value="'.$rows_2['others_3'].'" ></td>';
+                                                echo '<td><input readonly type="hidden" name="others_id[]" value="'.$rows_2['others_id'].'" placeholder=""><input readonly class="form-control form-control-sm text-dark" type="text" id="others_1[]" name="others_1[]" value="'.$rows_2['others_1'].'" readonly></td>';
+                                                echo '<td><input readonly class="form-control form-control-sm text-dark" type="text" id="others_2[]" name="others_2[]" value="'.$rows_2['others_2'].'" ></td>';
+                                                echo '<td><input readonly class="form-control form-control-sm text-dark" type="text" id="others_3[]" name="others_3[]" value="'.$rows_2['others_3'].'" ></td>';
                                                 echo '</tr>';
                                             }
                                         }else{
                                             echo '<tr>';
                                             echo '<td class="text-dark fw-bold">Disk (GB)</td>';
-                                            echo '<td><input type="hidden" name="others_id[]" value="" placeholder=""><input class="form-control form-control-sm text-dark" type="text" id="others_1" name="others_1[]" value="" readonly></td>';
-                                            echo '<td><input class="form-control form-control-sm text-dark" type="text" id="others_2" name="others_2[]" ></td>';
-                                            echo '<td><input class="form-control form-control-sm text-dark" type="text" name="others_3[]"></td>';
+                                            echo '<td><input readonly type="hidden" name="others_id[]" value="" placeholder=""><input readonly class="form-control form-control-sm text-dark" type="text" id="others_1" name="others_1[]" value="" readonly></td>';
+                                            echo '<td><input readonly class="form-control form-control-sm text-dark" type="text" id="others_2" name="others_2[]" ></td>';
+                                            echo '<td><input readonly class="form-control form-control-sm text-dark" type="text" name="others_3[]"></td>';
                                             echo '</tr>';     
                                         }
                                     endif;
@@ -345,9 +393,9 @@ endwhile;
                                             // the purpose of this is to display the blank textfield of DISK GB
                                             echo '<tr id="hci_up_disk" >';
                                             echo '<td class="text-dark fw-bold">Disk (GB)</td>';
-                                            echo '<td><input class="form-control form-control-sm text-dark" type="text" readonly></td>';
-                                            echo '<td><input class="form-control form-control-sm text-dark" type="text" ></td>';
-                                            echo '<td><input class="form-control form-control-sm text-dark" type="text" ></td>';
+                                            echo '<td><input readonly class="form-control form-control-sm text-dark" type="text" readonly></td>';
+                                            echo '<td><input readonly class="form-control form-control-sm text-dark" type="text" ></td>';
+                                            echo '<td><input readonly class="form-control form-control-sm text-dark" type="text" ></td>';
                                             echo '</tr>';                                      
                                     endif;
                                 ?>                               

@@ -63,7 +63,7 @@ endif;
 ?>
 
 
-    <form class="text-dark" method="post" id="frm_baas_1"> 
+    <form class="text-dark" method="post" id="frm_baas_1" name="frm_baas_1"> 
         <div class="modal fade" role="dialog" tabindex="-1" id="view_baas<?php echo empty($control_number) ? '' : $control_number; ?>" data-bs-backdrop="static" data-bs-keyboard="false">
             <div class="modal-dialog modal-xl modal-dialog-centered modal-fullscreen-lg-down" role="document">
                 <div class="modal-content">                              

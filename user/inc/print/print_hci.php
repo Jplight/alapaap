@@ -156,10 +156,10 @@ endwhile;
                                     <tbody class="text-dark">
                                         <tr>
                                             <td>
-                                                <input class="form-control form-control-sm text-dark" type="text" name="fullname" value="<?php echo empty($fullname) ? $my_fullname : ucwords($fullname); ?>" readonly="readonly" disabled />
+                                                <input readonly  class="form-control form-control-sm text-dark" type="text" name="fullname" value="<?php echo empty($fullname) ? $my_fullname : ucwords($fullname); ?>" readonly="readonly" disabled />
                                             </td>
                                             <td>
-                                                <input class="form-control form-control-sm text-dark"  type="text" name="department" value="<?php echo empty($department) ? '' : $department; ?>" required disabled/>
+                                                <input readonly  class="form-control form-control-sm text-dark"  type="text" name="department" value="<?php echo empty($department) ? '' : $department; ?>" required disabled/>
                                             </td>
                                             <td>
                                                 <select class="form-select form-select-sm text-dark"  name="location" required disabled>
@@ -184,7 +184,7 @@ endwhile;
                                                  </select>
                                             </td>
                                             <td class="align-top" colspan="3">
-                                                <input class="form-control form-control-sm text-dark" type="text" id="hostname" name="hostname" value="<?php echo empty($hostname) ? '' : $hostname; ?>" placeholder="Input your Host Name" required disabled />
+                                                <input readonly  class="form-control form-control-sm text-dark" type="text" id="hostname" name="hostname" value="<?php echo empty($hostname) ? '' : $hostname; ?>" placeholder="Input your Host Name" required disabled />
                                             </td>
                                         </tr>
                                     </tbody>
@@ -207,19 +207,19 @@ endwhile;
                                         <tr>
                                             <td class="fw-bold">vCPU</td>
                                             <td>
-                                                <input class="form-control form-control-sm text-dark" type="text" name="vcpu" value="<?php echo empty($vcpu) ? '' : $vcpu; ?>" disabled/>
+                                                <input readonly  class="form-control form-control-sm text-dark" type="text" name="vcpu" value="<?php echo empty($vcpu) ? '' : $vcpu; ?>" disabled/>
                                             </td>
                                             <td>
-                                                <input class="form-control form-control-sm  text-dark" type="text" name="vcpu_comment" value="<?php echo empty($vcpu_comment) ? '' : $vcpu_comment; ?>" disabled />
+                                                <input readonly  class="form-control form-control-sm  text-dark" type="text" name="vcpu_comment" value="<?php echo empty($vcpu_comment) ? '' : $vcpu_comment; ?>" disabled />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="fw-bold">RAM (GB)</td>
                                             <td>
-                                                <input class="form-control form-control-sm text-dark" type="text" name="ram" value="<?php echo empty($ram) ? '' : $ram; ?>" disabled/>
+                                                <input readonly  class="form-control form-control-sm text-dark" type="text" name="ram" value="<?php echo empty($ram) ? '' : $ram; ?>" disabled/>
                                             </td>
                                             <td>
-                                                <input class="form-control form-control-sm text-dark" type="text"  name="ram_comment" value="<?php echo empty($ram_comment) ? '' : $ram_comment; ?>" disabled />
+                                                <input readonly  class="form-control form-control-sm text-dark" type="text"  name="ram_comment" value="<?php echo empty($ram_comment) ? '' : $ram_comment; ?>" disabled />
                                             </td>
                                         </tr>
                                         <tr class="align-top">
@@ -232,7 +232,7 @@ endwhile;
                                                  </select>                              
                                              </td>
                                              <td>
-                                                 <input class="form-control form-control-sm text-dark" type="text" name="os_comment" value="<?php echo empty($os_comment) ? '' : $os_comment; ?>" disabled/>  
+                                                 <input readonly  class="form-control form-control-sm text-dark" type="text" name="os_comment" value="<?php echo empty($os_comment) ? '' : $os_comment; ?>" disabled/>  
                                              </td>
                                          </tr>
                                          <tr>
@@ -240,57 +240,65 @@ endwhile;
                                                 <span class="invisible"></span>
                                             </td>
                                              <td>
-                                                <input class="form-control form-control-sm text-dark" type="text" name="txt_os_descript" value="<?php echo empty($txt_os_descript) ? '' : $txt_os_descript; ?>" placeholder="Specify OS Environment (with or w/o GUI:)" disabled>
+                                                <input readonly  class="form-control form-control-sm text-dark" type="text" name="txt_os_descript" value="<?php echo empty($txt_os_descript) ? '' : $txt_os_descript; ?>" placeholder="Specify OS Environment (with or w/o GUI:)" disabled>
                                             </td>
                                              <td>
-                                                <input class="form-control form-control-sm text-dark" type="text" name="txt_define_parti" value="<?php echo empty($txt_define_parti) ? '' : $txt_define_parti; ?>" placeholder="Please Define Partion:" disabled>
+                                                <input readonly  class="form-control form-control-sm text-dark" type="text" name="txt_define_parti" value="<?php echo empty($txt_define_parti) ? '' : $txt_define_parti; ?>" placeholder="Please Define Partion:" disabled>
                                             </td>
                                          </tr>
                                          <tr>
                                              <td class="fw-bold">IP Address</td>
                                              <td>
-                                                 <input class="form-control form-control-sm text-dark" type="text" name="ip_add_vlan" value="<?php echo empty($ip_add_vlan) ? '' : $ip_add_vlan; ?>" disabled/>
+                                                 <input readonly  class="form-control form-control-sm text-dark" type="text" name="ip_add_vlan" value="<?php echo empty($ip_add_vlan) ? '' : $ip_add_vlan; ?>" disabled/>
                                              </td>
                                              <td>
-                                                 <input class="form-control form-control-sm text-dark" type="text" name="ip_comment" value="<?php echo empty($ip_comment) ? '' : $ip_comment; ?>" disabled>
+                                                 <input readonly  class="form-control form-control-sm text-dark" type="text" name="ip_comment" value="<?php echo empty($ip_comment) ? '' : $ip_comment; ?>" disabled>
                                              </td>
                                          </tr>
                                          <tr>
                                              <td class="fw-bold">VLAN</td>
                                              <td>
-                                                 <input class="form-control form-control-sm text-dark" type="text" name="txt_ip_vlan" value="<?php echo empty($txt_ip_vlan) ? '' : $txt_ip_vlan; ?>" disabled/>
+                                                 <input readonly  class="form-control form-control-sm text-dark" type="text" name="txt_ip_vlan" value="<?php echo empty($txt_ip_vlan) ? '' : $txt_ip_vlan; ?>" disabled/>
                                              </td>
                                              <td>
-                                                 <input class="form-control form-control-sm text-dark" type="text" name="vlan_comment"  value="<?php echo empty($vlan_comment) ? '' : $vlan_comment; ?>"disabled >
+                                                 <input readonly  class="form-control form-control-sm text-dark" type="text" name="vlan_comment"  value="<?php echo empty($vlan_comment) ? '' : $vlan_comment; ?>"disabled >
                                              </td>
                                          </tr>
                                          <tr>
                                              <td class="fw-bold">Users </td>
                                              <td>
-                                                 <input class="form-control form-control-sm text-dark" type="text" name="hci_users" value="<?php echo empty($hci_users) ? '' : $hci_users; ?>" disabled/>
+                                                 <input readonly  readonly class="form-control form-control-sm text-dark" type="text" name="hci_users" value="<?php echo empty($hci_users) ? '' : $hci_users; ?>" disabled/>
                                              </td>
                                              <td>
-                                                 <input class="form-control form-control-sm text-dark" type="text"  name="txt_hci_users" value="<?php echo empty($txt_hci_users) ? '' : $txt_hci_users; ?>" disabled/>
+                                                 <input readonly  class="form-control form-control-sm text-dark" type="text"  name="txt_hci_users" value="<?php echo empty($txt_hci_users) ? '' : $txt_hci_users; ?>" disabled/>
                                              </td>
                                          </tr>
                                          <tr>
                                             <td class="fw-bold">VM Deployment</td>
                                             <td>
-                                                <input class="form-control" type="date" name="vm_deployment" id="vm_deployment" value="<?php echo empty($vm_deployment) ? '' : $vm_deployment; ?>" required>
+                                                <input readonly  class="form-control form-control-sm" type="date" name="vm_deployment" id="vm_deployment" value="<?php echo empty($vm_deployment) ? '' : $vm_deployment; ?>" required>
                                             </td>
                                             <td>
-                                                <input class="form-control" type="text" placeholder="Optional" name="vm_deployment_comment" id="vm_deployment_comment" value="<?php echo empty($vm_deployment_comment) ? '' : $vm_deployment_comment; ?>" >
+                                                <input readonly  class="form-control form-control-sm" type="text" placeholder="Optional" name="vm_deployment_comment" id="vm_deployment_comment" value="<?php echo empty($vm_deployment_comment) ? '' : $vm_deployment_comment; ?>" >
                                             </td>
                                          </tr>
                                          <tr>
                                             <td class="fw-bold">Communication</td>
                                             <td>
-                                                <input class="form-control" type="text" name="comm" id="comm" value="<?php echo empty($comm) ? '' : $comm; ?>" required onkeypress="return /[0-9A-Z ]/i.test(event.key)">
+                                                <input readonly  class="form-control form-control-sm" type="text" name="comm" id="comm" value="<?php echo empty($comm) ? '' : $comm; ?>" required onkeypress="return /[0-9A-Z ]/i.test(event.key)">
                                             </td>
                                             <td>
-                                                <input class="form-control" type="text" placeholder="Optional" name="comm_comment" id="comm_comment" value="<?php echo empty($comm_comment) ? '' : $comm_comment; ?>" >
+                                                <input readonly  class="form-control form-control-sm" type="text" placeholder="Optional" name="comm_comment" id="comm_comment" value="<?php echo empty($comm_comment) ? '' : $comm_comment; ?>" >
                                             </td>
                                          </tr>
+
+                                         <tr>
+                                            <td class="fw-bold">Attachment</td>
+                                            <td colspan="2">
+                                                <input readonly  name="file[]" multiple="multiple" class="form-control form-control-sm" type="file" id="file">
+                                            </td>
+                                         </tr>
+
                                         <!-- Display data of DISK GB -->
                                         <?php
                                             if (!empty($control_number)):
@@ -301,11 +309,11 @@ endwhile;
                                         <tr>
                                             <td class="fw-bold">Disk (GB) <?=$num++; ?></td>
                                             <td>
-                                                <input type="hidden" name="others_id[]" value="<?=$rows['others_id']; ?>" disabled>
-                                                <input class="form-control form-control-sm text-dark uid1" type="text" name='others_1[]' value="<?=$rows['others_1']?>" disabled>
+                                                <input readonly  type="hidden" name="others_id[]" value="<?=$rows['others_id']; ?>" disabled>
+                                                <input readonly  class="form-control form-control-sm text-dark uid1" type="text" name='others_1[]' value="<?=$rows['others_1']?>" disabled>
                                             </td>
                                             <td>
-                                                <input class="form-control form-control-sm text-dark uname1" type="text" name='others_2[]' value="<?=$rows['others_2']?>" disabled>
+                                                <input readonly  class="form-control form-control-sm text-dark uname1" type="text" name='others_2[]' value="<?=$rows['others_2']?>" disabled>
                                             </td>
                                         </tr>
                                         <?php 
@@ -321,8 +329,8 @@ endwhile;
                                             <td class="fw-bold">DISK (GB)</td>
                                             <td>
                                                 <div class="d-flex justify-content-end position-relative">
-                                                    <input type="hidden" name="others_id[]" disabled>
-                                                    <input class="form-control form-control-sm text-dark uid1" type="text" name='others_1[]' disabled>
+                                                    <input readonly  type="hidden" name="others_id[]" disabled>
+                                                    <input readonly  class="form-control form-control-sm text-dark uid1" type="text" name='others_1[]' disabled>
 
                                                     <div class="position-absolute me-2 bg-white d-flex align-self-center" style="z-index:4;">
                                                         <div class="d-flex flex-column ">
@@ -332,7 +340,7 @@ endwhile;
                                                 </div>
                                             </td>
                                             <td>
-                                                <input class="form-control form-control-sm text-dark uname1" type="text" name='others_2[]' >
+                                                <input readonly  class="form-control form-control-sm text-dark uname1" type="text" name='others_2[]' >
                                             </td>
                                         </tr>
                                         <?php endif; ?>
@@ -363,7 +371,7 @@ endwhile;
                                                     $com_id = $hci_remarks_rows['comment_id'];
                                                     $hci_role = $hci_remarks_rows['role'];
                                                     if (($my_role == 1 && $hci_role >=1 && $hci_role <=6) || ($my_role == 2 && $hci_role >=1 && $hci_role <=2) || ($my_role == 3 && $hci_role >=1 && $hci_role <=3) || ($my_role == 4 && $hci_role >=1 && $hci_role <=4) || ($my_role == 5 && $hci_role >=1 && $hci_role <=5) || ($my_role == 6 && $hci_role >=1 && $hci_role <=6) ):
-                                                        echo '<td><input type="hidden" name="comment_id" value="'.$com_id.'"></td>';
+                                                        echo '<td><input readonly  type="hidden" name="comment_id" value="'.$com_id.'"></td>';
                                                         echo '<tr>';
                                                         echo '<td width="25%"><span class="fw-bold">'.ucwords($hci_remarks_rows['fullname']).'</span><br><span class="small">'.$hci_remarks_rows['remarks_date'].'</span></td>';
                                                         echo '<td width="75%" colspan="2">'.$hci_remarks_rows['comments'].'</td>';

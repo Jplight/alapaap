@@ -42,6 +42,11 @@ $(document).ready(function () {
 					$("#hci_up_ipaddress, #hci_up_req_ipadd").val(data.ip_add_vlan)
 					$("#hci_up_ip_vlan, #hci_up_req_vlan").val(data.txt_ip_vlan)
 					$("#hci_up_users, #hci_up_req_users").val(data.hci_users)
+					$("#hci_up_req_txt_hci_users").val(data.txt_hci_users)
+					$("#hci_up_vm_deployment, #hci_up_req_vm_deployment").val(
+						data.vm_deployment
+					)
+					$("#hci_up_comm, #hci_up_req_comm").val(data.comm)
 
 					// 2022-08-16 19:36:55
 					var options = {

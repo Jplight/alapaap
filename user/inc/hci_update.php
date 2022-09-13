@@ -1,4 +1,5 @@
 <?php  
+// // HCI Update table
 if (!empty($control_number)):
     $tbl_hci_update = mysqli_query($conn,"SELECT * FROM `tbl_hci` where control_number = '$control_number' ");
     while ($rows = mysqli_fetch_array($tbl_hci_update)) {
@@ -31,8 +32,11 @@ if (!empty($control_number)):
         $hci_up_req_ipadd           = $rows['ip_add_vlan'];
         $hci_up_req_vlan            = $rows['txt_ip_vlan'];
         $hci_up_req_users           = $rows['hci_users'];
-        $hci_up_users_comment       = $rows['txt_hci_users'];
-
+        $hci_up_req_txt_hci_users   = $rows['txt_hci_users'];
+        $hci_up_req_vm_deployment   = $rows['vm_deployment'];
+        $hci_up_req_vm_deployment_comment = $rows['vm_deployment_comment'];
+        $hci_up_req_comm            = $rows['comm']; 
+        $hci_up_comm_comment =      $rows['comm_comment'];
         $status                     = $rows['status'];
         $date_requested             = $rows['date_requested'];
         $revised                    = $rows['revised'];
@@ -62,15 +66,20 @@ if (!empty($control_number)):
         $ver2_date                  = $rows['ver2_date'];     
     } 
 
+
+    // // HCI NEW table
     $tbl_hci = mysqli_query($conn,"SELECT * FROM `tbl_hci` where control_number = '$hci_new_control_num' ");
     while ($rows_2 = mysqli_fetch_array($tbl_hci)) {
+        $hci_up_form_type                  = $rows_2['form_type'];
         $hci_up_vcpu                = $rows_2['vcpu'];
         $hci_up_ram                 = $rows_2['ram'];
         $hci_up_os_old              = $rows_2['os'];
         $hci_up_os_desc_old         = $rows_2['txt_os_descript'];
         $hci_up_ipaddress           = $rows_2['ip_add_vlan'];
         $hci_up_ip_vlan             = $rows_2['txt_ip_vlan'];
-        $hci_up_users               = $rows_2['hci_users'];
+        $hci_up_users               = $rows_2['hci_users'];     
+        $hci_up_vm_deployment      = $rows_2['vm_deployment'];
+        $hci_up_comm               = $rows_2['comm'];   
         $date_accomplished          = $rows_2['date_requested'];
     }
 endif;
@@ -131,7 +140,7 @@ endif;
                                                 <input class="form-control text-dark" type="text" name="hci_up_department" id="hci_up_department" value="<?php echo empty($department) ? '' : $department; ?>" readonly />
                                             </td>
                                             <td>
-                                                <select class="form-select text-dark" name="hci_up_location" id="hci_up_location" required>
+                                                <select class="form-select text-dark" name="hci_up_location" id="hci_up_location" required >
                                                     <option value="" selected="">Select your Location</option>
                                                     <option value="HO"  <?php echo empty($location) ? '' : ($location == 'HO' ? 'selected' : ''); ?> >HO - Head Office</option>
                                                     <option value="LFC" <?php echo empty($location) ? '' : ($location == 'LFC' ? 'selected' : ''); ?> >LFC - Local Fallback Center</option>
@@ -270,10 +279,47 @@ endif;
                                          <td>
                                             <input class="form-control text-dark" type="text" name="hci_up_req_users" id="hci_up_req_users" maxlength="30" value="<?php echo empty($hci_up_req_users) ? '' : $hci_up_req_users;  ?>" onkeypress="return /[A-Z0-9 ]/i.test(event.key)" />
                                         </td>
-                                         <td>
-                                             <input class="form-control text-dark" type="text" name="hci_up_users_comment" id="hci_up_users_comment" value="<?php echo empty($hci_up_users_comment) ? '' : $hci_up_users_comment; ?>"  />
-                                         </td>
-                                     </tr>                                     
+                                        <td>
+                                            <!-- <input class="form-control text-dark" type="text"  name="txt_hci_users" value="<?php echo empty($txt_hci_users) ? '' : $txt_hci_users; ?>" placeholder="Optional"/> -->
+                                            <select class="form-select" name="hci_up_req_txt_hci_users" id="hci_up_req_txt_hci_users" >
+                                                <option value="" selected>Select Role</option>
+                                                <option value="vm_power_user" <?php echo empty($hci_up_req_txt_hci_users) ? '' : ($hci_up_req_txt_hci_users == 'vm_power_user' ? 'selected' : ''); ?>>VM Power User</option>
+                                                <option value="vm_power_sample" <?php echo empty($hci_up_req_txt_hci_users) ? '' : ($hci_up_req_txt_hci_users == 'vm_power_sample' ? 'selected' : ''); ?>>VM User Sample</option>
+                                            </select>
+                                        </td>
+                                     </tr>
+                                    <tr>
+                                        <td class="fw-bold">VM Deployment</td>
+                                        <td>
+                                            <input class="form-control" type="date" name="hci_up_vm_deployment" id="hci_up_vm_deployment" value="<?php echo empty($hci_up_vm_deployment) ? '' : $hci_up_vm_deployment; ?>"  readonly required>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="date" placeholder="Optional" name="hci_up_req_vm_deployment" id="hci_up_req_vm_deployment" value="<?php echo empty($hci_up_req_vm_deployment) ? '' : $hci_up_req_vm_deployment; ?>"  >
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="text" placeholder="Optional" name="hci_up_req_vm_deployment_comment" id="hci_up_req_vm_deployment_comment" value="<?php echo empty($hci_up_req_vm_deployment_comment) ? '' : $hci_up_req_vm_deployment_comment; ?>" >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Communication</td>
+                                        <td>
+                                            <input class="form-control" type="text" name="hci_up_comm" id="hci_up_comm"  value="<?php echo empty($hci_up_comm) ? '' : $hci_up_comm; ?>" required readonly onkeypress="return /[0-9A-Z ]/i.test(event.key)">
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="text" placeholder="Optional" name="hci_up_req_comm" id="hci_up_req_comm" value="<?php echo empty($hci_up_req_comm) ? '' : $hci_up_req_comm; ?>" >
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="text" placeholder="Optional" name="hci_up_comm_comment" id="hci_up_comm_comment" value="<?php echo empty($hci_up_comm_comment) ? '' : $hci_up_comm_comment; ?>" >
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="fw-bold">Attachment</td>
+                                        <td colspan="3">
+                                            <input name="file[]" multiple="multiple" class="form-control" type="file" id="file">
+                                        </td>
+                                    </tr>
+
                                 </tbody>
                              
                                 <tbody id="load_others"></tbody>

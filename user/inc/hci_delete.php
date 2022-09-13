@@ -50,6 +50,8 @@ if (!empty($control_number)):
         $hci_del_ipaddress           = $rows_2['ip_add_vlan'];
         $hci_del_ip_vlan             = $rows_2['txt_ip_vlan'];
         $hci_del_users               = $rows_2['hci_users'];
+        $hci_del_vm_deployment      = $rows_2['vm_deployment'];
+        $hci_del_comm               = $rows_2['comm'];
 
         $fullname                   = $rows_2['fullname'];
         $email_add                  = $rows_2['email_add'];
@@ -88,13 +90,19 @@ if (!empty($control_number)):
         $hci_del_req_vlan            = $rows_3['txt_ip_vlan'];
         $hci_del_req_users           = $rows_3['hci_users'];
         $hci_del_users_comment       = $rows_3['txt_hci_users'];
-
+        $hci_del_req_vm_deployment   = $rows_3['vm_deployment'];
+        $hci_del_req_vm_deployment_comment   = $rows_3['vm_deployment_comment'];
+        
+        $hci_del_req_comm            = $rows_3['comm'];
+        $hci_del_comm_comment            = $rows_3['comm_comment'];
+        
+        
     }
 
 endif;
 
 ?>
-<form class="text-dark" id="frm_id_del" method="post" autocomplete="off">
+<form class="text-dark" id="frm_delete" name="frm_delete" method="post" autocomplete="off">
     <div id="view_hci_delete<?php echo empty($control_number) ? '' : $control_number; ?>" class="modal fade" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-xl modal-fullscreen-xl-down" role="document">
             <div class="modal-content">
@@ -148,7 +156,7 @@ endif;
                                                 <input class="form-control text-dark" type="text" name="hci_del_department" id="hci_del_department" value="<?php echo empty($department) ? '' : $department; ?>" readonly />
                                             </td>
                                             <td>
-                                                <select class="form-select text-dark" name="hci_del_location" id="hci_del_location" required>
+                                                <select class="form-select text-dark" name="hci_del_location" id="hci_del_location" required disabled >
                                                     <option value="" selected="">Select your Location</option>
                                                     <option value="HO"  <?php echo empty($location) ? '' : ($location == 'HO' ? 'selected' : ''); ?> >HO - Head Office</option>
                                                     <option value="LFC" <?php echo empty($location) ? '' : ($location == 'LFC' ? 'selected' : ''); ?> >LFC - Local Fallback Center</option>
@@ -162,7 +170,7 @@ endif;
                                         </tr>
                                         <tr>
                                             <td>
-                                                <select class="form-select text-dark" name="hci_del_cluster" id="hci_del_cluster" required>
+                                                <select class="form-select text-dark" name="hci_del_cluster" id="hci_del_cluster" required disabled>
                                                     <option value="" selected>Select Cluster</option>
                                                     <option value="general_cluster" <?php echo empty($cluster) ? '' : ($cluster == 'general_cluster' ? 'selected' : ''); ?> >General Cluster</option>
                                                     <option value="sql_cluster"  <?php echo empty($cluster) ? '' : ($cluster == 'sql_cluster' ? 'selected' : ''); ?> >SQL Cluster</option>
@@ -291,7 +299,41 @@ endif;
                                          <td>
                                              <input class="form-control text-dark" type="text" name="hci_del_users_comment" id="hci_del_users_comment" value="<?php echo empty($hci_del_users_comment) ? '' : $hci_del_users_comment; ?>" readonly />
                                          </td>
-                                     </tr>                                     
+                                     </tr>
+
+                                     <tr>
+                                        <td class="fw-bold">VM Deployment</td>
+                                        <td>
+                                            <input class="form-control" type="date" name="hci_del_vm_deployment" id="hci_del_vm_deployment"  value="<?php echo empty($hci_del_vm_deployment) ? '' : $hci_del_vm_deployment; ?>" readonly required>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="date" placeholder="Optional" name="hci_del_req_vm_deployment" id="hci_del_req_vm_deployment" value="<?php echo empty($hci_del_req_vm_deployment) ? '' : $hci_del_req_vm_deployment; ?>" readonly  >
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="text" placeholder="Optional" name="hci_del_req_vm_deployment_comment" id="hci_del_req_vm_deployment_comment" value="<?php echo empty($hci_del_req_vm_deployment_comment) ? '' : $hci_del_req_vm_deployment_comment; ?>" readonly >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Communication</td>
+                                        <td>
+                                            <input class="form-control" type="text" name="hci_del_comm" id="hci_del_comm"  value="<?php echo empty($hci_del_comm) ? '' : $hci_del_comm; ?>" readonly required onkeypress="return /[0-9A-Z ]/i.test(event.key)">
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="text" placeholder="Optional" name="hci_del_req_comm" id="hci_del_req_comm" value="<?php echo empty($hci_del_req_comm) ? '' : $hci_del_req_comm; ?>" readonly >
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="text" placeholder="Optional" name="hci_del_comm_comment" id="hci_del_comm_comment" value="<?php echo empty($hci_del_comm_comment) ? '' : $hci_del_comm_comment; ?>" readonly >
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="fw-bold">Attachment</td>
+                                        <td colspan="3">
+                                            <input name="file[]" multiple="multiple"  class="form-control" type="file" id="file" readonly>
+                                        </td>
+                                    </tr>
+
+
                                 </tbody>
                              
                                 <tbody id="del_load_others"></tbody>
@@ -362,7 +404,7 @@ endif;
                         <?php endif; ?>
                         <?php if ($my_role == 1 && $revised == 1): ?>
                         <div>
-                            <button class="btn btn-primary" type="submit" name="btn_hci_del_resubmit"><i class="fa-fw fas fa-paper-plane me-1"></i>Resubmit2222222</button>
+                            <button class="btn btn-primary" type="submit" name="btn_hci_del_resubmit"><i class="fa-fw fas fa-paper-plane me-1"></i>Resubmit</button>
                         </div>    
                         <?php endif; ?>
                         <?php if ($status == 0 && $my_role == 1): ?> <!-- // Disapproved  -->

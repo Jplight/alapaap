@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 				echo '<tr>';
 				echo '<td class="text-dark fw-bold">Disk (GB) '.$num++.'</td>';
 				echo '<td><input class="form-control text-dark" type="text" name="others_1[]" value="'.$rows_2['others_1'].'" readonly></td>';
-				echo '<td><input class="form-control text-dark" type="text" name="others_2[]" value="'.$rows_2['others_2'].'" ></td>';
+				echo '<td><input class="form-control text-dark" type="text" name="others_2[]" value="'.$rows_2['others_1'].'" ></td>';
 				echo '<td><input class="form-control text-dark" type="text" name="others_3[]" ></td>';
 				echo '</tr>';
 			}

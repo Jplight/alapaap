@@ -39,7 +39,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			    $response['ip_add_vlan'] 	= $rows['ip_add_vlan'];
 			    $response['txt_ip_vlan'] 	= $rows['txt_ip_vlan'];
 			    $response['hci_users'] 	= $rows['hci_users'];
-
+				$response['vm_deployment'] 	= $rows['vm_deployment'];
+				$response['comm'] 	= $rows['comm'];
+				
+				
 		}else{
 			$response['status'] = 'invalid';
 			$response['message'] = 'No data found!';
@@ -59,6 +62,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			    $response['hci_del_req_ipadd'] 	= $rows_2['ip_add_vlan'];
 			    $response['hci_del_req_vlan'] 	= $rows_2['txt_ip_vlan'];
 			    $response['hci_del_req_users'] 	= $rows_2['hci_users'];
+				$response['hci_del_req_vm_deployment'] 	= $rows_2['vm_deployment'];
+				$response['hci_del_req_vm_deployment_comment'] 	= $rows_2['vm_deployment_comment'];
+				$response['hci_del_req_comm'] 	= $rows_2['comm'];
+				$response['hci_del_comm_comment'] 	= $rows_2['comm_comment'];
 
 				$response['hci_del_vcpu_comment'] 	= $rows_2['vcpu_comment'];
 				$response['hci_del_ram_comment'] 	= $rows_2['ram_comment'];

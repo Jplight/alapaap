@@ -560,36 +560,33 @@ include 'model/authorize_personnel.php';
         <script src="assets/js/jquery.dataTables.min.js"></script>
         <script src="assets/js/dataTables.bootstrap5.min.js"></script>
 
-
         <script src="assets/js/theme.js"></script>
         <script src="controller/hci_script.js"></script>
         <script src="controller/weng.js"></script>
         <script src="controller/weng2.js"></script>
         <script src="controller/tci_script.js"></script>
         <script src="controller/cps_script.js"></script>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="controller/global.validation.js"></script>
 
         <script>
             // Canceled HCI Prompt Message
             $(document).ready(function(){
-                $("#hci_cancel_1, #hci_cancel_2").click(function(){
-  
-                        Swal.fire({
-                            title: 'Do you want to cancel?',
-                            showDenyButton: true,
-                            confirmButtonText: 'Yes',
-                            denyButtonText: `No`,
-                            }).then((result) => {
+                $("#hci_cancel_1, #hci_cancel_2").click(function(){  
+                    Swal.fire({
+                        title: 'Do you want to cancel?',
+                        showDenyButton: true,
+                        confirmButtonText: 'Yes',
+                        denyButtonText: `No`,
+                        }).then((result) => {
+                        
+                        console.log(result)
+                        if (result.isConfirmed) {
                             
-                            console.log(result)
-                            if (result.isConfirmed) {
-                                
-                                $("button[name=btn_cancel], #hci_r_cancel").click();
-                
-                            }
-                        })
-                    
+                            $("button[name=btn_cancel], #hci_r_cancel").click();
+            
+                        }
+                    })                    
                 });         
             });
         </script>
@@ -597,18 +594,17 @@ include 'model/authorize_personnel.php';
             // Canceled HCI Prompt Message
             $(document).ready(function(){
                 $("#btn_approver_app").click(function(){ 
-                        Swal.fire({
-                            title: 'Do you want to approved?',
-                            showDenyButton: true,
-                            confirmButtonText: 'Yes',
-                            denyButtonText: `No`,
-                            }).then((result) => {
-                            console.log(result)
-                            if (result.isConfirmed) {                             
-                                $("button[name=btn_approver]").click();
-                            }
-                        })
-                    
+                    Swal.fire({
+                        title: 'Do you want to approved?',
+                        showDenyButton: true,
+                        confirmButtonText: 'Yes',
+                        denyButtonText: `No`,
+                        }).then((result) => {
+                        console.log(result)
+                        if (result.isConfirmed) {                             
+                            $("button[name=btn_approver]").click();
+                        }
+                    })                   
                 });         
             });
         </script>
