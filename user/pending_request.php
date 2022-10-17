@@ -249,7 +249,7 @@ include 'model/authorize_personnel.php';
                                                             }else{
                                                                 echo '<td class="d-flex gap-2">'.
                                                                         '<a class="btn btn-outline-primary btn-sm shadow-sm" href="inc/print/print_hci.php?control_number='.$rows_hci["control_number"].'" target="_blank"  ><i class="fa-fw fas fa-print"></i>Print</a>'.
-                                                                        '<a class="btn btn-outline-primary btn-sm shadow-sm" href="#view_hci'.$rows_hci["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a>'.$cancel_btn.
+                                                                        '<a class="btn btn-outline-primary btn-sm shadow-sm" href="#view_hci'.$rows_hci["control_number"].'" id="'.$rows_hci["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a>'.$cancel_btn.
                                                                     '</td>';                                                              
                                                                 echo '<td>';
                                                                     include 'inc/hci_new.php';
@@ -567,7 +567,7 @@ include 'model/authorize_personnel.php';
         <script src="controller/tci_script.js"></script>
         <script src="controller/cps_script.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="controller/global.validation.js"></script>
+        <!-- <script src="controller/global.validation.js"></script> -->
 
         <script>
             // Canceled HCI Prompt Message
@@ -647,6 +647,33 @@ include 'model/authorize_personnel.php';
                 });
             });
         </script> -->
+        <script>
+            $(document).ready(function(){
+                $('.btn-sm').click(function(){
+                    let href = $(this).attr('href')
+                    let rowsId = $(this).attr('id')
+                    // console.log(href + rowsId)
+                    localStorage.setItem("href",href)
+                    localStorage.setItem("id",rowsId)
+                });
+                $(`.launchModal`).click(function(){
+                    let btnValue =  $(this).attr("value")
+                    let btnId = $(this).attr("id")
+                    let getRowsId = localStorage.getItem('id')
+                    localStorage.setItem("value",btnValue)
+                    localStorage.setItem("name",btnId)
+
+                    let getBtnValue = localStorage.getItem("value")
+                    let getBtnId = localStorage.getItem("name")
+                    let getHref = localStorage.getItem("href")
+                    // console.log(btnValue + btnId)
+                    $(`#myModal2${getRowsId}`).find("#dialogContext").text(getBtnValue)
+                    $(`#myModal2${getRowsId}`).find(".btnYes").attr("name",getBtnId)
+                    $(`#myModal2${getRowsId}`).find('a[data-bs-toggle=modal]').attr("href",getHref)
+                })
+            });
+          
+        </script>
         <script>
             $(document).ready(function(){    
                 setInterval(function(){

@@ -35,7 +35,8 @@
         <?php 
             
             foreach($notif as $data):
-                
+                $notifDate = $data['date_requested'];
+
                 if($my_role == '1'){ $NotifName = $data['fullname']; $st = $data['activity']; }
                 if($my_role == '2'){ $NotifName = $data['fullname']; $st = "requested"; }
                 if($my_role == '3' && $data['form_type'] != '2'){ $NotifName = $data['approver']; $st = 'approved'; }
@@ -59,9 +60,11 @@
                     $notifDate = $data['date_requested'];
                 }
                 if ($my_role == '2'){
-                    $notifDate = $data['date_requested'];
+                    
+                    echo "Edcel";
                     $notification = ucwords($NotifName).' has '.$st.' '.$form_type." with control number of ".$form_type."/".$data['control_number'];
                 }
+                
                 if ($my_role == '3' && ($data['form_type'] == '1' || $data['form_type'] == '1-1' || $data['form_type'] == '1-2')){
                     $notifDate = $data['appr_date'];
                     // $notification = "<Approver> has approved the request of <Requestor> with control number <control_number>";
@@ -95,9 +98,7 @@
                 }
                            
         ?>
-
-
-
+        
         <a class="dropdown-item d-flex align-items-center " href="javascript:void(0)">
             <div class="me-3">
                 <div class="bg-success icon-circle">

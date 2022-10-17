@@ -50,8 +50,8 @@ if (isset($_POST['btn_approver'])) {
 	// $_SESSION['message'] = $alert;
 
 	$control_number = $txt_control_number;
-	require 'mail_message.php';
-	require 'mail.php';
+	// require 'mail_message.php';
+	// require 'mail.php';
 
 	header("location: http://".$_SERVER['SERVER_NAME']."/user/pending_request.php");
 
@@ -196,8 +196,8 @@ if (isset($_POST['btn_reciever'])) {
 	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$txt_control_number', 'received','$status','0') ");
 	
 	$control_number = $txt_control_number;
-	require 'mail_message.php';
-	require 'mail.php';	
+	// require 'mail_message.php';
+	// require 'mail.php';	
 
 }
 
@@ -247,8 +247,8 @@ if (isset($_POST['btn_performer'])) {
 	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$txt_control_number', 'performed','$status','0') ");
 
 	$control_number = $txt_control_number;
-	require 'mail_message.php';
-	require 'mail.php';	
+	// require 'mail_message.php';
+	// require 'mail.php';	
 
 }
 
@@ -299,8 +299,8 @@ if (isset($_POST['btn_confirmer'])) {
 	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$txt_control_number', 'confirmed','$status','0') ");
 
 	$control_number = $txt_control_number;
-	require 'mail_message.php';
-	require 'mail.php';	
+	// require 'mail_message.php';
+	// require 'mail.php';	
 
 }
 // ====== For Confirmer ======
@@ -376,8 +376,8 @@ if (isset($_POST['btn_verifier'])) {
 	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$txt_control_number', 'verified','$status','0') ");
 
 	$control_number = $txt_control_number;
-	require 'mail_message.php';
-	require 'mail.php';
+	// require 'mail_message.php';
+	// require 'mail.php';
 }
 // ====== For Verifier ======
 ?>

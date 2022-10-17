@@ -50,17 +50,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$vm_deployment_comment = $_POST['vm_deployment_comment'];
 	$comm                  = $_POST['comm'];
 	$comm_comment          = $_POST['comm_comment'];
-	$file_pdf = $_POST['file'];
+	$attachment = $_POST['file[]'];
 
 	$form_type = 1; 
 	$comments = $_POST['comments'];
 	$role = $_POST['his_role'];
 	$comment_id = rand(100000,999999);
 
+// // // create temp files
+	if(!empty($_FILES['file']['name'])){
+		$file_name = $_FILES['file']['name'];
+		$file_size = $_FILES['file']['size'];
+		$file_temp = $_FILES['file']['tmp_name'];
+		$response = array();
+		$div = explode('.', $file_name);
+		$file_ext = strtolower(end($div));
+		$unique_image = substr(md5(time()), 0, 10).'.'.$file_ext; // new generated File Name for Image
+		$uploaded_file = "model/uploads/".$unique_image;    // Directory of Image
+	}else{
+		$uploaded_file = null;
+	}
+
+// // // create temp files
+
+
 	if (isset($_POST['btn_submit_hci']) || isset($_POST['gog'])) {
 		$status = 2;
 		$control_number = $concatnumber;
-		$sql = mysqli_query($conn,"INSERT INTO `tbl_hci` (`uid`, `control_number`, `form_type`, `fullname`, `email_add`, `contact_no`, `department`, `location`, `cluster`, `hostname`, `vcpu`, `vcpu_comment`, `ram`, `ram_comment`, `os`, `os_comment`, `txt_os_descript`, `txt_define_parti`, `ip_add_vlan`, `ip_comment` , `txt_ip_vlan`, `vlan_comment`,`hci_users`, `txt_hci_users`, `vm_deployment`, `vm_deployment_comment`, `comm`, `comm_comment`,`status`, `date_requested`) VALUES ('$uid','$control_number', '$form_type','$fullname','$email_add','$contact_no','$department','$location','$cluster','$hostname','$vcpu','$vcpu_comment','$ram','$ram_comment','$os','$os_comment', '$txt_os_descript', '$txt_define_parti', '$ip_add_vlan', '$ip_comment', '$txt_ip_vlan', '$vlan_comment', '$hci_users', '$txt_hci_users', '$vm_deployment', '$vm_deployment_comment','$comm', '$comm_comment', '$status',NOW()) ");
+		// move_uploaded_file($file_temp, $uploaded_file);
+		$sql = mysqli_query($conn,"INSERT INTO `tbl_hci` (`uid`, `control_number`, `form_type`, `fullname`, `email_add`, `contact_no`, `department`, `location`, `cluster`, `hostname`, `vcpu`, `vcpu_comment`, `ram`, `ram_comment`, `os`, `os_comment`, `txt_os_descript`, `txt_define_parti`, `ip_add_vlan`, `ip_comment` , `txt_ip_vlan`, `vlan_comment`,`hci_users`, `txt_hci_users`, `vm_deployment`, `vm_deployment_comment`, `comm`, `comm_comment`, `attachment`,`status`, `date_requested`) VALUES ('$uid','$control_number', '$form_type','$fullname','$email_add','$contact_no','$department','$location','$cluster','$hostname','$vcpu','$vcpu_comment','$ram','$ram_comment','$os','$os_comment', '$txt_os_descript', '$txt_define_parti', '$ip_add_vlan', '$ip_comment', '$txt_ip_vlan', '$vlan_comment', '$hci_users', '$txt_hci_users', '$vm_deployment', '$vm_deployment_comment','$comm', '$comm_comment', '$uploaded_file','$status',NOW()) ");
 
 		if (!empty($comments)) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`, `uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$control_number','$comment_id','$uid','$fullname','$comments','$role',NOW()) ");
@@ -92,8 +110,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		$form_subject = "HCI";
 		
-		require 'mail_message.php';
-		require 'mail.php';
+		// require 'mail_message.php';
+		// require 'mail.php';
 		
 	}
 
