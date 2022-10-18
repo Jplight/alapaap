@@ -110,8 +110,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		$form_subject = "HCI";
 		
-		// require 'mail_message.php';
-		// require 'mail.php';
+		require 'mail_message.php';
+		require 'mail.php';
 		
 	}
 

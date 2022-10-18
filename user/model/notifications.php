@@ -4,10 +4,12 @@
         $notif = mysqli_query($conn,"select * from tbl_notification where uid = '$uid' order by date_requested desc ");
         $count_notif = mysqli_num_rows(mysqli_query($conn,"select * from tbl_notification where uid = '$uid' and isViewed = '0'"));
         $GetView = mysqli_fetch_array($notif);
+    }else if($my_role == 4){
+        $notif = mysqli_query($conn,"select * from tbl_pending_request where status = '$my_role' order by rec_date desc");
+        $count_notif = mysqli_num_rows($notif);
     }else{
         $notif = mysqli_query($conn,"select * from tbl_pending_request where status = '$my_role' order by date_requested desc");
         $count_notif = mysqli_num_rows($notif);
-
     }
 
 ?>
@@ -26,7 +28,7 @@
     <div class="dropdown-menu dropdown-menu-end dropdown-list overflow-auto shadow-lg animated--grow-in" style="max-height: 30rem;" >
         <h6 class="dropdown-header border-success bg-success">Notification</h6>
         <?php if($count_notif < 1): ?>
-            <a class="dropdown-item d-flex align-items-center " href="javascript:void(0)">
+        <a class="dropdown-item d-flex align-items-center " href="javascript:void(0)">
             <div class="small">
                 <span class="fw-bold">No new notification right now!</span>
             </div>
@@ -59,11 +61,13 @@
                     $notification = ucwords($data['fullname']).' has '.$st.' your '.$form_type." request with control number of  ".$form_type."/".$data['control_number'];
                     $notifDate = $data['date_requested'];
                 }
+
                 if ($my_role == '2'){
                     
-                    echo "Edcel";
+                    // echo "Edcel";
                     $notification = ucwords($NotifName).' has '.$st.' '.$form_type." with control number of ".$form_type."/".$data['control_number'];
                 }
+                
                 
                 if ($my_role == '3' && ($data['form_type'] == '1' || $data['form_type'] == '1-1' || $data['form_type'] == '1-2')){
                     $notifDate = $data['appr_date'];
@@ -75,6 +79,15 @@
                 if ($my_role == '3' && $data['form_type'] == '2'){
                     $notification = ucwords($NotifName).' has '.$st.' '.$form_type." with control number of ".$form_type."/".$data['control_number'];
                 }
+
+                if ($my_role == '3' && $data['form_type'] == '4'){
+                    $notification = ucwords($NotifName).' has '.$st.' '.$form_type." with control number of ".$form_type."/".$data['control_number'];
+                }
+
+                if ($my_role == '3' && $data['form_type'] == '4-2'){
+                    $notification = ucwords($NotifName).' has '.$st.' '.$form_type." with control number of ".$form_type."/".$data['control_number'];
+                }
+
                 // if ($my_role == '3' && $data['form_type'] != '2'){
                 //     $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control number of ".$form_type."/".$data['control_number'];
                 // }
@@ -106,8 +119,11 @@
                 </div>
             </div>
             <div class="small ">
+                <?=$my_role;?>
+                <?=$data['form_type'];?>
+                
                 <span class="d-block text-muted"><?=date('F d, Y - h:i:s A',strtotime($notifDate)); ?></span>
-                <span class="fw-bold d-block text-muted" ><?=get_time_ago(strtotime($notifDate));?></span>                                                  
+                <span class="fw-bold d-block text-muted" ><?=get_time_ago(strtotime($notifDate)); ?></span>                                                  
                 <?=$notification; ?>
             </div>
         </a>

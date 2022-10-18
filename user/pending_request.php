@@ -192,6 +192,7 @@ include 'model/authorize_personnel.php';
                                                         
                                                         while ($rows_hci = mysqli_fetch_array($hci_query)):
                                                             $control_number = $rows_hci['control_number'];
+                                                            $formt = "hci";
                                                             $new_date = date('F d, Y',strtotime($rows_hci['date_requested']));
                                                             $new_time = date('h:i:s A',strtotime($rows_hci['date_requested']));
                                                             echo '<tr>';
@@ -261,6 +262,7 @@ include 'model/authorize_personnel.php';
                                                     ?>
                                                 </tbody>
                                             </table>
+                                            
                                         </div>
                                         <div class="tab-pane" role="tabpanel" id="tab-2">
                                             <div class="table-responsive ">
@@ -293,6 +295,8 @@ include 'model/authorize_personnel.php';
                                                                     $new_date = date('F d, Y',$mydate);
                                                                     $mytime = strtotime($rows_tci['date_requested']);
                                                                     $new_time = date('h:i:s A',$mytime);
+                                                                    $formt = "tci";
+
                                                                     echo '<tr>';
                                                                    
                                                                     echo '<td>'.ucwords($rows_tci['fullname']).'</td>';
@@ -325,7 +329,7 @@ include 'model/authorize_personnel.php';
                                                                     }
                                                                     echo '<td class="d-flex gap-2">'.
                                                                             '<a class="btn btn-outline-primary btn-sm shadow-sm" href="inc/print/print_tci.php?control_number='.$rows_tci["control_number"].'" target="_blank"  ><i class="fa-fw fas fa-print"></i>Print</a>'.
-                                                                            '<a class="btn btn-outline-primary btn-sm shadow-sm" href="#view_tci'.$rows_tci["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a>'.$cancel_btn.    
+                                                                            '<a class="btn btn-outline-primary btn-sm shadow-sm" href="#view_tci'.$rows_tci["control_number"].'" id="'.$rows_tci["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a>'.$cancel_btn.    
                                                                         '</td>';
                                                                     echo '<td>';
                                                                         include 'inc/tci_modal.php';
@@ -370,6 +374,8 @@ include 'model/authorize_personnel.php';
                                                                     $new_date = date('F d, Y',$mydate);
                                                                     $mytime = strtotime($rows_cps['date_requested']);
                                                                     $new_time = date('h:i:s A',$mytime);
+                                                                    $formt = "cps";
+
                                                                     echo '<tr>';
                                                                     echo '<td>'.ucwords($rows_cps['fullname']).'</td>';
                                                                     echo '<td>CPS/'.$control_number.'</td>';
@@ -474,8 +480,9 @@ include 'model/authorize_personnel.php';
                                                                     $new_date = date('F d, Y',$mydate);
                                                                     $mytime = strtotime($rows_baas['date_requested']);
                                                                     $new_time = date('h:i:s A',$mytime);
-                                                                    echo '<tr>';
-                                                                    
+                                                                    $formt = "baas";
+
+                                                                    echo '<tr>';      
                                                                     echo '<td>'.ucwords($rows_baas['fullname']).'</td>';
                                                                     echo '<td>BaaS/'.$control_number.'</td>';
                                                                     
@@ -543,7 +550,7 @@ include 'model/authorize_personnel.php';
                 <footer class="bg-white sticky-footer">
                     <div class="container my-auto">
                         <div class="text-center my-auto copyright">
-                            <span>Copyright © Alapaap | eBizolution 2022</span>
+                            <span>Copyright © Alapaap | eBizolution 2022 v1.10.1</span>
                         </div>
                     </div>
                 </footer>
@@ -667,9 +674,21 @@ include 'model/authorize_personnel.php';
                     let getBtnId = localStorage.getItem("name")
                     let getHref = localStorage.getItem("href")
                     // console.log(btnValue + btnId)
-                    $(`#myModal2${getRowsId}`).find("#dialogContext").text(getBtnValue)
-                    $(`#myModal2${getRowsId}`).find(".btnYes").attr("name",getBtnId)
-                    $(`#myModal2${getRowsId}`).find('a[data-bs-toggle=modal]').attr("href",getHref)
+                    // $(`#myModal2${getRowsId}`).find("#dialogContext").text(getBtnValue)
+                    // $(`#myModal2${getRowsId}`).find(".btnYes").attr("name",getBtnId)
+                    // $(`#myModal2${getRowsId}`).find('a[data-bs-toggle=modal]').attr("href",getHref)
+
+                    const elements = document.querySelectorAll('.dialogContext');
+                    elements.forEach(el => {
+                        el.textContent = getBtnValue;
+                    })
+
+                    const elements2 = document.querySelectorAll('.btnYes');
+                    elements2.forEach(el => {
+                        el.name = getBtnId;
+                    })
+
+
                 })
             });
           

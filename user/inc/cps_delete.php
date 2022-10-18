@@ -346,35 +346,7 @@ endif;
                         <button class="btn btn-danger" type="submit" name="btn_cancel_cps_del" id="btn_cancel_cps_del" ><i class="fa-fw fas fa-times me-1"></i>Cancel</button>
                     </div>    
                     <?php endif; ?>
-                    <?php if ($status == 2 && $my_role == 2): ?> <!-- // button for Approver -->
-                    <div>
-                        <button class="btn btn-outline-success me-2" type="submit" name="btn_approver" id="btn_approver" ><i class="fw-fw fas fa-check me-1"></i>Approve</button>      
-                        <button class="btn btn-outline-danger me-2" type="submit" name="app_disapproved" id="app_disapproved" ><i class="fa-fw fas fa-times me-1"></i>Disapprove</button>
-                        <button class="btn btn-danger" type="submit" name="approver_returned" id="approver_returned" ><i class="fa-fw fas fa-times me-1"></i>Return to Sender</button> 
-                    </div>
-                    <?php endif; ?>
-                    <?php if ($status == 3 && $my_role == 3): ?> <!-- // Button for Reciever -->
-                    <div>
-                        <button class="btn btn-outline-success me-2" type="submit" name="btn_reciever" id="btn_reciever" ><i class="fa-fw fas fa-check me-1"></i>Acknowledge Receipt</button>      
-                        <!-- <button class="btn btn-outline-danger" type="submit" name="rec_disapproved" ><i class="fa-fw fas fa-times me-1"></i>Return to Sender</button>  -->
-                    </div>
-                    <?php endif; ?>
-                    <?php if ($status == 4 && $my_role == 4): ?> <!-- // Button for Performer -->
-                    <div>
-                        <button class="btn btn-outline-success me-2" type="submit" name="btn_performer" id="btn_performer" ><i class="fa-fw fas fa-check me-1"></i>Task Complete</button>      
-                        <!-- <button class="btn btn-outline-danger" type="submit" name="performer_disapproved" ><i class="fa-fw fas fa-times me-1"></i>Return to Sender</button>  -->
-                    </div>
-                    <?php endif; ?>
-                    <?php if ($status == 5 && $my_role == 5): ?> <!-- // Button for Confirmer -->
-                    <div>
-                        <button class="btn btn-outline-success me-2" type="submit" name="btn_confirmer" id="btn_confirmer" ><i class="fa-fw fas fa-check me-1"></i>Confirm</button>
-                    </div>
-                    <?php endif; ?>
-                    <?php if ($status == 6 && $my_role == 6): ?> <!-- // Button for Verifier -->
-                    <div>
-                        <button class="btn btn-outline-success me-2" type="submit" name="btn_verifier" id="btn_verifier" ><i class="fa-fw fas fa-check me-1"></i>Verify</button>                                      
-                    </div>
-                    <?php endif; ?>    
+                    <?php include 'components/buttonGroup.php';?>
                 </div>
                 <?php endif; ?>
                 <?php if (empty($control_number)): ?>
@@ -388,4 +360,5 @@ endif;
             </div>
         </div>
     </div>
+    <?php include 'components/promtMessage.php';?>
 </form>

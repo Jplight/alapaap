@@ -79,8 +79,8 @@ if (isset($_POST['app_disapproved'])) {
         $mail->isSMTP();                                            //Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'ermiewhyllard@gmail.com';       // alapaapbsp@gmail.com              //SMTP username
-        $mail->Password   = 'bzqxewsnjcidydzp';     // alapaap@Bsp123
+        $mail->Username   = 'whyllardermie@gmail.com';       // alapaapbsp@gmail.com              //SMTP username
+        $mail->Password   = 'tydhnuzkqyierxtb';     // alapaap@Bsp123
        
         $mail->SMTPSecure = 'tls';           
         $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
@@ -102,8 +102,9 @@ if (isset($_POST['app_disapproved'])) {
             }
         }
 
-        $mail->addCC($email_add);    // $email_add
-          
+        // $mail->addCC($_POST["email"]);    // $email_add
+        $mail->addCC($email_add); 
+
         switch ($status) {
             case $status >=3 && $status <=7:
                 $bccMail = $mail->addBCC($_POST['form_owner_mail']);

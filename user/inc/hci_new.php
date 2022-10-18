@@ -320,11 +320,49 @@ endif;
                     </div>
                     <?php include 'components/authority.php'; ?>
                 </div>
-                <?php include 'components/buttonGroup.php';?>
+
+                <?php if (!empty($control_number)): ?>
+                    <div class="modal-footer d-flex justify-content-end">       
+                        <?php if ($status == 1 && $my_role == 1): ?> <!-- // Draft button -->
+                        <div>
+                            <button class="btn btn-secondary me-2" type="submit" name="btn_update" id="btn_update" ><i class="fa-fw fas fa-refresh me-1"></i>Update</button>
+                            <button class="btn btn-primary" type="submit" name="btn_submit_draft" id="btn_submit_draft" ><i class="fa-fw fas fa-paper-plane me-1"></i>Resubmit</button>
+                        </div>
+                        <?php endif; ?>
+                        <?php if ($my_role == 1 && $revised == 1): ?>
+                        <div>
+                            <button class="btn btn-primary" type="submit" name="btn_resubmit" id="btn_resubmit" ><i class="fa-fw fas fa-paper-plane me-1"></i>Resubmit</button>
+                        </div>    
+                        <?php endif; ?>
+                        <?php if ($status == 0 && $my_role == 1): ?> <!-- // Disapproved  -->
+                        <!-- <div>
+                            <button class="btn btn-primary" type="submit" name="btn_resubmit" id="btn_resubmit">Resubmit</button>  
+                        </div> -->
+                        <?php endif; ?>
+                        <?php if ($my_role == 1 && $status == 2): ?>
+                        <div>
+                            <div class="btn btn-danger" id="hci_cancel_1" ><i class="fa-fw fas fa-times me-1"></i>Cancel</div>
+                            <button type="submit" name="btn_cancel" hidden></button>
+                        </div>    
+                        <?php endif; ?>
+                        
+                        <?php include 'components/buttonGroup.php';?>
+                    </div>
+                <?php endif; ?>
+                <?php if (empty($control_number)): ?>
+                    <div class="modal-footer d-flex justify-content-end">
+                        <div>
+                            <!-- <button type="submit" name="btn_savehci" hidden></button>
+                            <button type="submit" name="btn_submit_hci" hidden></button> -->
+                            <button class="btn btn-secondary" name="btn_savehci" type="submit" id="btn_savehci"><i class="fa-fw fas fa-file me-1"></i>Draft</button>
+                            <button class="btn btn-primary" name="btn_submit_hci" type="submit" id="btn_submit_hci"><i class="fa-fw fas fa-paper-plane me-1"></i>Submit</button>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
-    <?php include 'components/prompMessage.php';?>
+    <?php include 'components/promtMessage.php';?>
 </form>
 
 

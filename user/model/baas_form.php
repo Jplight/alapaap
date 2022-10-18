@@ -45,6 +45,8 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 		$server_contact 			= $_POST['server_contact'];
 		$form_type = 4;
 
+	
+
 		if (isset($_POST['btn_baas_csrf_submit'])) {
 
 			$status = 2; // Send from Approver
