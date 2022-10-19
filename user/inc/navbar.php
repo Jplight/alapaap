@@ -37,22 +37,22 @@
                                             <?php if (!empty($sub_role) && strlen($sub_role) != 1): ?>   
                                             <select class="nav-item form-select form-select-sm fw-bold" id="myselect">
                                                 <?php if (strpos($sub_role,"1") !== false): ?>
-                                                <option value="req" <?php echo strpos($my_role,"1") !== false ? 'selected hidden' :''; ?> >Requestor</option>
+                                                    <option value="req" <?php echo strpos($my_role,"1") !== false ? 'selected hidden' :''; ?> >Requestor</option>
                                                 <?php endif; ?>
                                                 <?php if (strpos($sub_role,"2") !== false): ?>
-                                                <option value="appr" <?php echo strpos($my_role,'2') !== false ? 'selected hidden': ''; ?> >Approver</option>
+                                                    <option value="appr" <?php echo strpos($my_role,'2') !== false ? 'selected hidden': ''; ?> >Approver</option>
                                                 <?php endif; ?>
                                                 <?php if (strpos($sub_role,"3") !== false): ?>
-                                                <option value="rec"  <?php echo strpos($my_role,'3') !== false ? 'selected hidden': '';  ?> >Reciever</option>
+                                                    <option value="rec"  <?php echo strpos($my_role,'3') !== false ? 'selected hidden': '';  ?> >Reciever</option>
                                                 <?php endif; ?>
                                                 <?php if (strpos($sub_role,"4") !== false): ?>
-                                                <option value="perf" <?php echo strpos($my_role,'4') !== false ? 'selected hidden': '';  ?> >Performer</option>
+                                                    <option value="perf" <?php echo strpos($my_role,'4') !== false ? 'selected hidden': '';  ?> >Performer</option>
                                                 <?php endif; ?>
                                                 <?php if (strpos($sub_role,"5") !== false): ?>
-                                                <option value="conf" <?php echo strpos($my_role,'5') !== false ? 'selected hidden': '';  ?> >Confirmer</option>
+                                                    <option value="conf" <?php echo strpos($my_role,'5') !== false ? 'selected hidden': '';  ?> >Confirmer</option>
                                                 <?php endif; ?>
                                                 <?php if (strpos($sub_role,"5") !== false): ?>
-                                                <option value="veri" <?php echo strpos($my_role,'6') !== false ? 'selected hidden': '';  ?> >Verifier</option>
+                                                    <option value="veri" <?php echo strpos($my_role,'6') !== false ? 'selected hidden': '';  ?> >Verifier</option>
                                                 <?php endif; ?>
                                             </select>
                                             <?php else: ?>

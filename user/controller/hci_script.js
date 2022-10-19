@@ -2,8 +2,9 @@ $(document).ready(function () {
 	var i = 2
 
 	$("#add_row").click(function () {
-		if ($(".uid" + (i - 1)).val() == "" || $(".uname" + (i - 1)).val() == "") {
-			alert("Please Fill up the fields!" + (i - 1))
+		if ($(".uid" + (i - 1)).val() == "") {
+			alert("Disk Gb is required!")
+			$(".uid" + (i - 1)).focus()
 		} else {
 			// $('#addr'+(i-1)).find('input').attr('disabled',true);
 			// $('#addr'+(i-1)).find('input');

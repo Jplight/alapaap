@@ -47,7 +47,7 @@ if (isset($_POST['app_disapproved'])) {
     //     }
     //     $mail->addCC($email_add);                 
     //     switch ($status) {
-    //         case $status >=3 && $status <=6:
+    //         case $status >=3 && $status <=7:
     //             $bccMail = $mail->addBCC($_POST['form_owner_mail']);
     //             break;
     //         default:

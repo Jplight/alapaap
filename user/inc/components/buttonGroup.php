@@ -17,7 +17,7 @@
 <div>
     <button class="btn btn-outline-success launchModal" type="button" id="btn_reciever" data-bs-toggle="modal" data-bs-target="#myModal2<?php echo $formt; echo empty($control_number) ? '' : $control_number; ?>" value="Do you want to acknowledge this request?">
         <i class="fa-fw fas fa-check me-1"></i>
-        Acknowledge Requests 1 <?php echo $formt; echo empty($control_number) ? '' : $control_number; ?>
+        Acknowledge Requests
     </button>
     <!-- <button class="btn btn-outline-danger" type="submit" name="rec_disapproved" ><i class="fa-fw fas fa-times me-1"></i>Return to Sender</button>  -->
 </div>

@@ -118,10 +118,7 @@
                     <i class="fas fa-file-alt text-white"></i>
                 </div>
             </div>
-            <div class="small ">
-                <?=$my_role;?>
-                <?=$data['form_type'];?>
-                
+            <div class="small ">   
                 <span class="d-block text-muted"><?=date('F d, Y - h:i:s A',strtotime($notifDate)); ?></span>
                 <span class="fw-bold d-block text-muted" ><?=get_time_ago(strtotime($notifDate)); ?></span>                                                  
                 <?=$notification; ?>

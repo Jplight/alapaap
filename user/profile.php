@@ -3,10 +3,11 @@
     ob_start();
     date_default_timezone_set('Asia/Manila');
 
-    $uid = $_SESSION['uid'];
-    $role = $_SESSION['role'];
-
     include '../model/connection.php';
+    $uid = $_SESSION['uid'];
+    $role= $_SESSION['role'];
+
+
     require 'inc/GetTimeAgo.php';
 
     if (!isset($uid)) { header("location: ../index.php"); }

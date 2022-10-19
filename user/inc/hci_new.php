@@ -108,8 +108,8 @@ endif;
                                     <thead class="bg-dark text-white">
                                         <tr>
                                             <th>Name</th>
-                                            <th>Department</th>
-                                            <th>Location</th>
+                                            <th>Department<span class="text-danger ms-2">*</span></th>
+                                            <th>Location<span class="text-danger ms-2">*</span></th>
                                         </tr>
                                     </thead>
                                     <tbody class="text-dark">
@@ -130,8 +130,8 @@ endif;
                                             </td>
                                         </tr>
                                         <tr class="bg-dark text-white fw-bold">
-                                            <td>Cluster</td>
-                                            <td colspan="3">Host Name</td>
+                                            <td>Cluster<span class="text-danger ms-2">*</span></td>
+                                            <td colspan="3">Host Name<span class="text-danger ms-2">*</span></td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -164,7 +164,7 @@ endif;
                                     <tbody>
                                          
                                         <tr>
-                                            <td class="fw-bold">vCPU</td>
+                                            <td class="fw-bold">vCPU<span class="text-danger ms-2">*</span></td>
                                             <td>
                                                 <input class="form-control text-dark" type="text" name="vcpu" value="<?php echo empty($vcpu) ? '' : $vcpu; ?>"  required maxlength="2" onkeypress="return /[0-9]/i.test(event.key)" >
                                             </td>
@@ -173,7 +173,7 @@ endif;
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="fw-bold">RAM (GB)</td>
+                                            <td class="fw-bold">RAM (GB)<span class="text-danger ms-2">*</span></td>
                                             <td>
                                                 <input class="form-control text-dark" type="text" name="ram" value="<?php echo empty($ram) ? '' : $ram; ?>" required maxlength="4" onkeypress="return /[0-9]/i.test(event.key)"/>
                                             </td>
@@ -182,7 +182,7 @@ endif;
                                             </td>
                                         </tr>
                                         <tr class="align-top">
-                                             <td class="fw-bold">OS</td>
+                                             <td class="fw-bold">OS<span class="text-danger ms-2">*</span></td>
                                              <td>
                                                  <select class="form-select text-dark os" name="os" required>
                                                     <option value="" selected>Select OS</option>
@@ -206,7 +206,7 @@ endif;
                                             </td>
                                          </tr>
                                          <tr>
-                                             <td class="fw-bold">IP Address</td>
+                                             <td class="fw-bold">IP Address<span class="text-danger ms-2">*</span></td>
                                              <td>
                                                  <input class="form-control text-dark" type="text" name="ip_add_vlan" value="<?php echo empty($ip_add_vlan) ? '' : $ip_add_vlan; ?>" maxlength="15" required  onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46)" placeholder="e.g: 19.22.23.1" />
                                              </td>
@@ -215,7 +215,7 @@ endif;
                                              </td>
                                          </tr>
                                          <tr>
-                                             <td class="fw-bold">VLAN</td>
+                                             <td class="fw-bold">VLAN<span class="text-danger ms-2">*</span></td>
                                              <td>
                                                  <input class="form-control text-dark " type="text" name="txt_ip_vlan" value="<?php echo empty($txt_ip_vlan) ? '' : $txt_ip_vlan; ?>" required maxlength="4" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" />
                                              </td>
@@ -224,13 +224,13 @@ endif;
                                              </td>
                                          </tr>
                                          <tr>
-                                             <td class="fw-bold">Users </td>
+                                             <td class="fw-bold">Users<span class="text-danger ms-2">*</span></td>
                                              <td>
                                                  <input class="form-control text-dark" type="text" name="hci_users" value="<?php echo empty($hci_users) ? '' : $hci_users; ?>" required/>
                                              </td>
                                              <td>
                                                  <!-- <input class="form-control text-dark" type="text"  name="txt_hci_users" value="<?php echo empty($txt_hci_users) ? '' : $txt_hci_users; ?>" placeholder="Optional"/> -->
-                                                 <select class="form-select" name="txt_hci_users" id="txt_hci_users">
+                                                 <select class="form-select text-dark" name="txt_hci_users" id="txt_hci_users">
                                                     <option value="" selected>Select Role</option>
                                                     <option value="vm_power_user" <?php echo empty($txt_hci_users) ? '' : ($txt_hci_users == 'vm_power_user' ? 'selected' : ''); ?>>VM Power User</option>
                                                     <option value="vm_power_sample" <?php echo empty($txt_hci_users) ? '' : ($txt_hci_users == 'vm_power_sample' ? 'selected' : ''); ?>>VM User Sample</option>
@@ -238,21 +238,21 @@ endif;
                                              </td>
                                          </tr>
                                          <tr>
-                                            <td class="fw-bold">VM Deployment</td>
+                                            <td class="fw-bold">VM Deployment<span class="text-danger ms-2">*</span></td>
                                             <td>
-                                                <input class="form-control" type="date" name="vm_deployment" id="vm_deployment" value="<?php echo empty($vm_deployment) ? '' : $vm_deployment; ?>" required>
+                                                <input class="form-control text-dark" type="date" name="vm_deployment" id="vm_deployment" value="<?php echo empty($vm_deployment) ? '' : $vm_deployment; ?>" required>
                                             </td>
                                             <td>
-                                                <input class="form-control" type="text" placeholder="Optional" name="vm_deployment_comment" id="vm_deployment_comment" value="<?php echo empty($vm_deployment_comment) ? '' : $vm_deployment_comment; ?>" >
+                                                <input class="form-control text-dark" type="text" placeholder="Optional" name="vm_deployment_comment" id="vm_deployment_cocommmment" value="<?php echo empty($vm_deployment_comment) ? '' : $vm_deployment_comment; ?>" >
                                             </td>
                                          </tr>
                                          <tr>
-                                            <td class="fw-bold">Communication</td>
+                                            <td class="fw-bold">Communication<span class="text-danger ms-2">*</span></td>
                                             <td>
-                                                <input class="form-control" type="text" name="comm" id="comm" value="<?php echo empty($comm) ? '' : $comm; ?>" required onkeypress="return /[0-9A-Z ]/i.test(event.key)">
+                                                <input class="form-control text-dark" type="text" name="comm" id="comm" value="<?php echo empty($comm) ? '' : $comm; ?>" required onkeypress="return /[0-9A-Z ]/i.test(event.key)">
                                             </td>
                                             <td>
-                                                <input class="form-control" type="text" placeholder="Optional" name="comm_comment" id="comm_comment" value="<?php echo empty($comm_comment) ? '' : $comm_comment; ?>" >
+                                                <input class="form-control text-dark" type="text" placeholder="Optional" name="comm_comment" id="comm_comment" value="<?php echo empty($comm_comment) ? '' : $comm_comment; ?>" >
                                             </td>
                                          </tr>
 
@@ -260,7 +260,7 @@ endif;
                                          <tr>
                                             <td class="fw-bold">Attachment</td>
                                             <td colspan="2">
-                                                <input name="file" class="form-control" type="file" id="file">
+                                                <input name="file" class="form-control text-dark" type="file" id="file">
                                             </td>
                                          </tr>
                                          
@@ -291,7 +291,7 @@ endif;
                                         <!-- View data in DISK GB -->
                                         <?php if (empty($control_number)): ?>
                                         <tr id='addr1'>
-                                            <td class="fw-bold">DISK (GB)</td>
+                                            <td class="fw-bold">DISK (GB)<span class="text-danger ms-2">*</span></td>
                                             <td>
                                                 <div class="d-flex justify-content-end position-relative">
                                                     <input type="hidden" name="others_id[]" >
