@@ -194,7 +194,7 @@
                 <!-- Footer -->
                 <footer class="bg-white sticky-footer">
                     <div class="container my-auto">
-                        <div class="text-center my-auto copyright"><span>Copyright © Alapaap | eBizolution 2022 v1.10.1</span></div>
+                        <div class="text-center my-auto copyright"><span>Copyright © Alapaap | eBizolution 2022 v1.10.2 - BSP</span></div>
                     </div>
                 </footer>
                 <!-- Footer -->
