@@ -295,7 +295,7 @@ include 'model/authorize_personnel.php';
                                                                     $new_date = date('F d, Y',$mydate);
                                                                     $mytime = strtotime($rows_tci['date_requested']);
                                                                     $new_time = date('h:i:s A',$mytime);
-                                                                    $formt = "tci";
+                                                                    $formt = "Adhoc";
 
                                                                     echo '<tr>';
                                                                    

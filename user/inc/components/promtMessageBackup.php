@@ -44,7 +44,7 @@
 
     while ($rows_tci = mysqli_fetch_array($tci_query)):
     $control_number = $rows_tci['control_number'];
-    $formt = "tci";
+    $formt = "Adhoc";
 ?>
 
 <div class="modal" id="myModal2<?php echo $formt; echo empty($control_number) ? '' : $control_number; ?>" data-bs-backdrop="static">
@@ -83,7 +83,7 @@
 
     while ($rows_tci = mysqli_fetch_array($tci_query)):
     $control_number = $rows_tci['control_number'];
-    $formt = "tci";
+    $formt = "Adhoc";
 ?>
 
 <div class="modal" id="myModal2<?php echo $formt; echo empty($control_number) ? '' : $control_number; ?>" data-bs-backdrop="static">

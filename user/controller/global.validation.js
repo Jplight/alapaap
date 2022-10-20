@@ -178,6 +178,27 @@ $(document).ready(function () {
 				{ name: "#btn_verifier", msg: "Request Verified?" },
 			],
 		},
+		{
+			form: "form_adhoc",
+			buttons: [
+				{ name: "#btn_submit_tci", msg: "Do you want to submit?" },
+				{ name: "#btn_save_tci", msg: "Save as draft?" },
+				{ name: "#btn_cancel", msg: "Do you wish to cancel this form?" },
+				{ name: "#btn_resubmit_tci", msg: "Resubmit this form?" },
+				{ name: "#btn_resubmit_tci_draft", msg: "Do you want to submit?" },
+				{ name: "#btn_update_tci", msg: "Do you want to update?" },
+				{ name: "#btn_approver", msg: "Approve this form?" },
+				{ name: "#app_disapproved", msg: "Disapprove this form?" },
+				{ name: "#approver_returned", msg: "Return this form?" },
+				{ name: "#btn_reciever", msg: "Acknowledge the request?" },
+				{
+					name: "#btn_performer",
+					msg: "Are you sure you performed the request?",
+				},
+				{ name: "#btn_confirmer", msg: "Request Confirmed?" },
+				{ name: "#btn_verifier", msg: "Request Verified?" },
+			],
+		},
 	]
 
 	const preventEvent = (e) => {
