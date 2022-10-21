@@ -384,7 +384,7 @@ include 'model/save_profile.php';
                     <source src="assets/audio/notification_sound.mp3" id="audio" controls>
                     <div class="container my-auto">
                         <div class="text-center my-auto copyright">
-                            <span>Copyright © Alapaap | eBizolution 2022 v1.10.2 - BSP</span>
+                            <span>Copyright © Alapaap | eBizolution 2022 v1.10.4 - BSP</span>
                         </div>
                     </div>
                 </footer>

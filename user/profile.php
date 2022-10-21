@@ -128,7 +128,7 @@
                                                 </div>
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input" type="checkbox" name="chk_reciever" id="chk_rec"  value="3" <?php echo $default_role == 3 ? 'checked' : (strpos($multi_role,"3") !== false ?  (strpos($my_role,"3") !== false ?  'checked' : '') : 'disabled'); ?> >
-                                                    <label class="form-check-label" for="chk_rec">Reciever</label>
+                                                    <label class="form-check-label" for="chk_rec">Receiver</label>
                                                 </div>
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input" type="checkbox" name="chk_performer" id="chk_per"  value="4" <?php echo $default_role == 4 ? 'checked' : (strpos($multi_role,"4") !== false ?  (strpos($my_role,"4") !== false ?  'checked' : '') : 'disabled'); ?> >
@@ -257,7 +257,7 @@
                 <!-- Footer -->
                 <footer class="bg-white sticky-footer">
                     <div class="container my-auto">
-                        <div class="text-center my-auto copyright"><span>Copyright © Alapaap | eBizolution 2022 v1.10.2 - BSP</span></div>
+                        <div class="text-center my-auto copyright"><span>Copyright © Alapaap | eBizolution 2022 v1.10.4 - BSP</span></div>
                     </div>
                 </footer>
                 <!-- Footer -->
@@ -292,7 +292,7 @@
                                                     </div>
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="checkbox" name="chk_reciever" id="chk_m_rec" title="Reciever" value="3" <?php echo strpos($multi_role,"3") !== false ? 'checked readonly' : ($default_role == 3 ? 'checked' : ''); ?> >
-                                                        <label class="form-check-label" for="chk_m_rec">Reciever</label>
+                                                        <label class="form-check-label" for="chk_m_rec">Receiver</label>
                                                     </div> 
                                                 </div>
                                                 <div class="d-block">
