@@ -47,7 +47,7 @@ $(document).ready(function () {
 			],
 		},
 		{
-			form: "frm_delete",
+			form: "frm_id_del",
 			buttons: [
 				{ name: "#btn_save_hci_del", msg: "Save as draft?" },
 				{ name: "#btn_submit_hci_del", msg: "Do you want to submit?" },
