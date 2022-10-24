@@ -25,7 +25,7 @@ if($status >=2 && $status <=6){
 
     if($status >=2 && $status <=6){
 
-        if($status == 2){; 
+        if($status == 2){ 
            
             $message = "Hi <b>Approver</b>,<br><br>".
             "<b>".ucwords($fullname)."</b> has a request with Control number <b>".$form_subject."/".$control_number."</b><br><br>".
