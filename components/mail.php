@@ -11,7 +11,7 @@ $mail = new PHPMailer();
 
 $mail->SMTPDebug = 1;
 
-$mail->Host = '10.2.2.21';
+$mail->Host = 'smglb.bsp.gov.ph';
 
 $mail->Port = 25;
 

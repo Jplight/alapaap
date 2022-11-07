@@ -14,7 +14,7 @@ $recipient = $txt_email_add;
 
     try {
         //Server settings             
-        $mail->Host = '10.2.2.21';          
+        $mail->Host = 'smglb.bsp.gov.ph';          
         $mail->Port = 25;                               
 
         $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
