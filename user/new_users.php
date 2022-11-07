@@ -249,7 +249,7 @@ endwhile;
                 <footer class="bg-white sticky-footer">
                     <div class="container my-auto">
                         <div class="text-center my-auto copyright">
-                            <span>Copyright © Alapaap | eBizolution 2022 v1.10.4 - BSP</span>
+                            <span>Copyright © Alapaap | eBizolution 2022 v1.10.7 - BSP</span>
                         </div>
                     </div>
                 </footer>
