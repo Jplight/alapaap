@@ -24,7 +24,7 @@ if (isset($_POST['btn_approver'])) {
 		if (!empty($comments)) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$approver_name','$comments', '$role', NOW()) ");
 		}
-		$form_subject = "HCI ";	
+		$form_subject = "HCI";	
 	}
 	if ($_POST['form_type'] == 3 || $_POST['form_type'] == '3-1' || $_POST['form_type'] == '3-2' ) {
 		$sql = mysqli_query($conn,"UPDATE tbl_cps set status = '$status', approver_id = '$approver_id', approver = '$approver_name', app_status = '$app_status', appr_date = NOW() where control_number = '$txt_control_number' ");
