@@ -37,10 +37,10 @@ if (isset($_POST['app_disapproved'])) {
     $recipient = $_POST['form_owner_mail'];
 }
 
-    try {                            
-        $mail->Host = '10.2.2.21';       
+
+    try {
+        $mail->Host     = 'smglb.bsp.gov.ph'; 
         $mail->Port       = 25;      
-    
 
         if($status == 7){
             $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
@@ -56,7 +56,6 @@ if (isset($_POST['app_disapproved'])) {
             foreach ($getRecipients as $row) {
                 try {
                     $mail->addAddress($row['email_add'], $row['first_name']);
-
                 } catch (Exception $e) {
                     echo 'Invalid address skipped: ' . htmlspecialchars($row['email_add']) . '<br>';
                     continue;
