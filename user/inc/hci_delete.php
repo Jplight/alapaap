@@ -102,7 +102,7 @@ if (!empty($control_number)):
 endif;
 
 ?>
-<form class="text-dark" id="frm_delete" name="frm_delete" method="post" autocomplete="off">
+<form class="text-dark" id="frm_id_del" name="frm_id_del" method="post" autocomplete="off">
     <div id="view_hci_delete<?php echo empty($control_number) ? '' : $control_number; ?>" class="modal fade" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-xl modal-fullscreen-xl-down" role="document">
             <div class="modal-content">
@@ -127,6 +127,7 @@ endif;
                             <input type="hidden" name="txt_control_number" value="<?php echo empty($control_number) ? '' : $control_number; ?>" readonly >
                             <input type="hidden" name="contact_no" value="<?php echo empty($contact_no) ? '' : $contact_no; ?>" readonly>
                             <input type="hidden" name="email_add" value="<?php echo empty($email) ? '' : $email; ?>" readonly>
+                            <input type="hidden" name="form_owner_mail" value="<?php echo empty($email_add) ? '' : $email_add; ?>" readonly>
                             <input type="hidden" name="form_type" value="<?php echo empty($form_type) ? '' : $form_type; ?>" readonly>
                             <input type="hidden" name="num_revised" value="<?php echo empty($num_revised) ? '' : $num_revised; ?>" readonly placeholder="Total Revised">
                             <input type="hidden" name="his_role" value="<?php echo empty($my_role) ? '' : $my_role; ?>" readonly>

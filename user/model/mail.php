@@ -38,17 +38,30 @@ if (isset($_POST['app_disapproved'])) {
 }
 
     // try {                            
-    //     $mail->Host = '10.2.2.21';       
+    //     $mail->Host = 'smglb.bsp.gov.ph';       
     //     $mail->Port       = 25;                               
     //     $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
-    //     foreach ($getRecipients as $row) {
-    //         try {
-    //             $mail->addAddress($row['email_add'], $row['first_name']);
-    //         } catch (Exception $e) {
-    //             echo 'Invalid address skipped: ' . htmlspecialchars($row['email_add']) . '<br>';
-    //             continue;
+    //     if($status == 7){
+    //         $mail->setFrom('alapaapbsp@gmail.com', 'BSP Alapaap');
+    //         try{
+    //             $mail->addAddress($_POST['form_owner_mail'], $_POST['fullname']);
+    //         }catch (Exception $e) {
+    //             echo 'Invalid address skipped: ' . htmlspecialchars($row['email_add']) . '<br>';      
     //         }
-    //     }
+    //     }else{
+
+    //         //Recipients
+    //         $mail->setFrom('alapaapbsp@gmail.com', 'BSP Alapaap');
+    //         foreach ($getRecipients as $row) {
+    //             try {
+    //                 $mail->addAddress($row['email_add'], $row['first_name']);
+    //             } catch (Exception $e) {
+    //                 echo 'Invalid address skipped: ' . htmlspecialchars($row['email_add']) . '<br>';
+    //                 continue;
+    //             }
+    //         }
+           
+    //     }        
     //     $mail->addCC($email_add);                 
     //     switch ($status) {
     //         case $status >=3 && $status <=7:

@@ -58,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'created','$status') ");
 		
 			$form_subject = "Baas";
+			$form_ft = "a CSRF";
 			require 'mail_message.php';
 			require 'mail.php';
 		

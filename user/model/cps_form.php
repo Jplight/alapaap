@@ -79,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_SESSION['control_number'] = $control_number;	
 
 		$form_subject = "CPS";
+		$form_ft = "a New CPS";
 		require 'mail_message.php';
 		require 'mail.php';
 

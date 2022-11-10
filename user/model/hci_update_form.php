@@ -86,12 +86,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_SESSION['control_number'] = $control_number;
 
 		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$uid',  '$role', '$fullname','$form_type','$control_number', 'requested','$status') ");					
-		if ($sql) {
-			header("location: index.php");
-			mysqli_close($conn);
-		}
 
-		$form_subject = "HCI Update";
+		$form_subject = "HCI";
+		$form_ft = "an Update HCI";
 		require 'mail_message.php';
 		require 'mail.php';
 	
@@ -124,10 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if (!empty($comments)) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`, `uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$control_number','$comment_id','$uid','$fullname','$comments','$role',NOW()) ");
 		}
-		if ($sql) {
-			header("location: index.php");
-			mysqli_close($conn);
-		}
+
 	}
 	if (isset($_POST['btn_hci_up_submit_draft'])) {
 		$txt_control_number = $_POST['txt_control_number'];
@@ -154,10 +148,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$uid',  '$role', '$fullname','$form_type','$txt_control_number', 'resubmitted draft','$status') ");
 		
-		if ($sql) {
-			// header("location: index.php");
-			mysqli_close($conn);
-		}		
 	}
 	if (isset($_POST['btn_hci_up_update'])) {
 		$txt_control_number = $_POST['txt_control_number'];
@@ -183,10 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	        }      
         }
 		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$uid',  '$role', '$fullname','$form_type','$txt_control_number', 'updated','$status') ");
-		if ($sql) {
-			header("location: draft_form.php");
-			mysqli_close($conn);
-		}	
+
 
 	}
 

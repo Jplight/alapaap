@@ -9,7 +9,7 @@
 
     try {
         //Server settings  
-        $mail->Host = '10.2.2.21';                            //Set the SMTP server to send through
+        $mail->Host = 'smglb.bsp.gov.ph';                            //Set the SMTP server to send through
         $mail->Port       = 25;     
         $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');                             
         

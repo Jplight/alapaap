@@ -64,7 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_SESSION['control_number'] = $control_number;
 		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'created','$status') ");			
 	
-		$form_subject = "CPS Delete";
+		$form_subject = "CPS";
+		$form_ft = "a Delete CPS";
 		require 'mail_message.php';
 		require 'mail.php';
 	

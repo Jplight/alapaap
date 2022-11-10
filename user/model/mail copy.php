@@ -34,7 +34,7 @@ if (isset($_POST['app_disapproved'])) {
 }
 
     try {                            
-        $mail->Host = '10.2.2.21';       
+        $mail->Host = 'smglb.bsp.gov.ph';       
         $mail->Port       = 25;                               
         $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
         $mail->addAddress($recipient);         //Add a recipient
