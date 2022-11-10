@@ -632,13 +632,20 @@ include 'model/authorize_personnel.php';
                     window.location.reload();
                 }); 
 
-                $("button[name=approver_returned], button[name=rec_disapproved], button[name=performer_disapproved]").hover(function(){
-                    $("textarea[name=comments]").prop('required',true);
-                },function(){
-                    $("textarea[name=comments]").removeAttr('required');
+                $(".launchModal").hover(function(){
+                    
+                    if ($("textarea[name=comments]").val().length == ""){
+                        $(".launchModal").attr("type","submit").removeAttr('data-bs-toggle')
+                    } 
                 });// WHen the cursor is hover on the Button Disapproved, the textarea ramarks will required to input text, otherwise if the text have text inside the required will automaticakkly bypass
-
-            });            
+                $("textarea[name=comments]").keyup(function(){
+                    if ($(this).val().length != ""){
+                        $(".launchModal").attr("type","button").attr('data-bs-toggle','modal')
+                    }else{
+                        $(".launchModal").attr("type","submit").removeAttr('data-bs-toggle')
+                    }
+                })
+            })          
         </script>
         <!-- <script>
             // For Notifcation
