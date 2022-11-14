@@ -93,6 +93,8 @@ if ($my_role >= 1 && $my_role <= 4) {
 include 'model/hci_form.php';
 include 'model/hci_update_form.php';
 include 'model/hci_delete_form.php';
+include 'model/hci_delete_form.php';
+include 'model/hci_clone_form.php';
 
 include 'model/tci_form.php';
 

@@ -204,6 +204,8 @@ include 'model/authorize_personnel.php';
                                                                 echo '<td>HCI - UPDATE</td>';
                                                             }else if ($rows_hci['form_type'] == '1-2') {
                                                                 echo '<td>HCI - DELETE</td>';
+                                                            }else if ($rows_hci['form_type'] == '1-3') {
+                                                                echo '<td>HCI - CLONE</td>';
                                                             }else{
                                                                 echo '<td>HCI</td>';
                                                             } 
@@ -217,6 +219,10 @@ include 'model/authorize_personnel.php';
                                                                 $cancel_btn = '<a class="btn btn-outline-danger btn-sm shadow-sm" href="model/hci_form.php?uid='.$uid.'&control_number='.$rows_hci["control_number"].'&f_type='.$rows_hci['form_type'].'" id="hci_r_cancel" ><i class="fa-fw fas fa-times me-1"></i>Cancel</a>';
                                                             }else if ($my_role == 1 && $rows_hci['status'] == 2 && $rows_hci['form_type'] == '1-1') {
                                                                 $cancel_btn = '<a class="btn btn-outline-danger btn-sm shadow-sm" href="model/hci_update_form.php?uid='.$uid.'&control_number='.$rows_hci["control_number"].'&f_type='.$rows_hci['form_type'].'" ><i class="fa-fw fas fa-times me-1"></i>Cancel</a>';
+                                                            }else if ($my_role == 1 && $rows_hci['status'] == 2 && $rows_hci['form_type'] == '1-2') {
+                                                                $cancel_btn = '<a class="btn btn-outline-danger btn-sm shadow-sm" href="model/hci_delete_form.php?uid='.$uid.'&control_number='.$rows_hci["control_number"].'&f_type='.$rows_hci['form_type'].'" ><i class="fa-fw fas fa-times me-1"></i>Cancel</a>';
+                                                            }else if ($my_role == 1 && $rows_hci['status'] == 2 && $rows_hci['form_type'] == '1-3') {
+                                                                $cancel_btn = '<a class="btn btn-outline-danger btn-sm shadow-sm" href="model/hci_clone_form.php?uid='.$uid.'&control_number='.$rows_hci["control_number"].'&f_type='.$rows_hci['form_type'].'" ><i class="fa-fw fas fa-times me-1"></i>Cancel</a>';
                                                             }else{
                                                                 // $cancel_btn_dummy = "";
                                                                 $cancel_btn = "";
@@ -246,6 +252,13 @@ include 'model/authorize_personnel.php';
                                                                         '<a class="btn btn-outline-primary btn-sm shadow-sm" href="#view_hci_delete'.$rows_hci["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a>'.$cancel_btn.'</td>';                                                              
                                                                 echo '<td>';
                                                                     include 'inc/hci_delete.php';
+                                                                echo '</td>';
+                                                            }else if ($rows_hci['form_type'] == '1-3') {
+                                                                echo '<td class="d-flex gap-2">'.
+                                                                        '<a class="btn btn-outline-primary btn-sm shadow-sm" href="inc/print/print_hci_clone.php?control_number='.$rows_hci["control_number"].'" target="_blank"  ><i class="fa-fw fas fa-print"></i>Print</a>'.
+                                                                        '<a class="btn btn-outline-primary btn-sm shadow-sm" href="#view_hci_clone'.$rows_hci["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a>'.$cancel_btn.'</td>';                                                              
+                                                                echo '<td>';
+                                                                    include 'inc/hci_cloning.php';
                                                                 echo '</td>';
                                                             }else{
                                                                 echo '<td class="d-flex gap-2">'.

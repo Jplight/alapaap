@@ -16,7 +16,9 @@ if (isset($_SESSION['control_number']) && isset($_SESSION['form_type']) ):
     if ($form_type == '1-2'){
         $form_type = "HCI DELETE";
     }
-
+    if ($form_type == '1-3'){
+        $form_type = "HCI CLONE";
+    }
     if ($form_type == '2'){
         $form_type = "Adhoc";
     }

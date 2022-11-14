@@ -71,6 +71,31 @@ $(document).ready(function () {
 			],
 		},
 		{
+			form: "form_clone",
+			buttons: [
+				{ name: "#btn_hci_clon_savehci", msg: "Save as draft?" },
+				{ name: "#btn_hci_clon_submit_hci", msg: "Do you want to submit?" },
+				{ name: "#btn_hci_clon_update", msg: "Do you want to update?" },
+				{ name: "#btn_hci_clon_submit_draft", msg: "Submit draft?" },
+				{ name: "#btn_hci_clon_resubmit", msg: "Resubmit this form?" },
+				{
+					name: "#btn_hci_del_cancel",
+					msg: "Do you wish to cancel this form?",
+				},
+				{ name: "#btn_approver", msg: "Approve this form?" },
+				{ name: "#app_disapproved", msg: "Disapprove this form?" },
+				{ name: "#approver_returned", msg: "Return this form?" },
+				{ name: "#btn_reciever", msg: "Acknowledge the request?" },
+				{
+					name: "#btn_performer",
+					msg: "Are you sure you performed the request?",
+				},
+				{ name: "#btn_confirmer", msg: "Request Confirmed?" },
+				{ name: "#btn_verifier", msg: "Request Verified?" },
+			],
+		},
+
+		{
 			form: "frm_cps_del_id",
 			buttons: [
 				{ name: "#btn_save_cps_del", msg: "Save as draft?" },

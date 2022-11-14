@@ -25,6 +25,7 @@ if($status >=2 && $status <=6){
     if ($form_type === "1"){ $form_ft = "an New HCI";}
     if ($form_type === "1-1"){ $form_ft = "an Update HCI";}
     if ($form_type === "1-2"){ $form_ft = "a Delete HCI";}
+    if ($form_type === "1-3"){ $form_ft = "an HCI Clone";}
     if ($form_type === "2"){ $form_ft = "a Adhoc";}
     if ($form_type === "3"){ $form_ft = "a New CPS";}
     if ($form_type === "3-1"){ $form_ft = "an Update CPS";}
@@ -120,6 +121,10 @@ if($status >=2 && $status <=6){
         }
         if ($_POST['form_type'] == '1-2'){
             $link_pdf = "<a href='http://".$_SERVER['SERVER_NAME']."/user/inc/print/print_hci_delete.php?control_number=".$control_number."'>Click Here</a><br><br>";
+            $forms = 'HCI';
+        }
+        if ($_POST['form_type'] == '1-3'){
+            $link_pdf = "<a href='http://".$_SERVER['SERVER_NAME']."/user/inc/print/print_hci_clone.php?control_number=".$control_number."'>Click Here</a><br><br>";
             $forms = 'HCI';
         }
         if ($_POST['form_type'] == '2'){

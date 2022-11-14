@@ -74,7 +74,7 @@ endif;
                 <div class="modal-header">
                     <div class="row g-0 d-flex flex-column-reverse flex-lg-row w-100 gap-3 gap-lg-0">
                         <div class="col-md-12 col-lg-5 col-xl-4 offset-lg-1 offset-xl-1">
-                            <h4 class="modal-title fw-bold text-nowrap">BSP HCI REQUEST FORM (CLONING)</h4>
+                            <h4 class="modal-title fw-bold text-nowrap">BSP HCI REQUEST FORM (CLONE)</h4>
                         </div>
                         <div class="col-md-12 col-lg-5 col-xl-5 offset-lg-1 offset-xl-2 d-lg-flex justify-content-lg-end">
                             <img class="img-fluid me-lg-5" src="assets/img/ebiz-logo.png" width="230px" />
@@ -88,7 +88,6 @@ endif;
                     <div class="row g-0 d-flex flex-column-reverse flex-lg-row w-100 gap-3 gap-lg-0">
                         <div class="col-md-12 col-lg-5 col-xl-4 offset-lg-1 offset-xl-1">
                             <label class="form-label d-block">Date Requested: <span class="fw-bold"><?php echo empty($date_requested) ? date('F d, Y') : date('F d, Y - h:i A',strtotime($date_requested)); ?></span></label>
-                            <label class="form-label d-block">Date Approved: <span class="fw-bold" id="hci_clon_date_accomplished"><?php echo empty($date_accomplished) ? '' : $date_accomplished; ?></span></label>
                             <label class="form-label d-block">Control No:&nbsp; <span class="fw-bold"><?php echo empty($control_number) ? '' : 'HCI/'.$control_number; ?></span></label>
                             <input type="hidden" name="txt_control_number" value="<?php echo empty($control_number) ? '' : $control_number; ?>" readonly >
                             <input type="hidden" name="contact_no" value="<?php echo empty($contact_no) ? '' : $contact_no; ?>" readonly>
@@ -287,21 +286,22 @@ endif;
                                                 while ($rows_2 = mysqli_fetch_assoc($sql_2)) {
                                                     echo '<tr>';
                                                     echo '<td class="text-dark fw-bold">Disk (GB) '.$num++.' </td>';
-                                                    echo '<td><input type="hidden" name="others_id[]" value="'.$rows_2['others_id'].'" placeholder=""><input class="form-control text-dark" type="text" id="others_1[]" name="others_1[]" value="'.$rows_2['others_1'].'" readonly></td>';
-                                                    echo '<td><input class="form-control text-dark" type="text" id="others_2[]" name="others_2[]" value="'.$rows_2['others_2'].'" onkeypress="return /[0-9]/i.test(event.key)" ></td>';
+                                                    echo '<td><input type="hidden" name="others_id[]" value="'.$rows_2['others_id'].'" placeholder="">
+                                                                <input class="form-control text-dark" type="text" id="hci_clon_others_1[]" name="hci_clon_others_1[]" value="'.$rows_2['others_1'].'" readonly></td>';
+                                                    echo '<td><input class="form-control text-dark" type="text" id="hci_clon_others_2[]" name="hci_clon_others_2[]" value="'.$rows_2['others_2'].'" onkeypress="return /[0-9]/i.test(event.key)" ></td>';
                                                     echo '</tr>';
                                                 }
                                             }else{
                                                 echo '<tr>';
                                                 echo '<td class="text-dark fw-bold">Disk (GB)</td>';
-                                                echo '<td><input type="hidden" name="others_id[]" value="" placeholder=""><input class="form-control text-dark" type="text" id="others_1" name="others_1[]" value="" readonly onkeypress="return /[0-9]/i.test(event.key)"></td>';
-                                                echo '<td><input class="form-control text-dark" type="text" id="others_2" name="others_2[]" ></td>';
+                                                echo '<td><input type="hidden" name="others_id[]" value="" placeholder=""><input class="form-control text-dark" type="text" id="hci_clon_others_1" name="hci_clon_others_1[]" value="" readonly onkeypress="return /[0-9]/i.test(event.key)"></td>';
+                                                echo '<td><input class="form-control text-dark" type="text" id="hci_clon_others_2" name="hci_clon_others_2[]" ></td>';
                                                 echo '</tr>';     
                                             }
                                         endif;
                                         if (empty($control_number)):
                                                 // the purpose of this is to display the blank textfield of DISK GB
-                                                echo '<tr id="hci_up_disk" >';
+                                                echo '<tr id="hci_clon_disk" >';
                                                 echo '<td class="text-dark fw-bold">Disk (GB)</td>';
                                                 echo '<td><input class="form-control text-dark" type="text"></td>';
                                                 echo '<td><input class="form-control text-dark" type="text" ></td>';
@@ -322,13 +322,13 @@ endif;
                     <div class="modal-footer d-flex justify-content-end">       
                         <?php if ($status == 1 && $my_role == 1): ?> <!-- // Draft button -->
                         <div>
-                            <button class="btn btn-secondary me-2" type="submit" name="btn_update" id="btn_hci_clon_update" ><i class="fa-fw fas fa-refresh me-1"></i>Update</button>
-                            <button class="btn btn-primary" type="submit" name="btn_submit_draft" id="btn_hci_clon_submit_draft" ><i class="fa-fw fas fa-paper-plane me-1"></i>Resubmit</button>
+                            <button class="btn btn-secondary me-2" type="submit" name="btn_hci_clon_update" id="btn_hci_clon_update" ><i class="fa-fw fas fa-refresh me-1"></i>Update</button>
+                            <button class="btn btn-primary" type="submit" name="btn_hci_clon_submit_draft" id="btn_hci_clon_submit_draft" ><i class="fa-fw fas fa-paper-plane me-1"></i>Resubmit</button>
                         </div>
                         <?php endif; ?>
                         <?php if ($my_role == 1 && $revised == 1): ?>
                         <div>
-                            <button class="btn btn-primary" type="submit" name="btn_resubmit" id="btn_hci_clon_resubmit" ><i class="fa-fw fas fa-paper-plane me-1"></i>Resubmit</button>
+                            <button class="btn btn-primary" type="submit" name="btn_hci_clon_resubmit" id="btn_hci_clon_resubmit" ><i class="fa-fw fas fa-paper-plane me-1"></i>Resubmit</button>
                         </div>    
                         <?php endif; ?>
                         <?php if ($status == 0 && $my_role == 1): ?> <!-- // Disapproved  -->
@@ -339,7 +339,7 @@ endif;
                         <?php if ($my_role == 1 && $status == 2): ?>
                         <div>
                             <div class="btn btn-danger" id="hci_cancel_1" ><i class="fa-fw fas fa-times me-1"></i>Cancel</div>
-                            <button type="submit" name="btn_cancel" hidden></button>
+                            <button type="submit" name="btn_hci_clon_cancel" hidden></button>
                         </div>    
                         <?php endif; ?>
                         
@@ -351,8 +351,8 @@ endif;
                         <div>
                             <!-- <button type="submit" name="btn_savehci" hidden></button>
                             <button type="submit" name="btn_submit_hci" hidden></button> -->
-                            <button class="btn btn-secondary" name="btn_savehci" type="submit" id="btn_hci_clon_savehci"><i class="fa-fw fas fa-file me-1"></i>Draft</button>
-                            <button class="btn btn-primary" name="btn_submit_hci" type="submit" id="btn_hci_clon_submit_hci"><i class="fa-fw fas fa-paper-plane me-1"></i>Submit</button>
+                            <button class="btn btn-secondary" name="btn_hci_clon_savehci" type="submit" id="btn_hci_clon_savehci"><i class="fa-fw fas fa-file me-1"></i>Draft</button>
+                            <button class="btn btn-primary" name="btn_hci_clon_submit_hci" type="submit" id="btn_hci_clon_submit_hci"><i class="fa-fw fas fa-paper-plane me-1"></i>Submit</button>
                         </div>
                     </div>
                 <?php endif; ?>

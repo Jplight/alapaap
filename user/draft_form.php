@@ -185,6 +185,8 @@ include 'model/baas_form_2.php';
                                                                         echo '<td>HCI - UPDATE</td>';
                                                                     }else if ($rows_hci['form_type'] == '1-2') {
                                                                         echo '<td>HCI - DELETE</td>';
+                                                                    }else if ($rows_hci['form_type'] == '1-3') {
+                                                                        echo '<td>HCI - CLONE</td>';
                                                                     }else{
                                                                         echo '<td>HCI</td>';
                                                                     }
@@ -204,7 +206,15 @@ include 'model/baas_form_2.php';
                                                                             include 'inc/hci_update.php';
                                                                         echo '</td>';
                                                                     }else if ($rows_hci['form_type'] == '1-2') {
-                                                                        
+                                                                        echo '<td class="d-flex gap-2"><a class="btn btn-outline-primary btn-sm shadow-sm" href="#view_hci_delete'.$rows_hci["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a></td>';
+                                                                        echo '<td>';
+                                                                            include 'inc/hci_delete.php';
+                                                                        echo '</td>';
+                                                                    }else if ($rows_hci['form_type'] == '1-3') {
+                                                                        echo '<td class="d-flex gap-2"><a class="btn btn-outline-primary btn-sm shadow-sm" href="#view_hci_clone'.$rows_hci["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a></td>';
+                                                                        echo '<td>';
+                                                                            include 'inc/hci_cloning.php';
+                                                                        echo '</td>';
                                                                     }else{
                                                                         echo '<td class="d-flex gap-2"><a class="btn btn-outline-primary btn-sm shadow-sm" href="#view_hci'.$rows_hci["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a></td>';
                                                                         echo '<td>';

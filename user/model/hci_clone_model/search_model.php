@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 				
 				
 						
-				$response['date_accomplished'] 	= $rows['date_requested'];
+				// $response['date_accomplished'] 	= $rows['date_requested'];
 			}else{
 				$response['status'] = 'invalid';
 				$response['message'] = 'Cannot Clone Ongoing Request!';

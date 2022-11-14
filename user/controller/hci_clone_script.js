@@ -63,35 +63,33 @@ $(document).ready(function () {
 					)
 					$("#hci_clon_comm_comment").val(data.hci_clon_comm_comment)
 
-					$("#hci_clon_date_accomplished").val(data.date_accomplished)
-					// 2022-08-16 19:36:55
-					var options = {
-						year: "numeric",
-						month: "long",
-						day: "numeric",
-						time: "",
-					}
+					// $("#hci_clon_date_accomplished").val(data.date_accomplished)
+					// // 2022-08-16 19:36:55
+					// var options = {
+					// 	year: "numeric",
+					// 	month: "long",
+					// 	day: "numeric",
+					// 	time: "",
+					// }
 
-					const nDate = new Date(data.date_accomplished)
-					$("#hci_clon_date_accomplished").text(
-						`${nDate.toLocaleDateString(
-							"en-US",
-							options
-						)} ${nDate.toLocaleTimeString()}`
-					)
-
-					$("#hci_up_disk").remove() // this code will remove the DISK GB, if theres data tobe fetch
+					// const nDate = new Date(data.date_accomplished)
+					// $("#hci_clon_date_accomplished").text(
+					// 	`${nDate.toLocaleDateString(
+					// 		"en-US",
+					// 		options
+					// 	)} ${nDate.toLocaleTimeString()}`
+					// )
 				}
 				if (data.status === "invalid") {
 					$("#form_clone").trigger("reset")
 					$("#btn_savehci_up, #btn_submit_hci_up").prop("disabled", true)
 					alert(data.message)
-					$("#hci_up_disk").remove()
+					$("#hci_clon_disk").remove()
 				}
 				if (data.status === "failed") {
 					alert(data.message)
 					$("#form_clone").trigger("reset")
-					$("#hci_up_disk").remove() // this code will remove the DISK GB, if theres data tobe fetch
+					$("#hci_clon_disk").remove() // this code will remove the DISK GB, if theres data tobe fetch
 				}
 			},
 		})
@@ -103,6 +101,7 @@ $(document).ready(function () {
 			success: function (data) {
 				if (data) {
 					$("#load_others_hci_clon").html(data)
+					$("#hci_clon_disk").remove() // this code will remove the DISK GB, if theres data tobe fetch
 				}
 			},
 		})

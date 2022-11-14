@@ -50,6 +50,7 @@
                 if($data['form_type'] == '1'){$form_type = 'HCI'; }
                 if($data['form_type'] == '1-1'){$form_type = 'HCI UPDATE'; }
                 if($data['form_type'] == '1-2'){$form_type = 'HCI DELETE'; }
+                if($data['form_type'] == '1-3'){$form_type = 'HCI CLONE'; }
                 if($data['form_type'] == '2'){$form_type = 'Adhoc'; }
                 if($data['form_type'] == '3'){$form_type = 'CPS'; }
                 if($data['form_type'] == '3-1'){$form_type = 'CPS UPDATE'; }
@@ -69,7 +70,7 @@
                 }
                 
                 
-                if ($my_role == '3' && ($data['form_type'] == '1' || $data['form_type'] == '1-1' || $data['form_type'] == '1-2')){
+                if ($my_role == '3' && ($data['form_type'] == '1' || $data['form_type'] == '1-1' || $data['form_type'] == '1-2' || $data['form_type'] == '1-3')){
                     $notifDate = $data['appr_date'];
                     // $notification = "<Approver> has approved the request of <Requestor> with control number <control_number>";
                     // $notification = ucwords($NotifName).' has '.$st.' the '.$form_type." of ".ucwords($data['fullname'])." with control number of ".$form_type."/".$data['control_number'];

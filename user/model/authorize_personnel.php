@@ -19,7 +19,7 @@ if (isset($_POST['btn_approver'])) {
 	$his_uid = $_POST['his_uid'];
 	
 
-	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2') {
+	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2' || $_POST['form_type'] == '1-3') {
 		$sql = mysqli_query($conn,"UPDATE tbl_hci set status = '$status', approver_id = '$approver_id', approver = '$approver_name', app_status = '$app_status', appr_date = NOW() where control_number = '$txt_control_number' ");
 		if (!empty($comments)) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$approver_name','$comments', '$role', NOW()) ");
@@ -71,7 +71,7 @@ if (isset($_POST['app_disapproved'])) {
 	$num_revised = null;
 	$comment_id = rand(100000,999999);
 	$his_uid = $_POST['his_uid'];
-	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2') {
+	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2' || $_POST['form_type'] == '1-3') {
 		$sql = mysqli_query($conn,"UPDATE tbl_hci set status = '$status', revised = null, num_revised = null, approver_id = '$approver_id', approver = '$approver_name', app_status = '$app_status', appr_date = NOW() where control_number = '$txt_control_number' ");
 		if (!empty($comments)) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`, `remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$approver_name','$comments', '$role', NOW()) ");
@@ -117,7 +117,7 @@ if (isset($_POST['approver_returned'])) {
 	$app_status = 0;
 	$revised = 1;
 	$comment_id = rand(100000,999999);
-	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2') {
+	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2' || $_POST['form_type'] == '1-3') {
 		$sql = mysqli_query($conn,"UPDATE tbl_hci set status = '$status', revised = '$revised', num_revised = '$num_revised' ,approver_id = '$approver_id', approver = '$approver_name', app_status = '$app_status', appr_date = NOW() where control_number = '$txt_control_number' ");
 		if (!empty($comments)) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$approver_name','$comments', '$role', NOW()) ");
@@ -165,7 +165,7 @@ if (isset($_POST['btn_reciever'])) {
 	$comment_id = rand(100000,999999);
 	$his_uid = $_POST['his_uid'];
 
-	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2') { 
+	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2' || $_POST['form_type'] == '1-3') { 
 		$sql = mysqli_query($conn,"UPDATE tbl_hci set status = '$status', reciever_id = '$reciever_id', reciever = '$reciever_name', rec_status = '$rec_status', rec_date = NOW() where control_number = '$txt_control_number' ");
 		if (!empty($comments)) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$reciever_name','$comments','$role' ,NOW()) ");
@@ -217,7 +217,7 @@ if (isset($_POST['btn_performer'])) {
 	$comment_id = rand(100000,999999);
 	$his_uid = $_POST['his_uid'];
 
-	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2') {
+	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2' || $_POST['form_type'] == '1-3') {
 		$sql = mysqli_query($conn,"UPDATE tbl_hci set status = '$status', performer_id = '$performer_id', performer = '$performer_name', perf_status = '$perf_status', perform_date = NOW() where control_number = '$txt_control_number' ");
 		if (!empty($comments)) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$performer_name','$comments','$role' ,NOW()) ");
@@ -269,7 +269,7 @@ if (isset($_POST['btn_confirmer'])) {
 	$comment_id = rand(100000,999999);
 	$his_uid = $_POST['his_uid'];
 
-	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2') {
+	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2' || $_POST['form_type'] == '1-3') {
 		$sql = mysqli_query($conn,"UPDATE tbl_hci set status = '$status', verifier_id = '$verifier_id', verifier = '$verifier_name', ver_status = '$ver_status', ver_date = NOW() where control_number = '$txt_control_number' ");
 		if (!empty($comments)) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$verifier_name','$comments', '$role',NOW()) ");
@@ -323,7 +323,7 @@ if (isset($_POST['btn_verifier'])) {
 	$comment_id = rand(100000,999999);
 	$his_uid = $_POST['his_uid'];
 
-	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2') {
+	if ($_POST['form_type'] == 1 || $_POST['form_type'] == '1-1' || $_POST['form_type'] == '1-2' || $_POST['form_type'] == '1-3') {
 		$sql = mysqli_query($conn,"UPDATE tbl_hci set status = '$status', verifier_2id = '$verifier_2id', verifier_2 = '$verifier_2_name', ver2_status = '$ver2_status', ver2_date = NOW() where control_number = '$txt_control_number' ");
 		if (!empty($comments)) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$verifier_2_name','$comments', '$role' ,NOW()) ");
