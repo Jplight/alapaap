@@ -221,6 +221,7 @@ include 'model/save_profile.php';
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_hci" style="cursor: pointer;">NEW</a></li>
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_hci_update" style="cursor: pointer;">UPDATE</a></li>
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_hci_delete" style="cursor: pointer;">DELETE</a></li>
+                                        <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_hci_clone" style="cursor: pointer;">CLONING</a></li>
                                      </ul>
                                   </li>
                                   <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_tci" style="cursor: pointer;">Adhoc Request</a></li>                           
@@ -397,6 +398,7 @@ include 'model/save_profile.php';
             include 'inc/hci_new.php';
             include 'inc/hci_update.php'; 
             include 'inc/hci_delete.php';
+            include 'inc/hci_cloning.php';
             include 'inc/tci_modal.php';
             include 'inc/cps_new.php';
             include 'inc/cps_update.php';
@@ -412,6 +414,7 @@ include 'model/save_profile.php';
         <script src="assets/js/theme.js"></script>
         <script src="controller/hci_script.js"></script>
         <script src="controller/hci_del.js"></script>
+        <script src="controller/hci_clone_script.js"></script>
         <script src="controller/weng.js"></script>
         <script src="controller/weng2.js"></script>
         <script src="controller/cps_script.js"></script>
