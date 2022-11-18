@@ -39,9 +39,12 @@
         value="Do you want to confirm this request?"><i class="fa-fw fas fa-check me-1"></i>Confirm</button>
 </div>
 <?php endif; ?>
-<?php if ($status == 6 && $my_role == 6): ?>
+<?php if ($status == 6 && $my_role == 1): ?>
 <!-- // Button for Verifier -->
 <div>
+    <button class="btn btn-outline-danger launchModal" type="button" id="btn_rejected" data-bs-toggle="modal"
+        data-bs-target="#myModal2<?php echo $formt; echo empty($control_number) ? '' : $control_number; ?>"
+        value="Do you want to reject this request?"><i class="fa-fw fas fa-close me-1"></i>Reject</button>
     <button class="btn btn-outline-success launchModal" type="button" id="btn_verifier" data-bs-toggle="modal"
         data-bs-target="#myModal2<?php echo $formt; echo empty($control_number) ? '' : $control_number; ?>"
         value="Do you want to verify this request?"><i class="fa-fw fas fa-check me-1"></i>Verify</button>

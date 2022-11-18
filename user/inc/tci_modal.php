@@ -160,77 +160,7 @@ endif;
                             </div>
                         </div>
                         <div class="col-lg-10">
-                            <div class="table-responsive">
-                                <table class="table table-borderless table-sm align-middle border border-secondary">
-                                    <thead class="bg-dark text-white">
-                                        <tr>
-                                            <th class="text-center" colspan="3">Remarks</th>
-                                        </tr>
-                                    </thead>
-                                    <?php if (!empty($control_number)): ?>
-                                    <tbody class="text-dark align-top">
-                                        <?php
-
-                                            $no_comments = '<td colspan="3">This form has no comments!</td>';
-                                            $txt_area = '<td colspan="3"><textarea class="form-control text-dark" name="comments" placeholder="Please leave a comments here..."  ></textarea></td>';
-                                            $tci_remarks = mysqli_query($conn,"SELECT * FROM tbl_remarks where control_number = '$control_number' and form_type = '$form_type' ORDER BY remarks_date ASC ");
-                                            $tci_count = mysqli_num_rows($tci_remarks);
-                                            if ($tci_count  == true){
-
-                                                while($tci_remarks_rows = mysqli_fetch_array($tci_remarks)):
-                                                    $com_id = $tci_remarks_rows['comment_id'];
-                                                    $tci_role = $tci_remarks_rows['role'];
-                                                    if (($my_role == 1 && $tci_role >=1 && $tci_role <=6) || ($my_role == 2 && $tci_role >=1 && $tci_role <=2) || ($my_role == 3 && $tci_role >=1 && $tci_role <=3) || ($my_role == 4 && $tci_role >=1 && $tci_role <=4) || ($my_role == 5 && $tci_role >=1 && $tci_role <=5) || ($my_role == 6 && $tci_role >=1 && $tci_role <=6) ):
-                                                        echo '<td><input type="hidden" name="comment_id" value="'.$com_id.'"></td>';
-                                                        echo '<tr>';
-                                                        echo '<td width="25%"><span class="fw-bold">'.ucwords($tci_remarks_rows['fullname']).'</span><br><span class="small">'.$tci_remarks_rows['remarks_date'].'</span></td>';
-                                                        echo '<td width="75%" colspan="2">'.$tci_remarks_rows['comments'].'</td>';
-                                                        echo '</tr>';
-                                                    endif;    
-                                                endwhile;
-
-                                                if ($my_role == 2 && $app_status == NULL || $my_role == 3 && $rec_status == NULL || $my_role == 4 && $perf_status == NULL || $my_role == 5 && $ver_status == NULL || $my_role == 6 && $ver2_status == NULL){
-                                                     echo $txt_area;
-                                                }
-                                                if ($my_role == 1 && $status == 1 && $revised == NULL) {
-                                                    echo $txt_area;
-                                                }
-                                                if ($my_role == 1 && $status == 0 && $revised == 1){
-                                                    echo $txt_area;
-                                                }
-                                            }else{
-
-                                                if ($my_role == 1 && $status == 1) {
-                                                    echo $txt_area;
-                                                }
-                                                if ($my_role == 2 && $app_status == NULL || $my_role == 3 && $rec_status == NULL || $my_role == 4 && $perf_status == NULL || $my_role == 5 && $ver_status == NULL || $my_role == 6 && $ver2_status == NULL){
-                                                    echo $txt_area;
-                                                }
-                                                if ($my_role == 2 && $app_status == 1 || $my_role == 3 && $rec_status == 1 || $my_role == 4 && $perf_status == 1 || $my_role == 5 && $ver_status == 1 || $my_role == 6 && $ver2_status == 1  ) {
-                                                    echo $no_comments;
-                                                }
-                                                if (($my_role == 1 || $my_role ==2 ) && $status == 0 && $app_status == 0) {
-                                                    echo $no_comments;
-                                                }
-                                                if ($my_role == 1 && $status == 2 ) {
-                                                    echo $no_comments;
-                                                }
-
-                                            }
-                                        ?>
-                                    </tbody>
-                                    <?php endif; ?>
-                                    <?php if (empty($control_number)): ?>
-                                    <tbody>
-                                         <tr>
-                                             <td colspan="3">
-                                                 <textarea class="form-control text-dark" name="comments" placeholder="Please leave a comments here..."></textarea>
-                                             </td>
-                                         </tr>
-                                     </tbody>    
-                                    <?php endif; ?>                                    
-                                </table>
-                            </div>
+                            <?php include 'components/comment.php'; ?>
                         </div>
                     </div>
                     <div class="row g-1 d-flex justify-content-lg-center text-nowrap">

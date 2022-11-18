@@ -563,7 +563,7 @@ include 'model/authorize_personnel.php';
                 <footer class="bg-white sticky-footer">
                     <div class="container my-auto">
                         <div class="text-center my-auto copyright">
-                            <span>Copyright © Alapaap | eBizolution 2022 v1.10.8 - DEV</span>
+                            <span>Copyright © Alapaap | eBizolution 2022 v1.10.9 - DEV</span>
                         </div>
                     </div>
                 </footer>
@@ -657,7 +657,7 @@ include 'model/authorize_personnel.php';
                     }else{
                         $(".launchModal").attr("type","submit").removeAttr('data-bs-toggle')
                     }
-                })
+                }) // need i fixed
             })          
         </script>
         <!-- <script>
