@@ -18,7 +18,7 @@
                             <option value="3">Receiver</option>
                             <option value="4">Performer</option>
                             <option value="5">Confirmer</option>
-                            <option value="6">Verifier</option>
+                            <!-- <option value="6">Verifier</option> --> 
                             <option value="admin">Administrator</option>
                         </select>
                     </div>
