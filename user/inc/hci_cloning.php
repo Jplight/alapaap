@@ -132,7 +132,7 @@ endif;
                                         </tr>
                                         <tr class="bg-dark text-white fw-bold">
                                             <td>Cluster<span class="text-danger ms-2">*</span></td>
-                                            <td colspan="3">Host Name<span class="text-danger ms-2">*</span></td>
+                                            <td colspan="3">HostName<span class="text-danger ms-2">*</span></td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -147,7 +147,7 @@ endif;
                                                 <?php if (empty($control_number)): ?>
                                                     <div class="input-group">
                                                         <input class="form-control text-dark shadow-none" type="search" name="hci_clon_hostname" id="hci_clon_hostname" value="<?php echo empty($hostname) ? '' : $hostname; ?>" onkeypress="return /[0-9A-Z.-_]/i.test(event.key)" >
-                                                        <button class="btn btn-secondary shadow-none" type="button" id="btn_cloni_up_search" name="btn_cloni_up_search">Search</button>   
+                                                        <button class="btn btn-secondary shadow-none" type="button" id="btn_cloni_up_search" name="btn_cloni_up_search">Clone</button>   
                                                     </div>                                                
                                                     <div class="position-absolute">
                                                     <ul class="list-group rounded-bottom shadow user-select-none" id="hci_clon_search_result"></ul> 

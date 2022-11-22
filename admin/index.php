@@ -203,7 +203,7 @@ $rows_disabled = mysqli_fetch_array($disabled_users);
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+                            <!-- <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
                                 <div class="card shadow border-start-primary py-2">
                                     <div class="card-body">
                                         <div class="d-block">
@@ -221,7 +221,7 @@ $rows_disabled = mysqli_fetch_array($disabled_users);
                                         </div>           
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
                                 <div class="card shadow border-start-primary py-2">
                                     <div class="card-body">
@@ -388,7 +388,7 @@ $rows_disabled = mysqli_fetch_array($disabled_users);
                 <footer class="bg-white sticky-footer">
                     <div class="container my-auto">
                         <div class="text-center my-auto copyright">
-                            <span>Copyright © Alapaap | eBizolution 2022 v1.10.9 - DEV</span>
+                            <span>Copyright © Alapaap | eBizolution 2022 v1.10.10 - DEV</span>
                         </div>
                     </div>
                 </footer>

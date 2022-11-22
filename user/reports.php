@@ -28,11 +28,12 @@
         <link rel="icon" type="image/svg+xml" sizes="30x24" href="assets/img/android-chrome-192x192.png">
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/dataTables.bootstrap5.min.css">
-        
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.dataTables.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
         <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
         <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
         <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+        
         <style>
             /* width */
             ::-webkit-scrollbar {
@@ -72,7 +73,7 @@
                     <?php include 'inc/navbar.php'; ?>
                     <div class="container-fluid">
                         <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                            <h3 class="text-dark mb-0 mb-3 mb-sm-0">Reports</h3>
+                            <h3 class="text-dark mb-0 mb-3 mb-sm-0" id="sp_r">Reports</h3>
                         </div>
                         <div class="card shadow">
                             <div class="card-body">
@@ -83,26 +84,29 @@
                                                 <tr>
                                                     <th width="10%">Form Type</th>
                                                     <th width="15%">Control No.</th>
-                                                    <th>Action</th>
+                                                    <th>HostName</th>
+                                                    <th>Date Accomplished</th>
+                                                    <th>Action</th>  
+                                                    <th hidden></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                               
                                                 <?php
                                                     $num = 1;
                                                     if ($my_role == 1) {
-                                                        $sql_reports = "SELECT * FROM `tbl_report_view` where uid = '$uid' ORDER by date_requested DESC";
+                                                        $sql_reports = "SELECT * FROM `tbl_report_view` where uid = '$uid' ORDER by ver2_date DESC";
                                                         $query = mysqli_query($conn,$sql_reports);
                                                     }
-                                                  
                                                         while ($rows_reports = mysqli_fetch_array($query)):                        
                                                             $control_number = $rows_reports['control_number'];
-                                                            $mydate = strtotime($rows_reports['date_requested']);
-                                                            $new_date = date('F d, Y',$mydate);
-                                                            $mytime = strtotime($rows_reports['date_requested']);
-                                                            $new_time = date('h:i:s A',$mytime);
+                                                           
+                                                            $new_date = date('F d, Y',strtotime($rows_reports['ver2_date']));
+                                                           
+                                                            $new_time = date('h:i:s A',strtotime($rows_reports['ver2_date']));
                                                             echo '<tr>';
                                                             if ($rows_reports['form_type'] == '1') {
-                                                                echo '<td>HCI</td>';
+                                                                echo '<td>HCI NEW</td>';
                                                                 echo '<td>HCI/'.$control_number.'</td>';
                                                                 $inc = "hci_new.php";
                                                                 $url = "view_hci";
@@ -122,6 +126,13 @@
                                                                 $url = "view_hci_delete";
                                                                 $print_form = "print_hci_delete.php";
                                                             }
+                                                            if ($rows_reports['form_type'] == '1-3') {
+                                                                echo '<td>HCI CLONE</td>';
+                                                                echo '<td>HCI/'.$control_number.'</td>';
+                                                                $inc = "hci_cloning.php";
+                                                                $url = "view_hci_clone";
+                                                                $print_form = "print_hci_clone.php";
+                                                            }
                                                             if ($rows_reports['form_type'] == '2') {
                                                                 echo '<td>Adhoc</td>';
                                                                 echo '<td>Adhoc/'.$control_number.'</td>';
@@ -130,7 +141,7 @@
                                                                 $print_form = "print_tci.php";
                                                             }
                                                             if ($rows_reports['form_type'] == '3') {
-                                                                echo '<td>CPS</td>';
+                                                                echo '<td>CPS NEW</td>';
                                                                 echo '<td>CPS/'.$control_number.'</td>';
                                                                 $inc = "cps_new.php";
                                                                 $url = "view_cps";
@@ -151,29 +162,33 @@
                                                                 $print_form = "print_cps_del.php";
                                                             }
                                                             if ($rows_reports['form_type'] == '4') {
-                                                                echo '<td>Baas CSRF</td>';
+                                                                echo '<td>BaaS CSRF</td>';
                                                                 echo '<td>BaaS/'.$control_number.'</td>';
                                                                 $inc = "baas_modal.php";
                                                                 $url = "view_baas";
                                                                 $print_form = 'print_baas_csrf.php';
                                                             }
                                                             if ($rows_reports['form_type'] == '4-2') {
-                                                                echo '<td>Baas CRRF</td>';
+                                                                echo '<td>BaaS CRRF</td>';
                                                                 echo '<td>BaaS/'.$control_number.'</td>';
                                                                 $inc = "baas_modal_2.php";
                                                                 $url = "view_baas_2";
                                                                 $print_form = 'print_baas_crrf.php';
                                                             }
-                                                            
+                                                            if (empty($rows_reports['hostname'])){
+                                                                echo "<td>-------------</td>";
+                                                            }else{
+                                                                echo "<td>".$rows_reports['hostname']."</td>";
+                                                            }
+                                                            echo '<td>'.$new_date.' - '.$new_time.'</td>';
                                                             echo '<td class="d-flex gap-2"><a class="btn btn-outline-primary btn-sm shadow-sm" href="#'.$url.$rows_reports["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a>'
                                                             .'<a class="btn btn-outline-primary btn-sm shadow-sm" href="inc/print/'.$print_form.'?control_number='.$rows_reports["control_number"].'" ><i class="fa-fw fas fa-print me-1"></i>Print</a></td>';
                                                             echo '<td>';
                                                                 include "inc/".$inc;
                                                             echo '</td>';
-                                                               
+                                                            
                                                             echo '</tr>';
-                                                        endwhile; 
-                                                                                                              
+                                                        endwhile;                                                                                                              
                                                 ?>
                                             </tbody>
                                         </table>
@@ -186,7 +201,7 @@
                 <footer class="bg-white sticky-footer">
                     <div class="container my-auto">
                         <div class="text-center my-auto copyright">
-                            <span>Copyright © Alapaap | eBizolution 2022 v1.10.9 - DEV</span>
+                            <span>Copyright © Alapaap | eBizolution 2022 v1.10.10 - DEV</span>
                         </div>
                     </div>
                 </footer>
@@ -198,16 +213,52 @@
         <!-- Data Tables -->
         <script src="assets/js/jquery.dataTables.min.js"></script>
         <script src="assets/js/dataTables.bootstrap5.min.js"></script>
-
+        <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.colVis.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/theme.js"></script>
         <script>
             $(document).ready(function () {
+                let today = new Date().toLocaleString().bold()
                 $('#report_datatables').DataTable({
                     "language": {
                         "emptyTable": "There is no data to be showed!🤗",
                         "zeroRecords": "No data found!🤗"
-                    }
+                    },
+                    dom: 'Bfrtip',
+                    buttons: [
+                        {
+                            extend: 'excelHtml5',
+                            exportOptions: {
+                                columns: [ 0, 1, 2, 3, 5 ]
+                            },
+                            messageTop: 'Reported By: '+ $("#my_fullname").html() + "<br> Date Printed: " + today
+                        },
+                        {
+                            extend: 'pdfHtml5',
+                            exportOptions: {
+                                columns: [ 0, 1, 2, 3 ]
+                            },
+                            messageTop: 'Reported By: '+ $("#my_fullname").html().bold() + "<br> Date Printed: " + today
+                        },
+                        {
+                            extend: 'print',
+                            exportOptions: {
+                                columns: [ 0, 1, 2, 3 ]
+                            },
+                            messageTop: 'Reported By: '+ $("#my_fullname").html().bold() + "<br> Date Printed: " + today
+                            
+                        },
+                        {
+                            extend: "colvis",
+                            text: "Filter By"
+                        }                       
+                    ]
                 }); 
             });
         </script>
