@@ -10,7 +10,7 @@
                                         <?php
 
                                             $no_comments = '<td colspan="3">This form has no comments!</td>';
-                                            $txt_area = '<td colspan="3"><textarea class="form-control text-dark" name="comments" placeholder="Please leave a comments here..." required></textarea></td>';
+                                            $txt_area = '<td colspan="3"><textarea class="form-control text-dark" name="comments" placeholder="Please leave a comments here..." ></textarea></td>';
                                             $hci_remarks = mysqli_query($conn,"SELECT * FROM tbl_remarks where control_number = '$control_number' and form_type = '$form_type' ORDER BY remarks_date ASC ");
                                             $hci_count = mysqli_num_rows($hci_remarks);
                                             if ($hci_count  == true){
@@ -63,7 +63,7 @@
                                     <tbody>
                                          <tr>
                                              <td colspan="3">
-                                                 <textarea class="form-control text-dark" name="comments" placeholder="Please leave a comments here..." required ></textarea>
+                                                 <textarea class="form-control text-dark" name="comments" placeholder="Please leave a comments here..."  ></textarea>
                                              </td>
                                          </tr>
                                      </tbody>    
