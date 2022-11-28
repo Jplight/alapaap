@@ -82,10 +82,13 @@
                                         <table class="table table-hover align-middle user-select-none text-nowrap" id="report_datatables">
                                             <thead>
                                                 <tr>
-                                                    <th width="10%">Form Type</th>
-                                                    <th width="15%">Control No.</th>
+                                                    <th>Form Type</th>
+                                                    <th>Control No.</th>
                                                     <th>HostName</th>
+                                                    <th>Department</th>
+                                                    <th>Date Created</th>
                                                     <th>Date Accomplished</th>
+                                                    <th>Status</th>
                                                     <th>Action</th>  
                                                     <th hidden></th>
                                                 </tr>
@@ -95,94 +98,98 @@
                                                 <?php
                                                     $num = 1;
                                                     if ($my_role == 1) {
-                                                        $sql_reports = "SELECT * FROM `tbl_report_view` where uid = '$uid' ORDER by ver2_date DESC";
+                                                        $sql_reports = "SELECT * FROM `tbl_report_raw_verified` where uid = '$uid' ORDER by DATE_VERIFIED DESC";
                                                         $query = mysqli_query($conn,$sql_reports);
                                                     }
                                                         while ($rows_reports = mysqli_fetch_array($query)):                        
-                                                            $control_number = $rows_reports['control_number'];
+                                                            $control_number = $rows_reports['CONTROL_NUMBER'];
                                                            
-                                                            $new_date = date('F d, Y',strtotime($rows_reports['ver2_date']));
+                                                            $new_date = date('F d, Y',strtotime($rows_reports['DATE_VERIFIED']));
                                                            
-                                                            $new_time = date('h:i:s A',strtotime($rows_reports['ver2_date']));
+                                                            $new_time = date('h:i:s A',strtotime($rows_reports['DATE_VERIFIED']));
                                                             echo '<tr>';
-                                                            if ($rows_reports['form_type'] == '1') {
-                                                                echo '<td>HCI NEW</td>';
+                                                            echo "<td>".$rows_reports['FORM_TYPE']."</td>";
+                                                            if ($rows_reports['FORM_TYPE'] == 'HCI_NEW') {
                                                                 echo '<td>HCI/'.$control_number.'</td>';
                                                                 $inc = "hci_new.php";
                                                                 $url = "view_hci";
                                                                 $print_form = "print_hci.php";
                                                             }
-                                                            if ($rows_reports['form_type'] == '1-1') {
-                                                                echo '<td>HCI - UPDATE</td>';
+                                                            if ($rows_reports['FORM_TYPE'] == 'HCI_UPDATE') {
+                                                                
                                                                 echo '<td>HCI/'.$control_number.'</td>';
                                                                 $inc = "hci_update.php";
                                                                 $url = "view_hci_update";
                                                                 $print_form = "print_hci_up.php";
                                                             }
-                                                            if ($rows_reports['form_type'] == '1-2') {
-                                                                echo '<td>HCI DELETE</td>';
+                                                            if ($rows_reports['FORM_TYPE'] == 'HCI_DELETE') {
+                                                         
                                                                 echo '<td>HCI/'.$control_number.'</td>';
                                                                 $inc = "hci_delete.php";
                                                                 $url = "view_hci_delete";
                                                                 $print_form = "print_hci_delete.php";
                                                             }
-                                                            if ($rows_reports['form_type'] == '1-3') {
-                                                                echo '<td>HCI CLONE</td>';
+                                                            if ($rows_reports['FORM_TYPE'] == 'HCI_CLONE') {
+                                                                
                                                                 echo '<td>HCI/'.$control_number.'</td>';
                                                                 $inc = "hci_cloning.php";
                                                                 $url = "view_hci_clone";
                                                                 $print_form = "print_hci_clone.php";
                                                             }
-                                                            if ($rows_reports['form_type'] == '2') {
-                                                                echo '<td>Adhoc</td>';
-                                                                echo '<td>Adhoc/'.$control_number.'</td>';
+                                                            if ($rows_reports['FORM_TYPE'] == 'ADHOC') {
+                                                                echo '<td>ADHOC/'.$control_number.'</td>';
+                                                            
                                                                 $inc = "tci_modal.php";
                                                                 $url = "view_tci";
                                                                 $print_form = "print_tci.php";
                                                             }
-                                                            if ($rows_reports['form_type'] == '3') {
-                                                                echo '<td>CPS NEW</td>';
+                                                            if ($rows_reports['FORM_TYPE'] == 'CPS_NEW') {
                                                                 echo '<td>CPS/'.$control_number.'</td>';
                                                                 $inc = "cps_new.php";
                                                                 $url = "view_cps";
                                                                 $print_form = "print_cps.php";
                                                             }
-                                                            if ($rows_reports['form_type'] == '3-1') {
-                                                                echo '<td>CPS UPDATE</td>';
+                                                            if ($rows_reports['FORM_TYPE'] == 'CPS_UPDATE') {
+                                                                
                                                                 echo '<td>CPS/'.$control_number.'</td>';
                                                                 $inc = "cps_update.php";
                                                                 $url = "view_cps_update";
                                                                 $print_form = "print_cps_up.php";
                                                             }
-                                                            if ($rows_reports['form_type'] == '3-2') {
-                                                                echo '<td>CPS DELETE</td>';
+                                                            if ($rows_reports['FORM_TYPE'] == 'CPS_DELETE') {
+                                                               
                                                                 echo '<td>CPS/'.$control_number.'</td>';
                                                                 $inc = "cps_delete.php";
                                                                 $url = "view_cps_delete";
                                                                 $print_form = "print_cps_del.php";
                                                             }
-                                                            if ($rows_reports['form_type'] == '4') {
-                                                                echo '<td>BaaS CSRF</td>';
-                                                                echo '<td>BaaS/'.$control_number.'</td>';
+                                                            if ($rows_reports['FORM_TYPE'] == 'BAAS_CSRF') {
+                                                                echo '<td>BAAS/'.$control_number.'</td>';
                                                                 $inc = "baas_modal.php";
                                                                 $url = "view_baas";
                                                                 $print_form = 'print_baas_csrf.php';
                                                             }
-                                                            if ($rows_reports['form_type'] == '4-2') {
-                                                                echo '<td>BaaS CRRF</td>';
-                                                                echo '<td>BaaS/'.$control_number.'</td>';
+                                                            if ($rows_reports['FORM_TYPE'] == 'BAAS_CRRF') {
+                                                               
+                                                                echo '<td>BAAS-'.$control_number.'</td>';
                                                                 $inc = "baas_modal_2.php";
                                                                 $url = "view_baas_2";
                                                                 $print_form = 'print_baas_crrf.php';
                                                             }
-                                                            if (empty($rows_reports['hostname'])){
+                                                            
+                                                            if (empty($rows_reports['HOSTNAME'])){
                                                                 echo "<td>-------------</td>";
                                                             }else{
-                                                                echo "<td>".$rows_reports['hostname']."</td>";
+                                                                echo "<td>".$rows_reports['HOSTNAME']."</td>";
                                                             }
+                                                            echo "<td>".$rows_reports['DEPARTMENT']."</td>";
+                                                            
+                                                            
+                                                            echo "<td>".date('F d, Y',strtotime($rows_reports['DATE_CREATED']))." - ".date('h:i:s A',strtotime($rows_reports['DATE_CREATED']))."</td>";
                                                             echo '<td>'.$new_date.' - '.$new_time.'</td>';
-                                                            echo '<td class="d-flex gap-2"><a class="btn btn-outline-primary btn-sm shadow-sm" href="#'.$url.$rows_reports["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a>'
-                                                            .'<a class="btn btn-outline-primary btn-sm shadow-sm" href="inc/print/'.$print_form.'?control_number='.$rows_reports["control_number"].'" ><i class="fa-fw fas fa-print me-1"></i>Print</a></td>';
+                                                            echo "<td>".$rows_reports['STATUS']."</td>";
+                                                            echo '<td class="d-flex gap-2"><a class="btn btn-outline-primary btn-sm shadow-sm" href="#'.$url.$rows_reports["CONTROL_NUMBER"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a>'
+                                                            .'<a class="btn btn-outline-primary btn-sm shadow-sm" href="inc/print/'.$print_form.'?control_number='.$rows_reports["CONTROL_NUMBER"].'" ><i class="fa-fw fas fa-print me-1"></i>Print</a></td>';
                                                             echo '<td>';
                                                                 include "inc/".$inc;
                                                             echo '</td>';
@@ -235,21 +242,21 @@
                         {
                             extend: 'excelHtml5',
                             exportOptions: {
-                                columns: [ 0, 1, 2, 3, 5 ]
+                                columns: [ 0, 1, 2, 3, 4,5,6,8 ]
                             },
                             messageTop: 'Reported By: '+ $("#my_fullname").html() + "<br> Date Printed: " + today
                         },
                         {
                             extend: 'pdfHtml5',
                             exportOptions: {
-                                columns: [ 0, 1, 2, 3 ]
+                                columns: [ 0, 1, 2, 3, 4,5,6 ]
                             },
                             messageTop: 'Reported By: '+ $("#my_fullname").html().bold() + "<br> Date Printed: " + today
                         },
                         {
                             extend: 'print',
                             exportOptions: {
-                                columns: [ 0, 1, 2, 3 ]
+                                columns: [ 0, 1, 2, 3, 4,5,6,8 ]
                             },
                             messageTop: 'Reported By: '+ $("#my_fullname").html().bold() + "<br> Date Printed: " + today
                             
