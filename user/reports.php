@@ -28,6 +28,7 @@
         <link rel="icon" type="image/svg+xml" sizes="30x24" href="assets/img/android-chrome-192x192.png">
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/dataTables.bootstrap5.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.2.0/css/dataTables.dateTime.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.dataTables.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
         <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
@@ -74,133 +75,177 @@
                     <div class="container-fluid">
                         <div class="d-sm-flex justify-content-between align-items-center mb-4">
                             <h3 class="text-dark mb-0 mb-3 mb-sm-0" id="sp_r">Reports</h3>
+                            <div class="d-inline-flex gap-2 mb-3">
+                                    <div class="d-block">
+                                        <span class="fw-bold">Date From:</span>
+                                        <input type="text" class="form-control form-control-sm" id="min" name="min">
+                                    </div>
+                                    <div class="d-block">
+                                        <span class="fw-bold">Date To:</span>
+                                        <input type="text"  class="form-control form-control-sm" id="max" name="max">
+                                    </div>   
+                                </div>
                         </div>
                         <div class="card shadow">
                             <div class="card-body">
-                                <form method="POST" >                          
-                                    <div class="table-responsive">
-                                        <table class="table table-hover align-middle user-select-none text-nowrap" id="report_datatables">
-                                            <thead>
-                                                <tr>
-                                                    <th>Form Type</th>
-                                                    <th>Control No.</th>
-                                                    <th>HostName</th>
-                                                    <th>Department</th>
-                                                    <th>Date Created</th>
-                                                    <th>Date Accomplished</th>
-                                                    <th>Status</th>
-                                                    <th>Action</th>  
-                                                    <th hidden></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                               
-                                                <?php
-                                                    $num = 1;
-                                                    if ($my_role == 1) {
-                                                        $sql_reports = "SELECT * FROM `tbl_report_raw_verified` where uid = '$uid' ORDER by DATE_VERIFIED DESC";
-                                                        $query = mysqli_query($conn,$sql_reports);
-                                                    }
-                                                        while ($rows_reports = mysqli_fetch_array($query)):                        
-                                                            $control_number = $rows_reports['CONTROL_NUMBER'];
-                                                           
-                                                            $new_date = date('F d, Y',strtotime($rows_reports['DATE_VERIFIED']));
-                                                           
-                                                            $new_time = date('h:i:s A',strtotime($rows_reports['DATE_VERIFIED']));
-                                                            echo '<tr>';
-                                                            echo "<td>".$rows_reports['FORM_TYPE']."</td>";
-                                                            if ($rows_reports['FORM_TYPE'] == 'HCI_NEW') {
-                                                                echo '<td>HCI/'.$control_number.'</td>';
-                                                                $inc = "hci_new.php";
-                                                                $url = "view_hci";
-                                                                $print_form = "print_hci.php";
-                                                            }
-                                                            if ($rows_reports['FORM_TYPE'] == 'HCI_UPDATE') {
-                                                                
-                                                                echo '<td>HCI/'.$control_number.'</td>';
-                                                                $inc = "hci_update.php";
-                                                                $url = "view_hci_update";
-                                                                $print_form = "print_hci_up.php";
-                                                            }
-                                                            if ($rows_reports['FORM_TYPE'] == 'HCI_DELETE') {
-                                                         
-                                                                echo '<td>HCI/'.$control_number.'</td>';
-                                                                $inc = "hci_delete.php";
-                                                                $url = "view_hci_delete";
-                                                                $print_form = "print_hci_delete.php";
-                                                            }
-                                                            if ($rows_reports['FORM_TYPE'] == 'HCI_CLONE') {
-                                                                
-                                                                echo '<td>HCI/'.$control_number.'</td>';
-                                                                $inc = "hci_cloning.php";
-                                                                $url = "view_hci_clone";
-                                                                $print_form = "print_hci_clone.php";
-                                                            }
-                                                            if ($rows_reports['FORM_TYPE'] == 'ADHOC') {
-                                                                echo '<td>ADHOC/'.$control_number.'</td>';
-                                                            
-                                                                $inc = "tci_modal.php";
-                                                                $url = "view_tci";
-                                                                $print_form = "print_tci.php";
-                                                            }
-                                                            if ($rows_reports['FORM_TYPE'] == 'CPS_NEW') {
-                                                                echo '<td>CPS/'.$control_number.'</td>';
-                                                                $inc = "cps_new.php";
-                                                                $url = "view_cps";
-                                                                $print_form = "print_cps.php";
-                                                            }
-                                                            if ($rows_reports['FORM_TYPE'] == 'CPS_UPDATE') {
-                                                                
-                                                                echo '<td>CPS/'.$control_number.'</td>';
-                                                                $inc = "cps_update.php";
-                                                                $url = "view_cps_update";
-                                                                $print_form = "print_cps_up.php";
-                                                            }
-                                                            if ($rows_reports['FORM_TYPE'] == 'CPS_DELETE') {
-                                                               
-                                                                echo '<td>CPS/'.$control_number.'</td>';
-                                                                $inc = "cps_delete.php";
-                                                                $url = "view_cps_delete";
-                                                                $print_form = "print_cps_del.php";
-                                                            }
-                                                            if ($rows_reports['FORM_TYPE'] == 'BAAS_CSRF') {
-                                                                echo '<td>BAAS/'.$control_number.'</td>';
-                                                                $inc = "baas_modal.php";
-                                                                $url = "view_baas";
-                                                                $print_form = 'print_baas_csrf.php';
-                                                            }
-                                                            if ($rows_reports['FORM_TYPE'] == 'BAAS_CRRF') {
-                                                               
-                                                                echo '<td>BAAS-'.$control_number.'</td>';
-                                                                $inc = "baas_modal_2.php";
-                                                                $url = "view_baas_2";
-                                                                $print_form = 'print_baas_crrf.php';
-                                                            }
-                                                            
-                                                            if (empty($rows_reports['HOSTNAME'])){
-                                                                echo "<td>-------------</td>";
-                                                            }else{
-                                                                echo "<td>".$rows_reports['HOSTNAME']."</td>";
-                                                            }
-                                                            echo "<td>".$rows_reports['DEPARTMENT']."</td>";
-                                                            
-                                                            
-                                                            echo "<td>".date('F d, Y',strtotime($rows_reports['DATE_CREATED']))." - ".date('h:i:s A',strtotime($rows_reports['DATE_CREATED']))."</td>";
-                                                            echo '<td>'.$new_date.' - '.$new_time.'</td>';
-                                                            echo "<td>".$rows_reports['STATUS']."</td>";
-                                                            echo '<td class="d-flex gap-2"><a class="btn btn-outline-primary btn-sm shadow-sm" href="#'.$url.$rows_reports["CONTROL_NUMBER"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a>'
-                                                            .'<a class="btn btn-outline-primary btn-sm shadow-sm" href="inc/print/'.$print_form.'?control_number='.$rows_reports["CONTROL_NUMBER"].'" ><i class="fa-fw fas fa-print me-1"></i>Print</a></td>';
-                                                            echo '<td>';
-                                                                include "inc/".$inc;
-                                                            echo '</td>';
-                                                            
-                                                            echo '</tr>';
-                                                        endwhile;                                                                                                              
-                                                ?>
-                                            </tbody>
-                                        </table>
+                                <div>
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link active position-relative" role="tab" data-bs-toggle="tab" href="#tab-1">HCI</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link position-relative" role="tab" data-bs-toggle="tab" href="#tab-2">ADHOC</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link position-relative" role="tab" data-bs-toggle="tab" href="#tab-3">CPS</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link position-relative" role="tab" data-bs-toggle="tab" href="#tab-4">BAAS</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content pt-4">
+                                        <div class="tab-pane active" role="tabpanel" id="tab-1">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover align-middle user-select-none text-nowrap" id="hci_report_datatables">
+                                                <thead>
+                                                    <tr>
+                                                        <th>REQUESTOR_NAME</th>
+                                                        <th>DEPARTMENT</th>
+                                                        <th>FORM_TYPE</th>
+                                                        <th>CONTROL_NUMBER</th>
+                                                        <th>HOSTNAME</th>
+                                                        <th>CLUSTER</th>
+                                                        <th>VCPU</th>
+                                                        <th>RAM</th>
+                                                        <th>OPERATING_SYSTEM</th>
+                                                        <th>OS_VERSION</th>
+                                                        <th>OS_ENVIRONMENT</th>
+                                                        <th>PARTITION</th>
+                                                        <th>IP_ADDRESS</th>
+                                                        <th>VLAN</th>
+                                                        <th>USERS</th>
+                                                        <th>USERS_ROLE</th>
+                                                        <th>VM_DEPLOYMENT</th>
+                                                        <th>COMMUNICATION</th>
+                                                        <th>DISK_GB</th>
+                                                        <th>STATUS</th>
+                                                        <th>DATE_CREATED</th>
+                                                        <th>DATE_VERIFIED</th>      
+                                                    </tr>
+                                                </thead> 
+                                                <tfoot>
+                                                        <th>REQUESTOR_NAME</th>
+                                                        <th>DEPARTMENT</th>
+                                                        <th>FORM_TYPE</th>
+                                                </tfoot>      
+                                                </table>
+                                            </div> 
+                                        </div>
+                                        <div class="tab-pane" role="tabpanel" id="tab-2">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover align-middle user-select-none text-nowrap" id="tci_report_datatables">
+                                                <thead>
+                                                    <tr>
+                                                        <th>REQUESTOR_NAME</th>
+                                                        <th>DEPARTMENT</th>
+                                                        <th>FORM_TYPE</th>
+                                                        <th>CONTROL_NUMBER</th>
+                                                        <th>HOSTNAME</th>
+                                                        <th>LOCATION</th>
+                                                        <th>CLUSTER</th>
+                                                        <th>SERVICE_REQUEST</th>
+                                                        <th>ACTION_TAKEN</th>
+                                                        <th>SERVICE_REQUEST_STATUS</th>
+                                                        <th>REMARKS</th>
+                                                        <th>STATUS</th>
+                                                        <th>DATE_CREATED</th>
+                                                        <th>DATE_VERIFIED</th>      
+                                                    </tr>
+                                                </thead> 
+                                                <tfoot>
+                                                        <th>REQUESTOR_NAME</th>
+                                                        <th>DEPARTMENT</th>
+                                                        <th>FORM_TYPE</th>
+                                                </tfoot>      
+                                                </table>
+                                            </div> 
+                                        </div>
+                                        <div class="tab-pane" role="tabpanel" id="tab-3">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover align-middle user-select-none text-nowrap" id="cps_report_datatables">
+                                                <thead>
+                                                    <tr>
+                                                        <th>REQUESTOR_NAME</th>
+                                                        <th>DEPARTMENT</th>
+                                                        <th>FORM_TYPE</th>
+                                                        <th>CONTROL_NUMBER</th>
+                                                        <th>HOSTNAME</th>
+                                                        <th>LOCATION</th>
+                                                        <th>SYSTEM_NAME</th>
+                                                        <th>INSTANCE_NAME</th>
+                                                        <th>ENVI_PROFILE</th>        
+                                                        <th>PATTERN</th>        
+                                                        <th>IP_ADDRESS</th>        
+                                                        <th>IP_GROUP</th>        
+                                                        <th>VCPU_SIZE</th>        
+                                                        <th>RAM</th>        
+                                                        <th>USER_REGISTRATION</th>        
+                                                        <th>DISK_GB</th>        
+                                                        <th>STATUS</th>        
+                                                        <th>DATE_CREATED</th>        
+                                                        <th>DATE_VERIFIED</th>      
+                                                    </tr>
+                                                </thead> 
+                                                <tfoot>
+                                                        <th>REQUESTOR_NAME</th>
+                                                        <th>DEPARTMENT</th>
+                                                        <th>FORM_TYPE</th>
+                                                </tfoot>      
+                                                </table>
+                                            </div> 
+                                        </div>
+                                        <div class="tab-pane" role="tabpanel" id="tab-4">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover align-middle user-select-none text-nowrap" id="baas_report_datatables">
+                                                <thead>
+                                                    <tr>
+                                                        <th>REQUESTOR_NAME</th>
+                                                        <th>DEPARTMENT</th>
+                                                        <th>FORM_TYPE</th>
+                                                        <th>CONTROL_NUMBER</th>
+                                                        <th>HOSTNAME</th>
+                                                        <th>FORM_FACTOR</th>
+                                                        <th>IP_ADDRESS</th>
+                                                        <th>OPERATING_SYSTEM</th>
+                                                        <th>OS_VERSION</th>        
+                                                        <th>DATABASE_TYPE</th>        
+                                                        <th>DATABASE_VERSION</th>        
+                                                        <th>ACTION_LEVEL</th>        
+                                                        <th>NODE_NAME</th>        
+                                                        <th>BACKUP_METHOD</th>        
+                                                        <th>BACKUP_DIRECTORY</th>        
+                                                        <th>SCHEDULE_BACKUP</th>        
+                                                        <th>BACKUP_TIME</th>        
+                                                        <th>SCHEDULE_ARCHIVED</th>        
+                                                        <th>ARCHIVED_TIME</th>      
+                                                        <th>RETENTION</th>      
+                                                        <th>SCHEDULE_RETENTION</th>      
+                                                        <th>SERVER_CONTACT_DETAILS</th>      
+                                                        <th>STATUS</th>      
+                                                        <th>DATE_CREATED</th>      
+                                                        <th>DATE_VERIFIED</th>      
+                                                    </tr>
+                                                </thead> 
+                                                <tfoot>
+                                                        <th>REQUESTOR_NAME</th>
+                                                        <th>DEPARTMENT</th>
+                                                        <th>FORM_TYPE</th>
+                                                </tfoot>      
+                                                </table>
+                                            </div> 
+                                        </div>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -227,47 +272,13 @@
         <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.colVis.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+        <script src="https://cdn.datatables.net/datetime/1.2.0/js/dataTables.dateTime.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/theme.js"></script>
-        <script>
-            $(document).ready(function () {
-                let today = new Date().toLocaleString().bold()
-                $('#report_datatables').DataTable({
-                    "language": {
-                        "emptyTable": "There is no data to be showed!🤗",
-                        "zeroRecords": "No data found!🤗"
-                    },
-                    dom: 'Bfrtip',
-                    buttons: [
-                        {
-                            extend: 'excelHtml5',
-                            exportOptions: {
-                                columns: [ 0, 1, 2, 3, 4,5,6,8 ]
-                            },
-                            messageTop: 'Reported By: '+ $("#my_fullname").html() + "<br> Date Printed: " + today
-                        },
-                        {
-                            extend: 'pdfHtml5',
-                            exportOptions: {
-                                columns: [ 0, 1, 2, 3, 4,5,6 ]
-                            },
-                            messageTop: 'Reported By: '+ $("#my_fullname").html().bold() + "<br> Date Printed: " + today
-                        },
-                        {
-                            extend: 'print',
-                            exportOptions: {
-                                columns: [ 0, 1, 2, 3, 4,5,6,8 ]
-                            },
-                            messageTop: 'Reported By: '+ $("#my_fullname").html().bold() + "<br> Date Printed: " + today
-                            
-                        },
-                        {
-                            extend: "colvis",
-                            text: "Filter By"
-                        }                       
-                    ]
-                }); 
-            });
-        </script>
+        <script src="controller/reports/hci-data-tables.js"></script>
+        <script src="controller/reports/tci-data-tables.js"></script>
+        <script src="controller/reports/cps-data-tables.js"></script>
+        <script src="controller/reports/baas-data-tables.js"></script>
     </body>
 </html>
