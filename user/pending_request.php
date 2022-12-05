@@ -563,7 +563,7 @@ include 'model/authorize_personnel.php';
                 <footer class="bg-white sticky-footer">
                     <div class="container my-auto">
                         <div class="text-center my-auto copyright">
-                            <span>Copyright © Alapaap | eBizolution 2022 v1.10.11 - DEV</span>
+                            <span>Copyright © Alapaap | eBizolution 2022 v1.11.2 - DEV</span>
                         </div>
                     </div>
                 </footer>
@@ -645,19 +645,19 @@ include 'model/authorize_personnel.php';
                     window.location.reload();
                 }); 
 
-                $(".launchModal").hover(function(){
+                // $(".launchModal").hover(function(){
                     
-                    if ($("textarea[name=comments]").val().length == ""){
-                        $(".launchModal").attr("type","submit").removeAttr('data-bs-toggle')
-                    } 
-                });// WHen the cursor is hover on the Button Disapproved, the textarea ramarks will required to input text, otherwise if the text have text inside the required will automaticakkly bypass
-                $("textarea[name=comments]").keyup(function(){
-                    if ($(this).val().length != ""){
-                        $(".launchModal").attr("type","button").attr('data-bs-toggle','modal')
-                    }else{
-                        $(".launchModal").attr("type","submit").removeAttr('data-bs-toggle')
-                    }
-                }) // need i fixed
+                //     if ($("textarea[name=comments]").val().length == ""){
+                //         $(".launchModal").attr("type","submit").removeAttr('data-bs-toggle')
+                //     } 
+                // });// WHen the cursor is hover on the Button Disapproved, the textarea ramarks will required to input text, otherwise if the text have text inside the required will automaticakkly bypass
+                // $("textarea[name=comments]").keyup(function(){
+                //     if ($(this).val().length != ""){
+                //         $(".launchModal").attr("type","button").attr('data-bs-toggle','modal')
+                //     }else{
+                //         $(".launchModal").attr("type","submit").removeAttr('data-bs-toggle')
+                //     }
+                // }) // need i fixed
             })          
         </script>
         <!-- <script>
