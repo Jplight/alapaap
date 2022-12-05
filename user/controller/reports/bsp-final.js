@@ -37,35 +37,19 @@ $(document).ready(function () {
 		},
 	}
 
-	let table = $("#hci_report_datatables").DataTable({
+	let table = $("#report_datatables").DataTable({
 		language: {
 			emptyTable: "There is no data to be showed!🤗",
 			zeroRecords: "No data found!🤗",
 		},
-		ajax: "model/reports/data-hci.php",
+		ajax: "model/reports/data-bsp-final.php",
 		columns: [
-			{ data: "REQUESTOR_NAME" },
-			{ data: "DEPARTMENT" },
-			{ data: "FORM_TYPE" },
-			{ data: "CONTROL_NUMBER" },
-			{ data: "HOSTNAME" },
-			{ data: "CLUSTER" },
-			{ data: "VCPU" },
-			{ data: "RAM" },
-			{ data: "OPERATING_SYSTEM" },
-			{ data: "OS_VERSION" },
-			{ data: "OS_ENVIRONMENT" },
-			{ data: "PARTITION" },
-			{ data: "IP_ADDRESS" },
-			{ data: "VLAN" },
-			{ data: "USERS" },
-			{ data: "USERS_ROLE" },
-			{ data: "VM_DEPLOYMENT" },
-			{ data: "COMMUNICATION" },
-			{ data: "DISK_GB" },
-			{ data: "STATUS" },
-			{ data: "DATE_CREATED" },
-			{ data: "DATE_VERIFIED" },
+			{ data: 0 },
+			{ data: 1 },
+			{ data: 2 },
+			{ data: 3 },
+			{ data: 4 },
+			{ data: 5 },
 		],
 		dom: "Bfrtip",
 		buttons: [

@@ -16,9 +16,6 @@
         $my_role        = $rows['role'];
         $role_count     = $my_role + 1;
     endwhile;
-
-
-    
     
 ?>
 <!DOCTYPE html>
@@ -92,20 +89,16 @@
                             <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-hover align-middle user-select-none text-nowrap" id="report_datatables">
-                                <thead class="bg-success text-white">
+                                <thead>
                                     <tr>
-                                        <td rowspan="2">INFRASTRUCTURE</td>
-                                        <td rowspan="2">SYSTEM</td>
-                                        <td rowspan="2">SERVER NAME</td>
-                                        <td rowspan="2">BASELINE CONFIGURATION</td>
-                                        <td colspan="3" class="text-center">CHANGES</td>
-                                        <td rowspan="2" class="top-0">FINAL CONFIGURATION</td>
-                                    </tr>
-                                    <tr>
-                                        <td>DATE</td>
-                                        <td>REQUESTED BY</td>
-                                        <td>CHANGE REQUESTED</td>
-                                        
+                                        <th>INFRASTRUCTURE</th>
+                                        <th>SYSTEM</th>
+                                        <th>SERVER NAME</th>
+                                        <th>BASELINE CONFIGURATION</th>
+                                        <th>DATE</th>
+                                        <th>REQUESTED BY</th>
+                                        <th>CHANGE REQUEST</th>
+                                        <th>FINAL CONFIGURATION</th>
                                     </tr>
                                 </thead>      
                                 </table>
@@ -141,6 +134,6 @@
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/theme.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-        <script src="controller/reports/bsp-reports.js?asd=123"></script>
+        <script src="controller/reports/bsp-final.js"></script>
     </body>
 </html>

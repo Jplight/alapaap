@@ -37,35 +37,21 @@ $(document).ready(function () {
 		},
 	}
 
-	let table = $("#hci_report_datatables").DataTable({
+	let table = $("#report_datatables").DataTable({
 		language: {
 			emptyTable: "There is no data to be showed!🤗",
 			zeroRecords: "No data found!🤗",
 		},
-		ajax: "model/reports/data-hci.php",
+		ajax: "model/reports/data-bsp-report.php",
 		columns: [
-			{ data: "REQUESTOR_NAME" },
-			{ data: "DEPARTMENT" },
-			{ data: "FORM_TYPE" },
-			{ data: "CONTROL_NUMBER" },
-			{ data: "HOSTNAME" },
-			{ data: "CLUSTER" },
-			{ data: "VCPU" },
-			{ data: "RAM" },
-			{ data: "OPERATING_SYSTEM" },
-			{ data: "OS_VERSION" },
-			{ data: "OS_ENVIRONMENT" },
-			{ data: "PARTITION" },
-			{ data: "IP_ADDRESS" },
-			{ data: "VLAN" },
-			{ data: "USERS" },
-			{ data: "USERS_ROLE" },
-			{ data: "VM_DEPLOYMENT" },
-			{ data: "COMMUNICATION" },
-			{ data: "DISK_GB" },
-			{ data: "STATUS" },
-			{ data: "DATE_CREATED" },
-			{ data: "DATE_VERIFIED" },
+			{ data: "infra" },
+			{ data: "system" },
+			{ data: "server" },
+			{ data: "baseline" },
+			{ data: "date" },
+			{ data: "req" },
+			{ data: "change_req" },
+			{ data: "final" },
 		],
 		dom: "Bfrtip",
 		buttons: [
@@ -125,6 +111,10 @@ $(document).ready(function () {
 				})
 		},
 	})
+
+	// axios.get("model/reports/data-bsp-report.php").then((res) => {
+	// 	console.log(res.data)
+	// })
 
 	$("#min, #max").on("change", function () {
 		table.draw()
