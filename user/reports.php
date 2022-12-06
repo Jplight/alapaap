@@ -91,7 +91,7 @@
                         <div class="card shadow">
                             <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-hover align-middle user-select-none text-nowrap" id="report_datatables">
+                                <table class="table table-hover align-middle user-select-none wrap" id="report_datatables">
                                 <thead class="bg-success text-white">
                                     <tr>
                                         <td rowspan="2">INFRASTRUCTURE</td>
@@ -138,9 +138,10 @@
         <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.colVis.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
         <script src="https://cdn.datatables.net/datetime/1.2.0/js/dataTables.dateTime.min.js"></script>
+        
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/theme.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-        <script src="controller/reports/bsp-reports.js?asd=123"></script>
+        <script src="controller/reports/bsp-reports.js?asd=1231azxczxcsd2asd3"></script>
     </body>
 </html>

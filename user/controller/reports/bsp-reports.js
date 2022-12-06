@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	let today = new Date().toLocaleString().bold()
+	let today = new Date().toLocaleString()
 	let minDate, maxDate
 
 	// Custom filtering function which will search data in column four between two values
@@ -36,7 +36,22 @@ $(document).ready(function () {
 			},
 		},
 	}
+	function addCustomFormat(xlsx) {
+		// add a new "cellXfs" cell formatter, which uses the next available format index (numFmt 176):
+		var celXfsElement = xlsx.xl["styles.xml"].getElementsByTagName("cellXfs")
+		var cellStyle =
+			'<xf numFmtId="176" fontId="0" fillId="0" borderId="0" xfId="0" applyAlignment="1"' +
+			' applyFont="1" applyFill="1" applyBorder="1"><alignment horizontal="left"/></xf>'
+		$(celXfsElement).append(cellStyle)
+		$(celXfsElement).attr("count", "69") // increment the count
+	}
 
+	function formatTargetColumn(xlsx, col) {
+		var sheet = xlsx.xl.worksheets["sheet1.xml"]
+		// select all the cells whose addresses start with the letter prvoided
+		// in 'col', and add a style (s) attribute for style number 68:
+		$('row c[r^="' + col + '"]', sheet).attr("s", "68")
+	}
 	let table = $("#report_datatables").DataTable({
 		language: {
 			emptyTable: "There is no data to be showed!🤗",
@@ -62,25 +77,38 @@ $(document).ready(function () {
 					$("#my_fullname").html() +
 					"<br> Date Printed: " +
 					today,
+				customize: function (xlsx) {
+					addCustomFormat(xlsx)
+					formatTargetColumn(xlsx, "D") // Excel column A
+					formatTargetColumn(xlsx, "G") // Excel column A
+					formatTargetColumn(xlsx, "H") // Excel column A
+					var style = xlsx.xl["styles.xml"]
+					$("xf", style)
+						.find("alignment[horizontal='left']")
+						.attr("wrapText", "1")
+				},
 			},
+
+			// $.extend(true, {}, fixNewLine, {
+			// 	extend: "excelHtml5",
+			// }),
 			{
 				extend: "pdfHtml5",
-				exportOptions: {
-					columns: [0, 1, 2, 3, 4, 5, 6],
+				text: "Pdf",
+				download: "open",
+
+				orientation: "landscape",
+				customize: function (doc) {
+					doc.defaultStyle.fontSize = 12 //<-- set fontsize to 16 instead of 10
 				},
-				messageTop:
-					"Reported By: " +
-					$("#my_fullname").html().bold() +
-					"<br> Date Printed: " +
-					today,
+
+				messageTop: "Reported By: " + $("#my_fullname").html(),
+				messageBottom: "Date Printed:" + today,
 			},
 			{
 				extend: "print",
-				messageTop:
-					"Reported By: " +
-					$("#my_fullname").html().bold() +
-					"<br> Date Printed: " +
-					today,
+				messageTop: "Reported By: " + $("#my_fullname").html(),
+				messageBottom: "Date Printed:" + today,
 			},
 			{
 				extend: "colvis",

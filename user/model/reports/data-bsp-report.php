@@ -20,13 +20,12 @@ while($row = mysqli_fetch_array($query)){
         // echo json_encode($lastdata);
         $disk2 = "";
         while($disk_rows = mysqli_fetch_array($query_disk)){
-            $disk2 = $disk2.$disk_rows['others_1']." GB <br>";
+            $disk2 = $disk2.$disk_rows['others_1']." GB <br/>";
         };
-        $change_req = "
-            ".$lastdata["vcpu"]." vCPU <br>
-            ".$lastdata["ram"]."GB RAM <br>
-            VLAN ".$lastdata["ip_add_vlan"]."<br>
-            ".$disk2."
+        $change_req = "".$lastdata["vcpu"]." vCPU <br/>
+".$lastdata["ram"]."GB RAM <br/>
+VLAN ".$lastdata["ip_add_vlan"]."<br/>
+".$disk2."
         ";
     }
 
@@ -48,14 +47,13 @@ while($row = mysqli_fetch_array($query)){
     $query_disk = mysqli_query($conn,$getdisk);
     $disk = "";
     while($disk_rows = mysqli_fetch_array($query_disk)){
-        $disk = $disk.$disk_rows['others_1']." GB <br>";
+        $disk = $disk.$disk_rows['others_1']." GB <br/>";
     };
 
-    $baseline = "
-        ".$row["vcpu"]." vCPU <br>
-        ".$row["ram"]."GB RAM <br>
-        VLAN ".$row["ip_add_vlan"]." <br>
-        ".$disk."
+    $baseline = "".$row["vcpu"]." vCPU <br/>
+".$row["ram"]."GB RAM <br/>
+VLAN ".$row["ip_add_vlan"]." <br/>
+".$disk."
     ";
 
 
@@ -81,9 +79,8 @@ while($row = mysqli_fetch_array($query)){
 
     if ($row['form_type'] === "3") {
         $infra = "CPS_NEW";
-        $baseline = "
-            ".$row["vcpu_size"]." vCPU <br>
-            ".$row["ram_size"]."GB RAM
+        $baseline = "".$row["vcpu_size"]." vCPU <br/>
+".$row["ram_size"]."GB RAM
         ";
 
         $post_data = array(
