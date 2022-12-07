@@ -2,58 +2,60 @@
 include '../connection.php';
 
 $response = array();
-$sql = "SELECT * FROM tbl_hci";
+$sql = "SELECT * FROM tbl_hci where form_type = '1-1' ";
 $query = mysqli_query($conn,$sql);
 while($row = mysqli_fetch_array($query)){
     $change_req = "N/A";
     $infra = "";
 
-    if ($row['form_type'] === "1-1") {
-        $infra = "HCI_UPDATE";
-        // hci_new_control_num
-        $sql1 = "SELECT * FROM tbl_hci where control_number = '".$row["hci_new_control_num"]."'";
-        $query1 = mysqli_query($conn,$sql1);
-        $rows = mysqli_fetch_array($query1);
-        $lastdata = $rows;
-        $getdisk1 = "SELECT * from tbl_forms_others where control_number = '".$lastdata['control_number']."' and form_type = '".$lastdata['form_type']."' and uid = '".$lastdata['uid']."' ";
-        $query_disk = mysqli_query($conn,$getdisk1);
-        // echo json_encode($lastdata);
-        $disk2 = "";
-        while($disk_rows = mysqli_fetch_array($query_disk)){
-            $disk2 = $disk2.$disk_rows['others_1']." GB <br/>";
-        };
-        $change_req = "".$lastdata["vcpu"]." vCPU <br/>
-".$lastdata["ram"]."GB RAM <br/>
-VLAN ".$lastdata["ip_add_vlan"]."<br/>
-".$disk2."
-        ";
+    $infra = "HCI_UPDATE";
+    // hci_new_control_num
+    $sql1 = "SELECT * FROM tbl_hci where control_number = '".$row["hci_new_control_num"]."'";
+    $query1 = mysqli_query($conn,$sql1);
+    $rows = mysqli_fetch_array($query1);
+    $lastdata = $rows;
+    
+
+    $change_req = "";
+    if ($lastdata["vcpu"] != $row["vcpu"]){
+        $changes = intval($lastdata["vcpu"]) - intval($row["vcpu"]); 
+        $change_req = $change_req."+".$changes." vCPU \n\r <br/>";
     }
 
-
-    if ($row['form_type'] === "1") {
-        $infra = "HCI_NEW";
+    if ($lastdata["ram"] != $row["ram"]){
+        $changes = intval($lastdata["ram"]) - intval($row["ram"]); 
+        $change_req = $change_req."+".$changes." vRAM \n\r <br/>";
     }
 
-    if ($row['form_type'] === "1-2") {
-        continue;
-    }
-
-    if ($row['form_type'] === "1-3") {
-        continue;
+    if ($lastdata["ip_add_vlan"] != $row["ip_add_vlan"]){
+        $change_req = $change_req."+".$row["ram"]." VLAN \n\r <br/>";
     }
     
 
     $getdisk = "SELECT * from tbl_forms_others where control_number = '".$row['control_number']."' and form_type = '".$row['form_type']."' and uid = '".$row['uid']."' and hostname = '".$row['hostname']."' ";
     $query_disk = mysqli_query($conn,$getdisk);
-    $disk = "";
+    $disk1 = "";
+    $disk2 = "";
+    $changesDisk = "";
     while($disk_rows = mysqli_fetch_array($query_disk)){
-        $disk = $disk.$disk_rows['others_1']." GB <br/>";
+        $disk1 = $disk1.$disk_rows['others_3'].": ".$disk_rows['others_1']." GB <br/> \n\r";
+        $disk2 = $disk2.$disk_rows['others_3'].": ".$disk_rows['others_2']." GB <br/> \n\r";
+        if ($disk_rows['others_1'] != $disk_rows['others_2']){
+            $changes = intval($disk_rows['others_2']) - intval($disk_rows['others_1']); 
+            $change_req = $change_req.$disk_rows['others_3'].": +".$changes." GB \n\r <br/>";
+        }
     };
 
-    $baseline = "".$row["vcpu"]." vCPU <br/>
+    $baseline = "".$lastdata["vcpu"]." vCPU <br/>
+".$lastdata["ram"]."GB RAM <br/>
+VLAN ".$lastdata["ip_add_vlan"]." <br/>
+".$disk1."
+    ";
+
+    $final = "".$row["vcpu"]." vCPU <br/>
 ".$row["ram"]."GB RAM <br/>
 VLAN ".$row["ip_add_vlan"]." <br/>
-".$disk."
+".$disk2."
     ";
 
 
@@ -65,9 +67,11 @@ VLAN ".$row["ip_add_vlan"]." <br/>
         'req' => $row['fullname'],
         'baseline' => $baseline,
         'change_req' => $change_req,
-        "final"=> $baseline
+        "final"=> $final
     );
-    $response[] = $post_data;
+    if($change_req != "" ){
+        $response[] = $post_data;
+    }
 }
 
 $sql = "SELECT * FROM tbl_cps";
@@ -93,7 +97,7 @@ while($row = mysqli_fetch_array($query)){
             'change_req' => $change_req,
             'final' =>$baseline
         );
-        $response[] = $post_data;
+        // $response[] = $post_data;
     }
 
     if ($row['form_type'] === '3-1'){
