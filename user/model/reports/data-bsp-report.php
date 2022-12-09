@@ -2,7 +2,7 @@
 include '../connection.php';
 
 $response = array();
-$sql = "SELECT * FROM tbl_hci where form_type = '1-1' ";
+$sql = "SELECT * FROM tbl_hci where form_type = '1-1' and status = '7' ";
 $query = mysqli_query($conn,$sql);
 while($row = mysqli_fetch_array($query)){
     $change_req = "N/A";
@@ -10,12 +10,11 @@ while($row = mysqli_fetch_array($query)){
 
     $infra = "HCI_UPDATE";
     // hci_new_control_num
-    $sql1 = "SELECT * FROM tbl_hci where control_number = '".$row["hci_new_control_num"]."'";
+    $sql1 = "SELECT * FROM tbl_hci where control_number = '".$row["hci_new_control_num"]."' and status = '7' ";
     $query1 = mysqli_query($conn,$sql1);
     $rows = mysqli_fetch_array($query1);
     $lastdata = $rows;
     
-
     $change_req = "";
     if ($lastdata["vcpu"] != $row["vcpu"]){
         $changes = intval($lastdata["vcpu"]) - intval($row["vcpu"]); 
@@ -46,17 +45,19 @@ while($row = mysqli_fetch_array($query)){
         }
     };
 
+
+
     $baseline = "".$lastdata["vcpu"]." vCPU <br/>
 ".$lastdata["ram"]."GB RAM <br/>
 VLAN ".$lastdata["ip_add_vlan"]." <br/>
 ".$disk1."
     ";
 
-    $final = "".$row["vcpu"]." vCPU <br/>
-".$row["ram"]."GB RAM <br/>
-VLAN ".$row["ip_add_vlan"]." <br/>
-".$disk2."
-    ";
+    $validate_vcpu  = intval($lastdata['vcpu']) == intval($row["vcpu"]) ? "" : $row["vcpu"]." vCPU <br/>";
+    $validate_ram   = intval($lastdata['ram']) == intval($row["ram"]) ? "" : $row["ram"]." GB RAM <br/>";
+    $validate_vlan  = intval($lastdata['ip_add_vlan']) == intval($row["ip_add_vlan"]) ? "" : "VLAN ".$row["ip_add_vlan"]." <br/>";
+
+    $final = $validate_vcpu.$validate_ram.$validate_vlan.$disk2;
 
 
     $post_data = array(
