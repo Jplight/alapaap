@@ -18,12 +18,12 @@ while($row = mysqli_fetch_array($query)){
 
     $change_req = "";
     if ($lastdata["vcpu"] != $row["vcpu"]){
-        $changes = intval($lastdata["vcpu"]) - intval($row["vcpu"]); 
+        $changes = (intval($lastdata["vcpu"]) - intval($row["vcpu"]) * -1); 
         $change_req = $change_req."+".$changes." vCPU \n\r <br/>";
     }
 
     if ($lastdata["ram"] != $row["ram"]){
-        $changes = intval($lastdata["ram"]) - intval($row["ram"]); 
+        $changes = (intval($lastdata["ram"]) - intval($row["ram"])) * -1; 
         $change_req = $change_req."+".$changes." vRAM \n\r <br/>";
     }
 
@@ -52,9 +52,9 @@ VLAN ".$lastdata["ip_add_vlan"]." <br/>
 ".$disk1."
     ";
 
-    $validate_vcpu  = intval($lastdata['vcpu']) == intval($row["vcpu"]) ? "" : $row["vcpu"]." vCPU <br/>";
-    $validate_ram   = intval($lastdata['ram']) == intval($row["ram"]) ? "" : $row["ram"]." GB RAM <br/>";
-    $validate_vlan  = intval($lastdata['ip_add_vlan']) == intval($row["ip_add_vlan"]) ? "" : "VLAN ".$row["ip_add_vlan"]." <br/>";
+    $validate_vcpu  = intval($lastdata['vcpu']) == intval($row["vcpu"]) ? "" : $row["vcpu"]." vCPU <br/> \n\r";
+    $validate_ram   = intval($lastdata['ram']) == intval($row["ram"]) ? "" : $row["ram"]." GB RAM <br/> \n\r";
+    $validate_vlan  = intval($lastdata['ip_add_vlan']) == intval($row["ip_add_vlan"]) ? "" : "VLAN ".$row["ip_add_vlan"]." <br/> \n\r";
 
     $final = $validate_vcpu.$validate_ram.$validate_vlan.$disk2;
 

@@ -84,7 +84,7 @@ $(document).ready(function () {
 					formatTargetColumn(xlsx, "H") // Excel column A
 					var style = xlsx.xl["styles.xml"]
 					$("xf", style)
-						.find("alignment[horizontal='left']")
+						.find("alignment[horizontal='left'] ")
 						.attr("wrapText", "1")
 				},
 			},
