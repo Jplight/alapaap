@@ -2,7 +2,7 @@
 include '../connection.php';
 
 $response = array();
-$sql = "SELECT * FROM tbl_hci where form_type = '1-1' and status = '7' ";
+$sql = "SELECT * FROM tbl_hci where form_type = '1-1' ";
 $query = mysqli_query($conn,$sql);
 while($row = mysqli_fetch_array($query)){
     $change_req = "N/A";
@@ -10,11 +10,12 @@ while($row = mysqli_fetch_array($query)){
 
     $infra = "HCI_UPDATE";
     // hci_new_control_num
-    $sql1 = "SELECT * FROM tbl_hci where control_number = '".$row["hci_new_control_num"]."' and status = '7' ";
+    $sql1 = "SELECT * FROM tbl_hci where control_number = '".$row["hci_new_control_num"]."'";
     $query1 = mysqli_query($conn,$sql1);
     $rows = mysqli_fetch_array($query1);
     $lastdata = $rows;
     
+
     $change_req = "";
     if ($lastdata["vcpu"] != $row["vcpu"]){
         $changes = intval($lastdata["vcpu"]) - intval($row["vcpu"]); 
@@ -44,8 +45,6 @@ while($row = mysqli_fetch_array($query)){
             $change_req = $change_req.$disk_rows['others_3'].": +".$changes." GB \n\r <br/>";
         }
     };
-
-
 
     $baseline = "".$lastdata["vcpu"]." vCPU <br/>
 ".$lastdata["ram"]."GB RAM <br/>
