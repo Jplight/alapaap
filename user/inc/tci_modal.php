@@ -41,6 +41,7 @@ if (!empty($control_number)):
         $verifier_2         = $rows['verifier_2'];
         $ver2_status        = $rows['ver2_status'];
         $ver2_date          = $rows['ver2_date'];  
+        $hostname           = $rows['hostname'];
         $requested_by       = $rows['ex_requested_by'];   
     }
 endif;
@@ -124,7 +125,9 @@ endif;
                                         </tr>
                                         <tr>
                                             <td colspan="2">
-                                                <textarea class="form-control" name="hostname" id="" cols="30" rows="10" style="height: 100px;"></textarea>
+                                                <textarea class="form-control" name="hostname" id="" cols="30" rows="10" style="height: 100px;" >
+                                                    <?php echo empty($hostname) ? '' : $hostname; ?>
+                                                </textarea>
                                             </td>
                                         </tr>
                                         <tr class="bg-dark text-white fw-bold">

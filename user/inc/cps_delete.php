@@ -83,7 +83,7 @@ if (!empty($control_number)):
 endif;
 ?>
 <form class="text-dark" id="frm_cps_del_id" method="post" autocomplete="off">
-    <div id="view_cps_delete<?php echo empty($control_number) ? '' : $control_number; ?>" class="modal fade" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" >
+    <div id="view_cps_delete<?php echo empty($control_number) ? '' : $control_number; ?>" class="modal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" >
         <div class="modal-dialog modal-xl modal-fullscreen-xl-down" role="document">
             <div class="modal-content">
                 <div class="modal-header">
