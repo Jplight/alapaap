@@ -42,7 +42,8 @@ while($row = mysqli_fetch_array($query)){
         $disk2 = $disk2.$disk_rows['others_3'].": ".$disk_rows['others_2']." GB <br/> \n\r";
         if ($disk_rows['others_1'] != $disk_rows['others_2']){
             $changes = intval($disk_rows['others_2']) - intval($disk_rows['others_1']); 
-            $change_req = $change_req.$disk_rows['others_3'].": +".$changes." GB \n\r <br/>";
+            $change_req = $change_req.$disk_rows['others_3'].": +".$changes." GB <br/>\n\r ".$disk_rows['others_id'];
+            
         }
     };
 

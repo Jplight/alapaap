@@ -96,7 +96,8 @@ endif;
                                 <label class="">Requested By:</label>
                             </div>
                             <div class="col-lg-7">
-                                <input type="text" class="form-control" name="fullname" value="<?php echo empty($fullname) ? $my_fullname : ucwords($fullname); ?>" readonly >
+                                <!-- <input type="text" class="form-control" name="fullname" value="<?php echo empty($fullname) ? $my_fullname : ucwords($fullname); ?>" readonly > -->
+                                <input type="text" class="form-control" name="fullname" value="<?php echo empty($fullname) ? '' : ucwords($fullname); ?>" required>
                             </div>
                         </div>
                         <div class="row d-flex justify-content-center g-0 mb-2">

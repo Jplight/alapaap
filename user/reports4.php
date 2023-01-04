@@ -134,6 +134,7 @@
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/theme.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+        <script src="//cdn.datatables.net/plug-ins/1.10.11/sorting/date-eu.js" type="text/javascript"></script>
         <script src="controller/reports/bsp-final.js"></script>
     </body>
 </html>

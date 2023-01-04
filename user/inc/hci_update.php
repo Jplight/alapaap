@@ -63,7 +63,8 @@ if (!empty($control_number)):
 
         $verifier_2                 = $rows['verifier_2'];
         $ver2_status                = $rows['ver2_status'];
-        $ver2_date                  = $rows['ver2_date'];     
+        $ver2_date                  = $rows['ver2_date'];
+        $requested_by               = $rows['ex_requested_by'];     
     } 
 
 
@@ -174,6 +175,14 @@ endif;
                                             <?php if (!empty($control_number)): ?>
                                                     <input class="form-control text-dark shadow-none" type="text" name="hci_up_search_txt" id="hci_up_search_txt" readonly value="<?php echo empty($hostname) ? '' : $hostname; ?>" onkeypress="return /[0-9A-Z.-_]/i.test(event.key)" >
                                             <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                        <tr class="bg-dark text-white fw-bold">
+                                            <td colspan="3">Requested by</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                <input type="text" class="form-control" name="requested_by" required min="2" max="30" value="<?php echo empty($requested_by) ? '' : $requested_by; ?>"  placeholder="">
                                             </td>
                                         </tr>
                                     </tbody>

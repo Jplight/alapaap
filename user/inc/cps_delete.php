@@ -60,7 +60,8 @@ if (!empty($control_number)):
 
         $verifier_2         = $rows['verifier_2'];
         $ver2_status        = $rows['ver2_status'];
-        $ver2_date          = $rows['ver2_date'];     
+        $ver2_date          = $rows['ver2_date'];   
+        $requested_by       = $rows['ex_requested_by'];   
     }
     $tbl_cps = mysqli_query($conn,"SELECT * FROM `tbl_cps` where control_number = '$cps_new_control_num' ");
     while ($rows_2 = mysqli_fetch_array($tbl_cps)) {

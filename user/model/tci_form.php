@@ -33,11 +33,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$role = $_POST['his_role'];
 	$comment_id = rand(100000,999999);
 	$form_type = 2;
+	$requested_by = $_POST['requested_by'];
 
 	if (isset($_POST['btn_submit_tci'])) {
 		$control_number = $concatnumber;
 		$status = 3;
-		$sql = mysqli_query($conn,"INSERT INTO `tbl_tci`(`uid`, `control_number`, `form_type`, `fullname`, `email_add`, `contact_no`, `department`, `cluster`, `location`, `prob_descript`, `act_taken`, `act_status`, `remarks`, `status`, `date_requested`) VALUES ('$uid','$control_number','$form_type','$fullname','$email_add','$contact_no','$department','$cluster','$location','$prob_descript','$act_taken','$act_status','$remarks','$status',NOW()) ");
+		$sql = mysqli_query($conn,"INSERT INTO `tbl_tci`(`uid`, `control_number`, `form_type`, `fullname`, `email_add`, `contact_no`, `department`, `cluster`, `location`, `prob_descript`, `act_taken`, `act_status`, `remarks`, `status`, `date_requested`,`ex_requested_by`) VALUES ('$uid','$control_number','$form_type','$fullname','$email_add','$contact_no','$department','$cluster','$location','$prob_descript','$act_taken','$act_status','$remarks','$status',NOW(),'$requested_by')");
 		if (!empty($comments)) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`, `uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$control_number','$comment_id','$uid','$fullname','$comments','$role',NOW()) ");
 		}	
@@ -56,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (isset($_POST['btn_save_tci'])) {
 		$control_number = $concatnumber;
 		$status = 1;
-		$sql = mysqli_query($conn,"INSERT INTO `tbl_tci`(`uid`, `control_number`, `form_type`, `fullname`, `email_add`, `contact_no`, `department`, `cluster`, `location`, `prob_descript`, `act_taken`, `act_status`, `remarks`, `status`, `date_requested`) VALUES ('$uid','$control_number','$form_type','$fullname','$email_add','$contact_no','$department','$cluster','$location','$prob_descript','$act_taken','$act_status','$remarks','$status',NOW()) ");
+		$sql = mysqli_query($conn,"INSERT INTO `tbl_tci`(`uid`, `control_number`, `form_type`, `fullname`, `email_add`, `contact_no`, `department`, `cluster`, `location`, `prob_descript`, `act_taken`, `act_status`, `remarks`, `status`, `date_requested`,`ex_requested_by`) VALUES ('$uid','$control_number','$form_type','$fullname','$email_add','$contact_no','$department','$cluster','$location','$prob_descript','$act_taken','$act_status','$remarks','$status',NOW(),'$requested_by')");
 		if (!empty($comments)) {
 				$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`, `uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$control_number','$comment_id','$uid','$fullname','$comments','$role',NOW()) ");
 		}
@@ -68,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (isset($_POST['btn_update_tci'])) {
 		$txt_control_number = $_POST['txt_control_number'];
 		$status = 1;
-		$sql = mysqli_query($conn,"UPDATE `tbl_tci` SET `department`='$department',`cluster`='$cluster',`location`='$location',`prob_descript`='$prob_descript',`act_taken`='$act_taken',`act_status`='$act_status',`remarks`='$remarks',`status`='$status',`date_requested`= NOW() WHERE `control_number`='$txt_control_number'");
+		$sql = mysqli_query($conn,"UPDATE `tbl_tci` SET `department`='$department',`cluster`='$cluster',`location`='$location',`prob_descript`='$prob_descript',`act_taken`='$act_taken',`act_status`='$act_status',`remarks`='$remarks',`status`='$status',`date_requested`= NOW(), `ex_requested_by` = `$requested_by` WHERE `control_number`='$txt_control_number'");
 		if (!empty($comments)) {
 				$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`, `uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$fullname','$comments','$role',NOW()) ");
 		}
@@ -95,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		$status = 3;
 		$revised = 0;
-		$sql = mysqli_query($conn,"UPDATE `tbl_tci` SET `department`='$department',`cluster`='$cluster',`location`='$location',`prob_descript`='$prob_descript',`act_taken`='$act_taken',`act_status`='$act_status',`remarks`='$remarks',`status`='$status', `revised` = '$revised', `date_requested`= NOW(), reciever_id = NULL, reciever = NULL, rec_status = NULL, rec_date = NULL, performer_id = NULL, performer = NULL, perf_status = NULL, perform_date = NULL WHERE `control_number`='$txt_control_number'");
+		$sql = mysqli_query($conn,"UPDATE `tbl_tci` SET `department`='$department',`cluster`='$cluster',`location`='$location',`prob_descript`='$prob_descript',`act_taken`='$act_taken',`act_status`='$act_status',`remarks`='$remarks',`status`='$status', `revised` = '$revised', `date_requested`= NOW(), `ex_requested_by` = `$requested_by` reciever_id = NULL, reciever = NULL, rec_status = NULL, rec_date = NULL, performer_id = NULL, performer = NULL, perf_status = NULL, perform_date = NULL WHERE `control_number`='$txt_control_number'");
 		if (!empty($comments)) {
 				$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`, `uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$fullname','$comments','$role',NOW()) ");
 		}

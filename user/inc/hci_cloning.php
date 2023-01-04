@@ -158,6 +158,14 @@ endif;
                                                 <?php endif; ?>
                                             </td>
                                         </tr>
+                                        <tr class="bg-dark text-white fw-bold">
+                                            <td colspan="3">Requested By<span class="text-danger ms-2">*</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                <input type="text" class="form-control" name="requested_by" required min="2" max="30" value="<?php echo empty($requested_by) ? '' : $requested_by; ?>">
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

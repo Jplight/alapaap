@@ -68,7 +68,6 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 		if (isset($_POST['btn_baas_save_csrf'])) {
 
 			$status = 1; // Send from Approver
-
 			$sql = mysqli_query($conn,"INSERT INTO `tbl_baas`(`uid`, `control_number`, `form_type`, `fullname`, `email_add`, `contact_no`, `department`, `txt_others`, `form_factor`, `hostname`, `ip_add`, `os`, `os_version`, `db_type`, `db_version`, `action`, `node_name`, `backup_method`, `backup_method_desc`, `backup_sched`, `backup_time`, `backup_day`, `archive_sched`, `archive_time`, `archive_day`, `retention`, `retention_sched`, `server_contact`, `status`, `date_requested`) VALUES ('$uid','$control_number', '$form_type', '$fullname','$email_add','$contact_no','$csrf_department', '$txt_others','$csrf_form_factor','$hostname','$ip_add','$csrf_operating_system','$csrf_os_version','$csrf_db_type','$csrf_db_version','$csrf_action','$csrf_node_name','$csrf_backup_method','$csrf_backup_method_desc','$csrf_backup_sched','$csrf_backup_time','$csrf_backup_day','$csrf_archive_sched','$csrf_archive_time','$csrf_archive_day','$csrf_retention','$csrf_retention_sched','$server_contact','$status',NOW()) ");;
 			$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$control_number', 'save as draft','$status') ");
 		}

@@ -42,15 +42,9 @@ $(document).ready(function () {
 			emptyTable: "There is no data to be showed!🤗",
 			zeroRecords: "No data found!🤗",
 		},
+		order: [[4, "desc"]], //or asc
+		columnDefs: [{ targets: 4, type: "date-eu" }],
 		ajax: "model/reports/data-bsp-final.php",
-		columns: [
-			{ data: 0 },
-			{ data: 1 },
-			{ data: 2 },
-			{ data: 3 },
-			{ data: 4 },
-			{ data: 5 },
-		],
 		dom: "Bfrtip",
 		buttons: [
 			{

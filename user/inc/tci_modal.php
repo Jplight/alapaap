@@ -40,12 +40,13 @@ if (!empty($control_number)):
 
         $verifier_2         = $rows['verifier_2'];
         $ver2_status        = $rows['ver2_status'];
-        $ver2_date          = $rows['ver2_date'];     
+        $ver2_date          = $rows['ver2_date'];  
+        $requested_by       = $rows['ex_requested_by'];   
     }
 endif;
 ?>
 <form class="text-dark" method="post" id="form_adhoc" name="form_adhoc">
-    <div id="view_tci<?php echo empty($control_number) ? '' : $control_number; ?>" class="modal fade" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div id="view_tci<?php echo empty($control_number) ? '' : $control_number; ?>" class="modal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-xl modal-fullscreen-xl-down" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -82,8 +83,8 @@ endif;
                             <div class="table-responsive mb-2">
                                 <table class="table table-bordered text-nowrap  align-middle text-dark border border-secondary table-sm">
                                     <thead class="bg-dark text-white">
-                                        <tr>
-                                            <th >Name</th>
+                                        <tr >
+                                            <th width="50%">Name</th>
                                             <th>Department</th>
                                         </tr>
                                     </thead>
@@ -116,6 +117,22 @@ endif;
                                                     <option value="lfc" <?php echo empty($location) ? '' : ($location == 'lfc' ? 'selected' : ''); ?>>Local Fallback Center</option>
                                                     <option value="dr" <?php echo empty($location) ? '' : ($location == 'dr' ? 'selected' : ''); ?>>Disaster Recovery</option>
                                                 </select>
+                                            </td>
+                                        </tr>
+                                        <tr class="bg-dark text-white fw-bold">
+                                            <td colspan="2">Hostname</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <textarea class="form-control" name="hostname" id="" cols="30" rows="10" style="height: 100px;"></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr class="bg-dark text-white fw-bold">
+                                            <td colspan="2">Requested By</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <input type="text" class="form-control" name="requested_by" required min="2" max="30" value="<?php echo empty($requested_by) ? '' : $requested_by; ?>"  placeholder="">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -172,7 +189,9 @@ endif;
                                         <label class="form-label" >
                                             <?php 
                                                 if (!empty($fullname)) {
-                                                    echo '<u>'.ucwords($fullname).'</u>';
+                                                    // echo '<u>'.ucwords($fullname).'</u>';
+                                                    echo '<u>'.ucwords($requested_by).'</u>';
+                                                    
                                                 }else{
                                                     echo '<label class="form-label">__________________</label>';
                                                 }

@@ -59,6 +59,7 @@ if (!empty($control_number)):
         $verifier_2         = $rows['verifier_2'];
         $ver2_status        = $rows['ver2_status'];
         $ver2_date          = $rows['ver2_date'];     
+        $requested_by       = $rows['ex_requested_by']; 
     }
     $tbl_cps = mysqli_query($conn,"SELECT * FROM `tbl_cps` where control_number = '$cps_new_control_num' ");
     while ($rows_2 = mysqli_fetch_array($tbl_cps)) {
@@ -111,9 +112,9 @@ endif;
                                 <table class="table text-nowrap align-middle border border-secondary text-dark table-sm">
                                     <thead class="bg-dark text-white">
                                         <tr>
-                                            <th colspan="2">System Name</th>
+                                            <th colspan="2">System Name<span class="text-danger ms-2">*</span></th>
                                             
-                                            <th>Instance Name</th>
+                                            <th>Instance Name<span class="text-danger ms-2">*</span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -127,21 +128,21 @@ endif;
                                             </td>
                                         </tr>
                                         <tr class="bg-dark text-white fw-bold">
-                                            <td>Location</td>
-                                            <td>Envi Profile</td>
-                                            <th>Pattern</th> 
+                                            <td>Location<span class="text-danger ms-2">*</span></td>
+                                            <td>Envi Profile<span class="text-danger ms-2">*</span></td>
+                                            <th>Pattern<span class="text-danger ms-2">*</span></th> 
                                         </tr>
                                         <tr>
                                             <td>
                                                 <select class="form-select text-dark" name="cps_up_location" id="cps_up_location" required>
-                                                    <option value="" selected>Select location</option>
+                                                    <option value="" selected>Select location<span class="text-danger ms-2">*</span></option>
                                                     <option value="ho" <?php echo empty($location) ? '' : ($location == 'ho' ? 'selected' : ''); ?> >HO</option>
                                                     <option value="spc" <?php echo empty($location) ? '' : ($location == 'spc' ? 'selected' : ''); ?> >SPC</option>
                                                 </select>
                                             </td>
                                             <td>
                                                 <select class="form-select text-dark" name="cps_up_env_profile" id="cps_up_env_profile" required>
-                                                    <option value="" selected>Select Envi Profile</option>
+                                                    <option value="" selected>Select Envi Profile<span class="text-danger ms-2">*</span></option>
                                                     <option value="platinum" <?php echo empty($env_profile) ? '' : ($env_profile == 'platinum' ? 'selected' : ''); ?> >Platinum</option>
                                                     <option value="silver" <?php echo empty($env_profile) ? '' : ($env_profile == 'silver' ? 'selected' : ''); ?> >Gold</option>
                                                     <option alue="gold" <?php echo empty($env_profile) ? '' : ($env_profile == 'gold' ? 'selected' : ''); ?> >Silver</option>
@@ -151,6 +152,14 @@ endif;
                                             <td>
                                                 <input class="form-control text-dark" type="text" name="cps_up_pattern" id="cps_up_pattern" value="<?php echo empty($pattern) ? '' : $pattern; ?>" readonly />
                                             </td>  
+                                        </tr>
+                                        <tr class="bg-dark text-white fw-bold">
+                                            <td colspan="3">Requested By<span class="text-danger ms-2">*</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                <input type="text" class="form-control" name="requested_by" required min="2" max="30" value="<?php echo empty($requested_by) ? '' : $requested_by; ?>">
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

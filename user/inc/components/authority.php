@@ -7,7 +7,8 @@
                                         <label class="form-label" >
                                             <?php 
                                                 if (!empty($fullname)) {
-                                                    echo '<u>'.ucwords($fullname).'</u>';
+                                                    // echo '<u>'.ucwords($fullname).'</u>';
+                                                    echo '<u>'.ucwords($requested_by).'</u>';
                                                 }else{
                                                     echo '<label class="form-label">__________________</label>';
                                                 }
