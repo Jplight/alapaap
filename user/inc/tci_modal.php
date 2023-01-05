@@ -40,7 +40,8 @@ if (!empty($control_number)):
 
         $verifier_2         = $rows['verifier_2'];
         $ver2_status        = $rows['ver2_status'];
-        $ver2_date          = $rows['ver2_date'];     
+        $ver2_date          = $rows['ver2_date'];  
+        $hostname           = $rows['hostname'];   
     }
 endif;
 ?>
@@ -83,7 +84,7 @@ endif;
                                 <table class="table table-bordered text-nowrap  align-middle text-dark border border-secondary table-sm">
                                     <thead class="bg-dark text-white">
                                         <tr>
-                                            <th >Name</th>
+                                            <th>Name</th>
                                             <th>Department</th>
                                         </tr>
                                     </thead>
@@ -116,6 +117,14 @@ endif;
                                                     <option value="lfc" <?php echo empty($location) ? '' : ($location == 'lfc' ? 'selected' : ''); ?>>Local Fallback Center</option>
                                                     <option value="dr" <?php echo empty($location) ? '' : ($location == 'dr' ? 'selected' : ''); ?>>Disaster Recovery</option>
                                                 </select>
+                                            </td>
+                                        </tr>
+                                        <tr class="bg-dark text-white fw-bold">
+                                            <td colspan="2">Hostname</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <textarea class="form-control" name="hostname" id="" cols="30" rows="3" required><?php echo empty($hostname) ? '' : $hostname; ?></textarea>
                                             </td>
                                         </tr>
                                     </tbody>
