@@ -42,6 +42,7 @@ if (!empty($control_number)):
         $ver2_status        = $rows['ver2_status'];
         $ver2_date          = $rows['ver2_date'];  
         $hostname           = $rows['hostname'];   
+        $criteria           = $rows['criteria'];
     }
 endif;
 ?>
@@ -98,16 +99,26 @@ endif;
                                             </td>
                                         </tr>
                                         <tr class="bg-dark text-white fw-bold">
-                                            <td>Cluster</td>
+                                            <!-- <td>Cluster</td> -->
+                                            <td>System</td>
                                             <td>Location</td>
                                         </tr>
                                         <tr>
-                                            <td>
+                                            <!-- <td>
                                                 <select class="form-select text-dark" name="cluster" required>
                                                     <option value="" selected disabled>Select Location</option>
                                                     <option value="general_cluster" <?php echo empty($cluster) ? '' : ($cluster == 'general_cluster' ? 'selected' : ''); ?> >General Cluster</option>
                                                     <option value="sql_cluster" <?php echo empty($cluster) ? '' : ($cluster == 'sql_cluster' ? 'selected' : ''); ?> >SQL Cluster</option>
                                                     <option value="standalone_node" <?php echo empty($cluster) ? '' : ($cluster == 'standalone_node' ? 'selected' : ''); ?> >Standalone Node</option>
+                                                </select>
+                                            </td> -->
+                                            <td>
+                                                <select class="form-select text-dark" name="criteria" required>
+                                                    <option value="" selected disabled>Select System</option>
+                                                    <option value="BAAS" <?php echo empty($criteria) ? '' : ($criteria == 'BAAS' ? 'selected' : ''); ?> >BAAS</option>
+                                                    <option value="HCI" <?php echo empty($criteria) ? '' : ($criteria == 'HCI' ? 'selected' : ''); ?> >HCI</option>
+                                                    <option value="CPS" <?php echo empty($criteria) ? '' : ($criteria == 'CPS' ? 'selected' : ''); ?> >CPS</option>
+                                                    <option value="STRAAS" <?php echo empty($criteria) ? '' : ($criteria == 'STRAAS' ? 'selected' : ''); ?> >STRAAS</option>
                                                 </select>
                                             </td>
                                             <td>
