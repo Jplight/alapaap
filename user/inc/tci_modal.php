@@ -85,14 +85,15 @@ endif;
                                 <table class="table table-bordered text-nowrap  align-middle text-dark border border-secondary table-sm">
                                     <thead class="bg-dark text-white">
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Department</th>
+                                            <th>Name<span class="text-danger ms-2">*</span></th>
+                                            <th>Department<span class="text-danger ms-2">*</span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <input class="form-control text-dark" type="text" name="fullname" value="<?php echo empty($fullname) ? $my_fullname : ucwords($fullname); ?>" readonly />
+                                                <!-- <input class="form-control text-dark" type="text" name="fullname" value="<?php echo empty($fullname) ? $my_fullname : ucwords($fullname); ?>" readonly /> -->
+                                                <input class="form-control text-dark" type="text" name="fullname" value="<?php echo empty($fullname) ? '' : ucwords($fullname); ?>" required />
                                             </td>
                                             <td>
                                                 <input class="form-control text-dark" type="text" name="department" value="<?php echo empty($department) ? '' : $department; ?>" required />
@@ -100,8 +101,8 @@ endif;
                                         </tr>
                                         <tr class="bg-dark text-white fw-bold">
                                             <!-- <td>Cluster</td> -->
-                                            <td>System</td>
-                                            <td>Location</td>
+                                            <td>System<span class="text-danger ms-2">*</span></td>
+                                            <td>Location<span class="text-danger ms-2">*</span></td>
                                         </tr>
                                         <tr>
                                             <!-- <td>
@@ -131,7 +132,7 @@ endif;
                                             </td>
                                         </tr>
                                         <tr class="bg-dark text-white fw-bold">
-                                            <td colspan="2">Hostname</td>
+                                            <td colspan="2">Hostname<span class="text-danger ms-2">*</span></td>
                                         </tr>
                                         <tr>
                                             <td colspan="2">
@@ -148,32 +149,32 @@ endif;
                                 <table class="table table-borderless table-sm align-middle text-nowrap border border-secondary">
                                     <thead class="bg-dark text-white">
                                         <tr>
-                                            <th colspan="3">Service Request Descriptions</th>
+                                            <th colspan="3">Service Request Descriptions<span class="text-danger ms-2">*</span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td colspan="3">
-                                                <textarea class="form-control text-dark" name="prob_descript" style="height: 150px;"><?php echo empty($prob_descript) ? '' : $prob_descript; ?></textarea>
+                                                <textarea class="form-control text-dark" name="prob_descript" style="height: 150px;" required><?php echo empty($prob_descript) ? '' : $prob_descript; ?></textarea>
                                             </td>
                                         </tr>
                                         <tr>
                                             <thead class="bg-dark text-white">
-                                                <th>Action Taken</th>
-                                                <th>Status</th>
-                                                <th>Remarks</th>
+                                                <th>Action Taken<span class="text-danger ms-2">*</span></th>
+                                                <th>Status<span class="text-danger ms-2">*</span></th>
+                                                <!-- <th>Remarks</th> -->
                                             </thead>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <textarea class="form-control text-dark" name="act_taken" style="height: 150px;" ><?php echo empty($act_taken) ? '' : $act_taken; ?></textarea>
+                                                <textarea class="form-control text-dark" name="act_taken" style="height: 150px;" required><?php echo empty($act_taken) ? '' : $act_taken; ?></textarea>
                                             </td>
                                             <td>
-                                                <textarea class="form-control text-dark" name="act_status" style="height: 150px;"><?php echo empty($act_status) ? '' : $act_status; ?></textarea>
+                                                <textarea class="form-control text-dark" name="act_status" style="height: 150px;" required><?php echo empty($act_status) ? '' : $act_status; ?></textarea>
                                             </td>
-                                            <td>
+                                            <!-- <td>
                                                 <textarea class="form-control text-dark" name="remarks" style="height: 150px;"><?php echo empty($remarks) ? '' : $remarks; ?></textarea>
-                                            </td>
+                                            </td> -->
                                         </tr>
                                     </tbody>
                                 </table>
