@@ -142,6 +142,6 @@
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/theme.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-        <script src="controller/reports/bsp-reports.js?asd=1231azxczxcsd2asd3"></script>
+        <script src="controller/reports/bsp-reports.js"></script>
     </body>
 </html>

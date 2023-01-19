@@ -18,7 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$count = mysqli_num_rows($sql);
 	if ($count > 0) {
 			$rows = mysqli_fetch_assoc($sql);
-			if (($rows["status"] === "1" || $rows["status"] === "7")) {
+			// if (($rows["status"] === "1" || $rows["status"] === "7")) {
+			if ($rows["status"] === "7" || $rows['status'] === '0'|| $rows['status'] === '1' ) {
 				$response['status'] = '200';
 				$response['hci_new_control_num'] = $rows['control_number'];
 				$response['department'] = $rows['department'];

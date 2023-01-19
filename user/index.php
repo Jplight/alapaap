@@ -234,10 +234,16 @@ include 'model/save_profile.php';
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_cps_delete" style="cursor: pointer;">DELETE</a></li>
                                      </ul>
                                   </li>
-                                  <li><a class="dropdown-item user-select-none" style="cursor: pointer;"><span class="">BaaS</span><i class="fa-fw fas fa-chevron-down m-auto"></i></a>
+                                  <li><a class="dropdown-item user-select-none" style="cursor: pointer;"><span class="">BAAS</span><i class="fa-fw fas fa-chevron-down m-auto"></i></a>
                                      <ul class="submenu submenu-left dropdown-menu">
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_baas" style="cursor: pointer;">Client Server Registration Form</a></li>
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_baas_2" style="cursor: pointer;">Client Restore and Retrieve Form</a></li>
+                                     </ul>
+                                  </li>
+                                  <li><a class="dropdown-item user-select-none" style="cursor: pointer;"><span class="">STRAAS</span><i class="fa-fw fas fa-chevron-down m-auto"></i></a>
+                                     <ul class="submenu submenu-left dropdown-menu">
+                                        <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#" style="cursor: pointer;">NEW</a></li>
+                                        <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#" style="cursor: pointer;">UPDATE</a></li>
                                      </ul>
                                   </li>
                                 </ul>

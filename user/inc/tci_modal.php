@@ -9,7 +9,7 @@ if (!empty($control_number)):
         $email_add          = $rows['email_add'];
         $contact_no         = $rows['contact_no'];
         $department         = $rows['department'];
-        $cluster            = $rows['cluster'];
+        // $cluster            = $rows['cluster'];
         $location           = $rows['location'];
 
         $prob_descript      = $rows['prob_descript'];
