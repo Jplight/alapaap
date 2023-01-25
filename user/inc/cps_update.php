@@ -262,7 +262,8 @@ endif;
                                                         echo '<td><input type="hidden" name="others_id[]" value="'.$rows_2['others_id'].'"><input class="form-control text-dark" type="text" name="others_1[]" value="'.$rows_2['others_1'].'" readonly></td>';
                                                         echo '<td><input class="form-control text-dark" type="text" name="others_2[]" value="'.$rows_2['others_2'].'" ></td>';
                                                         echo '<td><input class="form-control text-dark" type="text" name="others_3[]" value="'.$rows_2['others_3'].'" ></td>';
-                                                        echo '<td><input class="form-control text-dark" type="text" name="others_4[]" value="'.$rows_2['others_4'].'" ></td>';
+                                                        // echo '<td><input class="form-control text-dark" type="text" name="others_4[]" value="'.$rows_2['others_4'].'" ></td>';
+                                                        echo '<td><textarea class="form-control" name="others_[4]" rows="1">'.$rows_2['others_4'].'</textarea></td>';
                                                         echo '</tr>';
                                                     }
                                                 }else{
@@ -271,7 +272,8 @@ endif;
                                                     echo '<td><input type="hidden" name="others_id[]" ><input class="form-control text-dark" type="text" name="others_1[]"  readonly></td>';
                                                     echo '<td><input class="form-control text-dark" type="text" name="others_2[]" ></td>';
                                                     echo '<td><input class="form-control text-dark" type="text" name="others_3[]"></td>';
-                                                    echo '<td><input class="form-control text-dark" type="text" name="others_4[]"></td>';
+                                                    // echo '<td><input class="form-control text-dark" type="text" name="others_4[]"></td>';
+                                                    echo '<td><textarea class="form-control" name="others_[4]" rows="1">'.$rows_2['others_4'].'</textarea></td>';
                                                     echo '</tr>';     
                                                 }
                                             endif;
@@ -282,7 +284,8 @@ endif;
                                                     echo '<td><input class="form-control text-dark" type="text" readonly></td>';
                                                     echo '<td><input class="form-control text-dark" type="text" ></td>';
                                                     echo '<td><input class="form-control text-dark" type="text" ></td>';
-                                                    echo '<td><input class="form-control text-dark" type="text" ></td>';
+                                                    // echo '<td><input class="form-control text-dark" type="text" ></td>';
+                                                    echo '<td><textarea class="form-control" name="others_[4]" rows="1"></textarea></td>';
                                                     echo '</tr>';                                      
                                             endif;
                                         ?>
