@@ -334,7 +334,8 @@ endif;
                                                 echo '<td class="text-dark fw-bold">Disk (GB) '.$num++.' </td>';
                                                 echo '<td><input type="hidden" name="others_id[]" value="'.$rows_2['others_id'].'" placeholder=""><input class="form-control text-dark" type="text" id="others_1[]" name="others_1[]" value="'.$rows_2['others_1'].'" readonly></td>';
                                                 echo '<td><input class="form-control text-dark" type="text" id="others_2[]" name="others_2[]" value="'.$rows_2['others_2'].'" onkeypress="return /[0-9]/i.test(event.key)" ></td>';
-                                                echo '<td><input class="form-control text-dark" type="text" id="others_3[]" name="others_3[]" value="'.$rows_2['others_3'].'" ></td>';
+                                                // echo '<td><input class="form-control text-dark" type="text" id="others_3[]" name="others_3[]" value="'.$rows_2['others_3'].'" ></td>';
+                                                echo '<td><textarea class="form-control" id="others_3[]" rows="1" name="others_3[]" >'.$rows_2['others_3'].'</textarea></td>';
                                                 echo '</tr>';
                                             }
                                         }else{
@@ -342,7 +343,8 @@ endif;
                                             echo '<td class="text-dark fw-bold">Disk (GB)</td>';
                                             echo '<td><input type="hidden" name="others_id[]" value="" placeholder=""><input class="form-control text-dark" type="text" id="others_1" name="others_1[]" value="" readonly onkeypress="return /[0-9]/i.test(event.key)"></td>';
                                             echo '<td><input class="form-control text-dark" type="text" id="others_2" name="others_2[]" ></td>';
-                                            echo '<td><input class="form-control text-dark" type="text" name="others_3[]"></td>';
+                                            // echo '<td><input class="form-control text-dark" type="text" name="others_3[]"></td>';
+                                            echo '<td><textarea class="form-control" name="others_3[]" id="others_2" rows="1"></textarea></td>';
                                             echo '</tr>';     
                                         }
                                     endif;
@@ -352,7 +354,8 @@ endif;
                                             echo '<td class="text-dark fw-bold">Disk (GB)</td>';
                                             echo '<td><input class="form-control text-dark" type="text" readonly></td>';
                                             echo '<td><input class="form-control text-dark" type="text" ></td>';
-                                            echo '<td><input class="form-control text-dark" type="text" ></td>';
+                                            // echo '<td><input class="form-control text-dark" type="text" ></td>';
+                                            echo '<td><textarea class="form-control" name="others_3[]" id="others_2" rows="1"></textarea></td>';
                                             echo '</tr>';                                      
                                     endif;
                                 ?>                               

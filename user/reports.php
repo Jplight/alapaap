@@ -78,36 +78,42 @@
                         <div class="d-sm-flex justify-content-between align-items-center mb-4">
                             <h3 class="text-dark mb-0 mb-3 mb-sm-0" id="sp_r">Reports</h3>
                             <div class="d-inline-flex gap-2 mb-3">
-                                    <div class="d-block">
-                                        <span class="fw-bold">Date From:</span>
-                                        <input type="text" class="form-control form-control-sm" id="min" name="min">
-                                    </div>
-                                    <div class="d-block">
-                                        <span class="fw-bold">Date To:</span>
-                                        <input type="text"  class="form-control form-control-sm" id="max" name="max">
-                                    </div>   
+                                <!-- <div class="d-block">
+                                    <span class="fw-bold">Date From:</span>
+                                    <input type="text" class="form-control form-control-sm" id="min" name="min">
                                 </div>
+                                <div class="d-block">
+                                    <span class="fw-bold">Date To:</span>
+                                    <input type="text"  class="form-control form-control-sm" id="max" name="max">
+                                </div>    -->
+
+                            </div>
                         </div>
                         <div class="card shadow">
                             <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-hover align-middle user-select-none wrap" id="report_datatables">
-                                <thead class="bg-success text-white">
-                                    <tr>
-                                        <td rowspan="2">INFRASTRUCTURE</td>
-                                        <td rowspan="2">SYSTEM</td>
-                                        <td rowspan="2">SERVER NAME</td>
-                                        <td rowspan="2">BASELINE CONFIGURATION</td>
-                                        <td colspan="3" class="text-center">CHANGES</td>
-                                        <td rowspan="2" class="top-0">FINAL CONFIGURATION</td>
-                                    </tr>
-                                    <tr>
-                                        <td>DATE</td>
-                                        <td>REQUESTED BY</td>
-                                        <td>CHANGE REQUESTED</td>
-                                        
-                                    </tr>
-                                </thead>      
+                                <table class="table table-hover align-middle" id="report_datatables">
+                                    <thead class="bg-success text-white align-middle">
+                                        <tr class="text-nowrap">
+                                            <th rowspan=2>INFRASTRUCTURE</th>
+                                            <th rowspan=2>SYSTEM</th>
+                                            <th rowspan=2>SERVER NAME</th>
+                                            <th rowspan=2>BASELINE CONFIGURATION</th>
+                                            <th class="text-center" colspan=3>CHANGES</th>
+                                            <th rowspan=2>FINAL CONFIGURATION</th>
+                                            <th rowspan=2>APPROVED BY</th>
+                                            <th rowspan=2>DATE APPROVED</th>
+                                            <th rowspan=2>DATE VERIFIED</th>
+                                        </tr>
+                                        <tr class="text-nowrap">   
+                                            <th>DATE REQUESTED</th>
+                                            <th>REQUESTED BY</th>
+                                            <th>CHANGE REQUESTED</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php include 'model/reports/data-bsp-revised.php'; ?>
+                                    </tbody>
                                 </table>
                             </div>
                             </div>
@@ -117,7 +123,7 @@
                 <footer class="bg-white sticky-footer">
                     <div class="container my-auto">
                         <div class="text-center my-auto copyright">
-                            <span>Copyright © Alapaap | eBizolution 2022 v1.11.5 - DEV</span>
+                            <span>Copyright © Alapaap | eBizolution 2022 v1.11.9 - DEV</span>
                         </div>
                     </div>
                 </footer>
@@ -142,6 +148,8 @@
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/theme.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+        
+
         <script src="controller/reports/bsp-reports.js"></script>
     </body>
 </html>
