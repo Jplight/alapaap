@@ -86,7 +86,7 @@ if (isset($_SESSION['uid'])) {
     </head>
     <body class="m-0 h-100" style="font-family: Montserrat, sans-serif; oveflow-y:hidden;">
 
-        <nav class="navbar navbar-light navbar-expand-md fixed-top bg-white shadow-sm py-0 px-md-5">
+        <!-- <nav class="navbar navbar-light navbar-expand-md fixed-top bg-white shadow-sm py-0 px-md-5">
             <div class="container-fluid">
                 <a class="navbar-brand " href="http://www.ebizolution.com/" >
                     <img class="img-fluid" src="assets/img/viber_image_2022-02-10_13-50-23-414.png" width="120">
@@ -118,7 +118,7 @@ if (isset($_SESSION['uid'])) {
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
-        </nav>
+        </nav> -->
         <section class="box d-none d-md-block " style="background: url(&quot;assets/img/ebizbg_2-1.png&quot;) center / cover no-repeat;">
             <div class="container-fluid gx-4 d-md-flex align-items-md-end h-100 py-md-5 ">
                 <div class="row g-0 w-100">
@@ -135,14 +135,13 @@ if (isset($_SESSION['uid'])) {
                             </div>
                         </div>
                     </div>
-                    <div class="col-12">
+                    <!-- <div class="col-12">
                         <div class="d-flex justify-content-end align-items-center ">
                             <span class="fw-bold text-white me-1">Powered by</span>
                             <img class="img-fluid" src="assets/img/android-chrome-192x192.png" width="25">
-                            <span class="fw-bold text-white">BiZolution</span>
-                            <!-- <img class="img-fluid" src="assets/img/viber_image_2022-02-14_10-21-51-173.png" width="150"> -->
+                            <span class="fw-bold text-white">BiZolution Inc.</span>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>

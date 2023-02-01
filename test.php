@@ -33,6 +33,12 @@
 </head>
 <body>
     
+<?php 
+
+echo  bin2hex(random_bytes(16));
+
+?>
+
 <a data-bs-toggle="modal" href="#myModal" class="btn btn-primary">Launch modal</a>
 
 <div class="modal myModal" id="myModal" data-bs-keyboard="false" data-bs-backdrop="static">  
