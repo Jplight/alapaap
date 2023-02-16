@@ -1,29 +1,46 @@
 <?php
 session_start();
 $uid = $_SESSION['uid'];
-require '../connection.php';
-require '../../../vendor/autoload.php';
+require '../../connection.php';
+require '../../../../vendor/autoload.php';
 $response = array();
-if (isset($_FILES['file'])) {
+if (isset($_FILES['file_changes'])) {
 
-  $excel = $_FILES['file']['tmp_name'];
+  $excel = $_FILES['file_changes']['tmp_name'];
   $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($excel);
   $worksheet = $spreadsheet->getActiveSheet();
   $rows = $worksheet->toArray();
 
 
+  // $columns = [
+  //   'Infrastructure' => 'criteria',
+  //   'System' => 'location',
+  //   'Server Name' => 'hostname',
+  //   'Request' => 'prob_descript',
+  //   'Date Requested' => 'date_requested',
+  //   'Time Requested' => 'time_requested',
+  //   'Requested by' => 'fullname',
+  //   'Approved By' => 'reciever',
+  //   'Date Approved' => 'rec_date',
+  //   'Date Verified' => 'ver2_date'
+  // ];
+
+
+
   $columns = [
-    'Infrastructure' => 'criteria',
-    'System' => 'location',
+    'Infrastructure' => 'INFRASTRUCTURE',
+    'System' => 'SYSTEM',
     'Server Name' => 'hostname',
-    'Request' => 'prob_descript',
-    'Date Requested' => 'date_requested',
-    'Time Requested' => 'time_requested',
-    'Requested by' => 'fullname',
-    'Approved By' => 'reciever',
-    'Date Approved' => 'rec_date',
-    'Date Verified' => 'ver2_date'
-  ];
+    'Baseline configuration' => 'BASELINE_CONFIGURATION',
+    'Date' => 'DATE',
+    'Request by' => 'REQUESTED_BY',
+    'Change request' => 'CHANGED_REQUESTED',
+    'Final Configuration' => 'FINAL_CONFIGURATION',
+    'Approved By' => 'APPROVED_BY',
+    'Date Approved' => 'DATE_APPROVED',
+    'Date Verified' => 'DATE_VERIFIED',
+];
+
 
     // ============================================================================================================================
     // This will used to validate if the columns in excel is matched with the $columns[] Array 
@@ -61,23 +78,25 @@ if (isset($_FILES['file'])) {
   }
 
   foreach ($data as $item) {
-    $criteria = $item['criteria'];
-    $location = $item['location'];
+    $INFRASTRUCTURE = $item['INFRASTRUCTURE'];
+    $SYSTEM = $item['SYSTEM'];
     $hostname = $item['hostname'];
-    $prob_descript = $item['prob_descript'];
-    $date_requested = $item['date_requested'];
-    $time_requested = $item['time_requested'];
-    $fullname = $item['fullname'];
+    $BASELINE_CONFIGURATION = $item['BASELINE_CONFIGURATION'];
+    $DATE = $item['DATE'];
+    $REQUESTED_BY = $item['REQUESTED_BY'];
+    $CHANGED_REQUESTED = $item['CHANGED_REQUESTED'];
+    $FINAL_CONFIGURATION = $item['FINAL_CONFIGURATION'];
+    $APPROVED_BY = $item['APPROVED_BY'];
+    $DATE_APPROVED = $item['DATE_APPROVED'];
+    $DATE_VERIFIED = $item['DATE_VERIFIED'];
 
-    $datetime = new DateTime("$date_requested $time_requested");
-    $date_requested = $datetime->format('Y-m-d H:i:s');
+    $datetime = new DateTime("$DATE");
+    $DATE_CONVERTED = $datetime->format('Y-m-d');
 
-    $sql = "INSERT INTO tbl_tci (uid, form_type, criteria, location, hostname, prob_descript, date_requested, fullname, status, reciever, rec_status, rec_date, verifier_2, ver2_status, ver2_date)
-            VALUES ('$uid','2','$criteria', '$location', '$hostname', '$prob_descript', '$date_requested', '$fullname','7', '$fullname', '1', '$date_requested', '$fullname', '1','$date_requested')";
+    $sql = "INSERT INTO `tbl_recent_data`(uid, `INFRASTRUCTURE`, `SYSTEM`, `hostname`, `BASELINE_CONFIGURATION`, `DATE`, `REQUESTED_BY`, `CHANGED_REQUESTED`, `FINAL_CONFIGURATION`, `APPROVED_BY`, `DATE_APPROVED`, `DATE_VERIFIED`) VALUES ('$uid','$INFRASTRUCTURE','$SYSTEM','$hostname','$BASELINE_CONFIGURATION','$DATE_CONVERTED','$REQUESTED_BY','$CHANGED_REQUESTED','$FINAL_CONFIGURATION','$APPROVED_BY','$DATE_APPROVED','$DATE_VERIFIED')";
     $query = mysqli_query($conn, $sql);
 
   }
-
   if ($query) {
     // echo "New record created successfully";
     $response['status'] = 'created';
@@ -88,7 +107,6 @@ if (isset($_FILES['file'])) {
     // echo "Error: " . $sql . "<br>" . mysqli_error($conn);
   }
   echo json_encode($response);
-
   mysqli_close($conn);
 }
 ?>

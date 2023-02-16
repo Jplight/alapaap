@@ -244,13 +244,11 @@ include 'model/save_profile.php';
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_hci_update" style="cursor: pointer;">UPDATE</a></li>
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_hci_delete" style="cursor: pointer;">DELETE</a></li>
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_hci_clone" style="cursor: pointer;">CLONING</a></li>
-                                        <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_hci_import" style="cursor: pointer;">IMPORT DATA</a></li>
                                      </ul>
                                   </li>
                                   <li><a class="dropdown-item user-select-none" style="cursor: pointer;"><span class="">ADHOC</span><i class="fa-fw fas fa-chevron-down m-auto"></i></a>
                                      <ul class="submenu submenu-left dropdown-menu shadow-lg">
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_tci" style="cursor: pointer;">NEW</a></li>
-                                        <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_tci_import" style="cursor: pointer;">IMPORT DATA</a></li>
                                      </ul>
                                   </li>
                                   <li>
@@ -273,6 +271,12 @@ include 'model/save_profile.php';
                                      <ul class="submenu submenu-left dropdown-menu shadow-lg">
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_straas" style="cursor: pointer;">NEW</a></li>
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_straas_update" style="cursor: pointer;">UPDATE</a></li>
+                                     </ul>
+                                  </li>
+                                  <li><a class="dropdown-item user-select-none" style="cursor: pointer;"><span class="">IMPORT DATA</span><i class="fa-fw fas fa-chevron-down m-auto"></i></a>
+                                     <ul class="submenu submenu-left dropdown-menu shadow-lg">
+                                        <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_tci_import" style="cursor: pointer;">ADHOC</a></li>
+                                        <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_hci_import" style="cursor: pointer;">ALL MANAGED SERVICES</a></li>
                                      </ul>
                                   </li>
                                 </ul>
@@ -461,7 +465,7 @@ include 'model/save_profile.php';
             </form>
 
             <!-- import form  -->
-            <form class="text-dark" method="post" id="import-form" name="" enctype="multipart/form-data">
+            <form class="text-dark" method="post" id="import-form-hci" name="" enctype="multipart/form-data">
                 <div id="view_hci_import" class="modal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
                     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
                         <div class="modal-content">
@@ -530,7 +534,7 @@ include 'model/save_profile.php';
                         type: 'post',
                         success: function(data) {                             
                             $("#rendered-table").html(data);
-                            console.log(data)
+                            // console.log(data)
                             $("#view_tci_import").find('.modal-dialog').addClass('modal-xl');
                         }
                     })
@@ -581,11 +585,49 @@ include 'model/save_profile.php';
                 url: 'model/import/import-submit.php',
                 type: 'POST',
                 data: formData,
+                dataType: 'JSON',
                 cache: false,
                 processData: false,
                 contentType: false,
                 success: function(data) {
-                    alert(data);
+                    if (data.status === 'created'){
+                        alert(data.message) 
+                        location.reload();
+                    }
+                    if (data.status === 'error'){
+                        alert(data.message) 
+                    }
+                
+                }
+                });
+            });
+
+            $("#submit-btn-hci").click(function() {
+                
+                const file = $("input[name='file_changes']").val();
+                if (!file) {
+                alert("Please select a file");
+                return;
+                }
+
+                const formData = new FormData($("#import-form-hci")[0]);
+                $.ajax({
+                url: 'model/import/changes/import-submit.php',
+                type: 'POST',
+                data: formData,
+                dataType: 'JSON',
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    if (data.status === 'created'){
+                        alert(data.message) 
+                        location.reload();
+                    }
+                    if (data.status === 'error'){
+                        alert(data.message) 
+                    }
+                
                 }
                 });
             });

@@ -2,7 +2,7 @@
 // include "../connection.php";
 
 $response = array();
-$sql = "SELECT * FROM bsp_report_page";
+$sql = "SELECT * FROM bsp_report_page ";
 $query = mysqli_query($conn,$sql);
 
 while($row = mysqli_fetch_array($query)){
