@@ -175,7 +175,7 @@ endwhile;
                 <footer class="bg-white sticky-footer">
                     <div class="container my-auto">
                         <div class="text-center my-auto copyright">
-                            <span>Copyright © Alapaap | eBizolution 2022 v1.11.9 - DEV</span>
+                            <span>Copyright © Alapaap | eBizolution 2022 v1.12.1 - DEV</span>
                         </div>
                     </div>
                 </footer>
