@@ -50,7 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$vm_deployment_comment = $_POST['vm_deployment_comment'];
 	$comm                  = $_POST['comm'];
 	$comm_comment          = $_POST['comm_comment'];
-	$attachment = $_POST['file[]'];
 
 	$form_type = 1; 
 	$comments = $_POST['comments'];
@@ -240,7 +239,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	}
 
-	if (isset($_POST['btn_cancel'])) {
+	if (isset($_POST['btn_cancel_hci'])) {
 		$txt_control_number = $_POST['txt_control_number'];
 		$form_type = 1; 
 		$status = 0;

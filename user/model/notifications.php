@@ -57,6 +57,8 @@
                 if($data['form_type'] == '3-2'){$form_type = 'CPS DELETE'; }
                 if($data['form_type'] == '4'){$form_type = 'BaaS CSRF'; }
                 if($data['form_type'] == '4-2'){$form_type = 'BaaS CRRF'; }
+                if($data['form_type'] == '5'){$form_type = 'STRAAS'; }
+                if($data['form_type'] == '5-2'){$form_type = 'STRAAS UPDATE'; }
 
                 if($data['uid'] == $uid){
                     $notification = ucwords($data['fullname']).' has '.$st.' your '.$form_type." request with control number of  ".$form_type."/".$data['control_number'];
@@ -68,8 +70,7 @@
                     // echo "Edcel";
                     $notification = ucwords($NotifName).' has '.$st.' '.$form_type." with control number of ".$form_type."/".$data['control_number'];
                 }
-                
-                
+                  
                 if ($my_role == '3' && ($data['form_type'] == '1' || $data['form_type'] == '1-1' || $data['form_type'] == '1-2' || $data['form_type'] == '1-3')){
                     $notifDate = $data['appr_date'];
                     // $notification = "<Approver> has approved the request of <Requestor> with control number <control_number>";

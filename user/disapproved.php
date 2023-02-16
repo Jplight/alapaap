@@ -24,11 +24,13 @@ if ($my_role == 1) {
     $query_hci    = "SELECT * FROM tbl_hci where uid = '$uid' and status = 0 and revised IS NULL and app_status = 0";
     $query_cps    = "SELECT * FROM tbl_cps where uid = '$uid' and status = 0 and app_status = 0 and revised IS NULL";
     $query_baas    = "SELECT * FROM tbl_baas where uid = '$uid' and status = 0 and app_status = 0 and revised IS NULL";
+    $query_straas    = "SELECT * FROM tbl_straas where uid = '$uid' and status = 0 and app_status = 0 and revised IS NULL";
 }
 if ($my_role == 2) {
     $query_hci    = "SELECT * FROM tbl_hci where approver_id = '$uid' and status = 0 and revised IS NULL and app_status = 0 ";
     $query_cps    = "SELECT * FROM tbl_cps where approver_id = '$uid' and app_status = 0 and revised IS NULL ";
     $query_baas    = "SELECT * FROM tbl_baas where approver_id = '$uid' and app_status = 0  and revised IS NULL";
+    $query_straas    = "SELECT * FROM tbl_straas where approver_id = '$uid' and app_status = 0  and revised IS NULL";
 }
 
 $sql_hci = mysqli_query($conn,$query_hci);
@@ -39,6 +41,9 @@ $disapproved_count_cps = mysqli_num_rows($sql_cps); // Count the number of Disap
 
 $sql_baas = mysqli_query($conn,$query_baas);
 $disapproved_count_baas = mysqli_num_rows($sql_baas); // Count the number of Disapproved Form BaAS
+
+$sql_straas = mysqli_query($conn,$query_straas);
+$disapproved_count_straas = mysqli_num_rows($sql_straas); // Count the number of Disapproved Form StraaS
 include 'model/hci_form.php';
 include 'model/authorize_personnel.php';
 ?>
@@ -132,6 +137,15 @@ include 'model/authorize_personnel.php';
                                                 ?>                                        
                                             </a>
                                         </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link position-relative" role="tab" data-bs-toggle="tab" href="#tab-5">StraaS                 
+                                                <?php 
+                                                    if (($my_role == 1 ||  $my_role == 2 || $my_role == 3 || $my_role == 4 || $my_role == 5 || $my_role == 6) && $disapproved_count_straas >= 1){ // if na meet yung condition mag di-display yung badge na may total numbers of approved!
+                                                        echo '<span class="position-absolute top-0 start-100 translate-middle badge badge-small rounded-pill bg-danger" >'.$disapproved_count_straas.'+</span>';
+                                                    } 
+                                                ?>                                        
+                                            </a>
+                                        </li>
                                     </ul>
                                     <div class="tab-content pt-4">
                                         <div class="tab-pane active" role="tabpanel" id="tab-1">
@@ -150,7 +164,7 @@ include 'model/authorize_personnel.php';
                                                             <?php endif; ?>
                                                             <th>Action</th>
                                                             <th></th>
-                                                            <th></th>
+                                                          
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -239,9 +253,9 @@ include 'model/authorize_personnel.php';
                                                 </table>
                                             </div>
                                         </div>
-                                        <!-- <div class="tab-pane" role="tabpanel" id="tab-3">
+                                        <div class="tab-pane" role="tabpanel" id="tab-3">
                                             <div class="table-responsive">
-                                                <table class="table table-hover user-select-none align-middle text-nowrap" id="tci_datatables">
+                                                <table class="table table-hover user-select-none align-middle text-nowrap" id="cps_datatables">
                                                     <thead>
                                                         <tr>
                                                             <th>Requestor</th>
@@ -255,7 +269,7 @@ include 'model/authorize_personnel.php';
                                                             <?php endif; ?>
                                                             <th>Action</th>
                                                             <th></th>
-                                                            <th></th>
+                                                            
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -333,7 +347,7 @@ include 'model/authorize_personnel.php';
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        </div> -->
+                                        </div>
                                         <div class="tab-pane" role="tabpanel" id="tab-4">
                                             <div class="table-responsive">
                                                 <table class="table table-hover user-select-none align-middle text-nowrap" id="baas_datatables">
@@ -350,7 +364,7 @@ include 'model/authorize_personnel.php';
                                                             <?php endif; ?>
                                                             <th>Action</th>
                                                             <th></th>
-                                                            <th></th>
+                                                            
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -420,6 +434,92 @@ include 'model/authorize_personnel.php';
                                                 </table>
                                             </div>
                                         </div>
+                                        <div class="tab-pane" role="tabpanel" id="tab-5">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover user-select-none align-middle text-nowrap" id="straas_datatables">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Requestor</th>
+                                                            <th>Control No.</th>
+                                                            <th>Date & Time Requested</th>
+                                                            <th>Form Type</th>
+                                                            <th>Status</th>
+                                                            <?php if ($my_role == 1): ?>
+                                                                <th>Updated by</th>
+                                                                <th>Role</th>
+                                                            <?php endif; ?>
+                                                            <th>Action</th>
+                                                            <th></th>
+                                                           
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+
+                                                            $num = 1;
+                                                            if ($my_role == 1) {
+                                                                $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where uid = '$uid' and status = '0' and revised IS NULL and app_status = '0' ORDER BY date_requested DESC ");
+                                                            }else{
+                                                                $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where approver_id = '$uid' and app_status = '0' and revised IS NULL ORDER BY appr_date DESC ");
+                                                            }
+                                                      
+                                                                while ($rows_straas = mysqli_fetch_array($sql_straas)):                        
+                                                                    $control_number = $rows_straas['control_number'];
+                                                                    if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_straas['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_straas['appr_date'])); }
+                                                                    if ($my_role == 2){$new_date = date('F d, Y',strtotime($rows_straas['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_straas['appr_date'])); }
+                                                                    
+                                                                    echo '<tr>';
+                                                                    echo '<td>'.ucwords($rows_straas['fullname']).'</td>';
+                                                                    echo '<td>STRAAS/'.$control_number.'</td>';
+                                                                    echo '<td>'.$new_date." - ".$new_time.'</td>';
+                                                                    
+                                                                    
+
+                                                                    if ($rows_straas['form_type'] == '5') {
+                                                                        echo '<td>StraaS-Update</td>';
+                                                                    }else{
+                                                                        echo '<td>StraaS</td>';
+                                                                    }
+
+                                                                    if (($my_role == 1 && $rows_straas['status'] == 0) || ($my_role == 2 && $rows_straas['app_status'] == 0) || ($my_role == 3 && $rows_straas['rec_status'] == 0) || ($my_role == 4 && $rows_straas['perf_status'] == 0) || ($my_role == 5 && $rows_straas['ver_status'] == 0) || ($my_role == 6 && $rows_straas['ver2_status'] == 0)):
+                                                                        echo '<td><span class="badge rounded-pill bg-danger">Disapproved</span></td>';                       
+                                                                    endif;
+
+                                                                    if ($my_role == 1 && $rows_straas['status'] == 0):
+                                                                        $reject_by  = $rows_straas['approver'];
+                                                                        $role_by    = 'BSP Approver';
+                                                                    endif;
+                                                                    
+                                                                    if ($my_role == 2 && $rows_straas['app_status'] == 0):
+                                                                        $reject_by  = $rows_straas['approver'];
+                                                                        $role_by    = 'BSP Approver';
+                                                                    endif;
+
+                                                                    if ($my_role == 1):
+                                                                        echo '<td>'.ucwords($reject_by).'</td>';
+                                                                        echo '<td>'.$role_by.'</td>';    
+                                                                    endif;
+                                                                    
+                                                                    
+                                                                    if ($rows_straas['form_type'] == '5-2') {
+                                                                        echo '<td class="d-flex gap-2"><a class="btn btn-outline-primary btn-sm shadow-sm" href="#view_straas_update'.$rows_straas["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a></td>';
+                                                                        echo '<td>';
+                                                                            include 'inc/straas_update.php';
+                                                                        echo '</td>';
+                                                                    }else{
+                                                                        echo '<td class="d-flex gap-2"><a class="btn btn-outline-primary btn-sm shadow-sm" href="#view_straas'.$rows_straas["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a></td>';
+                                                                        echo '<td>';
+                                                                            include 'inc/straas_new.php';
+                                                                        echo '</td>';   
+                                                                    }    
+                                                                    echo '</tr>';
+                                                                endwhile;
+                                                      
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -439,15 +539,16 @@ include 'model/authorize_personnel.php';
                 <i class="fas fa-angle-up"></i>
             </a>
         </div>
-        <?php include 'inc/baas_modal.php'; ?>
+       
         <script src="assets/js/jquery-3.6.0.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        
 
         <!-- Data Tables -->
         <script src="assets/js/jquery.dataTables.min.js"></script>
         <script src="assets/js/dataTables.bootstrap5.min.js"></script>
 
         <script src="assets/js/theme.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function(){
                 $("#os").on('change',function(){
@@ -490,13 +591,17 @@ include 'model/authorize_personnel.php';
         </script>
         <script>
             $(document).ready(function(){
-                $('#hci_datatables, #cps_datatables, #baas_datatables').DataTable({
-                    
+                $('#hci_datatables, #cps_datatables, #baas_datatables, #straas_datatables').DataTable({
+                    responsive: true,
+                    "columnDefs": [
+                            { "orderDataType": "date-eu", "targets": 1 },
+                    ],
+		            "order": [[ 1, "desc" ]],
                     "language": {
                         "emptyTable": "There is no data to be showed!🤗",
                         "zeroRecords": "No data found!🤗"
                     }
-                }); // // Datatables 
+                }); 
             });
         </script>
     </body>

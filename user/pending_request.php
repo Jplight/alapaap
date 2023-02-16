@@ -34,11 +34,13 @@ if ($my_role == 1) {
     $query_tci     = "SELECT * FROM tbl_tci where uid = '$uid' and status BETWEEN 2 and 6";
     $query_cps     = "SELECT * FROM tbl_cps where uid = '$uid' and status BETWEEN 2 and 6";
     $query_baas    = "SELECT * FROM tbl_baas where uid = '$uid' and status BETWEEN 2 and 6";
+    $query_straas    = "SELECT * FROM tbl_straas where uid = '$uid' and status BETWEEN 2 and 6";
 }else{
     $query_hci     = "SELECT * FROM tbl_hci where status = '$my_role' ";
     $query_tci     = "SELECT * FROM tbl_tci where status = ".$my_role;
     $query_cps     = "SELECT * FROM tbl_cps where status = ".$my_role;
     $query_baas    = "SELECT * FROM tbl_baas where status = ".$my_role;
+    $query_straas    = "SELECT * FROM tbl_straas where status = ".$my_role;
 }
 
 $sql_hci = mysqli_query($conn,$query_hci);
@@ -53,6 +55,8 @@ $count_cps = mysqli_num_rows($sql_cps); // Count the number of Pending Request f
 $sql_baas = mysqli_query($conn,$query_baas);
 $count_bass = mysqli_num_rows($sql_baas); // Count the number of Pending Request for BaaS
 
+$sql_straas = mysqli_query($conn,$query_straas);
+$count_straas = mysqli_num_rows($sql_straas); // Count the number of Pending Request for StraaS
 include 'model/hci_form.php';
 include 'model/hci_update_form.php';
 include 'model/tci_form.php';
@@ -63,6 +67,8 @@ include 'model/cps_form_delete.php';
 
 include 'model/baas_form.php';
 include 'model/baas_form_2.php';
+include 'model/straas_form.php';
+
 include 'model/authorize_personnel.php';
 ?>
 <!DOCTYPE html>
@@ -142,7 +148,7 @@ include 'model/authorize_personnel.php';
                                         </li>
                                         <?php if ($my_role != 2): ?>
                                         <li class="nav-item" role="presentation">
-                                            <a class="nav-link position-relative" role="tab" data-bs-toggle="tab" href="#tab-2">Adhoc
+                                            <a class="nav-link position-relative" role="tab" data-bs-toggle="tab" href="#tab-2">ADHOC
                                                 <?php if($count_tci >= 1): ?>
                                                 <span class="position-absolute top-0 start-100 translate-middle badge badge-small rounded-pill <?php echo $count_tci == 1 ? 'bg-warning' : 'bg-danger'; ?> " ><?=$count_tci; ?> +</span>
                                                 <?php endif; ?>
@@ -157,9 +163,16 @@ include 'model/authorize_personnel.php';
                                             </a>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <a class="nav-link position-relative" role="tab" data-bs-toggle="tab" href="#tab-4">BaaS
+                                            <a class="nav-link position-relative" role="tab" data-bs-toggle="tab" href="#tab-4">BAAS
                                                 <?php if($count_bass >= 1): ?>
                                                 <span class="position-absolute top-0 start-100 translate-middle badge badge-small rounded-pill <?php echo $count_bass == 1 ? 'bg-warning' : 'bg-danger'; ?> " ><?=$count_bass; ?> +</span>
+                                                <?php endif; ?>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link position-relative" role="tab" data-bs-toggle="tab" href="#tab-5">STRAAS
+                                                <?php if($count_straas >= 1): ?>
+                                                <span class="position-absolute top-0 start-100 translate-middle badge badge-small rounded-pill <?php echo $count_straas == 1 ? 'bg-warning' : 'bg-danger'; ?> " ><?=$count_straas; ?> +</span>
                                                 <?php endif; ?>
                                             </a>
                                         </li>
@@ -554,6 +567,100 @@ include 'model/authorize_personnel.php';
                                                 </table>
                                             </div>
                                         </div>
+                                        <div class="tab-pane" role="tabpanel" id="tab-5">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover align-middle text-nowrap user-select-none" id="straas_datatables">
+                                                    <thead >
+                                                        <tr>
+                                                           
+                                                            <th>Requestor</th>
+                                                            <th>Control No.</th>
+                                                            <th>Date</th>
+                                                            <th>Time</th>
+                                                            <th>Form Type</th>
+                                                            <th>Status</th>
+                                                            <th>Action</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+
+                                                            $num = 1;
+                                                            if ($my_role == 1) {
+                                                                $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where uid = '$uid' and status BETWEEN 2 and 6  ORDER BY date_requested DESC ");
+                                                            }else{
+                                                                 $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where status = '$my_role'  ORDER BY date_requested DESC ");
+                                                            }
+
+                                                            $count_straas = mysqli_num_rows($sql_straas);
+                                                
+                                                                while ($rows_straas = mysqli_fetch_array($sql_straas)):
+                                                                    $control_number = $rows_straas['control_number'];
+                                                                    $mydate = strtotime($rows_straas['date_requested']);
+                                                                    $new_date = date('F d, Y',$mydate);
+                                                                    $mytime = strtotime($rows_straas['date_requested']);
+                                                                    $new_time = date('h:i:s A',$mytime);
+                                                                    $formt = "straas";
+
+                                                                    echo '<tr>';      
+                                                                    echo '<td>'.ucwords($rows_straas['fullname']).'</td>';
+                                                                    echo '<td>StraaS/'.$control_number.'</td>';
+                                                                    
+                                                                    echo '<td>'.$new_date.'</td>';
+                                                                    echo '<td>'.$new_time.'</td>';
+                                                                    if ($rows_straas['form_type'] == '5-2') {
+                                                                        echo '<td>Straas-Update</td>';
+                                                                    }else{
+                                                                        echo '<td>Straas</td>';
+                                                                    }
+                                                                    if ($my_role == 1 && $rows_straas['status'] == 2) {
+                                                                        $cancel_btn = '<a class="btn btn-outline-danger btn-sm shadow-sm" href="model/straas_form.php?uid='.$uid.'&control_number='.$rows_straas["control_number"].'&f_type='.$rows_straas['form_type'].'" ><i class="fa-fw fas fa-times me-1"></i>Cancel</a>';
+                                                                    }else{
+                                                                        $cancel_btn = '';
+                                                                    }
+                                                                    
+                                                                    if (($rows_straas['status'] >= '2' && $rows_straas['status'] <= '6') && (!empty($rows_straas['num_revised']))) {
+                                                                        $revised = '<span class="ms-2 badge rounded-pill bg-danger">Rev. '.$rows_straas['num_revised'].'</span>';
+                                                                    }else{
+                                                                        $revised = '';
+                                                                    }
+
+                                                                    if ($rows_straas['status'] == '2') {
+                                                                        echo '<td><span class="badge rounded-pill bg-warning">For Approval</span>'.$revised.'</td>';
+                                                                    }elseif ($rows_straas['status'] == '3') {
+                                                                        echo '<td><span class="badge rounded-pill bg-warning">For Assessment</span>'.$revised.'</td>';
+                                                                    }elseif ($rows_straas['status'] == '4') {
+                                                                        echo '<td><span class="badge rounded-pill bg-warning">For Provisioning</span>'.$revised.'</td>';
+                                                                    }elseif ($rows_straas['status'] == '5') {
+                                                                        echo '<td><span class="badge rounded-pill bg-warning">For Confirmation</span>'.$revised.'</td>';
+                                                                    }elseif ($rows_straas['status'] == '6') {
+                                                                        echo '<td><span class="badge rounded-pill bg-warning">For Verification</span>'.$revised.'</td>';
+                                                                    }
+                                                                    if ($rows_straas['form_type'] == '5') {
+                                                                        echo '<td class="d-flex gap-2">'.
+                                                                                    '<a class="btn btn-outline-primary btn-sm shadow-sm" href="inc/print/print_straas.php?control_number='.$rows_straas["control_number"].'" target="_blank"  ><i class="fa-fw fas fa-print"></i>Print</a>'.
+                                                                                    '<a class="btn btn-outline-primary btn-sm shadow-sm" href="#view_straas'.$rows_straas["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a>'.$cancel_btn.'</td>';
+                                                                        echo '<td>';
+                                                                            include 'inc/straas_new.php';
+                                                                        echo '</td>'; 
+                                                                    }
+                                                                    if ($rows_straas['form_type'] == '5-2') {
+                                                                        echo '<td class="d-flex gap-2">'.
+                                                                                    '<a class="btn btn-outline-primary btn-sm shadow-sm" href="inc/print/print_straas_update.php?control_number='.$rows_straas["control_number"].'" target="_blank"  ><i class="fa-fw fas fa-print"></i>Print</a>'.
+                                                                                    '<a class="btn btn-outline-primary btn-sm shadow-sm" href="#view_straas_update'.$rows_straas["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a>'.$cancel_btn.'</td>';
+                                                                        echo '<td>';
+                                                                            include 'inc/straas_update.php';
+                                                                        echo '</td>'; 
+                                                                    }         
+                                                                    echo '</tr>';
+                                                                endwhile;
+                                                        
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -632,9 +739,12 @@ include 'model/authorize_personnel.php';
 
         <script>
             $(document).ready(function(){
-                $('#hci_datatables, #tci_datatables, #cps_datatables, #baas_datatables').DataTable({
+                $('#hci_datatables, #tci_datatables, #cps_datatables, #baas_datatables, #straas_datatables').DataTable({
                     responsive: true,
-                    "order": [[ 3, "desc" ]],
+                    "columnDefs": [
+                            { "orderDataType": "date-eu", "targets": 1 },
+                    ],
+		            "order": [[ 1, "desc" ]],
                     "language": {
                         "emptyTable": "There is no data to be showed!🤗",
                         "zeroRecords": "No data found!🤗"

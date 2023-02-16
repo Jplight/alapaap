@@ -9,9 +9,11 @@ use Dompdf\Dompdf;
 date_default_timezone_set('Etc/UTC');
 
 include '../vendor/autoload.php';
-require '../vendor/dompdf/autoload.inc.php';
+
 $mail = new PHPMailer(true);
 $dompdf = new Dompdf();
+
+
 
 
 $getRecipients = mysqli_query($conn,"select * from tbl_user where role='$status' ");

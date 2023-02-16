@@ -24,6 +24,7 @@ if ($my_role == 1) {
     $query_tci    = "SELECT * FROM tbl_tci where uid = '$uid' and status = 0 and cancelled = 1";
     $query_cps    = "SELECT * FROM tbl_cps where uid = '$uid' and status = 0 and cancelled = 1";
     $query_baas    = "SELECT * FROM tbl_baas where uid = '$uid' and status = 0 and cancelled = 1";
+    $query_straas    = "SELECT * FROM tbl_straas where uid = '$uid' and status = 0 and cancelled = 1";
 }
 
 $sql_hci = mysqli_query($conn,$query_hci);
@@ -38,6 +39,8 @@ $cancelled_count_cps = mysqli_num_rows($sql_cps); // Count the number of Cancell
 $sql_baas = mysqli_query($conn,$query_baas);
 $cancelled_count_baas = mysqli_num_rows($sql_baas); // Count the number of Cancelled Form BAAS
 
+$sql_straas = mysqli_query($conn,$query_straas);
+$cancelled_count_straas = mysqli_num_rows($sql_straas); // Count the number of Cancelled Form STRAAS
 
 ?>
 <!DOCTYPE html>
@@ -137,6 +140,15 @@ $cancelled_count_baas = mysqli_num_rows($sql_baas); // Count the number of Cance
                                                 <?php 
                                                     if (($my_role == 1 ||  $my_role == 2 || $my_role == 3 || $my_role == 4 || $my_role == 5 || $my_role == 6) && $cancelled_count_baas >= 1){ // if na meet yung condition mag di-display yung badge na may total numbers of approved!
                                                         echo '<span class="position-absolute top-0 start-100 translate-middle badge badge-small rounded-pill bg-danger" >'.$cancelled_count_baas.'+</span>';
+                                                    } 
+                                                ?>                                        
+                                            </a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link position-relative" role="tab" data-bs-toggle="tab" href="#tab-5">BaaS                 
+                                                <?php 
+                                                    if (($my_role == 1 ||  $my_role == 2 || $my_role == 3 || $my_role == 4 || $my_role == 5 || $my_role == 6) && $cancelled_count_straas >= 1){ // if na meet yung condition mag di-display yung badge na may total numbers of approved!
+                                                        echo '<span class="position-absolute top-0 start-100 translate-middle badge badge-small rounded-pill bg-danger" >'.$cancelled_count_straas.'+</span>';
                                                     } 
                                                 ?>                                        
                                             </a>
@@ -397,6 +409,67 @@ $cancelled_count_baas = mysqli_num_rows($sql_baas); // Count the number of Cance
                                                 </table>
                                             </div>
                                         </div>
+                                        <div class="tab-pane" role="tabpanel" id="tab-5">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover user-select-none align-middle text-nowrap" id="straas_datatables">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Requestor</th>
+                                                            <th>Control No.</th>
+                                                            <th>Date & Time Canceled</th>
+                                                            <th>Form Type</th>
+                                                            <th>Status</th>
+                                                            <th>Action</th>
+                                                            <th></th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+
+                                                            $num = 1;
+                                                            $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where uid = '$uid' and status = '0' and cancelled = '1'  ORDER BY date_requested DESC ");
+                                                           
+                                                                while ($rows_straas = mysqli_fetch_array($sql_straas)):                        
+                                                                    $control_number = $rows_straas['control_number'];
+                                                                    $mydate = strtotime($rows_straas['date_requested']);
+                                                                    $new_date = date('F d, Y',$mydate);
+                                                                    $mytime = strtotime($rows_straas['date_requested']);
+                                                                    $new_time = date('h:i:s A',$mytime); 
+                                                                    echo '<tr>';
+                                                                    echo '<td>'.ucwords($rows_straas['fullname']).'</td>';
+                                                                    echo '<td>StraaS/'.$control_number.'</td>';
+                                                                    echo '<td>'.$new_date.'</td>';
+                                                                    echo '<td>'.$new_time.'</td>';
+                                                                    if ($rows_straas['form_type'] == '5-2') {
+                                                                        echo '<td>StraaS-Update</td>';
+                                                                    }else{
+                                                                        echo '<td>StraaS</td>';
+                                                                    }                                                      
+                                                                    if (($my_role == 1 && $rows_straas['status'] == 0) || ($my_role == 2 && $rows_straas['app_status'] == 0) || ($my_role == 3 && $rows_straas['rec_status'] == 0) || ($my_role == 4 && $rows_straas['perf_status'] == 0) || ($my_role == 5 && $rows_straas['ver_status'] == 0) || ($my_role == 6 && $rows_straas['ver2_status'] == 0)):
+                                                                        echo '<td><span class="badge rounded-pill bg-danger">Cancelled</span></td>';                       
+                                                                    endif;
+
+                                                                    if ($rows_straas['form_type'] == '5-2') {
+                                                                        echo '<td class="d-flex gap-2"><a class="btn btn-outline-primary btn-sm shadow-sm" href="#view_straas_update'.$rows_straas["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a></td>';
+                                                                        echo '<td>';
+                                                                            include 'inc/straas_update.php';
+                                                                        echo '</td>';
+                                                                    }else{
+                                                                        echo '<td class="d-flex gap-2"><a class="btn btn-outline-primary btn-sm shadow-sm" href="#view_straas'.$rows_straas["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a></td>';
+                                                                        echo '<td>';
+                                                                            include 'inc/straas_new.php';
+                                                                        echo '</td>';
+                                                                    }
+                                                                        
+                                                                    echo '</tr>';
+                                                                endwhile;
+                                                           
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -466,7 +539,7 @@ $cancelled_count_baas = mysqli_num_rows($sql_baas); // Count the number of Cance
         </script>
         <script>
             $(document).ready(function(){
-                $('#hci_datatables, #tci_datatables, #cps_datatables, #baas_datatables').DataTable({
+                $('#hci_datatables, #tci_datatables, #cps_datatables, #baas_datatables, #straas_datatables').DataTable({
                     
                     "language": {
                         "emptyTable": "There is no data to be showed!🤗",

@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid,fullname,form_type,control_number, activity,status) values ('$uid', '$fullname','$form_type','$txt_control_number', 'returned','$status') ");	
 	}
 
-	if (isset($_POST['btn_cancel'])) {
+	if (isset($_POST['btn_cancel_tci'])) {
 		$txt_control_number = $_POST['txt_control_number'];
 		$status = 0;
 		$cancelled = 1;

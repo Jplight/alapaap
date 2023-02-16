@@ -85,7 +85,7 @@ if (!empty($control_number)):
 endif;
 ?>
 <form class="text-dark" id="form_update" name="form_update" method="post" autocomplete="off">
-    <div id="view_hci_update<?php echo empty($control_number) ? '' : $control_number; ?>" class="modal fade" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div id="view_hci_update<?php echo empty($control_number) ? '' : $control_number; ?>" class="modal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-xl modal-fullscreen-xl-down" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -391,7 +391,8 @@ endif;
                         <?php endif; ?>
                         <?php if ($my_role == 1 && $status == 2): ?>
                         <div>
-                            <button class="btn btn-danger" type="submit" name="btn_hci_up_cancel" id="btn_hci_up_cancel" ><i class="fa-fw fas fa-times me-1"></i>Cancel</button>
+                            <button class="btn btn-danger launchModal" type="button" id="btn_hci_up_cancel" data-bs-toggle="modal" data-bs-target="#myModal2<?php echo $formt; echo empty($control_number) ? '' : $control_number; ?>" value="Do you want to cancel this request?"><i class="fa-fw fas fa-times me-1"></i>Cancel</button>
+                            <!-- <button class="btn btn-danger" type="submit" name="btn_hci_up_cancel" id="btn_hci_up_cancel" ><i class="fa-fw fas fa-times me-1"></i>Cancel</button> -->
                         </div>    
                         <?php endif; ?>
                         <?php include 'components/buttonGroup.php';?>

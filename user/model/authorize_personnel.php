@@ -39,6 +39,13 @@ if (isset($_POST['btn_approver'])) {
 		$form_subject = "BaaS";
 	}
 	
+	if ($_POST['form_type'] == '5' || $_POST['form_type'] == '5-2') {
+		$sql = mysqli_query($conn,"UPDATE tbl_straas set status = '$status', approver_id = '$approver_id', approver = '$approver_name', app_status = '$app_status', appr_date = NOW() where control_number = '$txt_control_number' ");	
+		if (!empty($comments)) {
+			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$approver_name','$comments', '$role', NOW()) ");
+		}		
+		$form_subject = "StraaS";
+	}
 
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$uid',  '$role', '$my_fullname','$form_type','$txt_control_number', 'approved','$status') ");
 	
@@ -90,6 +97,14 @@ if (isset($_POST['app_disapproved'])) {
 		$form_subject = "BaaS";
 	}
 
+	if ($_POST['form_type'] == 5 || $_POST['form_type'] == '5-2') {
+		$sql = mysqli_query($conn,"UPDATE tbl_straas set status = '$status', revised = null, num_revised = null, approver_id = '$approver_id', approver = '$approver_name', app_status = '$app_status', appr_date = NOW() where control_number = '$txt_control_number' ");	
+		if (!empty($comments)) {
+			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`, `remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$approver_name','$comments', '$role', NOW()) ");
+		}		
+		$form_subject = "StraaS";
+	}
+
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$approver_id',  '$role', '$my_fullname','$form_type','$txt_control_number', 'disapproved','$status') ");
 	
 	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$txt_control_number', 'disapproved','$status','0') ");
@@ -134,6 +149,14 @@ if (isset($_POST['approver_returned'])) {
 	if ($_POST['form_type'] == 4 || $_POST['form_type'] == '4-2') {
 		$sql = mysqli_query($conn,"UPDATE tbl_baas set status = '$status', revised = '$revised', num_revised = '$num_revised' ,approver_id = '$approver_id', approver = '$approver_name', app_status = '$app_status', appr_date = NOW() where control_number = '$txt_control_number' ");	
 		$form_subject = "BaaS";
+	}
+
+	if ($_POST['form_type'] == '5' || $_POST['form_type'] == '5-2') {
+		$sql = mysqli_query($conn,"UPDATE tbl_straas set status = '$status', revised = '$revised', num_revised = '$num_revised' ,approver_id = '$approver_id', approver = '$approver_name', app_status = '$app_status', appr_date = NOW() where control_number = '$txt_control_number' ");	
+		if (!empty($comments)) {
+			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$approver_name','$comments', '$role', NOW()) ");
+		}		
+		$form_subject = "StraaS";
 	}
 
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$approver_id',  '$role', '$my_fullname','$form_type','$txt_control_number', 'returned','$status') ");
@@ -190,7 +213,13 @@ if (isset($_POST['btn_reciever'])) {
 		$form_subject = "BaaS";
 	}
 	
-
+	if ($_POST['form_type'] == '5' || $_POST['form_type'] == '5-2') {
+		$sql = mysqli_query($conn,"UPDATE tbl_straas set status = '$status', reciever_id = '$reciever_id', reciever = '$reciever_name', rec_status = '$rec_status', rec_date = NOW() where control_number = '$txt_control_number' ");	
+		if (!empty($comments)) {
+			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$reciever_name','$comments','$role' ,NOW()) ");
+		}		
+		$form_subject = "StraaS";
+	}
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$reciever_id',  '$role', '$my_fullname','$form_type','$txt_control_number', 'approved','$status') ");
 	
 	$notification = mysqli_query($conn, "INSERT INTO tbl_notification (uid,fullname,form_type,control_number, activity,status,isViewed) values ('$his_uid', '$my_fullname','$form_type','$txt_control_number', 'received','$status','0') ");
@@ -237,9 +266,12 @@ if (isset($_POST['btn_performer'])) {
 		}
 		$form_subject = "CPS";	
 	}
-	if ($_POST['form_type'] == 4 || $_POST['form_type'] == '4-2') {
-		$sql = mysqli_query($conn,"UPDATE tbl_baas set status = '$status', performer_id = '$performer_id', performer = '$performer_name', perf_status = '$perf_status', perform_date = NOW() where control_number = '$txt_control_number' ");	
-		$form_subject = "BaaS";
+	if ($_POST['form_type'] == '5' || $_POST['form_type'] == '5-2') {
+		$sql = mysqli_query($conn,"UPDATE tbl_straas set status = '$status', performer_id = '$performer_id', performer = '$performer_name', perf_status = '$perf_status', perform_date = NOW() where control_number = '$txt_control_number' ");	
+		if (!empty($comments)) {
+			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$performer_name','$comments','$role' ,NOW()) ");
+		}		
+		$form_subject = "StraaS";
 	}	
 
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$performer_id',  '$role', '$my_fullname','$form_type','$txt_control_number', 'performed','$status') ");
@@ -289,9 +321,12 @@ if (isset($_POST['btn_confirmer'])) {
 		}		
 		$form_subject = "CPS";
 	}
-	if ($_POST['form_type'] == 4 || $_POST['form_type'] == '4-2') {
-		$sql = mysqli_query($conn,"UPDATE tbl_baas set status = '$status', verifier_id = '$verifier_id', verifier = '$verifier_name', ver_status = '$ver_status', ver_date = NOW() where control_number = '$txt_control_number' ");	
-		$form_subject = "BaaS";
+	if ($_POST['form_type'] == '5' || $_POST['form_type'] == '5-2') {
+		$sql = mysqli_query($conn,"UPDATE tbl_straas set status = '$status', verifier_id = '$verifier_id', verifier = '$verifier_name', ver_status = '$ver_status', ver_date = NOW() where control_number = '$txt_control_number' ");	
+		if (!empty($comments)) {
+			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$verifier_name','$comments', '$role',NOW()) ");
+		}		
+		$form_subject = "StraaS";
 	}	
 
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$verifier_id',  '$role', '$my_fullname','$form_type','$txt_control_number', 'confirmed','$status') ");
@@ -352,6 +387,7 @@ if (isset($_POST['btn_verifier'])) {
 		if (!empty($comments)) {
 			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$verifier_2_name','$comments', '$role' ,NOW()) ");
 		}
+
 		// this query is activated when forms is HCI Deleted forms
 		$sql_hostname = mysqli_query($conn,"UPDATE tbl_hostname set action = 'deleted' where hostname = '$cps_del_search_txt' ");		
 
@@ -369,6 +405,25 @@ if (isset($_POST['btn_verifier'])) {
 	if ($_POST['form_type'] == 4 || $_POST['form_type'] == '4-2') {
 		$sql = mysqli_query($conn,"UPDATE tbl_baas set status = '$status', verifier_2id = '$verifier_2id', verifier_2 = '$verifier_2_name', ver2_status = '$ver2_status', ver2_date = NOW() where control_number = '$txt_control_number' ");
 		$form_subject = "BaaS";
+	}
+	
+	if ($_POST['form_type'] == '5' || $_POST['form_type'] == '5-2') {
+		$sql = mysqli_query($conn,"UPDATE tbl_straas set status = '$status', verifier_2id = '$verifier_2id', verifier_2 = '$verifier_2_name', ver2_status = '$ver2_status', ver2_date = NOW() where control_number = '$txt_control_number' ");
+		if (!empty($comments)) {
+			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$verifier_2_name','$comments', '$role' ,NOW()) ");
+		}
+		// this query is activated when forms is HCI Deleted forms
+		$sql_hostname = mysqli_query($conn,"UPDATE tbl_hostname set action = 'deleted' where hostname = '$hci_del_search_txt' ");		
+
+        if (!empty($_POST['others_1'])) {
+        	$disk = count($_POST['others_1']);
+	        for ($i = 0; $i < $disk ; $i++) {
+	        	$query = "UPDATE tbl_forms_others set status = '1' where control_number = '$txt_control_number'  ";
+	        	$insert_query = mysqli_query($conn,$query);
+	        }      
+        }// with the table form others, it will update the status into 1, after fully verified by the verifier
+		$form_subject = "STRAAS";
+
 	}	
 
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$verifier_2id',  '$role', '$my_fullname','$form_type','$txt_control_number', 'verified','$status') ");
@@ -409,6 +464,14 @@ if (isset($_POST['btn_rejected'])) {
 	if ($_POST['form_type'] == 4 || $_POST['form_type'] == '4-2') {
 		$sql = mysqli_query($conn,"UPDATE tbl_baas set status = '$status', revised = NULL, num_revised = NULL, reciever_id = NULL, reciever = NULL, rec_status = NULL, rec_date = NULL, performer_id = NULL, performer = NULL, perf_status = NULL, perform_date = NULL, verifier_id = NULL, verifier = NULL, ver_status = NULL, ver_date = NULL where control_number = '$txt_control_number' ");
 		$form_subject = "BaaS";
+	}
+
+	if ($_POST['form_type'] == '5' || $_POST['form_type'] == '5-2') {
+		$sql = mysqli_query($conn,"UPDATE tbl_straas set status = '$status', revised = NULL, num_revised = NULL, reciever_id = NULL, reciever = NULL, rec_status = NULL, rec_date = NULL, performer_id = NULL, performer = NULL, perf_status = NULL, perform_date = NULL, verifier_id = NULL, verifier = NULL, ver_status = NULL, ver_date = NULL where control_number = '$txt_control_number' ");
+		if (!empty($comments)) {
+			$sql_remarks = mysqli_query($conn,"INSERT INTO `tbl_remarks`(`form_type`, `control_number`, `comment_id`,`uid`, `fullname`, `comments`, `role`,`remarks_date`) VALUES ('$form_type','$txt_control_number','$comment_id','$uid','$fullname','$comments', '$role', NOW()) ");
+		}
+		$form_subject = "StraS";		
 	}
 
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$approver_id',  '$role', '$my_fullname','$form_type','$txt_control_number', 'returned','$status') ");

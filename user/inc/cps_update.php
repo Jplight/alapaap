@@ -323,7 +323,8 @@ endif;
                     <?php endif; ?>
                     <?php if ($my_role == 1 && $status == 2): ?>
                     <div>
-                        <button class="btn btn-danger" type="submit" name="btn_cancel_cps_up" id="btn_cancel_cps_up" ><i class="fa-fw fas fa-times me-1"></i>Cancel</button>
+                        <button class="btn btn-danger launchModal" type="button" id="btn_cancel_cps_up" data-bs-toggle="modal" data-bs-target="#myModal2<?php echo $formt; echo empty($control_number) ? '' : $control_number; ?>" value="Do you want to cancel this request?"><i class="fa-fw fas fa-times me-1"></i>Cancel</button>
+                        <!-- <button class="btn btn-danger" type="submit" name="btn_cancel_cps_up" id="btn_cancel_cps_up" ><i class="fa-fw fas fa-times me-1"></i>Cancel</button> -->
                     </div>    
                     <?php endif; ?>
                     <?php include 'components/buttonGroup.php';?>

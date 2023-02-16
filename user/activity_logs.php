@@ -122,6 +122,12 @@
                                                             if($rows_reports['form_type'] == '4-2'){
                                                                 $form_type = 'BaaS CRRF';
                                                             }
+                                                            if($rows_reports['form_type'] == '5'){
+                                                                $form_type = 'StraaS';
+                                                            }
+                                                            if($rows_reports['form_type'] == '5-2'){
+                                                                $form_type = 'StraaS Update';
+                                                            }
    
                                                             echo '<tr>';
                                                             echo '<td>'.$form_type.'</td>';

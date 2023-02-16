@@ -4,7 +4,6 @@ ob_start();
 date_default_timezone_set('Asia/Manila');
 
 require 'inc/GetTimeAgo.php';
-
 include '../model/connection.php';
 $uid = $_SESSION['uid'];
 $role= $_SESSION['role'];
@@ -31,37 +30,37 @@ while ($rows = mysqli_fetch_array($sql)):
 endwhile;
     
 if ($my_role == 1) {
-    $query      = "SELECT uid,status from tbl_baas where uid = '$uid' and status BETWEEN 2 and 6 UNION ALL SELECT uid,status from tbl_hci where uid = '$uid' and status BETWEEN 2 and 6 UNION ALL SELECT uid,status from tbl_tci where uid = '$uid' and status BETWEEN 2 and 6 UNION ALL SELECT uid,status from tbl_cps where uid = '$uid' and status BETWEEN 2 and 6";
-    $query_2    = "SELECT uid,status FROM tbl_baas where uid = '$uid' and status = 7 UNION ALL SELECT uid,status FROM tbl_hci where uid = '$uid' and status = 7 UNION ALL SELECT uid,status FROM tbl_tci where uid = '$uid' and status = 7 UNION ALL SELECT uid,status FROM tbl_cps where uid = '$uid' and status = 7 ";
-    $query_3    = "SELECT uid,status FROM tbl_baas where uid = '$uid' and status = 1 UNION ALL SELECT uid,status FROM tbl_hci where uid = '$uid' and status = '1' UNION ALL SELECT uid,status FROM tbl_tci where uid = '$uid' and status = '1' UNION ALL SELECT uid,status FROM tbl_cps where uid = '$uid' and status = '1' ";
-    $query_4    = "SELECT uid,status,app_status FROM tbl_hci where uid = '$uid' and status = 0 and revised IS NULL and app_status = 0  UNION ALL SELECT uid,status,app_status FROM tbl_baas where uid = '$uid' and status = 0 and revised IS NULL and app_status = 0 UNION ALL SELECT uid,status,app_status FROM tbl_cps where uid = '$uid' and status = 0 and revised IS NULL and app_status = 0 ";
-    $query_5    = "SELECT uid,status,revised FROM tbl_hci where uid = '$uid' and status = '0' and revised = '1' UNION ALL SELECT uid,status,revised FROM tbl_tci where uid = '$uid' and status = '0' and revised = '1' UNION ALL SELECT uid,status,revised FROM tbl_cps where uid = '$uid' and status = '0' and revised = '1' UNION ALL SELECT uid,status,revised FROM tbl_baas where uid = '$uid' and status = '0' and revised = '1'";
-    $query_6    = "SELECT uid,status,cancelled from tbl_hci where uid = '$uid' and status = '0' and cancelled = '1' UNION ALL SELECT uid,status,cancelled from tbl_tci where uid = '$uid' and status = '0' and cancelled = '1' UNION ALL SELECT uid,status,cancelled from tbl_cps where uid = '$uid' and status = '0' and cancelled = '1' UNION ALL SELECT uid,status,cancelled from tbl_baas where uid = '$uid' and status = '0' and cancelled = '1' ";
+    $query      = "SELECT uid,status from tbl_straas where uid = '$uid' and status BETWEEN 2 and 6 UNION ALL SELECT uid,status from tbl_baas where uid = '$uid' and status BETWEEN 2 and 6 UNION ALL SELECT uid,status from tbl_hci where uid = '$uid' and status BETWEEN 2 and 6 UNION ALL SELECT uid,status from tbl_tci where uid = '$uid' and status BETWEEN 2 and 6 UNION ALL SELECT uid,status from tbl_cps where uid = '$uid' and status BETWEEN 2 and 6";
+    $query_2    = "SELECT uid,status FROM tbl_straas where uid = '$uid' and status = 7 UNION ALL SELECT uid,status FROM tbl_baas where uid = '$uid' and status = 7 UNION ALL SELECT uid,status FROM tbl_hci where uid = '$uid' and status = 7 UNION ALL SELECT uid,status FROM tbl_tci where uid = '$uid' and status = 7 UNION ALL SELECT uid,status FROM tbl_cps where uid = '$uid' and status = 7 ";
+    $query_3    = "SELECT uid,status FROM tbl_straas where uid = '$uid' and status = 1 UNION ALL SELECT uid,status FROM tbl_baas where uid = '$uid' and status = 1 UNION ALL SELECT uid,status FROM tbl_hci where uid = '$uid' and status = '1' UNION ALL SELECT uid,status FROM tbl_tci where uid = '$uid' and status = '1' UNION ALL SELECT uid,status FROM tbl_cps where uid = '$uid' and status = '1' ";
+    $query_4    = "SELECT uid,status,app_status FROM tbl_straas where uid = '$uid' and status = 0 and revised IS NULL and app_status = 0  UNION ALL SELECT uid,status,app_status FROM tbl_hci where uid = '$uid' and status = 0 and revised IS NULL and app_status = 0  UNION ALL SELECT uid,status,app_status FROM tbl_baas where uid = '$uid' and status = 0 and revised IS NULL and app_status = 0 UNION ALL SELECT uid,status,app_status FROM tbl_cps where uid = '$uid' and status = 0 and revised IS NULL and app_status = 0 ";
+    $query_5    = "SELECT uid,status,revised FROM tbl_straas where uid = '$uid' and status = '0' and revised = '1' UNION ALL SELECT uid,status,revised FROM tbl_hci where uid = '$uid' and status = '0' and revised = '1' UNION ALL SELECT uid,status,revised FROM tbl_tci where uid = '$uid' and status = '0' and revised = '1' UNION ALL SELECT uid,status,revised FROM tbl_cps where uid = '$uid' and status = '0' and revised = '1' UNION ALL SELECT uid,status,revised FROM tbl_baas where uid = '$uid' and status = '0' and revised = '1'";
+    $query_6    = "SELECT uid,status,cancelled from tbl_straas where uid = '$uid' and status = '0' and cancelled = '1' UNION ALL SELECT uid,status,cancelled from tbl_hci where uid = '$uid' and status = '0' and cancelled = '1' UNION ALL SELECT uid,status,cancelled from tbl_tci where uid = '$uid' and status = '0' and cancelled = '1' UNION ALL SELECT uid,status,cancelled from tbl_cps where uid = '$uid' and status = '0' and cancelled = '1' UNION ALL SELECT uid,status,cancelled from tbl_baas where uid = '$uid' and status = '0' and cancelled = '1' ";
 }
 
 if ($my_role == 2) {
-    $query      = "SELECT status FROM tbl_baas where status = '$my_role' UNION ALL SELECT status FROM tbl_hci where status = '$my_role' UNION ALL SELECT status FROM tbl_tci where status = '$my_role' UNION ALL SELECT status FROM tbl_cps where status = '$my_role' ";
-    $query_2    = "SELECT app_status FROM tbl_baas where approver_id = '$uid' and app_status = '1' UNION ALL SELECT app_status FROM tbl_hci where approver_id = '$uid' and app_status = '1' UNION ALL SELECT app_status FROM tbl_tci where approver_id = '$uid' and app_status = '1' UNION ALL SELECT app_status FROM tbl_cps where approver_id = '$uid' and app_status = '1' ";
-    $query_4    = "SELECT approver_id,app_status FROM tbl_baas where approver_id = '$uid' and status = '0' and revised IS NULL and app_status = '0' UNION ALL SELECT approver_id,app_status FROM tbl_hci where approver_id = '$uid' and status = '0' and revised IS NULL and app_status = '0' UNION ALL SELECT approver_id,app_status FROM tbl_cps where approver_id = '$uid' and status = '0' and revised IS NULL and app_status = '0'";
-    $query_5     = "SELECT app_status,revised FROM tbl_hci where approver_id = '$uid' and app_status = 0 and revised = '1' UNION ALL SELECT app_status,revised FROM tbl_cps where approver_id = '$uid' and status = '0' and revised = '1' and app_status = '0' UNION ALL SELECT app_status,revised FROM tbl_baas where approver_id = '$uid' and status = '0' and revised = '1' and app_status = '0' ";
+    $query      = "SELECT status FROM tbl_straas where status = '$my_role' UNION ALL SELECT status FROM tbl_baas where status = '$my_role' UNION ALL SELECT status FROM tbl_hci where status = '$my_role' UNION ALL SELECT status FROM tbl_tci where status = '$my_role' UNION ALL SELECT status FROM tbl_cps where status = '$my_role' ";
+    $query_2    = "SELECT app_status FROM tbl_straas where approver_id = '$uid' and app_status = '1' UNION ALL SELECT app_status FROM tbl_baas where approver_id = '$uid' and app_status = '1' UNION ALL SELECT app_status FROM tbl_hci where approver_id = '$uid' and app_status = '1' UNION ALL SELECT app_status FROM tbl_tci where approver_id = '$uid' and app_status = '1' UNION ALL SELECT app_status FROM tbl_cps where approver_id = '$uid' and app_status = '1' ";
+    $query_4    = "SELECT approver_id,app_status FROM tbl_straas where approver_id = '$uid' and status = '0' and revised IS NULL and app_status = '0' UNION ALL SELECT approver_id,app_status FROM tbl_baas where approver_id = '$uid' and status = '0' and revised IS NULL and app_status = '0' UNION ALL SELECT approver_id,app_status FROM tbl_hci where approver_id = '$uid' and status = '0' and revised IS NULL and app_status = '0' UNION ALL SELECT approver_id,app_status FROM tbl_cps where approver_id = '$uid' and status = '0' and revised IS NULL and app_status = '0'";
+    $query_5     = "SELECT app_status,revised FROM tbl_straas where approver_id = '$uid' and app_status = 0 and revised = '1' UNION ALL SELECT app_status,revised FROM tbl_hci where approver_id = '$uid' and app_status = 0 and revised = '1' UNION ALL SELECT app_status,revised FROM tbl_cps where approver_id = '$uid' and status = '0' and revised = '1' and app_status = '0' UNION ALL SELECT app_status,revised FROM tbl_baas where approver_id = '$uid' and status = '0' and revised = '1' and app_status = '0' ";
 }
 if ($my_role == 3) {
-    $query    = "SELECT status FROM tbl_baas where status = '$my_role' UNION ALL SELECT status FROM tbl_hci where status = '$my_role' UNION ALL SELECT status FROM tbl_tci where status = '$my_role' UNION ALL SELECT status FROM tbl_cps where status = '$my_role' ";
-    $query_2    = "SELECT rec_status FROM tbl_baas where reciever_id = '$uid' and rec_status = '1' UNION ALL SELECT rec_status FROM tbl_hci where reciever_id = '$uid' and rec_status = '1' UNION ALL SELECT rec_status FROM tbl_tci where reciever_id = '$uid' and rec_status = '1' UNION ALL SELECT rec_status FROM tbl_cps where reciever_id = '$uid' and rec_status = '1' ";
-    $query_5     = "SELECT rec_status,revised FROM tbl_hci where reciever_id = '$uid' and rec_status = 0 and revised = '1' UNION ALL SELECT rec_status,revised FROM tbl_tci where reciever_id = '$uid' and rec_status = 0 and revised = '1' UNION ALL SELECT rec_status,revised FROM tbl_cps where reciever_id = '$uid' and rec_status = 0 and revised = '1' UNION ALL SELECT rec_status,revised FROM tbl_baas where reciever_id = '$uid' and rec_status = 0 and revised = '1' ";
+    $query    = "SELECT status FROM tbl_straas where status = '$my_role' UNION ALL SELECT status FROM tbl_baas where status = '$my_role' UNION ALL SELECT status FROM tbl_hci where status = '$my_role' UNION ALL SELECT status FROM tbl_tci where status = '$my_role' UNION ALL SELECT status FROM tbl_cps where status = '$my_role' ";
+    $query_2    = "SELECT rec_status FROM tbl_straas where reciever_id = '$uid' and rec_status = '1' UNION ALL SELECT rec_status FROM tbl_baas where reciever_id = '$uid' and rec_status = '1' UNION ALL SELECT rec_status FROM tbl_hci where reciever_id = '$uid' and rec_status = '1' UNION ALL SELECT rec_status FROM tbl_tci where reciever_id = '$uid' and rec_status = '1' UNION ALL SELECT rec_status FROM tbl_cps where reciever_id = '$uid' and rec_status = '1' ";
+    $query_5     = "SELECT rec_status,revised FROM tbl_straas where reciever_id = '$uid' and rec_status = 0 and revised = '1' UNION ALL SELECT rec_status,revised FROM tbl_hci where reciever_id = '$uid' and rec_status = 0 and revised = '1' UNION ALL SELECT rec_status,revised FROM tbl_tci where reciever_id = '$uid' and rec_status = 0 and revised = '1' UNION ALL SELECT rec_status,revised FROM tbl_cps where reciever_id = '$uid' and rec_status = 0 and revised = '1' UNION ALL SELECT rec_status,revised FROM tbl_baas where reciever_id = '$uid' and rec_status = 0 and revised = '1' ";
 }
 if ($my_role == 4) {
-    $query    = "SELECT status FROM tbl_baas where status = '$my_role' UNION ALL SELECT status FROM tbl_hci where status = '$my_role' UNION ALL SELECT status FROM tbl_tci where status = '$my_role' UNION ALL SELECT status FROM tbl_cps where status = '$my_role' ";
-    $query_2    = "SELECT perf_status FROM tbl_baas where performer_id = '$uid' and perf_status = '1' UNION ALL SELECT perf_status FROM tbl_hci where performer_id = '$uid' and perf_status = '1' UNION ALL SELECT perf_status FROM tbl_tci where performer_id = '$uid' and perf_status = '1' UNION ALL SELECT perf_status FROM tbl_cps where performer_id = '$uid' and perf_status = '1' ";
-    $query_5     = "SELECT status,perf_status FROM tbl_hci where performer_id = '$uid' and perf_status = '0' and revised = '1' UNION ALL SELECT perf_status,revised FROM tbl_tci where performer_id = '$uid' and perf_status = 0 and revised = '1' UNION ALL SELECT perf_status,revised FROM tbl_cps where performer_id = '$uid' and perf_status = 0 and revised = '1' UNION ALL SELECT perf_status,revised FROM tbl_baas where performer_id = '$uid' and perf_status = 0 and revised = '1' ";
+    $query    = "SELECT status FROM tbl_straas where status = '$my_role' UNION ALL SELECT status FROM tbl_baas where status = '$my_role' UNION ALL SELECT status FROM tbl_hci where status = '$my_role' UNION ALL SELECT status FROM tbl_tci where status = '$my_role' UNION ALL SELECT status FROM tbl_cps where status = '$my_role' ";
+    $query_2    = "SELECT perf_status FROM tbl_straas where performer_id = '$uid' and perf_status = '1' UNION ALL SELECT perf_status FROM tbl_baas where performer_id = '$uid' and perf_status = '1' UNION ALL SELECT perf_status FROM tbl_hci where performer_id = '$uid' and perf_status = '1' UNION ALL SELECT perf_status FROM tbl_tci where performer_id = '$uid' and perf_status = '1' UNION ALL SELECT perf_status FROM tbl_cps where performer_id = '$uid' and perf_status = '1' ";
+    $query_5     = "SELECT status,perf_status FROM tbl_straas where performer_id = '$uid' and perf_status = '0' and revised = '1' UNION ALL SELECT status,perf_status FROM tbl_hci where performer_id = '$uid' and perf_status = '0' and revised = '1' UNION ALL SELECT perf_status,revised FROM tbl_tci where performer_id = '$uid' and perf_status = 0 and revised = '1' UNION ALL SELECT perf_status,revised FROM tbl_cps where performer_id = '$uid' and perf_status = 0 and revised = '1' UNION ALL SELECT perf_status,revised FROM tbl_baas where performer_id = '$uid' and perf_status = 0 and revised = '1' ";
 }
 if ($my_role == 5) {
-    $query    = "SELECT status FROM tbl_baas where status = '$my_role' UNION ALL SELECT status FROM tbl_hci where status = '$my_role' UNION ALL SELECT status FROM tbl_tci where status = '$my_role' UNION ALL SELECT status FROM tbl_cps where status = '$my_role' ";
-    $query_2    = "SELECT ver_status FROM tbl_baas where verifier_id = '$uid' and ver_status = '1' UNION ALL SELECT ver_status FROM tbl_hci where verifier_id = '$uid' and ver_status = '1' UNION ALL SELECT ver_status FROM tbl_tci where verifier_id = '$uid' and ver_status = '1' UNION ALL SELECT ver_status FROM tbl_cps where verifier_id = '$uid' and ver_status = '1' ";
+    $query    = "SELECT status FROM tbl_straas where status = '$my_role' UNION ALL SELECT status FROM tbl_baas where status = '$my_role' UNION ALL SELECT status FROM tbl_hci where status = '$my_role' UNION ALL SELECT status FROM tbl_tci where status = '$my_role' UNION ALL SELECT status FROM tbl_cps where status = '$my_role' ";
+    $query_2    = "SELECT ver_status FROM tbl_straas where verifier_id = '$uid' and ver_status = '1' UNION ALL SELECT ver_status FROM tbl_baas where verifier_id = '$uid' and ver_status = '1' UNION ALL SELECT ver_status FROM tbl_hci where verifier_id = '$uid' and ver_status = '1' UNION ALL SELECT ver_status FROM tbl_tci where verifier_id = '$uid' and ver_status = '1' UNION ALL SELECT ver_status FROM tbl_cps where verifier_id = '$uid' and ver_status = '1' ";
 }
 if ($my_role == 6) {
-    $query    = "SELECT status FROM tbl_baas where status = '$my_role' UNION ALL SELECT status FROM tbl_hci where status = '$my_role' UNION ALL SELECT status FROM tbl_tci where status = '$my_role' UNION ALL SELECT status FROM tbl_cps where status = '$my_role' ";
-    $query_2    = "SELECT ver2_status FROM tbl_baas where verifier_2id = '$uid' and ver2_status = '1' UNION ALL SELECT ver2_status FROM tbl_hci where verifier_2id = '$uid' and ver2_status = '1' UNION ALL SELECT ver2_status FROM tbl_tci where verifier_2id = '$uid' and ver2_status = '1' UNION ALL SELECT ver2_status FROM tbl_cps where verifier_2id = '$uid' and ver2_status = '1' ";
+    $query    = "SELECT status FROM tbl_straas where status = '$my_role' UNION ALL SELECT status FROM tbl_baas where status = '$my_role' UNION ALL SELECT status FROM tbl_hci where status = '$my_role' UNION ALL SELECT status FROM tbl_tci where status = '$my_role' UNION ALL SELECT status FROM tbl_cps where status = '$my_role' ";
+    $query_2    = "SELECT ver2_status FROM tbl_straas where verifier_2id = '$uid' and ver2_status = '1' UNION ALL SELECT ver2_status FROM tbl_baas where verifier_2id = '$uid' and ver2_status = '1' UNION ALL SELECT ver2_status FROM tbl_hci where verifier_2id = '$uid' and ver2_status = '1' UNION ALL SELECT ver2_status FROM tbl_tci where verifier_2id = '$uid' and ver2_status = '1' UNION ALL SELECT ver2_status FROM tbl_cps where verifier_2id = '$uid' and ver2_status = '1' ";
 }
 
 $sql_count = mysqli_query($conn,$query);
@@ -104,6 +103,9 @@ include 'model/cps_form_delete.php';
 
 include 'model/baas_form.php';
 include 'model/baas_form_2.php';
+
+include 'model/straas_form.php';
+include 'model/straas_update_form.php';
 include 'model/save_profile.php';
 ?>
 <!DOCTYPE html>
@@ -119,6 +121,24 @@ include 'model/save_profile.php';
         <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
         <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <script src="assets/js/jquery-3.6.0.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.validate.js"></script>
+        <script src="assets/js/theme.js"></script>
+        <script src="controller/hci_script.js"></script>
+        <script src="controller/hci_del.js"></script>
+        <script src="controller/hci_clone_script.js"></script>
+        <script src="controller/weng.js"></script>
+        <script src="controller/weng2.js"></script>
+        <script src="controller/cps_script.js"></script>
+        <script src="controller/cps_up_script.js"></script>
+        <script src="controller/cps_del_script.js"></script>
+        <script src="controller/tci_script.js"></script>
+        <script src="controller/straas_new.js"></script>
+        <script src="controller/straas_update.js"></script>
+        <script src="assets/js/sweetalert2@11.js"></script>
+        <!-- <script src="controller/validation.js"></script> -->
+        <script src="controller/global.validation.js"></script>
         <style>
         /* width */
         ::-webkit-scrollbar {
@@ -219,31 +239,40 @@ include 'model/save_profile.php';
                                 <a class="btn btn-success shadow-none text-white" href="#" data-bs-toggle="dropdown">Select Services<i class="fa-fw fas fa-chevron-down ms-1"></i></a>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                   <li><a class="dropdown-item user-select-none" style="cursor: pointer;"><span class="">HCI</span><i class="fa-fw fas fa-chevron-down m-auto"></i></a>
-                                     <ul class="submenu submenu-left dropdown-menu">
+                                     <ul class="submenu submenu-left dropdown-menu shadow-lg">
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_hci" style="cursor: pointer;">NEW</a></li>
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_hci_update" style="cursor: pointer;">UPDATE</a></li>
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_hci_delete" style="cursor: pointer;">DELETE</a></li>
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_hci_clone" style="cursor: pointer;">CLONING</a></li>
+                                        <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_hci_import" style="cursor: pointer;">IMPORT DATA</a></li>
                                      </ul>
                                   </li>
-                                  <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_tci" style="cursor: pointer;">Adhoc Request</a></li>                           
-                                  <li><a class="dropdown-item user-select-none" style="cursor: pointer;"><span class="">CPS</span><i class="fa-fw fas fa-chevron-down m-auto"></i></a>
-                                     <ul class="submenu submenu-left dropdown-menu">
+                                  <li><a class="dropdown-item user-select-none" style="cursor: pointer;"><span class="">ADHOC</span><i class="fa-fw fas fa-chevron-down m-auto"></i></a>
+                                     <ul class="submenu submenu-left dropdown-menu shadow-lg">
+                                        <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_tci" style="cursor: pointer;">NEW</a></li>
+                                        <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_tci_import" style="cursor: pointer;">IMPORT DATA</a></li>
+                                     </ul>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item user-select-none" style="cursor: pointer;"><span class="">CPS</span><i class="fa-fw fas fa-chevron-down m-auto"></i></a>
+                                    <ul class="submenu submenu-left dropdown-menu shadow-lg">
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_cps" style="cursor: pointer;">NEW</a></li>
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_cps_update" style="cursor: pointer;">UPDATE</a></li>
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_cps_delete" style="cursor: pointer;">DELETE</a></li>
                                      </ul>
                                   </li>
+                                     
+                                  </li>
                                   <li><a class="dropdown-item user-select-none" style="cursor: pointer;"><span class="">BAAS</span><i class="fa-fw fas fa-chevron-down m-auto"></i></a>
-                                     <ul class="submenu submenu-left dropdown-menu">
+                                     <ul class="submenu submenu-left dropdown-menu shadow-lg">
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_baas" style="cursor: pointer;">Client Server Registration Form</a></li>
                                         <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_baas_2" style="cursor: pointer;">Client Restore and Retrieve Form</a></li>
                                      </ul>
                                   </li>
                                   <li><a class="dropdown-item user-select-none" style="cursor: pointer;"><span class="">STRAAS</span><i class="fa-fw fas fa-chevron-down m-auto"></i></a>
-                                     <ul class="submenu submenu-left dropdown-menu">
-                                        <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#" style="cursor: pointer;">NEW</a></li>
-                                        <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#" style="cursor: pointer;">UPDATE</a></li>
+                                     <ul class="submenu submenu-left dropdown-menu shadow-lg">
+                                        <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_straas" style="cursor: pointer;">NEW</a></li>
+                                        <li><a class="dropdown-item user-select-none" data-bs-toggle="modal" data-bs-target="#view_straas_update" style="cursor: pointer;">UPDATE</a></li>
                                      </ul>
                                   </li>
                                 </ul>
@@ -401,6 +430,65 @@ include 'model/save_profile.php';
             <a class="border rounded d-inline scroll-to-top" href="#page-top">
                 <i class="fas fa-angle-up"></i>
             </a>
+
+            <!-- import form  -->
+            <form class="text-dark" method="post" id="import-form" name="" enctype="multipart/form-data">
+                <div id="view_tci_import" class="modal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
+                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title fw-bold">ADHOC</h4>
+                                <button class="btn shadow-none" data-bs-toggle="tooltip" data-bs-placement="bottom" type="button" data-bs-dismiss="modal" title="Close">
+                                    <i class="fas fa-times fa-2x text-danger"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-group my-3">
+                                    <input class="form-control form-control-sm" type="file" name="file" id="file" accept=".csv, .xlsx, .xls">
+                                    <button class="btn btn-secondary btn-sm" type="button" id="preview-btn" value="Preview"><i class="fa-fw fas fa-eye me-1"></i>Preview</button>
+                                </div>
+                                <div id="rendered-table"></div>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-between">
+                                <small class="small text-danger">Note: file to be imported should be excel/csv only.</small>
+                                <div class="d-flex justify-content-end gap-2">
+                                    <button class="btn btn-primary btn-sm" type="button" id="submit-btn" value="Import"><i class="fa-fw fas fa-file-import me-1"></i>Import</button>
+                                </div>         
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+            </form>
+
+            <!-- import form  -->
+            <form class="text-dark" method="post" id="import-form" name="" enctype="multipart/form-data">
+                <div id="view_hci_import" class="modal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
+                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title fw-bold">ALL MANAGED SERVICES CHANGES</h4>
+                                <button class="btn shadow-none" data-bs-toggle="tooltip" data-bs-placement="bottom" type="button" data-bs-dismiss="modal" title="Close">
+                                    <i class="fas fa-times fa-2x text-danger"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-group my-3">
+                                    <input class="form-control form-control-sm" type="file" name="file_changes" id="file_changes" accept=".csv, .xlsx, .xls">
+                                    <button class="btn btn-secondary btn-sm" type="button" id="preview-btn-hci" value="Preview"><i class="fa-fw fas fa-eye me-1"></i>Preview</button>
+                                </div>
+                                <div id="rendered-table-hci"></div>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-between">
+                                <small class="small text-danger">Note: file to be imported should be excel/csv only.</small>
+                                <div class="d-flex justify-content-end gap-2">
+                                    <button class="btn btn-primary btn-sm" type="button" id="submit-btn-hci" value="Import"><i class="fa-fw fas fa-file-import me-1"></i>Import</button>
+                                </div>         
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+            </form>
+
         </div>
         <?php 
             include 'inc/hci_new.php';
@@ -408,31 +496,102 @@ include 'model/save_profile.php';
             include 'inc/hci_delete.php';
             include 'inc/hci_cloning.php';
             include 'inc/tci_modal.php';
+            include 'inc/tci_import_data_modal.php';
             include 'inc/cps_new.php';
             include 'inc/cps_update.php';
             include 'inc/cps_delete.php';
             include 'inc/baas_modal.php';
             include 'inc/baas_modal_2.php';
             include 'inc/change_role_modal.php'; 
+            include 'inc/straas_new.php';
+            include 'inc/straas_update.php';
         ?>
+        <script>
+            $(document).ready(function() {
+                $('#preview-btn').click(function() {  
+                    const file = $("input[name='file']").val();
+                    if (!file) {
+                    alert("Please select a file");
+                    return; 
+                    }
 
-        <script src="assets/js/jquery-3.6.0.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/js/jquery.validate.js"></script>
-        <script src="assets/js/theme.js"></script>
-        <script src="controller/hci_script.js"></script>
-        <script src="controller/hci_del.js"></script>
-        <script src="controller/hci_clone_script.js"></script>
-        <script src="controller/weng.js"></script>
-        <script src="controller/weng2.js"></script>
-        <script src="controller/cps_script.js"></script>
-        <script src="controller/cps_up_script.js"></script>
-        <script src="controller/cps_del_script.js"></script>
-        <script src="controller/tci_script.js"></script>
-        <script src="assets/js/sweetalert2@11.js"></script>
-        <!-- <script src="controller/validation.js"></script> -->
-        <script src="controller/global.validation.js"></script>
-        
+
+                    const file_data = $('input[name="file"]').prop('files')[0];
+                    const form_data = new FormData();
+                    form_data.append('file', file_data);
+
+                    $.ajax({    
+                        url: 'model/import/import-preview.php', // the endpoint
+                        dataType: 'text',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,
+                        type: 'post',
+                        success: function(data) {                             
+                            $("#rendered-table").html(data);
+                            console.log(data)
+                            $("#view_tci_import").find('.modal-dialog').addClass('modal-xl');
+                        }
+                    })
+                })
+
+                $('#preview-btn-hci').click(function() {  
+                    const file = $("input[name='file_changes']").val();
+                    if (!file) {
+                    alert("Please select a file");
+                    return; 
+                    }
+
+
+                    const file_data = $('input[name="file_changes"]').prop('files')[0];
+                    const form_data = new FormData();
+                    form_data.append('file', file_data);
+
+                    $.ajax({    
+                        url: 'model/import/changes/import-preview.php', // the endpoint
+                        dataType: 'text',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,
+                        type: 'post',
+                        success: function(data) {                             
+                            $("#rendered-table-hci").html(data);
+                            console.log(data)
+                            $("#view_hci_import").find('.modal-dialog').addClass('modal-xl');
+                        }
+                    })
+                })
+
+            })
+        </script> 
+        <script>
+        $(document).ready(function() {
+            $("#submit-btn").click(function() {
+                
+                const file = $("input[name='file']").val();
+                if (!file) {
+                alert("Please select a file");
+                return;
+                }
+
+                const formData = new FormData($("#import-form")[0]);
+                $.ajax({
+                url: 'model/import/import-submit.php',
+                type: 'POST',
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    alert(data);
+                }
+                });
+            });
+
+        });
+        </script>       
         <script>  
             $(document).ready(function(){                
                 $(".os").on('change',function(){
@@ -582,7 +741,8 @@ include 'model/save_profile.php';
                 });
 
             });
-        </script>       
+        </script>
+               
     </body>
 </html>
 <?php ob_end_flush(); ?>

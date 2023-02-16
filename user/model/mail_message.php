@@ -32,6 +32,8 @@ if($status >=2 && $status <=6){
     if ($form_type === "3-2"){ $form_ft = "a Delete CPS";}
     if ($form_type === "4"){ $form_ft = "a CSRF";}
     if ($form_type === "4-2"){ $form_ft = "a CRRF";}
+    if ($form_type === "5"){ $form_ft = "a New StraaS";}
+    if ($form_type === "5-2"){ $form_ft = "an Update StraaS";}
 
     if($status >=2 && $status <=6){
 
@@ -154,6 +156,14 @@ if($status >=2 && $status <=6){
         if ($_POST['form_type'] == '4-2'){
             $link_pdf = "<a href='http://".$_SERVER['SERVER_NAME']."/user/inc/print/print_baas_crrf.php?control_number=".$control_number."'>Click Here</a><br><br>";
             $forms = 'BaaS';
+        }
+        if ($_POST['form_type'] == '5'){
+            $link_pdf = "<a href='http://".$_SERVER['SERVER_NAME']."/user/inc/print/print_straas.php?control_number=".$control_number."'>Click Here</a><br><br>";
+            $forms = 'StraaS';
+        }
+        if ($_POST['form_type'] == '5-2'){
+            $link_pdf = "<a href='http://".$_SERVER['SERVER_NAME']."/user/inc/print/print_straas_update.php?control_number=".$control_number."'>Click Here</a><br><br>";
+            $forms = 'StraaS';
         }
 
         $message = "Hi <b>".ucwords($fullname)."</b>,<br><br>".

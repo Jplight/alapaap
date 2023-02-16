@@ -20,7 +20,7 @@ if (isset($_SESSION['control_number']) && isset($_SESSION['form_type']) ):
         $form_type = "HCI CLONE";
     }
     if ($form_type == '2'){
-        $form_type = "Adhoc";
+        $form_type = "ADHOC";
     }
     if ($form_type == '3'){
         $form_type = "CPS NEW";
@@ -32,15 +32,22 @@ if (isset($_SESSION['control_number']) && isset($_SESSION['form_type']) ):
         $form_type = "CPS DELETE";
     }    
     if ($form_type == '4') {
-        $form_type = "BaaS CSRF";
+        $form_type = "BAASS CSRF";
     }
     if ($form_type == '4-2') {
-        $form_type = "BaaS CRRF";
+        $form_type = "BAASS CRRF";
+    }
+    if ($form_type == '5') {
+        $form_type = "STRAAS NEW";
+    }
+    if ($form_type == '5-2') {
+        $form_type = "STRAAS UPDATE";
     }
     $sql = "SELECT control_number from tbl_hci where control_number = '$control_number'"
             ."UNION ALL SELECT control_number from tbl_tci where control_number = '$control_number'"
-            . "UNION ALL SELECT control_number from tbl_cps where control_number = '$control_number'"
-            ."UNION ALL SELECT control_number from tbl_baas where control_number = '$control_number' ";
+            ."UNION ALL SELECT control_number from tbl_cps where control_number = '$control_number'"
+            ."UNION ALL SELECT control_number from tbl_baas where control_number = '$control_number' "
+            ."UNION ALL SELECT control_number from tbl_straas where control_number = '$control_number'";
 
     $sql_notif = mysqli_query($conn,$sql);
     $count_notif = mysqli_num_rows($sql_notif);

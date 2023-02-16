@@ -61,7 +61,7 @@ endif;
 
 
     <form class="text-dark" method="post" id="frm_baas_2"> 
-        <div class="modal fade" role="dialog" tabindex="-1" id="view_baas_2<?php echo empty($control_number) ? '' : $control_number; ?>" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal" role="dialog" tabindex="-1" id="view_baas_2<?php echo empty($control_number) ? '' : $control_number; ?>" data-bs-backdrop="static" data-bs-keyboard="false">
             <div class="modal-dialog modal-xl modal-dialog-centered modal-fullscreen-lg-down" role="document">
                 <div class="modal-content">                              
                     <div class="modal-header">
@@ -365,7 +365,8 @@ endif;
                         <?php endif; ?>
                         <?php if ($my_role == 1 && $status == 2): ?>
                         <div>
-                            <button class="btn btn-danger" type="submit" name="btn_cancel_crrf" id="btn_cancel_crrf"><i class="fa-fw fas fa-times me-1"></i>Cancel</button>
+                            <button class="btn btn-danger launchModal" type="button" id="btn_cancel_crrf" data-bs-toggle="modal" data-bs-target="#myModal2<?php echo $formt; echo empty($control_number) ? '' : $control_number; ?>" value="Do you want to cancel this request?"><i class="fa-fw fas fa-times me-1"></i>Cancel</button>
+                            <!-- <button class="btn btn-danger" type="submit" name="btn_cancel_crrf" id="btn_cancel_crrf"><i class="fa-fw fas fa-times me-1"></i>Cancel</button> -->
                         </div>    
                         <?php endif; ?>
                         <?php include 'components/buttonGroup.php';?>   

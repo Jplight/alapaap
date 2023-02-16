@@ -338,8 +338,10 @@ endif;
                         <?php endif; ?>
                         <?php if ($my_role == 1 && $status == 2): ?>
                         <div>
-                            <div class="btn btn-danger" id="hci_cancel_1" ><i class="fa-fw fas fa-times me-1"></i>Cancel</div>
-                            <button type="submit" name="btn_hci_clon_cancel" hidden></button>
+                            <button class="btn btn-danger launchModal" type="button" id="btn_hci_clon_cancel" data-bs-toggle="modal" data-bs-target="#myModal2<?php echo $formt; echo empty($control_number) ? '' : $control_number; ?>" value="Do you want to cancel this request?"><i class="fa-fw fas fa-times me-1"></i>Cancel</button>
+
+                            <!-- <div class="btn btn-danger" id="hci_cancel_1" ><i class="fa-fw fas fa-times me-1"></i>Cancel</div>
+                            <button type="submit" name="btn_hci_clon_cancel" hidden></button> -->
                         </div>    
                         <?php endif; ?>
                         

@@ -25,6 +25,7 @@ if ($my_role == 1) {
     $query_tci = "SELECT uid,status FROM tbl_tci where uid = '$uid' and status = 1";
     $query_cps = "SELECT uid,status FROM tbl_cps where uid = '$uid' and status = 1";
     $query_baas    = "SELECT uid,status FROM tbl_baas where uid = '$uid' and status = 1";
+    $query_straas    = "SELECT uid,status FROM tbl_straas where uid = '$uid' and status = 1";
 }
 
 $sql_hci = mysqli_query($conn,$query_hci);
@@ -39,6 +40,8 @@ $draft_cps = mysqli_num_rows($sql_cps); // Count the number of Draft Form TCI
 $sql_baas = mysqli_query($conn,$query_baas);
 $draft_baas = mysqli_num_rows($sql_baas); // Count the number of Draft Form BaaS
 
+$sql_straas = mysqli_query($conn,$query_straas);
+$draft_straas = mysqli_num_rows($sql_straas); // Count the number of Draft Form BaaS
 include 'model/hci_form.php';
 include 'model/hci_update_form.php';
 include 'model/tci_form.php';
@@ -46,6 +49,7 @@ include 'model/cps_form.php';
 include 'model/cps_form_update.php';
 include 'model/baas_form.php';
 include 'model/baas_form_2.php';
+include 'model/straas_form.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -142,6 +146,15 @@ include 'model/baas_form_2.php';
                                                 <?php 
                                                     if ($my_role == 1 && $draft_baas >= 1):
                                                         echo '<span class="position-absolute top-0 start-100 translate-middle badge badge-small rounded-pill bg-danger" >'.$draft_baas.' +</span>';
+                                                    endif 
+                                                ?>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link position-relative" role="tab" data-bs-toggle="tab" href="#tab-5">StraaS                 
+                                                <?php 
+                                                    if ($my_role == 1 && $draft_straas >= 1):
+                                                        echo '<span class="position-absolute top-0 start-100 translate-middle badge badge-small rounded-pill bg-danger" >'.$draft_straas.' +</span>';
                                                     endif 
                                                 ?>
                                             </a>
@@ -421,6 +434,72 @@ include 'model/baas_form_2.php';
                                                 </table>
                                             </div>
                                         </div>
+                                        <div class="tab-pane" role="tabpanel" id="tab-5">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover align-middle text-nowrap user-select-none" id="straas_datatables">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Requestor</th>
+                                                            <th>Control No.</th>
+                                                            <th>Date</th>
+                                                            <th>Time</th>
+                                                            <th>Form Type</th>
+                                                            <th>Status</th>
+                                                            <th>Action</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                            $num = 1;
+                                                            $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where uid = '$uid' and status = '1' ORDER BY date_requested DESC ");
+                                                            $count_baas = mysqli_num_rows($sql_straas);
+                                                       
+                                                                while ($rows_straas = mysqli_fetch_array($sql_straas)):                        
+                                                                    $control_number = $rows_straas['control_number'];
+                                                                    $mydate = strtotime($rows_straas['date_requested']);
+                                                                    $new_date = date('F d, Y',$mydate);
+                                                                    $mytime = strtotime($rows_straas['date_requested']);
+                                                                    $new_time = date('h:i:s A',$mytime);
+                                                                    echo '<tr>';
+                                                                    echo '<td>'.ucwords($rows_straas['fullname']).'</td>';
+                                                                    echo '<td>StraaS/'.$control_number.'</td>';
+                                                                    echo '<td>'.$new_date.'</td>';
+                                                                    echo '<td>'.$new_time.'</td>';
+
+                                                                    if ($rows_straas['form_type'] == '5-2') {
+                                                                        echo '<td>StraaS-Update</td>';
+                                                                    }else{
+                                                                        echo '<td>StraaS</td>';
+                                                                    }
+
+                                                                    if ($rows_straas['status'] == '1' && $rows_straas['revised'] == '1') {
+                                                                        $revised = '<span class="ms-2 badge rounded-pill bg-danger">Revised</span>';
+                                                                    }else{
+                                                                        $revised = '';
+                                                                    }
+
+                                                                    echo '<td><span class="badge rounded-pill bg-secondary">Pending</span>'.$revised.'</td>';
+                                                                    if ($rows_straas['form_type'] == '5-2') {
+                                                                        echo '<td class="d-flex gap-2"><a class="btn btn-outline-primary btn-sm shadow-sm" href="#view_straas_update'.$rows_straas["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a></td>';
+                                                                        echo '<td>';
+                                                                        include 'inc/straas_update.php';
+                                                                        echo '</td>';
+                                                                    }else{
+                                                                        echo '<td class="d-flex gap-2"><a class="btn btn-outline-primary btn-sm shadow-sm" href="#view_straas'.$rows_straas["control_number"].'" data-bs-toggle="modal" ><i class="fa-fw fas fa-eye me-1"></i>View</a></td>';
+                                                                        echo '<td>';
+                                                                        include 'inc/straas_new.php';
+                                                                        echo '</td>';
+                                                                    }
+                                                                        
+                                                                    echo '</tr>';
+                                                                endwhile; 
+                                                                                                                      
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -460,7 +539,7 @@ include 'model/baas_form_2.php';
         <script>
             $(document).ready(function(){
 
-                $('#hci_datatables, #tci_datatables, #cps_datatables, #baas_datatables').DataTable({
+                $('#hci_datatables, #tci_datatables, #cps_datatables, #baas_datatables, #straas_datatables').DataTable({
                     responsive: true,
                     "language": {
                         "emptyTable": "There is no data to be showed!🤗",
