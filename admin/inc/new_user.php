@@ -30,7 +30,7 @@
                     <div class="mb-2">
                         <!-- <label for="d-block">Generated Password</label> -->
                         <div class="input-group">
-                            <input type="hidden" class="form-control"  name="pass" rel="gp" data-size="10" data-character-set="a-z,A-Z,0-9,#" readonly required >
+                            <input type="hidden" class="form-control"  name="pass" rel="gp" data-size="8" data-character-set="a-z,A-Z,0-9" readonly required >
                             <!-- <span class="input-group-btn">
                                 <button type="button" class="btn btn-default getNewPass">
                                     <span class="fa fa-refresh"></span>
