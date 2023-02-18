@@ -44,7 +44,7 @@ if (isset($_POST['app_disapproved'])) {
         $mail->Port       = 25;                               
         $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
         if($status == 7){
-            $mail->setFrom('alapaapbsp@gmail.com', 'BSP Alapaap');
+            $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
             try{
                 $mail->addAddress($_POST['form_owner_mail'], $_POST['fullname']);
             }catch (Exception $e) {
@@ -53,7 +53,7 @@ if (isset($_POST['app_disapproved'])) {
         }else{
 
             //Recipients
-            $mail->setFrom('alapaapbsp@gmail.com', 'BSP Alapaap');
+            $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
             foreach ($getRecipients as $row) {
                 try {
                     $mail->addAddress($row['email_add'], $row['first_name']);
