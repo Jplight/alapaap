@@ -266,6 +266,11 @@ if (isset($_POST['btn_performer'])) {
 		}
 		$form_subject = "CPS";	
 	}
+	if ($_POST['form_type'] == '4' || $_POST['form_type'] == '4-2') {
+		$sql = mysqli_query($conn,"UPDATE tbl_baas set status = '$status', performer_id = '$performer_id', performer = '$performer_name', perf_status = '$perf_status', perform_date = NOW() where control_number = '$txt_control_number' ");		
+		$form_subject = "BaaS";
+	}	
+
 	if ($_POST['form_type'] == '5' || $_POST['form_type'] == '5-2') {
 		$sql = mysqli_query($conn,"UPDATE tbl_straas set status = '$status', performer_id = '$performer_id', performer = '$performer_name', perf_status = '$perf_status', perform_date = NOW() where control_number = '$txt_control_number' ");	
 		if (!empty($comments)) {
@@ -273,6 +278,7 @@ if (isset($_POST['btn_performer'])) {
 		}		
 		$form_subject = "StraaS";
 	}	
+
 
 	$activity_logs = mysqli_query($conn, "INSERT INTO tbl_activity_logs (uid, role, fullname,form_type,control_number, activity,status) values ('$performer_id',  '$role', '$my_fullname','$form_type','$txt_control_number', 'performed','$status') ");
 	
@@ -321,6 +327,12 @@ if (isset($_POST['btn_confirmer'])) {
 		}		
 		$form_subject = "CPS";
 	}
+
+	if ($_POST['form_type'] == '4' || $_POST['form_type'] == '4-2') {
+		$sql = mysqli_query($conn,"UPDATE tbl_baas set status = '$status', verifier_id = '$verifier_id', verifier = '$verifier_name', ver_status = '$ver_status', ver_date = NOW() where control_number = '$txt_control_number' ");			
+		$form_subject = "BaaS";
+	}	
+
 	if ($_POST['form_type'] == '5' || $_POST['form_type'] == '5-2') {
 		$sql = mysqli_query($conn,"UPDATE tbl_straas set status = '$status', verifier_id = '$verifier_id', verifier = '$verifier_name', ver_status = '$ver_status', ver_date = NOW() where control_number = '$txt_control_number' ");	
 		if (!empty($comments)) {
@@ -402,7 +414,7 @@ if (isset($_POST['btn_verifier'])) {
 		$form_subject = "CPS";
 
 	}
-	if ($_POST['form_type'] == 4 || $_POST['form_type'] == '4-2') {
+	if ($_POST['form_type'] == '4' || $_POST['form_type'] == '4-2') {
 		$sql = mysqli_query($conn,"UPDATE tbl_baas set status = '$status', verifier_2id = '$verifier_2id', verifier_2 = '$verifier_2_name', ver2_status = '$ver2_status', ver2_date = NOW() where control_number = '$txt_control_number' ");
 		$form_subject = "BaaS";
 	}

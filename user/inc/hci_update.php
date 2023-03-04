@@ -241,7 +241,7 @@ endif;
                                             <input class="form-control text-dark" type="text" name="hci_up_os_desc_old" id="hci_up_os_desc_old" value="<?php echo empty($hci_up_os_desc_old) ? '' : $hci_up_os_desc_old; ?>" placeholder="Specify OS Environment (with or w/o GUI:)" readonly>
                                         </td>
                                         <td>
-                                            <input class="form-control text-dark" type="text" name="hci_up_req_desc" id="hci_up_req_desc" value="<?php echo empty($hci_up_req_desc) ? '' : $hci_up_req_desc; ?>" placeholder="Please Define Partition:" required onkeypress="return /[A-Z0-9 ]/i.test(event.key)" />
+                                            <input class="form-control text-dark" type="text" name="hci_up_req_desc" id="hci_up_req_desc" value="<?php echo empty($hci_up_req_desc) ? '' : $hci_up_req_desc; ?>" placeholder="Please Define Partition:" onkeypress="return /[A-Z0-9 ]/i.test(event.key)" />
                                         </td>
                                          <td>
                                             <input class="form-control text-dark" type="text" name="hci_up_req_parti" id="hci_up_req_parti" value="<?php echo empty($hci_up_req_parti) ? '' : $hci_up_req_parti; ?>"   >
