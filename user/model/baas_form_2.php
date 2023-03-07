@@ -37,9 +37,9 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
         $specify_selection 			= $_POST['specify_selection'];
 
-        $crrf_host_vm_lvl 			= $_POST['crrf_host_vm_lvl'];
-        $crrf_path_file_lvl 		= $_POST['crrf_path_file_lvl'];
-        $crrf_retention 			= $_POST['crrf_retention'];
+        $crrf_host_vm_lvl 			= addslashes($_POST['crrf_host_vm_lvl']);
+        $crrf_path_file_lvl 		= addslashes($_POST['crrf_path_file_lvl']);
+        $crrf_retention 			= addslashes($_POST['crrf_retention']);
 		$server_contact 			= $_POST['server_contact'];
 
 		$form_type = '4-2';

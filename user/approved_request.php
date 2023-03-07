@@ -241,8 +241,7 @@ include 'model/authorize_personnel.php';
                                                         <tr>
                                                             <th>Requestor</th>
                                                             <th>Control No.</th>
-                                                            <th>Date</th>
-                                                            <th>Time</th>
+                                                            <th>DateTime</th>
                                                             <th>Form Type</th>
                                                             <th>Status</th>
                                                             <th>Action</th>
@@ -253,17 +252,17 @@ include 'model/authorize_personnel.php';
                                                         <?php
                                                             $num = 1;
                                                             if ($my_role == 1) {
-                                                                $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where uid = '$uid' and status = '7' ORDER BY date_requested DESC ");
+                                                                $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where uid = '$uid' and status = '7' ");
                                                             }elseif ($my_role == 2){
-                                                                $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where approver_id = '$uid' and app_status = '1'  ORDER BY appr_date DESC ");
+                                                                $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where approver_id = '$uid' and app_status = '1'  ");
                                                             }elseif ($my_role == 3){
-                                                                $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where reciever_id = '$uid' and rec_status = '1'  ORDER BY rec_date DESC ");
+                                                                $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where reciever_id = '$uid' and rec_status = '1'   ");
                                                             }elseif ($my_role == 4){
-                                                                $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where performer_id = '$uid' and perf_status = '1'  ORDER BY perform_date DESC ");
+                                                                $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where performer_id = '$uid' and perf_status = '1'   ");
                                                             }elseif ($my_role == 5){
-                                                                $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where verifier_id = '$uid' and ver_status = '1'  ORDER BY ver_date DESC ");
+                                                                $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where verifier_id = '$uid' and ver_status = '1'  ");
                                                             }elseif ($my_role == 6){
-                                                                $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where verifier_2id = '$uid' and ver2_status = '1'  ORDER BY ver2_date DESC ");
+                                                                $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where verifier_2id = '$uid' and ver2_status = '1'  ");
                                                             }
                                                          
 
@@ -272,18 +271,17 @@ include 'model/authorize_personnel.php';
                                                                 while ($rows_hci = mysqli_fetch_array($hci_query)):                        
                                                                     $control_number = $rows_hci['control_number'];
                                                                     
-                                                                    if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_hci['date_requested'])); $new_time = date('h:i:s A',strtotime($rows_hci['date_requested'])); }
-                                                                    if ($my_role == 2){$new_date = date('F d, Y',strtotime($rows_hci['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['appr_date'])); }
-                                                                    if ($my_role == 3){$new_date = date('F d, Y',strtotime($rows_hci['rec_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['rec_date'])); }
-                                                                    if ($my_role == 4){$new_date = date('F d, Y',strtotime($rows_hci['perform_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['perform_date'])); }
-                                                                    if ($my_role == 5){$new_date = date('F d, Y',strtotime($rows_hci['ver_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['ver_date'])); }
-                                                                    if ($my_role == 6){$new_date = date('F d, Y',strtotime($rows_hci['ver2_date'])); $new_time = date('h:i:s A',strtotime($rows_hci['ver2_date'])); }
+                                                                    if ($my_role == 1){$new_date = $rows_hci['date_requested'];  }
+                                                                    if ($my_role == 2){$new_date = $rows_hci['appr_date'];  }
+                                                                    if ($my_role == 3){$new_date = $rows_hci['rec_date'];  }
+                                                                    if ($my_role == 4){$new_date = $rows_hci['perform_date'];  }
+                                                                    if ($my_role == 5){$new_date = $rows_hci['ver_date']; }
+                                                                    if ($my_role == 6){$new_date = $rows_hci['ver2_date'];  }
 
                                                                     echo '<tr>';
                                                                     echo '<td>'.ucwords($rows_hci['fullname']).'</td>';
                                                                     echo '<td>HCI/'.$control_number.'</td>';
                                                                     echo '<td>'.$new_date.'</td>';
-                                                                    echo '<td>'.$new_time.'</td>';
                                                                     
                                                                     if ($rows_hci['form_type'] == '1-1') {
                                                                         echo '<td>HCI - UPDATE</td>';
@@ -364,8 +362,8 @@ include 'model/authorize_personnel.php';
                                                         <tr>
                                                             <th>Requestor</th>
                                                             <th>Control No.</th>
-                                                            <th>Date</th>
-                                                            <th>Time</th>
+                                                            <th>DateTime</th>
+                                                           
                                                             <th>Form Type</th>
                                                             <th>Status</th>
                                                             <th>Action</th>
@@ -376,32 +374,31 @@ include 'model/authorize_personnel.php';
                                                         <?php
                                                             $num = 1;
                                                             if ($my_role == 1) {
-                                                                $tci_query = mysqli_query($conn,"SELECT * FROM tbl_tci where uid = '$uid' and status = '7' ORDER BY date_requested DESC ");
+                                                                $tci_query = mysqli_query($conn,"SELECT * FROM tbl_tci where uid = '$uid' and status = '7' ");
                                                             }elseif ($my_role == 3){
-                                                                $tci_query = mysqli_query($conn,"SELECT * FROM tbl_tci where reciever_id = '$uid' and rec_status = '1'  ORDER BY appr_date DESC ");
+                                                                $tci_query = mysqli_query($conn,"SELECT * FROM tbl_tci where reciever_id = '$uid' and rec_status = '1'  ");
                                                             }elseif ($my_role == 4){
-                                                                $tci_query = mysqli_query($conn,"SELECT * FROM tbl_tci where performer_id = '$uid' and perf_status = '1'  ORDER BY perform_date DESC ");
+                                                                $tci_query = mysqli_query($conn,"SELECT * FROM tbl_tci where performer_id = '$uid' and perf_status = '1'  ");
                                                             }elseif ($my_role == 5){
-                                                                $tci_query = mysqli_query($conn,"SELECT * FROM tbl_tci where verifier_id = '$uid' and ver_status = '1'  ORDER BY ver_date DESC ");
+                                                                $tci_query = mysqli_query($conn,"SELECT * FROM tbl_tci where verifier_id = '$uid' and ver_status = '1' ");
                                                             }elseif ($my_role == 6){
-                                                                $tci_query = mysqli_query($conn,"SELECT * FROM tbl_tci where verifier_2id = '$uid' and ver2_status = '1'  ORDER BY ver2_date DESC ");
+                                                                $tci_query = mysqli_query($conn,"SELECT * FROM tbl_tci where verifier_2id = '$uid' and ver2_status = '1'  ");
                                                             }
 
                                                              
                                                             while ($rows_tci = mysqli_fetch_array($tci_query)):                        
                                                                 $control_number = $rows_tci['control_number'];
 
-                                                                if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_tci['date_requested'])); $new_time = date('h:i:s A',strtotime($rows_tci['date_requested'])); }
-                                                                if ($my_role == 3){$new_date = date('F d, Y',strtotime($rows_tci['rec_date'])); $new_time = date('h:i:s A',strtotime($rows_tci['rec_date'])); }
-                                                                if ($my_role == 4){$new_date = date('F d, Y',strtotime($rows_tci['perform_date'])); $new_time = date('h:i:s A',strtotime($rows_tci['perform_date'])); }
-                                                                if ($my_role == 5){$new_date = date('F d, Y',strtotime($rows_tci['ver_date'])); $new_time = date('h:i:s A',strtotime($rows_tci['ver_date'])); }
-                                                                if ($my_role == 6){$new_date = date('F d, Y',strtotime($rows_tci['ver2_date'])); $new_time = date('h:i:s A',strtotime($rows_tci['ver2_date'])); }
+                                                                if ($my_role == 1){$new_date = $rows_tci['date_requested'];  }
+                                                                if ($my_role == 3){$new_date = $rows_tci['rec_date'];  }
+                                                                if ($my_role == 4){$new_date = $rows_tci['perform_date'];  }
+                                                                if ($my_role == 5){$new_date = $rows_tci['ver_date'];  }
+                                                                if ($my_role == 6){$new_date = $rows_tci['ver2_date'];  }
                                                                 
                                                                 echo '<tr>';
                                                                 echo '<td>'.ucwords($rows_tci['fullname']).'</td>';
                                                                 echo '<td>Adhoc/'.$control_number.'</td>';
                                                                 echo '<td>'.$new_date.'</td>';
-                                                                echo '<td>'.$new_time.'</td>';
                                                                 echo '<td>Adhoc</td>';
                                                                 if ($my_role == 1 && $rows_tci['status'] == 7):
                                                                     echo '<td><span class="badge rounded-pill bg-success">Completed</span></td>';                       
@@ -443,8 +440,7 @@ include 'model/authorize_personnel.php';
                                                         <tr>
                                                             <th>Requestor</th>
                                                             <th>Control No.</th>
-                                                            <th>Date</th>
-                                                            <th>Time</th>
+                                                            <th>DateTime</th>
                                                             <th>Form Type</th>
                                                             <th>Status</th>
                                                             <th>Action</th>
@@ -455,34 +451,33 @@ include 'model/authorize_personnel.php';
                                                         <?php
                                                             $num = 1;
                                                             if ($my_role == 1) {
-                                                                $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where uid = '$uid' and status = '7' ORDER BY date_requested DESC ");
+                                                                $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where uid = '$uid' and status = '7' ");
                                                             }elseif ($my_role == 2){
-                                                                $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where approver_id = '$uid' and app_status = '1'  ORDER BY appr_date DESC ");
+                                                                $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where approver_id = '$uid' and app_status = '1'  ");
                                                             }elseif ($my_role == 3){
-                                                                $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where reciever_id = '$uid' and rec_status = '1'  ORDER BY rec_date DESC ");
+                                                                $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where reciever_id = '$uid' and rec_status = '1'  ");
                                                             }elseif ($my_role == 4){
-                                                                $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where performer_id = '$uid' and perf_status = '1'  ORDER BY perform_date DESC ");
+                                                                $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where performer_id = '$uid' and perf_status = '1'  ");
                                                             }elseif ($my_role == 5){
-                                                                $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where verifier_id = '$uid' and ver_status = '1'  ORDER BY ver_date DESC ");
+                                                                $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where verifier_id = '$uid' and ver_status = '1'   ");
                                                             }elseif ($my_role == 6){
-                                                                $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where verifier_2id = '$uid' and ver2_status = '1'  ORDER BY ver2_date DESC ");
+                                                                $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where verifier_2id = '$uid' and ver2_status = '1'  ");
                                                             }
                                                                
                                                             while ($rows_cps = mysqli_fetch_array($cps_query)):                        
                                                                 $control_number = $rows_cps['control_number'];
 
-                                                                if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_cps['date_requested'])); $new_time = date('h:i:s A',strtotime($rows_cps['date_requested'])); }
-                                                                if ($my_role == 2){$new_date = date('F d, Y',strtotime($rows_cps['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_cps['appr_date'])); }
-                                                                if ($my_role == 3){$new_date = date('F d, Y',strtotime($rows_cps['rec_date'])); $new_time = date('h:i:s A',strtotime($rows_cps['rec_date'])); }
-                                                                if ($my_role == 4){$new_date = date('F d, Y',strtotime($rows_cps['perform_date'])); $new_time = date('h:i:s A',strtotime($rows_cps['perform_date'])); }
-                                                                if ($my_role == 5){$new_date = date('F d, Y',strtotime($rows_cps['ver_date'])); $new_time = date('h:i:s A',strtotime($rows_cps['ver_date'])); }
-                                                                if ($my_role == 6){$new_date = date('F d, Y',strtotime($rows_cps['ver2_date'])); $new_time = date('h:i:s A',strtotime($rows_cps['ver2_date'])); }
+                                                                if ($my_role == 1){$new_date = $rows_cps['date_requested'];  }
+                                                                if ($my_role == 2){$new_date = $rows_cps['appr_date'];  }
+                                                                if ($my_role == 3){$new_date = $rows_cps['rec_date'];  }
+                                                                if ($my_role == 4){$new_date = $rows_cps['perform_date'];  }
+                                                                if ($my_role == 5){$new_date = $rows_cps['ver_date'];  }
+                                                                if ($my_role == 6){$new_date = $rows_cps['ver2_date']; }
                                                                 
                                                                 echo '<tr>';
                                                                 echo '<td>'.ucwords($rows_cps['fullname']).'</td>';
                                                                 echo '<td>CPS/'.$control_number.'</td>';
                                                                 echo '<td>'.$new_date.'</td>';
-                                                                echo '<td>'.$new_time.'</td>';
 
                                                                 if ($rows_cps['form_type'] == '3-1') {
                                                                     echo '<td>CPS - UPDATE</td>';
@@ -547,8 +542,8 @@ include 'model/authorize_personnel.php';
                                                         <tr>
                                                             <th>Requestor</th>
                                                             <th>Control No.</th>
-                                                            <th>Date</th>
-                                                            <th>Time</th>
+                                                            <th>DateTime</th>
+                                                            
                                                             <th>Form Type</th>
                                                             <th>Status</th>
                                                             <th>Action</th>
@@ -559,34 +554,33 @@ include 'model/authorize_personnel.php';
                                                         <?php
                                                             $num = 1;
                                                             if ($my_role == 1) {
-                                                                $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where uid = '$uid' and status = '7' ORDER BY date_requested DESC ");
+                                                                $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where uid = '$uid' and status = '7' ");
                                                             }elseif ($my_role == 2){
-                                                                $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where approver_id = '$uid' and app_status = '1'  ORDER BY appr_date DESC ");
+                                                                $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where approver_id = '$uid' and app_status = '1'  ");
                                                             }elseif ($my_role == 3){
-                                                                $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where reciever_id = '$uid' and rec_status = '1'  ORDER BY rec_date DESC ");
+                                                                $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where reciever_id = '$uid' and rec_status = '1' ");
                                                             }elseif ($my_role == 4){
-                                                                $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where performer_id = '$uid' and perf_status = '1'  ORDER BY perform_date DESC ");
+                                                                $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where performer_id = '$uid' and perf_status = '1'  ");
                                                             }elseif ($my_role == 5){
-                                                                $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where verifier_id = '$uid' and ver_status = '1'  ORDER BY ver_date DESC ");
+                                                                $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where verifier_id = '$uid' and ver_status = '1'   ");
                                                             }elseif ($my_role == 6){
-                                                                $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where verifier_2id = '$uid' and ver2_status = '1'  ORDER BY ver2_date DESC ");
+                                                                $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where verifier_2id = '$uid' and ver2_status = '1'  ");
                                                             }
                                                         
                                                             while ($rows_baas = mysqli_fetch_array($sql_baas)):                        
                                                                 $control_number = $rows_baas['control_number'];
 
-                                                                if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_baas['date_requested'])); $new_time = date('h:i:s A',strtotime($rows_baas['date_requested'])); }
-                                                                if ($my_role == 2){$new_date = date('F d, Y',strtotime($rows_baas['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_baas['appr_date'])); }
-                                                                if ($my_role == 3){$new_date = date('F d, Y',strtotime($rows_baas['rec_date'])); $new_time = date('h:i:s A',strtotime($rows_baas['rec_date'])); }
-                                                                if ($my_role == 4){$new_date = date('F d, Y',strtotime($rows_baas['perform_date'])); $new_time = date('h:i:s A',strtotime($rows_baas['perform_date'])); }
-                                                                if ($my_role == 5){$new_date = date('F d, Y',strtotime($rows_baas['ver_date'])); $new_time = date('h:i:s A',strtotime($rows_baas['ver_date'])); }
-                                                                if ($my_role == 6){$new_date = date('F d, Y',strtotime($rows_baas['ver2_date'])); $new_time = date('h:i:s A',strtotime($rows_baas['ver2_date'])); }
+                                                                if ($my_role == 1){$new_date = $rows_baas['date_requested'];  }
+                                                                if ($my_role == 2){$new_date = $rows_baas['appr_date'];  }
+                                                                if ($my_role == 3){$new_date = $rows_baas['rec_date'];  }
+                                                                if ($my_role == 4){$new_date = $rows_baas['perform_date'];  }
+                                                                if ($my_role == 5){$new_date = $rows_baas['ver_date'];  }
+                                                                if ($my_role == 6){$new_date = $rows_baas['ver2_date'];  }
                                                                 
                                                                 echo '<tr>';
                                                                 echo '<td>'.ucwords($rows_baas['fullname']).'</td>';
                                                                 echo '<td>BaaS/'.$control_number.'</td>';
                                                                 echo '<td>'.$new_date.'</td>';
-                                                                echo '<td>'.$new_time.'</td>';
                                                                 if ($rows_baas['form_type'] == '4-2') {
                                                                     echo '<td>BaaS-CRRF</td>';
                                                                 }else{
@@ -641,8 +635,7 @@ include 'model/authorize_personnel.php';
                                                         <tr>
                                                             <th>Requestor</th>
                                                             <th>Control No.</th>
-                                                            <th>Date</th>
-                                                            <th>Time</th>
+                                                            <th>DateTime</th>
                                                             <th>Form Type</th>
                                                             <th>Status</th>
                                                             <th>Action</th>
@@ -653,34 +646,33 @@ include 'model/authorize_personnel.php';
                                                         <?php
                                                             $num = 1;
                                                             if ($my_role == 1) {
-                                                                $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where uid = '$uid' and status = '7' ORDER BY date_requested DESC ");
+                                                                $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where uid = '$uid' and status = '7' ");
                                                             }elseif ($my_role == 2){
-                                                                $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where approver_id = '$uid' and app_status = '1'  ORDER BY appr_date DESC ");
+                                                                $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where approver_id = '$uid' and app_status = '1' ");
                                                             }elseif ($my_role == 3){
-                                                                $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where reciever_id = '$uid' and rec_status = '1'  ORDER BY rec_date DESC ");
+                                                                $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where reciever_id = '$uid' and rec_status = '1'   ");
                                                             }elseif ($my_role == 4){
-                                                                $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where performer_id = '$uid' and perf_status = '1'  ORDER BY perform_date DESC ");
+                                                                $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where performer_id = '$uid' and perf_status = '1'  ");
                                                             }elseif ($my_role == 5){
-                                                                $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where verifier_id = '$uid' and ver_status = '1'  ORDER BY ver_date DESC ");
+                                                                $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where verifier_id = '$uid' and ver_status = '1'   ");
                                                             }elseif ($my_role == 6){
-                                                                $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where verifier_2id = '$uid' and ver2_status = '1'  ORDER BY ver2_date DESC ");
+                                                                $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where verifier_2id = '$uid' and ver2_status = '1'  ");
                                                             }
                                                         
                                                             while ($rows_straas = mysqli_fetch_array($sql_straas)):                        
                                                                 $control_number = $rows_straas['control_number'];
 
-                                                                if ($my_role == 1){$new_date = date('F d, Y',strtotime($rows_straas['date_requested'])); $new_time = date('h:i:s A',strtotime($rows_straas['date_requested'])); }
-                                                                if ($my_role == 2){$new_date = date('F d, Y',strtotime($rows_straas['appr_date'])); $new_time = date('h:i:s A',strtotime($rows_straas['appr_date'])); }
-                                                                if ($my_role == 3){$new_date = date('F d, Y',strtotime($rows_straas['rec_date'])); $new_time = date('h:i:s A',strtotime($rows_straas['rec_date'])); }
-                                                                if ($my_role == 4){$new_date = date('F d, Y',strtotime($rows_straas['perform_date'])); $new_time = date('h:i:s A',strtotime($rows_straas['perform_date'])); }
-                                                                if ($my_role == 5){$new_date = date('F d, Y',strtotime($rows_straas['ver_date'])); $new_time = date('h:i:s A',strtotime($rows_straas['ver_date'])); }
-                                                                if ($my_role == 6){$new_date = date('F d, Y',strtotime($rows_straas['ver2_date'])); $new_time = date('h:i:s A',strtotime($rows_straas['ver2_date'])); }
+                                                                if ($my_role == 1){$new_date = $rows_straas['date_requested'];  }
+                                                                if ($my_role == 2){$new_date = $rows_straas['appr_date'];  }
+                                                                if ($my_role == 3){$new_date = $rows_straas['rec_date'];  }
+                                                                if ($my_role == 4){$new_date = $rows_straas['perform_date'];  }
+                                                                if ($my_role == 5){$new_date = $rows_straas['ver_date'];  }
+                                                                if ($my_role == 6){$new_date = $rows_straas['ver2_date'];  }
                                                                 
                                                                 echo '<tr>';
                                                                 echo '<td>'.ucwords($rows_straas['fullname']).'</td>';
                                                                 echo '<td>StraaS/'.$control_number.'</td>';
                                                                 echo '<td>'.$new_date.'</td>';
-                                                                echo '<td>'.$new_time.'</td>';
                                                                 if ($rows_straas['form_type'] == '5-2') {
                                                                     echo '<td>StraaS-Update</td>';
                                                                 }else{
@@ -761,7 +753,10 @@ include 'model/authorize_personnel.php';
             $(document).ready(function(){
                 $('#hci_datatables, #tci_datatables, #cps_datatables, #baas_datatables, #straas_datatables').DataTable({
                     responsive: true,
-                    "order": [[ 2, "desc" ]],
+                    "columnDefs": [
+                            { "orderDataType": "date-eu", "targets": 2 },
+                    ],
+		            "order": [[ 2, "desc" ]],
                     "language": {
                         "emptyTable": "There is no data to be showed!🤗",
                         "zeroRecords": "No data found!🤗"
