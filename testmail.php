@@ -11,7 +11,8 @@ $message = 'Hello, this is a test email.';
 $headers = 'From: sender@example.com';
 
 // SMTP configuration
-$smtp_host = '192.168.227.7';
+// $smtp_host = '192.168.227.7';
+$mail->Host = 'smglb.bsp.gov.ph';  
 $smtp_port = 25;
 
 // Create the PHPMailer object
@@ -28,7 +29,7 @@ try {
   $mail->Port = $smtp_port;
 
   // Configure the email
-  $mail->setFrom('no-reply_bsp_alapaap@ebizolution.com', 'BSP Alapaap Test');
+  $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap Test');
   $mail->addAddress($to);
   $mail->Subject = $subject;
   $mail->Body = $message;

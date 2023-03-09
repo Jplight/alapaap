@@ -47,7 +47,7 @@ if($status >=2 && $status <=6){
                         "A request needs your approval.<br><br>".
                         "<b>".ucwords($fullname)."</b> has <b>".$form_ft."</b> request with Control number <b>".$form_subject."/".$control_number."</b><br><br>".
                         "Click this link below for reference<br>".
-                        "<a href='".$_SERVER['SERVER_NAME']."'>http://".$_SERVER['SERVER_NAME']."</a><br><br>".
+                        "<a href='".$_SERVER['SERVER_NAME']."'>https://alapaap.bsp.gov.ph/</a><br><br>".
                         "Thank you"; 
         }   
         if($status == 3){
@@ -58,7 +58,7 @@ if($status >=2 && $status <=6){
                         "A request needs your acknowledgement.<br><br>".
                         "<b>".ucwords($fullname)."</b> has <b>".$form_ft."</b> request with Control number <b>".$form_subject."/".$control_number."</b><br><br>".
                         "Click this link below for reference<br>".
-                        "<a href='".$_SERVER['SERVER_NAME']."'>http://".$_SERVER['SERVER_NAME']."</a><br><br>".
+                        "<a href='".$_SERVER['SERVER_NAME']."'>https://alapaap.bsp.gov.ph/</a><br><br>".
                         "Thank you";
         }
         if($status == 4){
@@ -70,7 +70,7 @@ if($status >=2 && $status <=6){
                         "A request needs your service.<br><br>".
                         "<b>".ucwords($fullname)."</b> has <b>".$form_ft."</b> request with Control number <b>".$form_subject."/".$control_number."</b><br><br>".
                         "Click this link below for reference<br>".
-                        "<a href='".$_SERVER['SERVER_NAME']."'>http://".$_SERVER['SERVER_NAME']."</a><br><br>".
+                        "<a href='".$_SERVER['SERVER_NAME']."'>https://alapaap.bsp.gov.ph/</a><br><br>".
                         "Thank you";
         }
         if($status == 5){ 
@@ -81,7 +81,7 @@ if($status >=2 && $status <=6){
                         "A request needs your confirmation.<br><br>".
                         "<b>".ucwords($fullname)."</b> has <b>".$form_ft."</b> request with Control number <b>".$form_subject."/".$control_number."</b><br><br>".
                         "Click this link below for reference<br>".
-                        "<a href='".$_SERVER['SERVER_NAME']."'>http://".$_SERVER['SERVER_NAME']."</a><br><br>".
+                        "<a href='".$_SERVER['SERVER_NAME']."'>https://alapaap.bsp.gov.ph/</a><br><br>".
                         "Thank you";
         }
         if($status == 6){
@@ -92,7 +92,7 @@ if($status >=2 && $status <=6){
                         "A request needs your verification.<br><br>".
                         "<b>".ucwords($fullname)."</b> has <b>".$form_ft."</b> request with Control number <b>".$form_subject."/".$control_number."</b><br><br>".
                         "Click this link below for reference<br>".
-                        "<a href='".$_SERVER['SERVER_NAME']."'>http://".$_SERVER['SERVER_NAME']."</a><br><br>".
+                        "<a href='".$_SERVER['SERVER_NAME']."'>https://alapaap.bsp.gov.ph/</a><br><br>".
                         "Thank you";
         }
         if($status == 'admin'){$stat_name = 'Administrator'; }
