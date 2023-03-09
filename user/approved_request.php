@@ -729,7 +729,7 @@ include 'model/authorize_personnel.php';
                 <footer class="bg-white sticky-footer">
                     <div class="container my-auto">
                         <div class="text-center my-auto copyright">
-                            <span>Copyright © Alapaap | eBizolution 2022 v1.12.3 - BSP - DEV</span>
+                            <span>Copyright © Alapaap | eBizolution 2022 v1.12.3 - BSP</span>
                         </div>
                     </div>
                 </footer>
