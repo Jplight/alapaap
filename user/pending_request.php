@@ -184,8 +184,8 @@ include 'model/authorize_personnel.php';
                                                     <tr>
                                                         <th>Requestor</th>
                                                         <th>Control No.</th>
-                                                        <th>Date</th>
-                                                        <th>Time</th>
+                                                        <th>DateTime</th>
+                                                      
                                                         <th>Form Type</th>
                                                         <th>Status</th>
                                                         <th>Action</th>
@@ -197,22 +197,20 @@ include 'model/authorize_personnel.php';
                                                     <?php
                                                         if ($my_role == 1) {
                                                             
-                                                            $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where uid = '$uid' and status BETWEEN 2 and 6 ORDER BY date_requested DESC ");
+                                                            $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where uid = '$uid' and status BETWEEN 2 and 6  ");
                                                         }else{
                                                             
-                                                            $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where status = '$my_role'  ORDER BY date_requested DESC ");
+                                                            $hci_query = mysqli_query($conn,"SELECT * FROM tbl_hci where status = '$my_role'  ");
                                                         }
                                                         
                                                         while ($rows_hci = mysqli_fetch_array($hci_query)):
                                                             $control_number = $rows_hci['control_number'];
                                                             $formt = "hci";
-                                                            $new_date = date('F d, Y',strtotime($rows_hci['date_requested']));
-                                                            $new_time = date('h:i:s A',strtotime($rows_hci['date_requested']));
+                                                            $new_date = $rows_hci['date_requested'];
                                                             echo '<tr>';
                                                             echo '<td>'.$rows_hci['fullname'].'</td>';
                                                             echo '<td>HCI/'.$control_number.'</td>';
                                                             echo '<td>'.$new_date.'</td>';
-                                                            echo '<td>'.$new_time.'</td>';
                                                             if ($rows_hci['form_type'] == '1-1') {
                                                                 echo '<td>HCI - UPDATE</td>';
                                                             }else if ($rows_hci['form_type'] == '1-2') {
@@ -297,8 +295,7 @@ include 'model/authorize_personnel.php';
                                                         <tr>
                                                             <th>Requestor</th>
                                                             <th>Control No.</th>
-                                                            <th>Date</th>
-                                                            <th>Time</th>
+                                                            <th>DateTime</th>
                                                             <th>Form Type</th>
                                                             <th>Status</th>
                                                             <th>Action</th>
@@ -309,18 +306,16 @@ include 'model/authorize_personnel.php';
                                                         <?php  
                                                             $num = 1;
                                                             if ($my_role == 1) {
-                                                                $tci_query = mysqli_query($conn,"SELECT * FROM tbl_tci where uid = '$uid' and status BETWEEN 2 and 6  ORDER BY date_requested DESC ");
+                                                                $tci_query = mysqli_query($conn,"SELECT * FROM tbl_tci where uid = '$uid' and status BETWEEN 2 and 6 ");
                                                             }else{
-                                                                 $tci_query = mysqli_query($conn,"SELECT * FROM tbl_tci where status = '$my_role'  ORDER BY date_requested DESC ");
+                                                                 $tci_query = mysqli_query($conn,"SELECT * FROM tbl_tci where status = '$my_role' ");
                                                             }
 
                                                             $tci_count = mysqli_num_rows($tci_query);
                                                                 while ($rows_tci = mysqli_fetch_array($tci_query)):
                                                                     $control_number = $rows_tci['control_number'];
-                                                                    $mydate = strtotime($rows_tci['date_requested']);
-                                                                    $new_date = date('F d, Y',$mydate);
-                                                                    $mytime = strtotime($rows_tci['date_requested']);
-                                                                    $new_time = date('h:i:s A',$mytime);
+                                                                   
+                                                                    $new_date = $rows_tci['date_requested'];
                                                                     $formt = "Adhoc";
 
                                                                     echo '<tr>';
@@ -329,7 +324,7 @@ include 'model/authorize_personnel.php';
                                                                     echo '<td>Adhoc/'.$control_number.'</td>';
                                                                     
                                                                     echo '<td>'.$new_date.'</td>';
-                                                                    echo '<td>'.$new_time.'</td>';
+                                                                    
                                                                     echo '<td>Adhoc</td>';
                                                                     
                                                                     if (($rows_tci['status'] >= '2' && $rows_tci['status'] <= '6') && (!empty($rows_tci['num_revised'])) ) {
@@ -375,8 +370,8 @@ include 'model/authorize_personnel.php';
                                                         <tr>
                                                             <th>Requestor</th>
                                                             <th>Control No.</th>
-                                                            <th>Date</th>
-                                                            <th>Time</th>
+                                                            <th>DateTime</th>
+                                                            
                                                             <th>Form Type</th>
                                                             <th>Status</th>
                                                             <th>Action</th>
@@ -387,28 +382,24 @@ include 'model/authorize_personnel.php';
                                                         <?php  
                                                            
                                                             if ($my_role == 1) {
-                                                                $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where uid = '$uid' and status BETWEEN 2 and 6  ORDER BY date_requested DESC ");
+                                                                $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where uid = '$uid' and status BETWEEN 2 and 6  ");
                                                             }else{
-                                                                 $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where status = '$my_role'  ORDER BY date_requested DESC ");
+                                                                 $cps_query = mysqli_query($conn,"SELECT * FROM tbl_cps where status = '$my_role'  ");
                                                             }
 
                                                             $cps_count = mysqli_num_rows($cps_query);
            
                                                                 while ($rows_cps = mysqli_fetch_array($cps_query)):
                                                                     $control_number = $rows_cps['control_number'];
-                                                                    $mydate = strtotime($rows_cps['date_requested']);
-                                                                    $new_date = date('F d, Y',$mydate);
-                                                                    $mytime = strtotime($rows_cps['date_requested']);
-                                                                    $new_time = date('h:i:s A',$mytime);
+                                                                   
+                                                                    $new_date = $rows_cps['date_requested'];
                                                                     $formt = "cps";
 
                                                                     echo '<tr>';
                                                                     echo '<td>'.ucwords($rows_cps['fullname']).'</td>';
                                                                     echo '<td>CPS/'.$control_number.'</td>';
                                                                     echo '<td>'.$new_date.'</td>';
-                                                                    echo '<td>'.$new_time.'</td>';
                                                                     
-
                                                                     if ($rows_cps['form_type'] == '3-1') {
                                                                         echo '<td>CPS - UPDATE</td>';
                                                                     }else if ($rows_cps['form_type'] == '3-2') {
@@ -480,8 +471,7 @@ include 'model/authorize_personnel.php';
                                                            
                                                             <th>Requestor</th>
                                                             <th>Control No.</th>
-                                                            <th>Date</th>
-                                                            <th>Time</th>
+                                                            <th>DateTime</th>
                                                             <th>Form Type</th>
                                                             <th>Status</th>
                                                             <th>Action</th>
@@ -493,19 +483,17 @@ include 'model/authorize_personnel.php';
 
                                                             $num = 1;
                                                             if ($my_role == 1) {
-                                                                $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where uid = '$uid' and status BETWEEN 2 and 6  ORDER BY date_requested DESC ");
+                                                                $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where uid = '$uid' and status BETWEEN 2 and 6 ");
                                                             }else{
-                                                                 $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where status = '$my_role'  ORDER BY date_requested DESC ");
+                                                                 $sql_baas = mysqli_query($conn,"SELECT * FROM tbl_baas where status = '$my_role' ");
                                                             }
 
                                                             $count_baas = mysqli_num_rows($sql_baas);
                                                 
                                                                 while ($rows_baas = mysqli_fetch_array($sql_baas)):
                                                                     $control_number = $rows_baas['control_number'];
-                                                                    $mydate = strtotime($rows_baas['date_requested']);
-                                                                    $new_date = date('F d, Y',$mydate);
-                                                                    $mytime = strtotime($rows_baas['date_requested']);
-                                                                    $new_time = date('h:i:s A',$mytime);
+                                                                   
+                                                                    $new_date = $rows_baas['date_requested'];
                                                                     $formt = "baas";
 
                                                                     echo '<tr>';      
@@ -513,7 +501,7 @@ include 'model/authorize_personnel.php';
                                                                     echo '<td>BaaS/'.$control_number.'</td>';
                                                                     
                                                                     echo '<td>'.$new_date.'</td>';
-                                                                    echo '<td>'.$new_time.'</td>';
+                                                                    
                                                                     if ($rows_baas['form_type'] == '4-2') {
                                                                         echo '<td>BaaS-CRRF</td>';
                                                                     }else{
@@ -575,8 +563,7 @@ include 'model/authorize_personnel.php';
                                                            
                                                             <th>Requestor</th>
                                                             <th>Control No.</th>
-                                                            <th>Date</th>
-                                                            <th>Time</th>
+                                                            <th>DateTime</th>
                                                             <th>Form Type</th>
                                                             <th>Status</th>
                                                             <th>Action</th>
@@ -588,19 +575,17 @@ include 'model/authorize_personnel.php';
 
                                                             $num = 1;
                                                             if ($my_role == 1) {
-                                                                $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where uid = '$uid' and status BETWEEN 2 and 6  ORDER BY date_requested DESC ");
+                                                                $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where uid = '$uid' and status BETWEEN 2 and 6 ");
                                                             }else{
-                                                                 $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where status = '$my_role'  ORDER BY date_requested DESC ");
+                                                                 $sql_straas = mysqli_query($conn,"SELECT * FROM tbl_straas where status = '$my_role'");
                                                             }
 
                                                             $count_straas = mysqli_num_rows($sql_straas);
                                                 
                                                                 while ($rows_straas = mysqli_fetch_array($sql_straas)):
                                                                     $control_number = $rows_straas['control_number'];
-                                                                    $mydate = strtotime($rows_straas['date_requested']);
-                                                                    $new_date = date('F d, Y',$mydate);
-                                                                    $mytime = strtotime($rows_straas['date_requested']);
-                                                                    $new_time = date('h:i:s A',$mytime);
+                                                                    
+                                                                    $new_date = $rows_straas['date_requested'];
                                                                     $formt = "straas";
 
                                                                     echo '<tr>';      
@@ -608,7 +593,7 @@ include 'model/authorize_personnel.php';
                                                                     echo '<td>StraaS/'.$control_number.'</td>';
                                                                     
                                                                     echo '<td>'.$new_date.'</td>';
-                                                                    echo '<td>'.$new_time.'</td>';
+                                                                    
                                                                     if ($rows_straas['form_type'] == '5-2') {
                                                                         echo '<td>Straas-Update</td>';
                                                                     }else{
