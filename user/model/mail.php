@@ -39,14 +39,71 @@ if (isset($_POST['app_disapproved'])) {
     $recipient = $_POST['form_owner_mail'];
 }
 
-    // try {               
-    // $mail->isSMTP();                
-    //     $mail->Host = 'smglb.bsp.gov.ph';       
-    //     $mail->Port       = 25;   
-    // $mail->SMTPAuth = false;                              
-    //     $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
+    try {               
+        $mail->isSMTP();                
+            $mail->Host = 'smglb.bsp.gov.ph';       
+            $mail->Port       = 25;   
+            $mail->SMTPAuth = false;                              
+            $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
+            if($status == 7){
+                $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
+                try{
+                    $mail->addAddress($_POST['form_owner_mail'], $_POST['fullname']);
+                }catch (Exception $e) {
+                    echo 'Invalid address skipped: ' . htmlspecialchars($row['email_add']) . '<br>';      
+                }
+            }else{
+
+                //Recipients
+                $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
+                foreach ($getRecipients as $row) {
+                    try {
+                        $mail->addAddress($row['email_add'], $row['first_name']);
+                    } catch (Exception $e) {
+                        echo 'Invalid address skipped: ' . htmlspecialchars($row['email_add']) . '<br>';
+                        continue;
+                    }
+                }
+            
+            }        
+            $mail->addCC($email_add);                 
+            switch ($status) {
+                case $status >=3 && $status <=7:
+                    if ($_POST['form_owner_mail'] !== "") {
+                        $bccMail = $mail->addBCC($_POST['form_owner_mail']);
+                        break;
+                    }
+                default:
+                    $bccMail = null;
+                    break;
+            }
+            // for ($i=0; $i < count($_FILES['file']['tmp_name']) ; $i++) { 
+            //     $mail->addAttachment($_FILES['file']['tmp_name'][$i], $_FILES['file']['name'][$i]);    // Optional name
+            // }
+            $mail->isHTML(true);                                  
+            $mail->Subject = $subject;
+            $mail->Body    = $message;      
+            try {
+                        
+                $mail->send();
+            } catch (Exception $e) {
+                echo 'Mailer Error (' . htmlspecialchars($row['email_add']) . ') ' . $mail->ErrorInfo . '<br>';
+                $mail->getSMTPInstance()->reset();
+            }
+            $mail->clearAddresses();
+            $mail->clearAttachments();    
+    } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+
+    // try {   
+    //     $mail->isSMTP();                          
+    //     $mail->Host = '192.168.227.7';       
+    //     $mail->Port       = 25;      
+    //     $mail->SMTPAuth = false;                         
+    //     $mail->setFrom('no-reply_bsp_alapaap@ebizolution.com', 'BSP Alapaap Test');
     //     if($status == 7){
-    //         $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
+    //         // $mail->setFrom('no-reply_bsp_alapaap@ebizolution.com', 'BSP Alapaap Test');
     //         try{
     //             $mail->addAddress($_POST['form_owner_mail'], $_POST['fullname']);
     //         }catch (Exception $e) {
@@ -55,7 +112,7 @@ if (isset($_POST['app_disapproved'])) {
     //     }else{
 
     //         //Recipients
-    //         $mail->setFrom('no-reply_bsp_alapaap@bsp.gov.ph', 'BSP Alapaap');
+    //         // $mail->setFrom('no-reply_bsp_alapaap@ebizolution.com', 'BSP Alapaap Test');
     //         foreach ($getRecipients as $row) {
     //             try {
     //                 $mail->addAddress($row['email_add'], $row['first_name']);
@@ -95,63 +152,6 @@ if (isset($_POST['app_disapproved'])) {
     // } catch (Exception $e) {
     //     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     // }
-
-        try {   
-        $mail->isSMTP();                          
-        $mail->Host = '192.168.227.7';       
-        $mail->Port       = 25;      
-        $mail->SMTPAuth = false;                         
-        $mail->setFrom('no-reply_bsp_alapaap@ebizolution.com', 'BSP Alapaap Test');
-        if($status == 7){
-            // $mail->setFrom('no-reply_bsp_alapaap@ebizolution.com', 'BSP Alapaap Test');
-            try{
-                $mail->addAddress($_POST['form_owner_mail'], $_POST['fullname']);
-            }catch (Exception $e) {
-                echo 'Invalid address skipped: ' . htmlspecialchars($row['email_add']) . '<br>';      
-            }
-        }else{
-
-            //Recipients
-            // $mail->setFrom('no-reply_bsp_alapaap@ebizolution.com', 'BSP Alapaap Test');
-            foreach ($getRecipients as $row) {
-                try {
-                    $mail->addAddress($row['email_add'], $row['first_name']);
-                } catch (Exception $e) {
-                    echo 'Invalid address skipped: ' . htmlspecialchars($row['email_add']) . '<br>';
-                    continue;
-                }
-            }
-           
-        }        
-        $mail->addCC($email_add);                 
-        switch ($status) {
-            case $status >=3 && $status <=7:
-                if ($_POST['form_owner_mail'] !== "") {
-                    $bccMail = $mail->addBCC($_POST['form_owner_mail']);
-                    break;
-                }
-            default:
-                $bccMail = null;
-                break;
-        }
-        // for ($i=0; $i < count($_FILES['file']['tmp_name']) ; $i++) { 
-        //     $mail->addAttachment($_FILES['file']['tmp_name'][$i], $_FILES['file']['name'][$i]);    // Optional name
-        // }
-        $mail->isHTML(true);                                  
-        $mail->Subject = $subject;
-        $mail->Body    = $message;      
-        try {
-                    
-            $mail->send();
-        } catch (Exception $e) {
-            echo 'Mailer Error (' . htmlspecialchars($row['email_add']) . ') ' . $mail->ErrorInfo . '<br>';
-            $mail->getSMTPInstance()->reset();
-        }
-        $mail->clearAddresses();
-        $mail->clearAttachments();    
-    } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    }
 
     // try {
     //     //Server settings
